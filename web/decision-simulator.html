@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CertSprints — Decision Simulator</title>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/decision-simulator.css?v=20260529-ds1"/>
+</head>
+<body>
+<main class="phone-case" aria-label="CertSprints Decision Simulator">
+  <div class="case-shell">
+  <div class="ds" id="ds">
+
+    <div class="cert-bg" aria-hidden="true"></div>
+    <div class="sb"></div>
+
+    <!-- ═══ INTRO VIEW ═══ -->
+    <div class="ds-view active" id="ds-intro-view">
+      <nav class="ds-intro-nav">
+        <button class="nav-btn" type="button" aria-label="Back" id="ds-intro-back">
+          <img src="assets/icons/arrow-left-02.svg" width="24" height="24" alt=""/>
+        </button>
+        <div class="nav-progress" aria-hidden="true">
+          <div class="prog-active"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div>
+        </div>
+        <div class="nav-btn" style="opacity:0;pointer-events:none" aria-hidden="true"></div>
+      </nav>
+
+      <div class="ds-intro-scroll">
+        <div class="ds-challenge-badge">
+          <img src="assets/decision-simulator/icons/flash-16.svg" alt="" width="16" height="16"/>
+          <span id="ds-badge-text">Interactive Challenge</span>
+        </div>
+        <h1 class="ds-title">
+          <span id="ds-title-prefix">Project </span><span class="ds-title-gradient" id="ds-title-gradient">Decision Simulator</span>
+        </h1>
+        <p class="ds-intro-desc" id="ds-intro-desc"></p>
+
+        <p class="ds-focus-label">Focus Areas</p>
+        <div class="ds-focus-chips" id="ds-focus-chips"></div>
+
+        <div class="ds-stat-cards">
+          <div class="ds-stat-card dark">
+            <div class="ds-stat-meta">
+              <p class="ds-stat-eyebrow">Total Load</p>
+              <div class="ds-stat-row">
+                <span class="ds-stat-num" id="ds-total-num">01</span>
+                <span class="ds-stat-unit">Scenario</span>
+              </div>
+            </div>
+            <img class="ds-stat-icon" src="assets/decision-simulator/icons/inbox-upload-40.svg" alt="" width="40" height="40"/>
+          </div>
+          <div class="ds-stat-card light">
+            <div class="ds-stat-meta">
+              <p class="ds-stat-eyebrow">Expected Time</p>
+              <div class="ds-stat-row">
+                <span class="ds-stat-num" id="ds-time-num">08</span>
+                <span class="ds-stat-unit">Minutes</span>
+              </div>
+            </div>
+            <img class="ds-stat-icon" src="assets/decision-simulator/icons/alarm-clock-40.svg" alt="" width="40" height="40"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="lp-bnb">
+        <button class="btn-primary" type="button" id="ds-start-btn">
+          Start Challenge
+          <img src="assets/icons/arrow-right-02.svg" alt=""/>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══ SCENARIO VIEW ═══ -->
+    <div class="ds-view" id="ds-scenario-view">
+      <nav class="ds-scenario-nav">
+        <button class="ds-close-btn" type="button" aria-label="Close" id="ds-scenario-close">
+          <img src="assets/icons/cancel-01.svg" alt="" width="24" height="24"/>
+        </button>
+        <div class="ds-scenario-progress">
+          <div class="ds-scenario-progress-fill"></div>
+        </div>
+        <span class="ds-scenario-label" id="ds-scenario-counter">Scenario 1 of 1</span>
+      </nav>
+
+      <div class="ds-scenario-head">
+        <h1 class="ds-scenario-title" id="ds-scenario-title">Project Budget Decision</h1>
+      </div>
+
+      <div class="ds-panel">
+        <div class="ds-panel-scroll">
+          <div class="ds-context">
+            <p id="ds-context-text"></p>
+          </div>
+
+          <p class="ds-boundaries-label">Negotiation Boundaries</p>
+          <div class="ds-boundaries" id="ds-boundaries"></div>
+
+          <div class="ds-question-card">
+            <p class="ds-question-eyebrow">Strategic Question</p>
+            <p class="ds-question-text" id="ds-question-text"></p>
+          </div>
+
+          <p class="ds-options-label">Select Your Response</p>
+          <div class="ds-options" id="ds-options"></div>
+        </div>
+      </div>
+
+      <div class="lp-bnb">
+        <button class="btn-primary disabled" type="button" id="ds-submit-btn">Submit Decision</button>
+      </div>
+    </div>
+
+    <div class="home-ind"></div>
+
+    <!-- ═══ FEEDBACK OVERLAY ═══ -->
+    <div class="ds-overlay" id="ds-overlay" aria-hidden="true">
+      <div class="ds-sheet-wrap" id="ds-sheet-wrap">
+        <div class="ds-sheet">
+          <div class="ds-sheet-handle"><div class="ds-sheet-handle-bar"></div></div>
+
+          <div class="ds-result-card" id="ds-result-card">
+            <div class="ds-result-head">
+              <div class="ds-result-icon">
+                <img id="ds-result-icon" src="assets/decision-simulator/icons/tick-01-20.svg" alt=""/>
+              </div>
+              <p class="ds-result-label" id="ds-result-label">Correct answer is:</p>
+            </div>
+            <div class="ds-result-answer">
+              <p id="ds-result-answer-text"></p>
+            </div>
+          </div>
+
+          <div class="ds-why-box">
+            <h3>Here's why:</h3>
+            <p id="ds-why-text"></p>
+          </div>
+
+          <div class="ds-sheet-btns">
+            <button class="ds-btn-got-it" type="button" id="ds-got-it-btn">
+              <img src="assets/decision-simulator/icons/thumbs-up-20.svg" alt=""/>
+              Ok, got it
+            </button>
+            <button class="ds-btn-ai" type="button" id="ds-ai-btn">
+              <img src="assets/decision-simulator/icons/ai-brain-03-20.svg" alt=""/>
+              <span>Brainstorm with AI</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</main>
+
+<script src="js/decision-simulator-data.js?v=20260529-ds1"></script>
+<script src="js/decision-simulator.js?v=20260529-ds1"></script>
+</body>
+</html>

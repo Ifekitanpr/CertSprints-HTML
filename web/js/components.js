@@ -4,18 +4,34 @@
 (function () {
   const ASSETS = "assets/dashboard/home";
 
+  function readProfileSummary() {
+    const fallback = { firstName: "Patrick", avatar: ASSETS + "/avatar.png" };
+    try {
+      const raw = localStorage.getItem("cs-user-profile");
+      if (!raw) return fallback;
+      const profile = JSON.parse(raw);
+      return {
+        firstName: profile.firstName || fallback.firstName,
+        avatar: "assets/profile/images/user-avatar.jpg",
+      };
+    } catch (e) {
+      return fallback;
+    }
+  }
+
   function headerMarkup(extraHtml, sticky) {
     const stickyClass = sticky ? " dashboard-top--sticky" : "";
     const extraBlock = extraHtml
       ? `<div class="dashboard-top-extra">${extraHtml}</div>`
       : "";
+    const profile = readProfileSummary();
     return `
       <header class="dashboard-top${stickyClass}" data-app-shell-header>
         <div class="dash-row">
-          <div class="dash-welcome">
-            <img class="dash-avatar-img" src="${ASSETS}/avatar.png" alt="" width="40" height="40" />
-            <p>Hi, Patrick 👋</p>
-          </div>
+          <button class="dash-welcome" type="button" aria-label="Open profile">
+            <img class="dash-avatar-img" src="${profile.avatar}" alt="" width="40" height="40" />
+            <p>Hi, ${profile.firstName} 👋</p>
+          </button>
           <div class="dash-meta">
             <button class="dash-pill" type="button" data-streak-trigger aria-haspopup="dialog">
               <img src="${ASSETS}/fire.svg" alt="" width="20" height="20" />
@@ -52,6 +68,10 @@
 
       const { extraHtml = "", sticky = false } = options;
       container.innerHTML = headerMarkup(extraHtml, sticky);
+
+      container.querySelector(".dash-welcome")?.addEventListener("click", () => {
+        window.location.href = "profile.html";
+      });
 
       container.querySelector("[data-notification-trigger]")?.addEventListener("click", () => {
         window.location.href = "notifications.html";

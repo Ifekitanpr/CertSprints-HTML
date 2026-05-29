@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CertSprints — Wellness Check-in</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css?v=20260529-wc1" />
+    <style>
+      /* Simulated blurred dashboard background for standalone demo */
+      .wc-demo-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background:
+          linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,.94) 70%),
+          radial-gradient(360px 340px at 80% 9%, rgba(204,112,94,.5), transparent 72%),
+          radial-gradient(430px 370px at 3% 5%, rgba(0,123,255,.92), transparent 70%),
+          radial-gradient(360px 340px at 70% 96%, rgba(0,123,255,.34), transparent 62%),
+          radial-gradient(340px 320px at 24% 92%, rgba(255,187,162,.24), transparent 64%),
+          #fff;
+        overflow: hidden;
+      }
+
+      /* Faked dashboard header strips */
+      .wc-demo-bg::before {
+        content: '';
+        position: absolute;
+        top: 40px;
+        left: 0; right: 0;
+        height: 44px;
+        background: rgba(255,255,255,.6);
+        border-bottom: 1px solid rgba(3,5,7,.05);
+      }
+      .wc-demo-bg::after {
+        content: '';
+        position: absolute;
+        top: 84px;
+        left: 0; right: 0;
+        height: 44px;
+        background: rgba(255,255,255,.6);
+        border-bottom: 1px solid rgba(3,5,7,.05);
+      }
+
+      /* Dashboard card strip */
+      .wc-demo-card {
+        position: absolute;
+        top: 168px;
+        left: 20px; right: 20px;
+        height: 190px;
+        background: #0070e8;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .wc-demo-card::before {
+        content: 'Days to exam\A127 days';
+        white-space: pre;
+        position: absolute;
+        top: 16px; left: 16px;
+        font: 700 30px/1.2 Montserrat, sans-serif;
+        color: #fff;
+        letter-spacing: -.4px;
+      }
+
+      /* Demo controls (outside phone) */
+      .demo-controls {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 9999;
+        background: rgba(0,0,0,.75);
+        border-radius: 12px;
+        padding: 10px 16px;
+      }
+      .demo-controls button {
+        padding: 8px 14px;
+        border: none;
+        border-radius: 6px;
+        font: 600 12px/1 Inter,sans-serif;
+        cursor: pointer;
+        background: #007bff;
+        color: #fff;
+      }
+      .demo-controls button.danger { background: #f43f5e; }
+      .demo-controls button.muted  { background: #475569; }
+    </style>
+  </head>
+  <body>
+    <main class="phone-case" aria-label="Wellness Check-in Demo">
+      <div class="case-shell">
+        <section class="screen dashboard-screen" style="position:relative;overflow:hidden;">
+
+          <!-- Simulated blurred dashboard background -->
+          <div class="wc-demo-bg" aria-hidden="true">
+            <div class="wc-demo-card"></div>
+          </div>
+
+          <!-- Wellness overlay is injected here by wellness.js -->
+
+        </section>
+      </div>
+    </main>
+
+    <!-- Demo controls (outside the phone frame) -->
+    <div class="demo-controls">
+      <button onclick="WellnessCheckIn.forceShow()" type="button">▶ Show Check-in</button>
+      <button onclick="WellnessCheckIn.reset();location.reload();" class="danger" type="button">↺ Reset</button>
+      <button onclick="window.location.href='dashboard.html'" class="muted" type="button">← Dashboard</button>
+    </div>
+
+    <script src="js/wellness.js?v=20260529-wc1"></script>
+    <script>
+      /* Auto-force-show on demo page so it's always visible */
+      document.addEventListener('DOMContentLoaded', function() {
+        WellnessCheckIn.forceShow();
+      });
+    </script>
+  </body>
+</html>

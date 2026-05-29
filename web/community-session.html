@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join Session — CertSprints</title>
+    <script>
+      (function () {
+        var p = new URLSearchParams(window.location.search);
+        var cohort = p.get("cohort") || "pmp-general";
+        var session = p.get("session") || "live-risk";
+        var url =
+          "community-cohort.html?cohort=" +
+          encodeURIComponent(cohort) +
+          "&join=" +
+          encodeURIComponent(session) +
+          "&tab=sessions";
+        window.location.replace(url);
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Opening live session…</p>
+  </body>
+</html>

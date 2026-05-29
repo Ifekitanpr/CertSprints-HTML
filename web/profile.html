@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CertSprints — Profile</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css?v=20260529-prof1" />
+    <link rel="stylesheet" href="css/profile.css?v=20260529-prof1" />
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints Profile">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell">
+            <div class="dashboard-scroll">
+              <div class="prof-view">
+                <div class="cert-bg" aria-hidden="true"></div>
+
+                <header class="prof-nav-bar">
+                  <button class="prof-nav-pill" type="button" aria-label="Back" id="profBackBtn">
+                    <span class="prof-icon-slot prof-icon-slot--24">
+                      <img class="prof-glyph prof-glyph--arrow-left-20" src="assets/icons/arrow-left-02.svg" alt="" />
+                    </span>
+                  </button>
+                  <h1 class="prof-nav-title">Profile</h1>
+                  <span class="prof-nav-spacer" aria-hidden="true"></span>
+                </header>
+
+                <div class="prof-hero">
+                  <div class="prof-hero-row">
+                    <div class="prof-hero-main">
+                      <div class="prof-avatar-wrap">
+                        <img class="prof-avatar" id="profAvatar" src="assets/profile/images/user-avatar.jpg" alt="" />
+                      </div>
+                      <div class="prof-hero-copy">
+                        <h2 id="profDisplayName">Adanini Patrick</h2>
+                        <p id="profEmail">patrick@gmail.com</p>
+                      </div>
+                    </div>
+                    <button type="button" class="prof-edit-btn" id="profEditBtn" aria-label="Edit profile">
+                      <span class="prof-icon-slot prof-icon-slot--16">
+                        <img class="prof-glyph prof-glyph--edit-02-16" src="assets/profile/icons/edit-02-16.svg" alt="" />
+                      </span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="prof-panel">
+                  <div class="prof-rows" id="profRows" aria-live="polite"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="js/profile-data.js?v=20260529-prof1"></script>
+    <script src="js/profile.js?v=20260529-prof1"></script>
+  </body>
+</html>

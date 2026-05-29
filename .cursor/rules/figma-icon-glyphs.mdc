@@ -1,0 +1,73 @@
+---
+description: Figma icon frame vs glyph sizing — avoid stretched icons on HTML screens
+globs: web/**/*.{html,css,js}
+alwaysApply: false
+---
+
+# Figma icons — frame vs glyph (no stretching)
+
+When implementing icons from Figma exports in `web/`, **never size the `<img>` to the frame dimension**. Figma filenames like `close-24.svg` or `flag-16.svg` usually name the **container/frame**, not the drawable.
+
+## The rule
+
+1. **Frame (container)** — CSS on the button, pill, or slot (e.g. `40×40` circle with `8px` padding, or a `24×24` / `20×20` grid slot).
+2. **Glyph (artwork)** — size from the SVG **`viewBox`** (intrinsic width × height), centered inside the frame with `display: grid; place-items: center` or flex centering.
+
+Exported Figma SVGs often use `width="100%" height="100%"` and `preserveAspectRatio="none"`. Forcing `pe-icon-24` (24×24) on those assets **stretches** the glyph.
+
+## Implementation pattern
+
+```html
+<!-- 40×40 frame (pe-menu-btn), 24×24 inner slot, ~13.5×13.5 glyph -->
+<button class="pe-menu-btn" type="button" aria-label="…">
+  <img class="pe-glyph pe-glyph--close-24" src="…/close-24.svg" alt="" />
+</button>
+
+<!-- Or explicit slot wrapper -->
+<span class="pe-foot-icon-slot">
+  <img class="pe-glyph pe-glyph--arrow-left-20" src="…/arrow-left-20.svg" alt="" />
+</span>
+```
+
+```css
+.pe-foot-icon-slot {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.pe-glyph {
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+  max-width: none;
+  max-height: none;
+}
+
+/* Size from viewBox, e.g. viewBox="0 0 13.5 13.5" → 13.5px × 13.5px */
+.pe-glyph--close-24 {
+  width: 13.5px;
+  height: 13.5px;
+}
+```
+
+## When adding a new icon
+
+1. Open the SVG and read **`viewBox`** (e.g. `0 0 13.5 7.29` → glyph is ~13.5×7.29px).
+2. Add `.pe-glyph--<asset-name>` in `practice-exam.css` (or the screen’s CSS) with those dimensions.
+3. Wrap in a frame element sized to **Figma’s container** (pill, chip, legend dot, etc.).
+4. Use `class="pe-glyph pe-glyph--…"` on the `<img>`, not `pe-icon-24` / `pe-icon-20`, unless viewBox equals the frame.
+
+## Do not
+
+- Put `width: 24px; height: 24px` on every icon inside a 24px Figma frame.
+- Use global `img { max-width: 100% }` without exempting glyphs (breaks slots). Prefer `img.pe-glyph { max-width: none; max-height: none; }`.
+- Assume filename suffix (`-24`, `-16`) is the render size of the path.
+
+## Reference
+
+Working examples: `web/css/practice-exam.css` (`.pe-glyph`, `.pe-glyph--*`, `.pe-*-icon-slot`, `.pe-results-exit-slot`), Practice Exam session/results/review screens.
+
+`pe-icon-24` / `pe-icon-20` / `pe-icon-16` are only for assets whose **viewBox matches** that box (e.g. some non-Figma icons).

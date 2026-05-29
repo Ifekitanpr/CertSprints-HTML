@@ -546,11 +546,16 @@
   max-height: 16px;
 }
 
-/* Figma glyph assets — filename is often the frame; size from SVG viewBox */
+/*
+ * Figma icons: frame vs glyph — see .cursor/rules/figma-icon-glyphs.mdc
+ * Frame = container (button/pill/slot). Glyph = img sized from SVG viewBox, not filename.
+ */
 .pe-glyph {
   display: block;
   flex-shrink: 0;
   object-fit: contain;
+  max-width: none;
+  max-height: none;
 }
 
 .pe-glyph--tick-02-16 {
@@ -1495,6 +1500,10 @@
 
 .pe-results-session--pass .pe-results-calibration {
   color: #bbf7d0;
+}
+
+.pe-results-session--pass .pe-results-exit-slot .pe-glyph--close-24 {
+  filter: brightness(0) saturate(100%) invert(100%);
 }
 
 .pe-results-calibration {

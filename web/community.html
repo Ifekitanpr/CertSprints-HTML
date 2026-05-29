@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CertSprints — Community</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css?v=20260528-cm12" />
+    <link rel="stylesheet" href="css/community.css?v=20260528-cm12" />
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints Community">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell">
+            <div class="dashboard-scroll">
+              <div class="cm-view">
+                <div class="cert-bg" aria-hidden="true"></div>
+
+                <header class="cm-nav-bar">
+                  <button
+                    class="cm-nav-pill"
+                    type="button"
+                    aria-label="Go back"
+                    onclick="window.history.length > 1 ? window.history.back() : (window.location.href = 'more.html')"
+                  >
+                    <span class="cm-icon-slot cm-icon-slot--24">
+                      <img src="assets/icons/arrow-left-02.svg" alt="" style="width: 20px; height: 20px; object-fit: contain;" />
+                    </span>
+                  </button>
+                  <h1 class="cm-nav-title">Community</h1>
+                  <span class="cm-nav-spacer" aria-hidden="true"></span>
+                </header>
+
+                <div class="cm-segment-wrap">
+                  <div class="cm-segment" role="tablist">
+                    <button class="cm-segment-btn is-active" type="button" role="tab" aria-selected="true" data-cm-tab="cohorts">
+                      <span class="cm-icon-slot cm-icon-slot--18">
+                        <img class="cm-glyph cm-glyph--user-group-18" src="assets/community/icons/user-group-18.svg" alt="" />
+                      </span>
+                      Cohorts
+                    </button>
+                    <button class="cm-segment-btn" type="button" role="tab" aria-selected="false" data-cm-tab="partners">
+                      <span class="cm-icon-slot cm-icon-slot--18">
+                        <img class="cm-glyph cm-glyph--user-switch-18" src="assets/community/icons/user-switch-18.svg" alt="" />
+                      </span>
+                      Partners
+                    </button>
+                  </div>
+                </div>
+
+                <div class="cm-panel">
+                  <div id="cmCohortsPanel" role="tabpanel">
+                    <div id="cmCohortsList"></div>
+                    <div class="cm-note" id="cmExamNote" hidden>
+                      <span class="cm-icon-slot cm-icon-slot--16">
+                        <img class="cm-glyph cm-glyph--info-16" src="assets/community/icons/info-16.svg" alt="" />
+                      </span>
+                      <div>
+                        <p class="cm-note-text">
+                          <strong>NOTE:</strong> If you change your exam date to a different month, you'll be automatically moved from your current exam-month cohort to the one matching your new exam month. You can also leave or rejoin any cohort at any time.
+                        </p>
+                        <button class="cm-note-btn" type="button" id="cmNoteDismiss">Don't show me again</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="cmPartnersPanel" class="cm-screen-hidden" role="tabpanel">
+                    <!-- Screen 42: Empty state -->
+                    <div id="cmPartnersEmpty" class="cm-partners-empty-state">
+                      <div class="cm-partners-empty-card">
+                        <div class="cm-partners-empty-avatars" aria-hidden="true">
+                          <span class="cm-partners-empty-avatar cm-partners-empty-avatar--a">
+                            <img src="assets/community/avatars/partners-empty-you.jpg" alt="" />
+                          </span>
+                          <span class="cm-partners-empty-avatar cm-partners-empty-avatar--b">
+                            <img src="assets/community/avatars/partners-empty-partner.jpg" alt="" />
+                          </span>
+                        </div>
+                        <h2 class="cm-partners-empty-title">You don't have any accountability partners yet</h2>
+                        <p class="cm-partners-empty-desc">Peer learning sessions gets better when you have a group of friends that drive and motivate your learning momentum.</p>
+                        <button type="button" class="cm-partners-find-btn" id="cmPartnersFindBtn">
+                          <span class="cm-icon-slot cm-icon-slot--20">
+                            <img class="cm-glyph cm-glyph--ai-search-20" src="assets/community/icons/ai-search-20.svg" alt="" />
+                          </span>
+                          Find a partner
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Screens 45–46: Matched state -->
+                    <div id="cmPartnersMatched" class="cm-partners-matched cm-screen-hidden">
+                      <div class="cm-partners-subtabs" role="tablist">
+                        <button type="button" class="cm-partners-subtab is-active" role="tab" aria-selected="true" data-cm-partners-sub="leaderboard">
+                          <span class="cm-icon-slot cm-icon-slot--24">
+                            <img class="cm-glyph cm-glyph--award-02-24" src="assets/community/icons/award-02-24.svg" alt="" />
+                          </span>
+                          Leaderboard
+                        </button>
+                        <button type="button" class="cm-partners-subtab" role="tab" aria-selected="false" data-cm-partners-sub="achievements">
+                          <span class="cm-icon-slot cm-icon-slot--24">
+                            <img class="cm-glyph cm-glyph--award-04-24" src="assets/community/icons/award-04-24.svg" alt="" />
+                          </span>
+                          Achievements
+                        </button>
+                      </div>
+                      <div id="cmPartnersLeaderboard" class="cm-partners-subpanel" role="tabpanel"></div>
+                      <div id="cmPartnersAchievements" class="cm-partners-subpanel cm-screen-hidden" role="tabpanel"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="cs-nav-placeholder"></div>
+
+            <!-- Screen 43: Finding partner modal -->
+            <div class="cm-overlay cm-partners-overlay" id="cmPartnersFindingOverlay" aria-hidden="true">
+              <div class="cm-overlay-scrim" data-close-finding></div>
+              <div class="cm-partners-modal" role="dialog" aria-modal="true" aria-labelledby="cmPartnersFindingTitle">
+                <button type="button" class="cm-partners-modal-close" data-close-finding aria-label="Close">
+                  <span class="cm-icon-slot cm-icon-slot--24">
+                    <img class="cm-glyph cm-glyph--cancel-01-24" src="assets/community/icons/cancel-01-24.svg" alt="" />
+                  </span>
+                </button>
+                <div class="cm-partners-finding-icon-wrap">
+                  <div class="cm-partners-finding-spinner" aria-hidden="true">
+                    <img class="cm-glyph cm-glyph--ai-spinner-ring" src="assets/community/icons/ai-spinner-ring.svg" alt="" />
+                  </div>
+                  <span class="cm-partners-finding-ai">
+                    <img class="cm-glyph cm-glyph--ai-fill-20" src="assets/community/icons/ai-fill-20.svg" alt="" />
+                  </span>
+                </div>
+                <h2 id="cmPartnersFindingTitle" class="cm-partners-modal-title">AI is finding your accountability partner</h2>
+                <p class="cm-partners-modal-body">AI is reviewing profiles of leaners in this cohort that match yours and will be a good momentum for learning</p>
+                <button type="button" class="cm-partners-modal-cancel" id="cmPartnersFindingCancel">Cancel</button>
+              </div>
+            </div>
+
+            <!-- Screen 44: Match found modal -->
+            <div class="cm-overlay cm-partners-overlay" id="cmPartnersMatchOverlay" aria-hidden="true">
+              <div class="cm-overlay-scrim" data-close-match></div>
+              <div class="cm-partners-modal cm-partners-modal--match" role="dialog" aria-modal="true" aria-labelledby="cmPartnersMatchTitle">
+                <div class="cm-partners-match-avatars" id="cmPartnersMatchAvatars"></div>
+                <h2 id="cmPartnersMatchTitle" class="cm-partners-modal-title">Your have a new accountability partner</h2>
+                <p class="cm-partners-match-name" id="cmPartnersMatchName"></p>
+                <p class="cm-partners-modal-body" id="cmPartnersMatchDesc"></p>
+                <button type="button" class="cm-partners-modal-ok" id="cmPartnersMatchOk">Ok, got it</button>
+              </div>
+            </div>
+
+            <!-- Screen 47: Reactions modal -->
+            <div class="cm-overlay cm-partners-overlay" id="cmPartnersReactionsOverlay" aria-hidden="true">
+              <div class="cm-overlay-scrim" data-close-reactions></div>
+              <div class="cm-partners-modal cm-partners-modal--compact" role="dialog" aria-modal="true" aria-labelledby="cmPartnersReactionsTitle">
+                <div class="cm-partners-modal-head">
+                  <h2 id="cmPartnersReactionsTitle" class="cm-partners-modal-title">Reactions</h2>
+                  <button type="button" class="cm-partners-modal-close" data-close-reactions aria-label="Close">
+                    <span class="cm-icon-slot cm-icon-slot--24">
+                      <img class="cm-glyph cm-glyph--cancel-01-24" src="assets/community/icons/cancel-01-24.svg" alt="" />
+                    </span>
+                  </button>
+                </div>
+                <div class="cm-partners-reactions-list" id="cmPartnersReactionsList"></div>
+              </div>
+            </div>
+
+            <!-- Screen 48: Comments bottom sheet -->
+            <div class="cm-overlay cm-partners-overlay cm-partners-overlay--sheet" id="cmPartnersCommentsSheet" aria-hidden="true">
+              <div class="cm-overlay-scrim" data-close-comments></div>
+              <div class="cm-partners-comments-sheet" role="dialog" aria-modal="true" aria-labelledby="cmPartnersCommentsTitle">
+                <div class="cm-partners-sheet-handle" aria-hidden="true"></div>
+                <div class="cm-partners-sheet-head">
+                  <div class="cm-partners-sheet-title-wrap">
+                    <span class="cm-icon-slot cm-icon-slot--24">
+                      <img class="cm-glyph cm-glyph--comment-01-24" src="assets/community/icons/comment-01-24.svg" alt="" />
+                    </span>
+                    <h2 id="cmPartnersCommentsTitle">Comments</h2>
+                  </div>
+                  <button type="button" class="cm-partners-sheet-close" data-close-comments aria-label="Close">
+                    <span class="cm-icon-slot cm-icon-slot--16">
+                      <img class="cm-glyph cm-glyph--cancel-01-24" src="assets/community/icons/cancel-01-24.svg" alt="" />
+                    </span>
+                  </button>
+                </div>
+                <div class="cm-partners-comments-list" id="cmPartnersCommentsList"></div>
+                <div class="cm-partners-sheet-compose">
+                  <input type="text" placeholder="Add a comment..." aria-label="Add a comment" />
+                  <button type="button" class="cm-partners-send-btn">Send</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="js/community-data.js?v=20260528-cm12"></script>
+    <script src="js/community.js?v=20260528-cm12"></script>
+    <script src="js/community-partners.js?v=20260528-cm12"></script>
+  </body>
+</html>

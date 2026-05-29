@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CertSprints — Sounds &amp; Haptics</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css?v=20260529-sub2" />
+    <style>
+      .sub-nav {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 48px 20px 8px;
+      }
+      .sub-nav-title {
+        flex: 1;
+        text-align: center;
+        font: 600 16px/22px Inter, sans-serif;
+        color: #334155;
+        letter-spacing: -0.112px;
+        margin: 0;
+      }
+      .sub-nav-spacer { width: 40px; flex-shrink: 0; }
+      .sub-spacer { height: 16px; }
+
+      .sub-card { border-radius: 24px; padding: 16px 16px 64px; gap: 24px; }
+
+      .sub-group {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      /* Section header row (icon + label + toggle) */
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 4px 12px;
+      }
+      .section-icon-wrap {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: #fff0eb;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .section-icon-wrap img {
+        width: 24px;
+        height: 24px;
+        display: block;
+        object-fit: contain;
+      }
+      .section-text { flex: 1; min-width: 0; }
+      .section-title {
+        font: 600 16px/22px Inter, sans-serif;
+        color: #334155;
+        margin: 0 0 4px;
+        letter-spacing: -0.112px;
+      }
+      .section-desc {
+        font: 400 12px/1.6 Inter, sans-serif;
+        color: #64748b;
+        margin: 0;
+      }
+
+      /* Toggle md (44×24) */
+      .toggle-md {
+        position: relative;
+        width: 44px;
+        height: 24px;
+        border-radius: 123px;
+        cursor: pointer;
+        flex-shrink: 0;
+        display: block;
+      }
+      .toggle-md input { opacity: 0; width: 0; height: 0; position: absolute; }
+      .toggle-md .ttrack {
+        position: absolute;
+        inset: 0;
+        border-radius: 123px;
+        background: #f1f5f9;
+        transition: background 150ms;
+      }
+      .toggle-md input:checked + .ttrack { background: #007bff; }
+      .toggle-md .tthumb {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0,0,0,.2);
+        transition: left 150ms;
+        pointer-events: none;
+      }
+      .toggle-md input:checked ~ .tthumb { left: 22px; }
+
+      /* White inner panel */
+      .sub-row {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 20px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      /* Volume slider */
+      .vol-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+      .vol-label {
+        font: 500 16px/22px Inter, sans-serif;
+        color: #334155;
+        letter-spacing: -0.112px;
+      }
+      .vol-pct {
+        font: 600 16px/22px Inter, sans-serif;
+        color: #94a3b8;
+        letter-spacing: -0.112px;
+      }
+      input[type="range"].vol-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 25px;
+        border-radius: 12px;
+        background: linear-gradient(to right, #ff6b35 0%, #ff6b35 70%, #f1f5f9 70%, #f1f5f9 100%);
+        outline: none;
+        cursor: pointer;
+      }
+      input[type="range"].vol-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 48px;
+        height: 16px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.9);
+        border: 1px solid rgba(255,255,255,0.3);
+        box-shadow: -2px 4px 12px rgba(0,0,0,.2);
+        cursor: pointer;
+      }
+
+      /* Select field */
+      .select-field { display: flex; flex-direction: column; gap: 8px; }
+      .select-label { font: 500 14px/20px Inter, sans-serif; color: #475569; letter-spacing: -0.084px; }
+      .select-wrap { position: relative; }
+      .select-wrap select {
+        width: 100%;
+        height: 58px;
+        padding: 0 44px 0 20px;
+        border: 1px solid #e2e8f0;
+        border-radius: 4px;
+        background: #fff;
+        font: 400 14px/1.6 Inter, sans-serif;
+        color: #94a3b8;
+        appearance: none;
+        -webkit-appearance: none;
+        cursor: pointer;
+        box-sizing: border-box;
+      }
+      /* CSS chevron — no SVG overflow bleed */
+      .select-wrap::after {
+        content: '';
+        position: absolute;
+        right: 18px;
+        top: 50%;
+        transform: translateY(-65%) rotate(45deg);
+        width: 8px;
+        height: 8px;
+        border-right: 1.5px solid #94a3b8;
+        border-bottom: 1.5px solid #94a3b8;
+        pointer-events: none;
+      }
+
+      /* Intensity radio */
+      .intensity-label { font: 500 16px/22px Inter, sans-serif; color: #334155; letter-spacing: -0.112px; margin: 0 0 16px; }
+      .radio-group {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        width: 100%;
+      }
+      .radio-btn {
+        min-width: 0;
+        width: 100%;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 12px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+        background: #fff;
+        box-sizing: border-box;
+        transition: border-color 150ms, background 150ms;
+      }
+      .radio-btn input[type="radio"] { display: none; }
+      .radio-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 1px solid #e2e8f0;
+        background: #fff;
+        flex-shrink: 0;
+        position: relative;
+        transition: border-color 150ms;
+      }
+      .radio-btn input:checked ~ .radio-dot {
+        border-color: #007bff;
+        background: #e6f2ff;
+      }
+      .radio-btn input:checked ~ .radio-dot::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #007bff;
+      }
+      .radio-text {
+        font: 500 14px/20px Inter, sans-serif;
+        color: #94a3b8;
+        white-space: nowrap;
+      }
+      .radio-btn:has(input:checked) { border-color: #007bff; background: #e6f2ff; }
+      .radio-btn:has(input:checked) .radio-text { color: #007bff; }
+
+      /* Vibrate on checkboxes */
+      .vibrate-label { font: 500 16px/22px Inter, sans-serif; color: #334155; letter-spacing: -0.112px; margin: 0 0 8px; }
+      .check-list { display: flex; flex-direction: column; gap: 8px; }
+      .check-row {
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        cursor: pointer;
+        background: #fff;
+      }
+      .check-row input[type="checkbox"] { display: none; }
+      .check-box {
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        border: 1.5px solid #e2e8f0;
+        background: #fff;
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        transition: background 150ms, border-color 150ms;
+      }
+      .check-row input:checked ~ .check-box {
+        background: #007bff;
+        border-color: #007bff;
+      }
+      .check-box::after {
+        content: '';
+        width: 10px;
+        height: 7px;
+        border-left: 2px solid transparent;
+        border-bottom: 2px solid transparent;
+        transform: rotate(-45deg) translate(1px, -1px);
+        transition: border-color 150ms;
+      }
+      .check-row input:checked ~ .check-box::after {
+        border-color: #fff;
+      }
+      .check-text { font: 500 14px/20px Inter, sans-serif; color: #334155; letter-spacing: -0.084px; }
+    </style>
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints Sounds and Haptics">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell">
+            <div class="dashboard-scroll">
+
+              <nav class="sub-nav">
+                <button class="cert-back" type="button" aria-label="Back" onclick="window.location.href='settings.html'">
+                  <img src="assets/icons/arrow-left-02.svg" alt="" />
+                </button>
+                <h1 class="sub-nav-title">Sounds &amp; Haptics</h1>
+                <div class="sub-nav-spacer" aria-hidden="true"></div>
+              </nav>
+
+              <div class="sub-spacer"></div>
+
+              <main class="dashboard-main sub-card">
+
+                <!-- Sounds section -->
+                <div class="sub-group">
+                  <div class="section-header">
+                    <div class="section-icon-wrap">
+                      <img src="assets/settings/sounds-volume.svg" alt="" />
+                    </div>
+                    <div class="section-text">
+                      <p class="section-title">Enable Sounds</p>
+                      <p class="section-desc">Play audio cues for actions &amp; events</p>
+                    </div>
+                    <label class="toggle-md" aria-label="Enable Sounds">
+                      <input type="checkbox" checked />
+                      <span class="ttrack"></span>
+                      <span class="tthumb"></span>
+                    </label>
+                  </div>
+                  <div class="sub-row">
+                    <div>
+                      <div class="vol-row">
+                        <span class="vol-label">Volume</span>
+                        <span class="vol-pct" id="volPct">70%</span>
+                      </div>
+                      <input type="range" class="vol-slider" min="0" max="100" value="70"
+                        oninput="document.getElementById('volPct').textContent=this.value+'%';this.style.background='linear-gradient(to right,#ff6b35 0%,#ff6b35 '+this.value+'%,#f1f5f9 '+this.value+'%,#f1f5f9 100%)'" />
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:24px;">
+                      <div class="select-field">
+                        <label class="select-label">Completion sound</label>
+                        <div class="select-wrap">
+                          <select>
+                            <option>Pop</option><option>Chime</option><option>Bell</option>
+                          </select>
+                                                  </div>
+                      </div>
+                      <div class="select-field">
+                        <label class="select-label">Quiz Answer sound</label>
+                        <div class="select-wrap">
+                          <select>
+                            <option>Pop</option><option>Chime</option><option>Bell</option>
+                          </select>
+                                                  </div>
+                      </div>
+                      <div class="select-field">
+                        <label class="select-label">Failed question sound</label>
+                        <div class="select-wrap">
+                          <select>
+                            <option>Pop</option><option>Chime</option><option>Buzz</option>
+                          </select>
+                                                  </div>
+                      </div>
+                      <div class="select-field">
+                        <label class="select-label">Correct Answer sound</label>
+                        <div class="select-wrap">
+                          <select>
+                            <option>Pop</option><option>Chime</option><option>Bell</option>
+                          </select>
+                                                  </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Haptic Feedback section -->
+                <div class="sub-group">
+                  <div class="section-header">
+                    <div class="section-icon-wrap">
+                      <img src="assets/settings/sounds-vibrate.svg" alt="" />
+                    </div>
+                    <div class="section-text">
+                      <p class="section-title">Haptic Feedback</p>
+                      <p class="section-desc">Tactile feedback on supported devices (mobile).</p>
+                    </div>
+                    <label class="toggle-md" aria-label="Haptic Feedback">
+                      <input type="checkbox" checked />
+                      <span class="ttrack"></span>
+                      <span class="tthumb"></span>
+                    </label>
+                  </div>
+                  <div class="sub-row">
+                    <div>
+                      <p class="intensity-label">Intensity</p>
+                      <div class="radio-group" role="radiogroup" aria-label="Haptic intensity">
+                        <label class="radio-btn">
+                          <input type="radio" name="intensity" value="light" />
+                          <span class="radio-dot"></span>
+                          <span class="radio-text">Light</span>
+                        </label>
+                        <label class="radio-btn">
+                          <input type="radio" name="intensity" value="medium" checked />
+                          <span class="radio-dot"></span>
+                          <span class="radio-text">Medium</span>
+                        </label>
+                        <label class="radio-btn">
+                          <input type="radio" name="intensity" value="strong" />
+                          <span class="radio-dot"></span>
+                          <span class="radio-text">Strong</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div>
+                      <p class="vibrate-label">Vibrate on:</p>
+                      <div class="check-list">
+                        <label class="check-row">
+                          <input type="checkbox" checked />
+                          <span class="check-box"></span>
+                          <span class="check-text">Correct answer</span>
+                        </label>
+                        <label class="check-row">
+                          <input type="checkbox" checked />
+                          <span class="check-box"></span>
+                          <span class="check-text">Milestone reaches</span>
+                        </label>
+                        <label class="check-row">
+                          <input type="checkbox" checked />
+                          <span class="check-box"></span>
+                          <span class="check-text">Wrong answer</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </main>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="js/app.js?v=20260529-sub2"></script>
+  </body>
+</html>
