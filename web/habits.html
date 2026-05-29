@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CertSprints Learning Habits</title>
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints learning habits screen">
+      <div class="case-shell">
+        <section class="screen">
+          <div class="plan-view onboarding-view habits-view">
+            <div class="cert-bg"></div>
+            <div class="onboarding-content scroll-content">
+              <div class="cert-nav">
+                <button class="cert-back habits-back" type="button" aria-label="Back"><img src="assets/icons/arrow-left-02.svg" alt="" /></button>
+                <div class="step-pill step-5" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="onboarding-heading">
+                <h2>Learning Habits</h2>
+                <p>Build a smarter study routine tailored to you.</p>
+              </div>
+              <section class="habit-card hours-card">
+                <div class="habit-title"><span class="icon-chip blue-soft"><img src="assets/icons/figma/time-quarter-pass-blue.svg" alt="" /></span>How many hours can you dedicate to studying each day?</div>
+                <div class="hours-control">
+                  <input type="range" min="1" max="8" value="1" step="1" class="hours-slider" aria-label="Daily study hours" />
+                  <output class="hours-output">1h</output>
+                </div>
+              </section>
+              <section class="habit-card focus-card">
+                <div class="habit-title"><span class="icon-chip orange-soft"><img src="assets/icons/figma/hourglass-orange.svg" alt="" /></span>How long can you do focused study at a stretch?</div>
+                <div class="focus-grid" role="radiogroup" aria-label="Focused study time">
+                  <button type="button" class="focus-option" role="radio" aria-checked="false" data-focus="45"><span class="focus-option-icon"><img class="icon-default" src="assets/icons/figma/clock-03-orange.svg" alt="" /><img class="icon-selected" src="assets/icons/figma/clock-03-blue.svg" alt="" /></span><strong>45 mins</strong><small>Quick session</small></button>
+                  <button type="button" class="focus-option selected" role="radio" aria-checked="true" data-focus="60"><span class="focus-option-icon"><img class="icon-default" src="assets/icons/figma/clock-03-orange.svg" alt="" /><img class="icon-selected" src="assets/icons/figma/clock-03-blue.svg" alt="" /></span><strong>60 mins</strong><small>Standard</small></button>
+                  <button type="button" class="focus-option" role="radio" aria-checked="false" data-focus="90"><span class="focus-option-icon"><img class="icon-default" src="assets/icons/figma/clock-03-orange.svg" alt="" /><img class="icon-selected" src="assets/icons/figma/clock-03-blue.svg" alt="" /></span><strong>90 mins</strong><small>Deep focus</small></button>
+                  <button type="button" class="focus-option" role="radio" aria-checked="false" data-focus="120"><span class="focus-option-icon"><img class="icon-default" src="assets/icons/figma/clock-03-orange.svg" alt="" /><img class="icon-selected" src="assets/icons/figma/clock-03-blue.svg" alt="" /></span><strong>120 mins</strong><small>Extended</small></button>
+                </div>
+                <div class="timeline-note focus-note"><img src="assets/icons/figma/information-circle-blue.svg" alt="" /><span data-study-blocks>2 study blocks will be created for you based on your max focused study time</span></div>
+              </section>
+              <section class="habit-card rest-card">
+                <div class="habit-title"><span class="icon-chip green-rest"><img src="assets/icons/figma/sleeping-green.svg" alt="" /></span>Select a day for rest</div>
+                <div class="rest-days" role="radiogroup" aria-label="Rest day">
+                  <button type="button" role="radio" aria-checked="false" data-rest="Mon">M</button>
+                  <button type="button" role="radio" aria-checked="false" data-rest="Tue">T</button>
+                  <button type="button" role="radio" aria-checked="false" data-rest="Wed">W</button>
+                  <button type="button" role="radio" aria-checked="false" data-rest="Thu">T</button>
+                  <button type="button" role="radio" aria-checked="false" data-rest="Fri">F</button>
+                  <button type="button" role="radio" aria-checked="false" data-rest="Sat">S</button>
+                  <button type="button" class="selected" role="radio" aria-checked="true" data-rest="Sun">S</button>
+                </div>
+              </section>
+            </div>
+            <div class="plan-bottom">
+              <div class="plan-bottom-inner">
+                <button class="start-free habits-confirm" type="button">Confirm Timeline</button>
+              </div>
+              <div class="home-indicator" aria-hidden="true"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="js/app.js?v=20260528-paid"></script>
+  </body>
+</html>

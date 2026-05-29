@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CertSprints Verify Sign In</title>
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints sign in email verification screen">
+      <div class="case-shell">
+        <section class="screen">
+          <div class="plan-view account-view verify-view signin-check-view">
+            <div class="cert-bg"></div>
+            <div class="auth-nav">
+              <button class="cert-back auth-back" type="button" aria-label="Back"><img src="assets/icons/arrow-left-02.svg" alt="" /></button>
+            </div>
+            <div class="verify-content signin-verify-content">
+              <img class="verify-hero" src="assets/account/signin-check-email.png" alt="" />
+              <div class="account-heading">
+                <h2>Check Your Email</h2>
+                <p>We've sent a 6-digit verification code to<br /><span data-verify-email>sarah@email.com</span></p>
+              </div>
+              <div class="code-inputs" aria-label="Verification code">
+                <input inputmode="numeric" maxlength="1" placeholder="0" />
+                <input inputmode="numeric" maxlength="1" placeholder="0" />
+                <input inputmode="numeric" maxlength="1" placeholder="0" />
+                <input inputmode="numeric" maxlength="1" placeholder="0" />
+                <input inputmode="numeric" maxlength="1" placeholder="0" />
+                <input inputmode="numeric" maxlength="1" placeholder="0" />
+              </div>
+              <button class="btn verify-primary signin-verify-primary" type="button" disabled>Verify &amp; Continue</button>
+              <p class="verify-resend-copy"><span>Didn't receive the code?</span> <button class="verify-resend" type="button">Resend</button></p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="js/app.js?v=20260528-paid"></script>
+  </body>
+</html>

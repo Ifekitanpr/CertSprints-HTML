@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CertSprints — More</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css?v=20260528-more6" />
+    <style>
+      /* More screen — Figma node 4733-86168 */
+      .dashboard-main--more {
+        margin-top: 12px;
+        padding: 12px 12px 64px;
+        gap: 8px;
+        border-radius: 24px;
+      }
+
+      .more-list {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .more-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 12px 8px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        width: 100%;
+        text-align: left;
+        transition: background 200ms ease;
+      }
+      .more-item:hover { background: #f8fafc; }
+
+      /* Icon container — 40×40, inner icon 20×20 (Figma folder-02 / note / etc.) */
+      .more-icon-wrap {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        overflow: hidden;
+        padding: 3px;
+        box-sizing: border-box;
+      }
+      .more-icon-wrap::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 18.556px;
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 0 0 8px 8px;
+        pointer-events: none;
+      }
+      .more-icon-wrap img {
+        width: 20px;
+        height: 20px;
+        display: block;
+        position: relative;
+        z-index: 1;
+        object-fit: contain;
+      }
+
+      .more-label {
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 22px;
+        letter-spacing: -0.112px;
+        color: #334155;
+        flex: 1;
+        min-width: 0;
+      }
+
+      /* Arrow chevron — 28×28 pill, 16×16 icon */
+      .more-btn-circle {
+        width: 28px;
+        height: 28px;
+        border-radius: 9999px;
+        background: #f1f5f9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        padding: 6px;
+        box-sizing: border-box;
+      }
+      .more-btn-circle img {
+        width: 16px;
+        height: 16px;
+        display: block;
+        object-fit: contain;
+      }
+
+      .more-divider {
+        height: 1px;
+        background: #e2e8f0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints More Screen">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell">
+            <div class="dashboard-scroll">
+              <!-- Reusable Header placeholder -->
+              <div id="cs-header-placeholder"></div>
+
+              <main class="dashboard-main dashboard-main--more">
+                <div class="more-list">
+
+                  <!-- Resources -->
+                  <button class="more-item" type="button" aria-label="Open Resources" onclick="window.location.href='resources.html'">
+                    <div class="more-icon-wrap">
+                      <img src="assets/more/icon-folder.svg" alt="" />
+                    </div>
+                    <span class="more-label">Resources</span>
+                    <div class="more-btn-circle">
+                      <img src="assets/more/icon-arrow-right.svg" alt="" />
+                    </div>
+                  </button>
+
+                  <div class="more-divider"></div>
+
+                  <!-- Study Notes -->
+                  <button class="more-item" type="button" aria-label="Open Study notes" onclick="window.location.href='notes.html'">
+                    <div class="more-icon-wrap">
+                      <img src="assets/more/icon-note.svg" alt="" />
+                    </div>
+                    <span class="more-label">Study notes</span>
+                    <div class="more-btn-circle">
+                      <img src="assets/more/icon-arrow-right.svg" alt="" />
+                    </div>
+                  </button>
+
+                  <div class="more-divider"></div>
+
+                  <!-- Practice Exam -->
+                  <button class="more-item" type="button" aria-label="Open Practice exam" onclick="window.location.href='practice-exam.html'">
+                    <div class="more-icon-wrap">
+                      <img src="assets/more/icon-book-edit.svg" alt="" />
+                    </div>
+                    <span class="more-label">Practice exam</span>
+                    <div class="more-btn-circle">
+                      <img src="assets/more/icon-arrow-right.svg" alt="" />
+                    </div>
+                  </button>
+
+                  <div class="more-divider"></div>
+
+                  <!-- Community -->
+                  <button class="more-item" type="button" aria-label="Open Community">
+                    <div class="more-icon-wrap">
+                      <img src="assets/more/icon-community.svg" alt="" />
+                    </div>
+                    <span class="more-label">Community</span>
+                    <div class="more-btn-circle">
+                      <img src="assets/more/icon-arrow-right.svg" alt="" />
+                    </div>
+                  </button>
+
+                  <div class="more-divider"></div>
+
+                  <!-- Settings -->
+                  <button class="more-item" type="button" aria-label="Open Settings">
+                    <div class="more-icon-wrap">
+                      <img src="assets/more/icon-settings.svg" alt="" />
+                    </div>
+                    <span class="more-label">Settings</span>
+                    <div class="more-btn-circle">
+                      <img src="assets/more/icon-arrow-right.svg" alt="" />
+                    </div>
+                  </button>
+
+                  <div class="more-divider"></div>
+
+                  <!-- Help & Support -->
+                  <button class="more-item" type="button" aria-label="Open Help and Support">
+                    <div class="more-icon-wrap">
+                      <img src="assets/more/icon-help.svg" alt="" />
+                    </div>
+                    <span class="more-label">Help &amp; Support</span>
+                    <div class="more-btn-circle">
+                      <img src="assets/more/icon-arrow-right.svg" alt="" />
+                    </div>
+                  </button>
+
+                </div>
+              </main>
+            </div>
+
+            <!-- Reusable Bottom Navigation placeholder -->
+            <div id="cs-nav-placeholder"></div>
+
+            <!-- Streak and Reward Overlays (Integrates with app behaviors) -->
+            <div class="streak-overlay" data-streak-overlay hidden>
+              <div class="streak-scrim" data-streak-close></div>
+              <section class="streak-sheet" role="dialog" aria-modal="true" aria-labelledby="streak-sheet-title">
+                <div class="streak-sheet-handle" aria-hidden="true"></div>
+                <header class="streak-sheet-head">
+                  <div class="streak-sheet-title-row">
+                    <span class="streak-sheet-icon"><img src="assets/streak/fire-header.svg" alt="" /></span>
+                    <h2 id="streak-sheet-title">Streak Overview</h2>
+                  </div>
+                  <button class="streak-close-btn" type="button" data-streak-close aria-label="Close"><img src="assets/icons/cancel-01.svg" alt="" /></button>
+                </header>
+                <div class="streak-tabs" role="tablist">
+                  <button class="streak-tab active" type="button" role="tab" aria-selected="true" data-streak-tab="activity">Activity</button>
+                  <button class="streak-tab" type="button" role="tab" aria-selected="false" data-streak-tab="milestones">Milestones</button>
+                  <button class="streak-tab" type="button" role="tab" aria-selected="false" data-streak-tab="badges">Badges</button>
+                </div>
+                <div class="streak-panels">
+                  <div class="streak-panel active" data-streak-panel="activity" role="tabpanel">
+                    <div class="streak-summary-card">
+                      <button class="streak-share-btn" type="button" aria-label="Share streak"><img src="assets/streak/share-08.svg" alt="" /></button>
+                      <div class="streak-summary-value"><span class="streak-count">123</span><img src="assets/streak/fire-large.svg" alt="" /></div>
+                      <p class="streak-summary-label">Streak Days</p>
+                      <p class="streak-summary-sub">Longest Streak: 15 days</p>
+                    </div>
+                    <div class="streak-calendar-section">
+                      <div class="streak-calendar-head">
+                        <h3>Consistency Map</h3>
+                        <div class="streak-calendar-filters">
+                          <div class="streak-filter-wrap" data-streak-filter="month">
+                            <button type="button" class="streak-filter" data-streak-filter-trigger aria-haspopup="listbox" aria-expanded="false">
+                              <span data-streak-filter-label>January</span>
+                              <img src="assets/dashboard/home/arrow-down.svg" alt="" />
+                            </button>
+                            <ul class="streak-filter-menu" role="listbox" hidden></ul>
+                          </div>
+                          <div class="streak-filter-wrap" data-streak-filter="year">
+                            <button type="button" class="streak-filter" data-streak-filter-trigger aria-haspopup="listbox" aria-expanded="false">
+                              <span data-streak-filter-label>2026</span>
+                              <img src="assets/dashboard/home/arrow-down.svg" alt="" />
+                            </button>
+                            <ul class="streak-filter-menu" role="listbox" hidden></ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="streak-weekdays"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+                      <div class="streak-calendar-grid" data-streak-calendar></div>
+                    </div>
+                  </div>
+                  <div class="streak-panel" data-streak-panel="milestones" role="tabpanel" hidden>
+                    <p class="streak-section-label">Course Progress Milestones</p>
+                    <div class="streak-milestone-grid" data-milestone-grid></div>
+                  </div>
+                  <div class="streak-panel" data-streak-panel="badges" role="tabpanel" hidden>
+                    <div class="streak-badge-tabs" data-badge-tabs role="tablist"></div>
+                    <div class="streak-badge-panels" data-badge-panels></div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Component & Core Scripts Injection -->
+    <script src="js/components.js"></script>
+    <script>
+      CertSprintsComponents.injectHeader("#cs-header-placeholder");
+      CertSprintsComponents.injectBottomNav("#cs-nav-placeholder", "more");
+    </script>
+    <script src="js/streak-data.js?v=20260528-streak"></script>
+    <script src="js/streak.js?v=20260528-streak"></script>
+    <script src="js/app.js?v=20260528-inlinefix"></script>
+  </body>
+</html>
