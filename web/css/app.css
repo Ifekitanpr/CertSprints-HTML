@@ -12978,6 +12978,11 @@
         overflow: hidden;
       }
 
+      .notes-view .cert-bg {
+        pointer-events: none;
+        z-index: 0;
+      }
+
       .notes-nav {
         display: flex;
         align-items: center;
@@ -13512,6 +13517,11 @@
   min-height: 100%;
   position: relative;
   box-sizing: border-box;
+}
+
+.resources-view .cert-bg {
+  pointer-events: none;
+  z-index: 0;
 }
 
 .resources-nav {

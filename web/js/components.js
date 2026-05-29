@@ -56,6 +56,26 @@
       </header>`;
   }
 
+  /**
+   * Reliable back navigation for static HTML flows (avoid history.back() traps).
+   * @param {string} fallback e.g. "more.html" or "dashboard.html"
+   */
+  function goBack(fallback) {
+    const params = new URLSearchParams(window.location.search);
+    const from = params.get("from");
+    if (from === "more") {
+      window.location.href = "more.html";
+      return;
+    }
+    if (from === "dashboard" || from === "home") {
+      window.location.href = "dashboard.html";
+      return;
+    }
+    window.location.href = fallback || "dashboard.html";
+  }
+
+  window.CertSprintsNav = { goBack };
+
   window.CertSprintsComponents = {
     /**
      * Shared dashboard header (avatar row + cert selector).

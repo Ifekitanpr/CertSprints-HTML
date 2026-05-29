@@ -6,7 +6,7 @@
     <title>CertSprints — Community</title>
     <meta http-equiv="Cache-Control" content="no-store" />
     <link rel="stylesheet" href="css/app.css?v=20260528-cm12" />
-    <link rel="stylesheet" href="css/community.css?v=20260528-cm12" />
+    <link rel="stylesheet" href="css/community.css?v=20260529-cm13" />
   </head>
   <body>
     <main class="phone-case" aria-label="CertSprints Community">
@@ -21,8 +21,8 @@
                   <button
                     class="cm-nav-pill"
                     type="button"
-                    aria-label="Go back"
-                    onclick="window.history.length > 1 ? window.history.back() : (window.location.href = 'more.html')"
+                    aria-label="Go back to More"
+                    id="cmCommunityBack"
                   >
                     <span class="cm-icon-slot cm-icon-slot--24">
                       <img src="assets/icons/arrow-left-02.svg" alt="" style="width: 20px; height: 20px; object-fit: contain;" />
@@ -110,7 +110,6 @@
                 </div>
               </div>
             </div>
-            <div id="cs-nav-placeholder"></div>
 
             <!-- Screen 43: Finding partner modal -->
             <div class="cm-overlay cm-partners-overlay" id="cmPartnersFindingOverlay" aria-hidden="true">
@@ -192,6 +191,11 @@
         </section>
       </div>
     </main>
+    <script>
+      document.getElementById("cmCommunityBack")?.addEventListener("click", function () {
+        window.location.href = "more.html";
+      });
+    </script>
     <script src="js/community-data.js?v=20260528-cm12"></script>
     <script src="js/community.js?v=20260528-cm12"></script>
     <script src="js/community-partners.js?v=20260528-cm12"></script>
