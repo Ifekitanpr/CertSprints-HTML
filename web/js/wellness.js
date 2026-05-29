@@ -16,8 +16,30 @@
 (function () {
   var STORAGE_KEY_DATE  = 'cs_wellness_last_date';
   var STORAGE_KEY_MOOD  = 'cs_wellness_mood';
+  var SESSION_WELLNESS_SHOWN = 'cs_wellness_shown_this_visit';
   var THREE_DAYS_MS     = 3 * 24 * 60 * 60 * 1000;
   var ASSETS            = 'assets/wellness/';
+
+  function findPhoneScreen() {
+    return (
+      document.querySelector('.phone-case .screen') ||
+      document.querySelector('main.phone-case .screen') ||
+      document.querySelector('.screen.dashboard-screen') ||
+      document.querySelector('.screen')
+    );
+  }
+
+  function markWellnessShownThisVisit() {
+    try {
+      sessionStorage.setItem(SESSION_WELLNESS_SHOWN, '1');
+    } catch (e) { /* ignore */ }
+  }
+
+  function notifyDismissed() {
+    try {
+      window.dispatchEvent(new CustomEvent('cs-wellness-dismissed'));
+    } catch (e) { /* ignore */ }
+  }
 
   /* ── Trigger logic ──────────────────────────────────────────────── */
 
@@ -232,14 +254,15 @@
   function injectCSS() {
     var style = document.createElement('style');
     style.textContent = [
-      /* Overlay + scrim */
-      '.wc-overlay{position:absolute;inset:0;z-index:200;display:flex;flex-direction:column;justify-content:flex-end;pointer-events:none;}',
+      /* Overlay + scrim (mounted inside .screen phone frame) */
+      '.wc-overlay{position:absolute;inset:0;z-index:200;display:flex;flex-direction:column;justify-content:flex-end;pointer-events:none;overflow:hidden;}',
       '.wc-overlay:not([hidden]){pointer-events:auto;}',
       '.wc-scrim{position:absolute;inset:0;background:rgba(0,0,0,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;transition:opacity 300ms;}',
       '.wc-overlay:not([hidden]) .wc-scrim{opacity:1;}',
 
       /* Common sheet */
-      '.wc-sheet{position:relative;z-index:1;background:#fff;border-radius:24px 24px 0 0;border:1px solid #007bff;width:100%;overflow:hidden;',
+      '.wc-sheet{position:relative;z-index:1;background:#fff;border-radius:24px 24px 0 0;border:1px solid #007bff;width:100%;max-width:100%;max-height:calc(100% - 12px);overflow-x:hidden;overflow-y:auto;',
+        '-webkit-overflow-scrolling:touch;overscroll-behavior:contain;box-sizing:border-box;',
         'transform:translateY(100%);transition:transform 360ms cubic-bezier(.22,1,.36,1);}',
       '.wc-overlay:not([hidden]) .wc-sheet:not([hidden]){transform:translateY(0);}',
 
@@ -355,18 +378,32 @@
     if (!overlay) return;
     overlay.hidden = true;
     document.body.removeAttribute('data-modal-active');
+    notifyDismissed();
   }
 
-  function init() {
-    if (!shouldShow()) return;
+  function mountOverlay() {
+    var mount = findPhoneScreen();
+    if (!mount) return null;
+
+    var existing = document.getElementById('wcOverlay');
+    if (existing) return existing;
 
     injectCSS();
 
     var container = document.createElement('div');
     container.innerHTML = buildOverlayHTML();
-    document.body.appendChild(container.firstChild);
+    mount.appendChild(container.firstChild);
+    return document.getElementById('wcOverlay');
+  }
 
-    var overlay = document.getElementById('wcOverlay');
+  function init() {
+    if (!shouldShow()) return;
+
+    var overlay = mountOverlay();
+    if (!overlay) return;
+
+    markWellnessShownThisVisit();
+
     overlay.hidden = false;
     document.body.dataset.modalActive = 'wellness';
 
@@ -425,7 +462,16 @@
     /** Force-show even if cooldown is active (for demo/testing) */
     forceShow: function() {
       localStorage.removeItem(STORAGE_KEY_DATE);
+      var existing = document.getElementById('wcOverlay');
+      if (existing) existing.remove();
       init();
+    },
+    wasShownThisVisit: function() {
+      try {
+        return sessionStorage.getItem(SESSION_WELLNESS_SHOWN) === '1';
+      } catch (e) {
+        return false;
+      }
     },
     /** Reset stored mood */
     reset: function() {

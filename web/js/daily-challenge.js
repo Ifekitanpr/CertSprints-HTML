@@ -86,6 +86,18 @@
       safeLocalStorage((storage) => storage.setItem(storageKey, todayKey));
     }
 
+    function isWellnessBlocking() {
+      if (document.body.dataset.modalActive === "wellness") return true;
+      const wc = document.getElementById("wcOverlay");
+      if (wc && !wc.hidden) return true;
+      if (window.WellnessCheckIn && window.WellnessCheckIn.wasShownThisVisit()) return true;
+      try {
+        return sessionStorage.getItem("cs_wellness_shown_this_visit") === "1";
+      } catch (error) {
+        return false;
+      }
+    }
+
     function openChallenge() {
       stopSkipTimer();
       overlay.hidden = false;
@@ -235,11 +247,21 @@
     previewButtons.forEach((button) => button.addEventListener("click", openChallenge));
 
     const lastSeen = safeLocalStorage((storage) => storage.getItem(storageKey));
+    const forceDailyPreview = params.get("daily") === "1";
     const shouldAutoOpen =
-      isDashboardPage && (previewMode || lastSeen !== todayKey);
-    if (shouldAutoOpen) {
-      window.setTimeout(openChallenge, 280);
+      isDashboardPage &&
+      (previewMode || lastSeen !== todayKey) &&
+      (forceDailyPreview || !isWellnessBlocking());
+
+    function scheduleAutoOpen() {
+      if (!shouldAutoOpen || isWellnessBlocking()) return;
+      window.setTimeout(() => {
+        if (isWellnessBlocking()) return;
+        openChallenge();
+      }, 280);
     }
+
+    scheduleAutoOpen();
   }
 
   if (document.readyState === "loading") {
