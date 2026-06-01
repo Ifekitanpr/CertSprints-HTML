@@ -32,6 +32,9 @@ img.ss-glyph { max-width: none; max-height: none; }
 .ss-glyph--smart-phone-01-16 { width: 10.333px; height: 14.333px; }
 .ss-glyph--reload-20 { width: 17.333px; height: 19.834px; }
 .ss-glyph--cancel-01-24 { width: 13.5px; height: 13.5px; }
+.ss-glyph--drag-left-03-20 { width: 16.4px; height: 17.2px; filter: brightness(0) invert(1); }
+.ss-glyph--horizontal-drag-drop-24 { width: 14.5px; height: 10.5px; }
+.ss-glyph--task-done-02-20 { width: 16.4px; height: 17.2px; }
 .ss-glyph--tick-02-17-white { width: 10.764px; height: 8.681px; filter: brightness(0) invert(1); }
 
 .ss {
@@ -408,8 +411,8 @@ img.ss-glyph { max-width: none; max-height: none; }
   top: 7px;
   left: 50%;
   transform: translateX(-50%);
-  width: 24px;
-  height: 24px;
+  width: 14.5px;
+  height: 10.5px;
 }
 .ss-mismatch-label {
   display: none;
@@ -650,7 +653,7 @@ img.ss-glyph { max-width: none; max-height: none; }
   gap: 8px;
   margin-bottom: 10px;
 }
-.ss-recap-group-head img { width: auto; height: auto; }
+.ss-recap-group-head .ss-glyph { max-width: none; max-height: none; }
 .ss-recap-group-head span {
   font-size: 12px;
   font-weight: 600;
@@ -678,7 +681,7 @@ img.ss-glyph { max-width: none; max-height: none; }
   justify-content: center;
   flex-shrink: 0;
 }
-.ss-recap-tick img { width: auto; height: auto; }
+.ss-recap-tick .ss-glyph { max-width: none; max-height: none; }
 .ss-recap-item p {
   flex: 1;
   font-size: 10px;

@@ -36,7 +36,8 @@
   });
 
   document.getElementById('rcs-game-close').addEventListener('click', function () {
-    window.location.href = 'lesson-player.html';
+    document.querySelectorAll('.rcs-view').forEach(function (v) { v.classList.remove('active'); });
+    document.getElementById('rcs-intro-view').classList.add('active');
   });
 
   /* ── Render ─────────────────────────────────────── */

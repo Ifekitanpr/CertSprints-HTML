@@ -24,7 +24,7 @@ img.rcs-glyph, img.ss-glyph { max-width: none; max-height: none; }
 .rcs-glyph--arrow-left-24 { width: 24px; height: 24px; }
 .rcs-glyph--list-20 { width: 16.25px; height: 12.917px; }
 .rcs-glyph--clock-20 { width: 17.917px; height: 17.917px; }
-.rcs-glyph--arrow-right-20-white { width: 10.733px; height: 15.733px; filter: brightness(0) invert(1); }
+.rcs-glyph--arrow-right-20-white { width: 20px; height: 20px; filter: brightness(0) invert(1); }
 .rcs-glyph--cancel-24 { width: 15.5px; height: 15.5px; }
 .rcs-glyph--help-24 { width: 21.5px; height: 21.5px; }
 .rcs-glyph--drag-tip-15 { width: 12.48px; height: 13.76px; filter: brightness(0) invert(1); }

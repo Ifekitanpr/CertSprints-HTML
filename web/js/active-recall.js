@@ -206,7 +206,7 @@
 
   document.getElementById("ar-log-close").addEventListener("click", closeLog);
   document.getElementById("ar-log-complete").addEventListener("click", function () {
-    window.location.href = "study-backlog.html";
+    window.location.href = "blurting-canvas.html";
   });
 
   renderIntro();
