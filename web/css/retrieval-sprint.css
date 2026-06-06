@@ -1,0 +1,690 @@
+/* ===== RETRIEVAL SPRINT — CSS =====
+   Prefix: rs-  (retrieval sprint)
+   Screen: 390 × 844 px phone shell
+   ================================= */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; -webkit-tap-highlight-color: transparent; }
+img { display: block; max-width: 100%; }
+
+/* ---- Glyph system (frame vs artwork) ---- */
+.rs-glyph {
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+  max-width: none;
+  max-height: none;
+}
+.rs-icon-slot {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.rs-icon-slot--16 { width: 16px; height: 16px; }
+.rs-icon-slot--20 { width: 20px; height: 20px; }
+.rs-icon-slot--24 { width: 24px; height: 24px; }
+.rs-icon-slot--32 { width: 32px; height: 32px; }
+
+/* glyph artwork sizes (viewBox w × h) */
+/* arrow-left-02.svg has viewBox "0 0 24 24" — already points left */
+.rs-glyph--arrow-left-24     { width: 24px;     height: 24px;     }
+.rs-glyph--help-circle-24    { width: 21.5px;   height: 21.5px;   }
+.rs-glyph--flash-16          { width: 10.333px; height: 14.333px; }
+.rs-glyph--clock-16          { width: 14.333px; height: 14.333px; }
+/* arrow-right: exported as up-arrow, needs -90deg + flipX to face right */
+.rs-glyph--arrow-right-20    { width: 10.333px; height: 15.161px; transform: rotate(-90deg) scaleX(-1); }
+.rs-glyph--reload-16         { width: 13.667px; height: 15.667px; }
+.rs-glyph--bulb-16           { width: 11.667px; height: 14.333px; }
+.rs-glyph--touchpad-16       { width: 14.333px; height: 14.333px; }
+.rs-glyph--sparkles-16       { width: 14.333px; height: 14.333px; }
+.rs-glyph--checkmark-16      { width: 14.333px; height: 14.333px; }
+.rs-glyph--arrow-up-right-16 { width: 9.5px;    height: 9.5px;    }
+.rs-glyph--target-16         { width: 14.333px; height: 14.333px; }
+.rs-glyph--cards-16          { width: 13px;     height: 14.333px; }
+
+/* ---- Shell ---- */
+.rs {
+  position: relative;
+  width: 390px;
+  height: 844px;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.rs .cert-bg { z-index: 0; }
+.rs .sb      { flex-shrink: 0; height: 40px; position: relative; z-index: 5; }
+.rs .home-ind {
+  flex-shrink: 0;
+  height: 24px;
+  background: #f9fafc;
+  position: relative;
+  z-index: 2;
+}
+
+/* ---- Views ---- */
+.rs-view {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  z-index: 2;
+}
+.rs-view.is-active { display: flex; }
+
+/* ============================================================
+   01  INTRO VIEW
+   ============================================================ */
+.rs-intro {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Nav */
+.rs-nav {
+  flex-shrink: 0;
+  height: 54px;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  padding: 8px 20px;
+  gap: 16px;
+  position: relative;
+  z-index: 4;
+}
+.rs-nav-back {
+  width: 40px; height: 40px;
+  border-radius: 50px;
+  background: #f1f5f9;
+  display: flex; align-items: center; justify-content: center;
+}
+.rs-nav-title {
+  font-size: 12px; font-weight: 400;
+  color: #64748b; text-align: center; letter-spacing: 0;
+  text-transform: uppercase;
+}
+.rs-nav-help {
+  width: 40px; height: 40px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.5);
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Intro body */
+.rs-intro-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  padding: 40px 20px 4px;
+  overflow-y: auto;
+}
+
+.rs-intro-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+.rs-intro-header-inner {
+  display: flex; flex-direction: column; gap: 10px; align-items: center; width: 100%;
+}
+.rs-badge {
+  background: rgba(230,242,255,0.5);
+  border: 1px solid #b0d6ff;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 10px; font-weight: 700;
+  color: #007bff; letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.rs-badge--success {
+  background: #f0fdf4;
+  border: 1px solid #dcfce7;
+  color: #16a34a;
+}
+
+.rs-intro-title {
+  font-size: 24px; font-weight: 800;
+  text-align: center; text-transform: uppercase;
+  letter-spacing: -0.288px;
+  line-height: 32px;
+  width: 100%;
+}
+.rs-intro-title span { color: #007bff; }
+
+.rs-intro-desc {
+  font-size: 12px; font-weight: 500;
+  color: #334155; text-align: center;
+  line-height: 16px; letter-spacing: -0.06px;
+  width: 100%;
+}
+
+.rs-intro-illustration {
+  width: 276px; height: 206px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Stat cards row */
+.rs-stat-row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+.rs-stat-card {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #f1f5f9;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.rs-stat-icon-bg {
+  width: 32px; height: 32px;
+  border-radius: 36px;
+  background: #f1f5f9;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.rs-stat-icon-bg--orange { background: #fff0eb; }
+.rs-stat-icon-bg--green  { background: #f0fdf4; }
+
+.rs-stat-text { display: flex; flex-direction: column; gap: 4px; }
+.rs-stat-label {
+  font-size: 8px; font-weight: 800;
+  color: #94a3b8; letter-spacing: 0.8px;
+  text-transform: uppercase; line-height: 14px;
+}
+.rs-stat-value {
+  font-size: 16px; font-weight: 700;
+  color: #030507; letter-spacing: -0.112px; line-height: 22px;
+}
+
+/* Intro bottom */
+.rs-intro-bottom {
+  flex-shrink: 0;
+  padding: 12px 24px;
+  background: #fff;
+}
+.rs-btn-start {
+  width: 100%;
+  height: 48px;
+  background: #007bff;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px;
+  font-size: 16px; font-weight: 600;
+  color: #fff; letter-spacing: -0.112px;
+}
+
+/* ============================================================
+   02  FLASHCARD VIEW
+   ============================================================ */
+.rs-card-view {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Large white card panel (fills from nav to bottom bar) */
+.rs-panel {
+  flex: 1;
+  min-height: 0;
+  background: #fff;
+  border: 1px solid #007bff;
+  border-radius: 24px 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Session stats bar */
+.rs-session-bar {
+  flex-shrink: 0;
+  padding: 4px 20px;
+  border-bottom: 1px solid #007bff;
+}
+.rs-session-bar-inner {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.rs-session-stat { display: flex; flex-direction: column; gap: 4px; }
+.rs-session-stat-label {
+  font-size: 12px; font-weight: 400; color: #64748b;
+  line-height: 1.6; white-space: nowrap;
+}
+.rs-session-stat-value {
+  font-size: 14px; font-weight: 700;
+  color: #007bff; line-height: 20px;
+  letter-spacing: -0.084px;
+}
+.rs-session-stat-progress {
+  font-size: 14px; font-weight: 700;
+  color: #030507; line-height: 20px;
+  letter-spacing: -0.084px; text-align: right;
+}
+.rs-session-stat-progress span { color: #94a3b8; }
+
+/* Card area (stacked cards + main card) */
+.rs-card-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 24px 0;
+  position: relative;
+}
+
+/* Decorative stacked card shadows */
+.rs-card-stack {
+  position: relative;
+  width: 258px;
+  /* height driven by content */
+}
+/* Two back cards absolutely behind */
+.rs-card-stack::before,
+.rs-card-stack::after {
+  content: '';
+  position: absolute;
+  border-radius: 10px;
+  border: 1px solid #f1f5f9;
+  width: 254px;
+  height: calc(100% - 8px);
+  top: -8px;
+}
+.rs-card-stack::after {
+  background: #fff0eb;
+  width: 260px;
+  right: -1px;
+  top: -16px;
+  transform: rotate(4.75deg) skewX(-0.46deg);
+  transform-origin: center center;
+}
+.rs-card-stack::before {
+  background: #e6f2ff;
+  transform: rotate(3.41deg) skewX(-0.22deg);
+  transform-origin: center center;
+}
+
+/* The flipping main card */
+.rs-card {
+  width: 258px;
+  min-height: 278px;
+  perspective: 1000px;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+.rs-card-inner {
+  position: relative;
+  width: 100%;
+  min-height: 278px;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+.rs-card.is-flipped .rs-card-inner {
+  transform: rotateY(180deg);
+}
+.rs-card-face {
+  position: absolute; top: 0; left: 0;
+  width: 100%; min-height: 278px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow:
+    1px 1px 24.3px 0px rgba(0,123,255,0.10),
+    0px 8px 8px 0px rgba(23,23,23,0.03);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.rs-card-face--back {
+  transform: rotateY(180deg);
+}
+
+/* Card face header row */
+.rs-card-face-header {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%;
+}
+.rs-badge-question {
+  background: rgba(230,242,255,0.5);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 12px; font-weight: 400; color: #007bff;
+  line-height: 1.6;
+}
+.rs-badge-answer {
+  background: #f0fdf4;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 12px; font-weight: 400; color: #16a34a;
+  line-height: 1.6;
+}
+.rs-card-reload-btn,
+.rs-card-check-btn {
+  width: 28px; height: 28px;
+  border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+}
+.rs-card-reload-btn { background: rgba(230,242,255,0.5); }
+.rs-card-check-btn  { background: #f0fdf4; }
+
+/* Question text */
+.rs-card-question {
+  font-size: 18px; font-weight: 800;
+  color: #030507; text-align: center;
+  letter-spacing: -0.144px; line-height: 24px;
+  text-transform: uppercase;
+  padding: 8px 0;
+}
+
+/* Answer text */
+.rs-card-answer {
+  font-size: 14px; font-weight: 500;
+  color: #030507; text-align: center;
+  letter-spacing: -0.084px; line-height: 20px;
+  padding: 8px 0;
+}
+
+/* Gradient hint text */
+.rs-card-hint {
+  display: flex; gap: 8px; align-items: center;
+  padding: 6px 10px; border-radius: 20px;
+}
+.rs-card-hint-text {
+  font-size: 12px; font-weight: 400;
+  background: linear-gradient(
+    90deg,
+    #007bff 0%, #ff6b35 17.788%, #007bff 72.115%,
+    #007bff 80.769%, #ff6b35 92.308%, #007bff 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+}
+
+/* Swipe hint on answer */
+.rs-swipe-hint {
+  display: flex; gap: 8px; align-items: center;
+  padding: 6px 10px; border-radius: 20px;
+  font-size: 12px; font-weight: 400; color: #64748b;
+  white-space: nowrap;
+}
+
+/* Tap/Swipe instructions row */
+.rs-instructions {
+  flex-shrink: 0;
+  display: flex; gap: 10px; align-items: center; justify-content: center;
+  margin-top: 20px;
+}
+.rs-instruction-pill {
+  display: flex; gap: 8px; align-items: center;
+  border: 1px solid #f1f5f9;
+  border-radius: 20px;
+  padding: 6px 10px;
+  font-size: 12px; font-weight: 400; color: #64748b;
+  white-space: nowrap;
+}
+.rs-instruction-divider {
+  width: 1px; height: 16px;
+  background: #e2e8f0;
+  flex-shrink: 0;
+}
+
+/* Sparkles tip */
+.rs-tip {
+  flex-shrink: 0;
+  display: flex; gap: 8px; align-items: center;
+  background: #f8fafc;
+  border-radius: 20px;
+  padding: 10px 16px;
+  margin-top: 16px;
+  font-size: 12px; font-weight: 400; color: #64748b;
+  white-space: nowrap;
+}
+
+/* Rating section (shown on answer side) */
+.rs-rating {
+  flex-shrink: 0;
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  padding: 16px 24px 0;
+}
+.rs-rating.is-visible { display: flex; }
+.rs-rating-prompt {
+  background: #f8fafc;
+  border-radius: 20px;
+  padding: 10px 16px;
+  font-size: 12px; font-weight: 400; color: #64748b;
+  white-space: nowrap;
+}
+.rs-rating-btns {
+  display: flex; gap: 16px;
+  width: 100%;
+}
+.rs-rating-btn {
+  flex: 1;
+  min-height: 60px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+  color: #94a3b8;
+  text-align: center;
+  letter-spacing: -0.084px; line-height: 20px;
+  box-shadow:
+    1px 1px 24.3px 0 rgba(22,32,44,0.10),
+    0px 8px 8px 0 rgba(23,23,23,0.10);
+  transition: border-color 0.18s, color 0.18s, background 0.18s;
+  padding: 8px 4px;
+}
+.rs-rating-btn.is-selected {
+  border-color: #007bff;
+  color: #007bff;
+  background: rgba(230,242,255,0.4);
+}
+
+/* Progress track */
+.rs-progress {
+  flex-shrink: 0;
+  height: 10px;
+  background: #f1f5f9;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 12px 20px 0;
+}
+.rs-progress-fill {
+  height: 14px;
+  background: #007bff;
+  border-radius: 20px;
+  transition: width 0.35s ease;
+}
+
+/* Card view bottom bar */
+.rs-card-bottom {
+  flex-shrink: 0;
+  background: #f9fafc;
+  padding: 12px 24px;
+  border-radius: 32px 22px 0 0;
+  display: flex;
+}
+.rs-btn-continue {
+  flex: 1;
+  height: 48px;
+  border-radius: 4px;
+  font-size: 14px; font-weight: 600;
+  letter-spacing: -0.084px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px;
+  transition: background 0.18s, color 0.18s;
+}
+.rs-btn-continue:disabled,
+.rs-btn-continue.is-disabled {
+  background: #f1f5f9;
+  color: #cbd5e1;
+  pointer-events: none;
+}
+.rs-btn-continue.is-enabled {
+  background: #007bff;
+  color: #fff;
+}
+
+/* ============================================================
+   03  RESULT VIEW
+   ============================================================ */
+.rs-result {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.rs-result-body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  padding: 40px 20px 4px;
+}
+
+.rs-result-header {
+  display: flex; flex-direction: column; gap: 4px;
+  align-items: center; width: 100%;
+}
+.rs-result-header-inner {
+  display: flex; flex-direction: column; gap: 10px; align-items: center;
+}
+
+.rs-result-title {
+  font-size: 24px; font-weight: 800;
+  color: #030507; text-align: center;
+  letter-spacing: -0.288px; line-height: 32px;
+  text-transform: uppercase;
+}
+
+.rs-result-desc {
+  font-size: 12px; font-weight: 500;
+  color: #334155; text-align: center;
+  line-height: 16px; letter-spacing: -0.06px;
+  max-width: 274px;
+}
+
+/* Gauge */
+.rs-gauge-wrap {
+  display: flex; flex-direction: column; gap: 10px; align-items: center;
+  width: 294px;
+}
+.rs-gauge {
+  position: relative;
+  width: 168px; height: 168px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.rs-gauge-ring-outer {
+  position: absolute; inset: 0;
+  width: 168px; height: 168px;
+}
+/* progress arc: right half of gauge, slight offset from bottom (2.18% of 168 ≈ 3.7px) */
+.rs-gauge-ring-progress {
+  position: absolute;
+  top: 0; left: 50%; right: 0; bottom: 3.7px;
+  width: 84px; height: calc(100% - 3.7px);
+  object-fit: fill;
+}
+.rs-gauge-text {
+  position: absolute;
+  inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0;
+}
+.rs-gauge-pct {
+  font-family: 'Montserrat', Inter, sans-serif;
+  font-size: 28.5px; font-weight: 800;
+  color: #030507; letter-spacing: -0.4px;
+  line-height: 34.87px;
+}
+.rs-gauge-label {
+  font-size: 9.5px; font-weight: 800;
+  color: #64748b; letter-spacing: 0.95px;
+  text-transform: uppercase; line-height: 12.68px;
+}
+
+.rs-gauge-delta {
+  display: flex; gap: 8px; align-items: center; justify-content: center;
+}
+.rs-gauge-delta-value {
+  font-size: 14px; font-weight: 500;
+  color: #16a34a; line-height: 20px;
+  letter-spacing: -0.084px;
+  display: flex; gap: 6px; align-items: center;
+}
+.rs-gauge-delta-desc {
+  font-size: 14px; font-weight: 400;
+  color: #64748b; line-height: 1.6;
+}
+
+/* Result stat cards */
+.rs-result-stats {
+  display: flex; gap: 16px; width: 100%;
+}
+.rs-result-stat {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #f1f5f9;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 10px;
+  align-items: center;
+}
+.rs-result-stat-val {
+  font-size: 16px; font-weight: 700;
+  color: #030507; letter-spacing: -0.112px; line-height: 22px;
+}
+.rs-result-stat-lbl {
+  font-size: 10px; font-weight: 400;
+  color: #64748b; white-space: nowrap;
+  line-height: 1.6; text-align: center;
+}
+
+/* Result bottom */
+.rs-result-bottom {
+  flex-shrink: 0;
+  padding: 12px 24px;
+}
+.rs-btn-done {
+  width: 100%;
+  height: 48px;
+  background: #007bff;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px;
+  font-size: 16px; font-weight: 600;
+  color: #fff; letter-spacing: -0.112px;
+}

@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>CertSprints — Retrieval Sprint</title>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/retrieval-sprint.css"/>
+</head>
+<body>
+<main class="phone-case" aria-label="CertSprints — Retrieval Sprint">
+  <div class="case-shell">
+    <div class="rs" id="rs">
+
+      <div class="cert-bg" aria-hidden="true"></div>
+      <div class="sb"></div>
+
+      <!-- ========== VIEW: INTRO ========== -->
+      <div class="rs-view is-active" id="rs-view-intro" role="region" aria-label="Retrieval Sprint intro">
+        <div class="rs-intro">
+
+          <nav class="rs-nav">
+            <a class="rs-nav-back" href="blurting-canvas.html" aria-label="Back">
+              <span class="rs-icon-slot rs-icon-slot--24">
+                <img class="rs-glyph rs-glyph--arrow-left-24"
+                     src="assets/icons/arrow-left-02.svg" alt=""/>
+              </span>
+            </a>
+            <p class="rs-nav-title">FLASHCARD</p>
+            <button class="rs-nav-help" type="button" aria-label="Help">
+              <span class="rs-icon-slot rs-icon-slot--24">
+                <img class="rs-glyph rs-glyph--help-circle-24"
+                     src="assets/blurting-canvas/icons/help-circle-24.svg" alt=""/>
+              </span>
+            </button>
+          </nav>
+
+          <div class="rs-intro-body">
+            <div class="rs-intro-header">
+              <div class="rs-intro-header-inner">
+                <span class="rs-badge">VERIFICATION BLOCK</span>
+                <h1 class="rs-intro-title">Retrieval <span>Sprint</span></h1>
+              </div>
+              <p class="rs-intro-desc">Secure your progress with high-speed flashcards. Test your retrieval to ensure you're ready for the next section.</p>
+            </div>
+
+            <img class="rs-intro-illustration"
+                 src="assets/retrieval-sprint/icons/flashcard-illustration.png"
+                 alt="Flashcard illustration"/>
+
+            <div class="rs-stat-row">
+              <div class="rs-stat-card">
+                <div class="rs-stat-icon-bg">
+                  <span class="rs-icon-slot rs-icon-slot--16">
+                    <img class="rs-glyph rs-glyph--flash-16"
+                         src="assets/retrieval-sprint/icons/flash-16.svg" alt=""/>
+                  </span>
+                </div>
+                <div class="rs-stat-text">
+                  <p class="rs-stat-label">Flashcards</p>
+                  <p class="rs-stat-value">05</p>
+                </div>
+              </div>
+              <div class="rs-stat-card">
+                <div class="rs-stat-icon-bg rs-stat-icon-bg--orange">
+                  <span class="rs-icon-slot rs-icon-slot--16">
+                    <img class="rs-glyph rs-glyph--clock-16"
+                         src="assets/retrieval-sprint/icons/clock-01-16.svg" alt=""/>
+                  </span>
+                </div>
+                <div class="rs-stat-text">
+                  <p class="rs-stat-label">Avg. Time</p>
+                  <p class="rs-stat-value">1m</p>
+                </div>
+              </div>
+            </div>
+          </div><!-- /.rs-intro-body -->
+
+          <div class="rs-intro-bottom">
+            <button class="rs-btn-start" type="button" id="rs-start">
+              Start Flashcards
+              <span class="rs-icon-slot rs-icon-slot--20">
+                <img class="rs-glyph rs-glyph--arrow-right-20"
+                     src="assets/retrieval-sprint/icons/arrow-right-20.svg" alt=""/>
+              </span>
+            </button>
+          </div>
+
+        </div>
+      </div><!-- /#rs-view-intro -->
+
+
+      <!-- ========== VIEW: FLASHCARD ========== -->
+      <div class="rs-view" id="rs-view-card" role="region" aria-label="Flashcard">
+        <div class="rs-card-view">
+
+          <nav class="rs-nav">
+            <button class="rs-nav-back" type="button" id="rs-card-back" aria-label="Back">
+              <span class="rs-icon-slot rs-icon-slot--24">
+                <img class="rs-glyph rs-glyph--arrow-left-24"
+                     src="assets/icons/arrow-left-02.svg" alt=""/>
+              </span>
+            </button>
+            <p class="rs-nav-title">FLASHCARD</p>
+            <button class="rs-nav-help" type="button" aria-label="Help">
+              <span class="rs-icon-slot rs-icon-slot--24">
+                <img class="rs-glyph rs-glyph--help-circle-24"
+                     src="assets/blurting-canvas/icons/help-circle-24.svg" alt=""/>
+              </span>
+            </button>
+          </nav>
+
+          <div class="rs-panel">
+
+            <!-- Session stats -->
+            <div class="rs-session-bar">
+              <div class="rs-session-bar-inner">
+                <div class="rs-session-stat">
+                  <span class="rs-session-stat-label">Session Accuracy</span>
+                  <span class="rs-session-stat-value" id="rs-accuracy">-- %</span>
+                </div>
+                <div class="rs-session-stat">
+                  <span class="rs-session-stat-label" style="text-align:right">Retrieval Progress</span>
+                  <span class="rs-session-stat-progress" id="rs-progress-text">
+                    <span id="rs-progress-current">1</span><span style="color:#94a3b8">/</span><span>5</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card stack + flip card -->
+            <div class="rs-card-area">
+              <div class="rs-card-stack">
+                <div class="rs-card" id="rs-card" role="button"
+                     tabindex="0" aria-label="Flashcard — tap to flip">
+                  <div class="rs-card-inner" id="rs-card-inner">
+
+                    <!-- FRONT: Question -->
+                    <div class="rs-card-face rs-card-face--front">
+                      <div class="rs-card-face-header">
+                        <span class="rs-badge-question">Question</span>
+                        <button class="rs-card-reload-btn" type="button"
+                                id="rs-reload" aria-label="Reload question">
+                          <span class="rs-icon-slot rs-icon-slot--16">
+                            <img class="rs-glyph rs-glyph--reload-16"
+                                 src="assets/retrieval-sprint/icons/reload-16.svg" alt=""/>
+                          </span>
+                        </button>
+                      </div>
+                      <p class="rs-card-question" id="rs-question-text">
+                        INPUTS, TOOLS, TECHNIQUES, OUTPUTS
+                      </p>
+                      <div class="rs-card-hint">
+                        <span class="rs-icon-slot rs-icon-slot--16">
+                          <img class="rs-glyph rs-glyph--bulb-16"
+                               src="assets/retrieval-sprint/icons/bulb-charging-16.svg" alt=""/>
+                        </span>
+                        <span class="rs-card-hint-text">Think first, then flip to reveal</span>
+                      </div>
+                    </div>
+
+                    <!-- BACK: Answer -->
+                    <div class="rs-card-face rs-card-face--back">
+                      <div class="rs-card-face-header">
+                        <span class="rs-badge-answer">Answer</span>
+                        <span class="rs-card-check-btn">
+                          <span class="rs-icon-slot rs-icon-slot--16">
+                            <img class="rs-glyph rs-glyph--checkmark-16"
+                                 src="assets/retrieval-sprint/icons/checkmark-circle-03-16.svg" alt=""/>
+                          </span>
+                        </span>
+                      </div>
+                      <p class="rs-card-answer" id="rs-answer-text">
+                        ITTOs: The fundamental building blocks of every process in the PMP blueprint.
+                      </p>
+                      <div class="rs-swipe-hint">
+                        <span class="rs-icon-slot rs-icon-slot--16">
+                          <img class="rs-glyph rs-glyph--touchpad-16"
+                               src="assets/retrieval-sprint/icons/touchpad-02-16.svg" alt=""/>
+                        </span>
+                        Swipe to see next card
+                      </div>
+                    </div>
+
+                  </div><!-- /.rs-card-inner -->
+                </div><!-- /.rs-card -->
+              </div><!-- /.rs-card-stack -->
+
+              <!-- Tap/Swipe hints (shown when question) -->
+              <div class="rs-instructions" id="rs-instructions">
+                <div class="rs-instruction-pill">
+                  <span class="rs-icon-slot rs-icon-slot--16">
+                    <img class="rs-glyph rs-glyph--touchpad-16"
+                         src="assets/retrieval-sprint/icons/touchpad-02-16.svg" alt=""/>
+                  </span>
+                  Tap to flip
+                </div>
+                <div class="rs-instruction-divider"></div>
+                <div class="rs-instruction-pill">
+                  <span class="rs-icon-slot rs-icon-slot--16">
+                    <img class="rs-glyph rs-glyph--touchpad-16"
+                         src="assets/retrieval-sprint/icons/touchpad-02-16.svg" alt=""/>
+                  </span>
+                  Swipe after reveal
+                </div>
+              </div>
+
+              <!-- Sparkles tip (shown when question) -->
+              <div class="rs-tip" id="rs-tip">
+                <span class="rs-icon-slot rs-icon-slot--16">
+                  <img class="rs-glyph rs-glyph--sparkles-16"
+                       src="assets/retrieval-sprint/icons/sparkles-16.svg" alt=""/>
+                </span>
+                Try recalling the answer first before you reveal it
+              </div>
+
+            </div><!-- /.rs-card-area -->
+
+            <!-- Recall rating (shown when answer) -->
+            <div class="rs-rating" id="rs-rating">
+              <div class="rs-rating-prompt">How well did you recall this?</div>
+              <div class="rs-rating-btns">
+                <button class="rs-rating-btn" type="button" data-rating="hard">😭 HARD</button>
+                <button class="rs-rating-btn" type="button" data-rating="okay">🙂 OKAY</button>
+                <button class="rs-rating-btn" type="button" data-rating="easy">😍 EASY</button>
+              </div>
+            </div>
+
+          </div><!-- /.rs-panel -->
+
+          <!-- Progress bar -->
+          <div class="rs-progress">
+            <div class="rs-progress-fill" id="rs-progress-fill" style="width:20%"></div>
+          </div>
+
+          <!-- Bottom bar -->
+          <div class="rs-card-bottom">
+            <button class="rs-btn-continue is-disabled" type="button"
+                    id="rs-continue" disabled>
+              Continue
+              <span class="rs-icon-slot rs-icon-slot--20">
+                <img class="rs-glyph rs-glyph--arrow-right-20"
+                     src="assets/retrieval-sprint/icons/arrow-right-20-disabled.svg"
+                     alt="" id="rs-continue-icon"/>
+              </span>
+            </button>
+          </div>
+
+        </div><!-- /.rs-card-view -->
+      </div><!-- /#rs-view-card -->
+
+
+      <!-- ========== VIEW: RESULT ========== -->
+      <div class="rs-view" id="rs-view-result" role="region" aria-label="Sprint complete">
+        <div class="rs-result">
+
+          <nav class="rs-nav">
+            <button class="rs-nav-back" type="button" id="rs-result-back" aria-label="Back">
+              <span class="rs-icon-slot rs-icon-slot--24">
+                <img class="rs-glyph rs-glyph--arrow-left-24"
+                     src="assets/icons/arrow-left-02.svg" alt=""/>
+              </span>
+            </button>
+            <p class="rs-nav-title">FLASHCARD</p>
+            <button class="rs-nav-help" type="button" aria-label="Help">
+              <span class="rs-icon-slot rs-icon-slot--24">
+                <img class="rs-glyph rs-glyph--help-circle-24"
+                     src="assets/blurting-canvas/icons/help-circle-24.svg" alt=""/>
+              </span>
+            </button>
+          </nav>
+
+          <div class="rs-result-body">
+
+            <div class="rs-result-header">
+              <div class="rs-result-header-inner">
+                <span class="rs-badge rs-badge--success">VERIFICATION BLOCK</span>
+                <h1 class="rs-result-title">Knowledge Secured</h1>
+              </div>
+              <p class="rs-result-desc">Great work! You've completed this retrieval sprint and strengthened your recall.</p>
+            </div>
+
+            <!-- Gauge -->
+            <div class="rs-gauge-wrap">
+              <div class="rs-gauge">
+                <img class="rs-gauge-ring-outer"
+                     src="assets/retrieval-sprint/icons/gauge-outer.svg" alt=""/>
+                <img class="rs-gauge-ring-progress"
+                     src="assets/retrieval-sprint/icons/gauge-progress.svg" alt=""/>
+                <div class="rs-gauge-text">
+                  <span class="rs-gauge-pct" id="rs-gauge-pct">0%</span>
+                  <span class="rs-gauge-label">Readiness</span>
+                </div>
+              </div>
+              <div class="rs-gauge-delta">
+                <span class="rs-gauge-delta-value">
+                  <span class="rs-icon-slot rs-icon-slot--16">
+                    <img class="rs-glyph rs-glyph--arrow-up-right-16"
+                         src="assets/retrieval-sprint/icons/arrow-up-right-16.svg" alt=""/>
+                  </span>
+                  <span id="rs-delta">+1.2%</span>
+                </span>
+                <span class="rs-gauge-delta-desc">from this sprint</span>
+              </div>
+            </div>
+
+            <!-- Stat cards -->
+            <div class="rs-result-stats">
+              <div class="rs-result-stat">
+                <div class="rs-stat-icon-bg">
+                  <span class="rs-icon-slot rs-icon-slot--16">
+                    <img class="rs-glyph rs-glyph--target-16"
+                         src="assets/retrieval-sprint/icons/target-02-16.svg" alt=""/>
+                  </span>
+                </div>
+                <p class="rs-result-stat-val" id="rs-result-accuracy">0%</p>
+                <p class="rs-result-stat-lbl">Accuracy</p>
+              </div>
+              <div class="rs-result-stat">
+                <div class="rs-stat-icon-bg rs-stat-icon-bg--green">
+                  <span class="rs-icon-slot rs-icon-slot--16">
+                    <img class="rs-glyph rs-glyph--cards-16"
+                         src="assets/retrieval-sprint/icons/cards-01-16.svg" alt=""/>
+                  </span>
+                </div>
+                <p class="rs-result-stat-val" id="rs-result-cards">0/5</p>
+                <p class="rs-result-stat-lbl">Cards Completed</p>
+              </div>
+              <div class="rs-result-stat">
+                <div class="rs-stat-icon-bg rs-stat-icon-bg--orange">
+                  <span class="rs-icon-slot rs-icon-slot--16">
+                    <img class="rs-glyph rs-glyph--flash-16"
+                         src="assets/retrieval-sprint/icons/flash-intensity-16.svg" alt=""/>
+                  </span>
+                </div>
+                <p class="rs-result-stat-val" id="rs-result-intensity">High</p>
+                <p class="rs-result-stat-lbl">Intensity</p>
+              </div>
+            </div>
+
+          </div><!-- /.rs-result-body -->
+
+          <div class="rs-result-bottom">
+            <button class="rs-btn-done" type="button" id="rs-done">
+              Continue
+              <span class="rs-icon-slot rs-icon-slot--20">
+                <img class="rs-glyph rs-glyph--arrow-right-20"
+                     src="assets/retrieval-sprint/icons/arrow-right-20-result.svg" alt=""/>
+              </span>
+            </button>
+          </div>
+
+        </div>
+      </div><!-- /#rs-view-result -->
+
+      <div class="home-ind"></div>
+
+    </div><!-- /.rs -->
+  </div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---- Flashcard data ---- */
+  const CARDS = [
+    {
+      question: 'INPUTS, TOOLS, TECHNIQUES, OUTPUTS',
+      answer:   'ITTOs: The fundamental building blocks of every process in the PMP blueprint.'
+    },
+    {
+      question: "Define 'Critical Path'",
+      answer:   'The longest duration sequence of activities that must be completed to finish on time.'
+    },
+    {
+      question: 'Project Charter Purpose',
+      answer:   'To formally authorize a project and give the PM authority to use organizational resources.'
+    },
+    {
+      question: 'RISK IDENTIFICATION PROTOCOL',
+      answer:   'The continuous process of finding, documenting, and characterizing project uncertainties.'
+    },
+    {
+      question: 'STAKEHOLDER ENGAGEMENT',
+      answer:   'The process of communicating and working with stakeholders to meet their needs and expectations.'
+    }
+  ];
+
+  /* ---- State ---- */
+  let currentIndex = 0;
+  let flipped       = false;
+  let ratings       = [];   // 'hard' | 'okay' | 'easy' per card
+
+  /* ---- DOM refs ---- */
+  const $ = id => document.getElementById(id);
+
+  const viewIntro   = $('rs-view-intro');
+  const viewCard    = $('rs-view-card');
+  const viewResult  = $('rs-view-result');
+
+  const card        = $('rs-card');
+  const questionEl  = $('rs-question-text');
+  const answerEl    = $('rs-answer-text');
+  const accuracyEl  = $('rs-accuracy');
+  const progressCur = $('rs-progress-current');
+  const progressFill= $('rs-progress-fill');
+  const instructions= $('rs-instructions');
+  const tip         = $('rs-tip');
+  const rating      = $('rs-rating');
+  const ratingBtns  = document.querySelectorAll('.rs-rating-btn');
+  const continueBtn = $('rs-continue');
+  const continueIcon= $('rs-continue-icon');
+  const gaugePct    = $('rs-gauge-pct');
+  const resultAcc   = $('rs-result-accuracy');
+  const resultCards = $('rs-result-cards');
+
+  /* ---- View switching ---- */
+  function showView(view) {
+    [viewIntro, viewCard, viewResult].forEach(v => v.classList.remove('is-active'));
+    view.classList.add('is-active');
+  }
+
+  /* ---- Accuracy calc ---- */
+  function calcAccuracy() {
+    if (ratings.length === 0) return null;
+    const positives = ratings.filter(r => r === 'okay' || r === 'easy').length;
+    return Math.round((positives / ratings.length) * 100);
+  }
+
+  /* ---- Update session bar ---- */
+  function updateSessionBar() {
+    const acc = calcAccuracy();
+    accuracyEl.textContent = acc === null ? '-- %' : acc + ' %';
+    progressCur.textContent = currentIndex + 1;
+  }
+
+  /* ---- Update progress fill ---- */
+  function updateProgress() {
+    const pct = ((currentIndex + 1) / CARDS.length) * 100;
+    progressFill.style.width = pct + '%';
+  }
+
+  /* ---- Load card ---- */
+  function loadCard(index) {
+    const c = CARDS[index];
+    questionEl.textContent = c.question;
+    answerEl.textContent   = c.answer;
+    flipped = false;
+    card.classList.remove('is-flipped');
+    card.setAttribute('aria-label', 'Flashcard — tap to flip');
+
+    // Reset rating UI
+    ratingBtns.forEach(b => b.classList.remove('is-selected'));
+    rating.classList.remove('is-visible');
+    instructions.style.display = '';
+    tip.style.display = '';
+
+    // Disable continue
+    continueBtn.classList.remove('is-enabled');
+    continueBtn.classList.add('is-disabled');
+    continueBtn.disabled = true;
+    continueIcon.src = 'assets/retrieval-sprint/icons/arrow-right-20-disabled.svg';
+
+    updateSessionBar();
+    updateProgress();
+  }
+
+  /* ---- Flip card ---- */
+  function flipCard() {
+    if (flipped) return;
+    flipped = true;
+    card.classList.add('is-flipped');
+    card.setAttribute('aria-label', 'Flashcard — answer revealed');
+
+    // Show rating, hide Q-side hints
+    instructions.style.display = 'none';
+    tip.style.display = 'none';
+    rating.classList.add('is-visible');
+  }
+
+  /* ---- Rating selection ---- */
+  function selectRating(value) {
+    ratingBtns.forEach(b => {
+      b.classList.toggle('is-selected', b.dataset.rating === value);
+    });
+    ratings[currentIndex] = value;
+
+    // Update accuracy display
+    const acc = calcAccuracy();
+    accuracyEl.textContent = acc + ' %';
+
+    // Enable continue
+    continueBtn.classList.remove('is-disabled');
+    continueBtn.classList.add('is-enabled');
+    continueBtn.disabled = false;
+    continueIcon.src = 'assets/retrieval-sprint/icons/arrow-right-20-active.svg';
+  }
+
+  /* ---- Continue ---- */
+  function onContinue() {
+    if (!ratings[currentIndex]) return;
+    currentIndex++;
+
+    if (currentIndex >= CARDS.length) {
+      showResult();
+    } else {
+      loadCard(currentIndex);
+    }
+  }
+
+  /* ---- Show result ---- */
+  function showResult() {
+    const positives = ratings.filter(r => r === 'okay' || r === 'easy').length;
+    const acc = Math.round((positives / CARDS.length) * 100);
+    const readiness = Math.round(36.8 + (acc - 80) * 0.1);   // demo formula
+
+    gaugePct.textContent     = readiness + '%';
+    resultAcc.textContent    = acc + '%';
+    resultCards.textContent  = CARDS.length + '/' + CARDS.length;
+    showView(viewResult);
+  }
+
+  /* ---- Event listeners ---- */
+  $('rs-start').addEventListener('click', () => {
+    currentIndex = 0;
+    ratings = [];
+    loadCard(0);
+    showView(viewCard);
+  });
+
+  $('rs-card-back').addEventListener('click', () => {
+    if (currentIndex === 0) {
+      showView(viewIntro);
+    } else {
+      currentIndex--;
+      ratings.length = currentIndex + 1;
+      loadCard(currentIndex);
+    }
+  });
+
+  card.addEventListener('click', () => {
+    if (!flipped) flipCard();
+  });
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (!flipped) flipCard(); }
+  });
+
+  $('rs-reload').addEventListener('click', e => {
+    e.stopPropagation();
+    /* shuffle card text — in a real app would pick a random card */
+  });
+
+  ratingBtns.forEach(btn => {
+    btn.addEventListener('click', () => selectRating(btn.dataset.rating));
+  });
+
+  continueBtn.addEventListener('click', onContinue);
+
+  $('rs-result-back').addEventListener('click', () => {
+    currentIndex = CARDS.length - 1;
+    loadCard(currentIndex);
+    showView(viewCard);
+  });
+
+  $('rs-done').addEventListener('click', () => {
+    window.location.href = 'active-recall.html';
+  });
+
+  /* ---- Swipe gesture on card ---- */
+  let touchStartX = 0;
+  card.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  card.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 60) {
+      if (!flipped) { flipCard(); return; }
+      if (ratings[currentIndex]) onContinue();
+    }
+  });
+
+  /* ---- Init ---- */
+  updateSessionBar();
+
+})();
+</script>
+</body>
+</html>

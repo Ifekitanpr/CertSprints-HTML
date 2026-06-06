@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>CertSprints Home Dashboard</title>
     <meta http-equiv="Cache-Control" content="no-store" />
     <link rel="stylesheet" href="css/app.css?v=20260528-app-shell" />
@@ -30,12 +30,15 @@
                   </div>
                   <div class="dash-hero-alert">
                     <span><img src="assets/dashboard/home/warning.svg" alt="" />Off track for exam date</span>
-                    <button type="button">Reschedule</button>
+                    <button type="button" onclick="window.location.href='settings-adjust-plan.html'">Reschedule</button>
                   </div>
                 </section>
 
                 <section class="dash-grid-2">
-                  <article class="dash-card">
+                  <article class="dash-card" role="button" tabindex="0"
+                           onclick="window.location.href='progress.html'"
+                           onkeydown="if(event.key==='Enter')window.location.href='progress.html'"
+                           style="cursor:pointer">
                     <div class="dash-card-head">
                       <div class="dash-card-title-wrap">
                         <span class="dash-card-icon"><img src="assets/dashboard/home/readiness.svg" alt="" /></span>
@@ -51,7 +54,10 @@
                     </div>
                     <p class="dash-state warn">Slow Progress</p>
                   </article>
-                  <article class="dash-card">
+                  <article class="dash-card" role="button" tabindex="0"
+                           onclick="window.location.href='progress.html'"
+                           onkeydown="if(event.key==='Enter')window.location.href='progress.html'"
+                           style="cursor:pointer">
                     <div class="dash-card-head">
                       <div class="dash-card-title-wrap">
                         <span class="dash-card-icon danger"><img src="assets/dashboard/home/velocity.svg" alt="" /></span>
@@ -80,7 +86,7 @@
                       <span class="dash-card-icon learning"><img src="assets/dashboard/home/note-01.svg" alt="" /></span>
                       <p class="dash-card-title">Continue Learning</p>
                     </div>
-                    <button type="button">Backlog <img src="assets/dashboard/home/backlog-arrow.svg" alt="" /></button>
+                    <button type="button" onclick="window.location.href='study-backlog.html'">Backlog <img src="assets/dashboard/home/backlog-arrow.svg" alt="" /></button>
                   </div>
                   <p class="dash-sprint-label-row">SPRINT 4</p>
                   <div class="dash-days">
@@ -130,7 +136,7 @@
                         </div>
                         <div class="dash-quiz-ring" aria-hidden="true"></div>
                       </div>
-                      <button type="button">Continue</button>
+                      <button type="button" onclick="window.location.href='lesson-player.html'">Continue</button>
                     </div>
                     <div class="dash-lesson">
                       <div>

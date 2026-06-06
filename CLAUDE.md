@@ -6,6 +6,34 @@ All screens live in `web/`. Shared styles in `web/css/app.css`. Per-screen CSS i
 
 ---
 
+## Icon library — check before downloading (MANDATORY, no exceptions)
+
+All project icons live in `web/assets/icons/`. The registry `web/assets/icons/ICONS.md` lists every icon with its viewBox and glyph dimensions.
+
+### Workflow for every new icon needed
+
+1. **Check `ICONS.md` first.** Search by icon name. If it exists → use `assets/icons/<file>` directly. Done.
+2. **Only download if absent.** If the icon is genuinely new, download it to `web/assets/icons/` (never into screen-specific sub-folders).
+3. **Fix and document.** After download:
+   - Run `sed -i '' 's/preserveAspectRatio="none"/preserveAspectRatio="xMidYMid meet"/g' <file>.svg`
+   - Read the `viewBox` and add a row to `ICONS.md`.
+
+### Do NOT
+- Download an icon that already exists in `ICONS.md` — even if you are working on a new screen.
+- Save icons to screen-specific folders (`blurting-canvas/icons/`, `retrieval-sprint/icons/`, etc.). Those are legacy locations from before this rule existed.
+- Download multiple variants of the same icon (e.g. `arrow-right-active.svg`, `arrow-right-disabled.svg`) — one file, drive state with CSS.
+
+### Referencing icons in HTML
+Always reference from the shared library:
+```html
+<span class="sc-icon-slot sc-icon-slot--24">
+  <img class="sc-glyph sc-glyph--help-circle-24"
+       src="assets/icons/help-circle-24.svg" alt=""/>
+</span>
+```
+
+---
+
 ## Figma icons — frame vs glyph (MANDATORY, no exceptions)
 
 When implementing icons from Figma exports, **never force the `<img>` to the frame/slot dimension**. Figma filenames like `close-24.svg` name the *container*, not the drawable artwork.
