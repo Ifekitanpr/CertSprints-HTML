@@ -1,0 +1,95 @@
+.me-icon {
+  display: block;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.me-badge .me-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.me-state-icon .me-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.me-state-icon.error .me-icon,
+.me-state-icon.blue .me-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.me-email .me-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.me-primary .me-icon,
+.me-secondary .me-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.me-mini-badge .me-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.me-total i .me-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.me-action-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.me-action-icon .me-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.me-qstatus .me-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.me-chevron .me-icon {
+  width: 14px;
+  height: 8px;
+  transition: transform .2s ease;
+}
+
+.me-question:not(.collapsed) .me-chevron .me-icon {
+  transform: rotate(180deg);
+}
+
+.me-option em {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.me-option em .me-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.me-explanation b {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.me-explanation b .me-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.me-info > .me-icon {
+  width: 20px;
+  height: 20px;
+}

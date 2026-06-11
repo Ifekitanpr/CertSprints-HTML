@@ -8,18 +8,50 @@
     return f.open;
   })?.id;
 
+  const CANONICAL = {
+    // app
+    dashboard:"app/dashboard.html",progress:"app/progress.html",more:"app/more.html",
+    notifications:"app/notifications.html",notes:"app/notes.html",resources:"app/resources.html",
+    habits:"app/habits.html",timeline:"app/timeline.html","sprint-timeline":"app/sprint-timeline.html",
+    // lms
+    "study-backlog":"lms/study-backlog.html","lesson-player":"lms/lesson-player.html",
+    "key-takeaway":"lms/key-takeaway.html","key-takeaway-2":"lms/key-takeaway-2.html",
+    "gap-prompt":"lms/gap-prompt.html","insight-exchange":"lms/insight-exchange.html",
+    "decision-simulator":"lms/decision-simulator.html","scenario-sorting":"lms/scenario-sorting.html",
+    "risk-cycle-sequencer":"lms/risk-cycle-sequencer.html","sorting-type-2":"lms/sorting-type-2.html",
+    "boolean-flashcard":"lms/boolean-flashcard.html","active-recall":"lms/active-recall.html",
+    "blurting-canvas":"lms/blurting-canvas.html","retrieval-sprint":"lms/retrieval-sprint.html",
+    "pre-assessment-quiz":"lms/pre-assessment-quiz.html","decision-tree":"lms/decision-tree.html",
+    "knowledge-poll":"lms/knowledge-poll.html","knowledge-poll-2":"lms/knowledge-poll-2.html",
+    "peer-teachbacks":"lms/peer-teachbacks.html","comprehension-check":"lms/comprehension-check.html",
+    "lesson-quiz":"lms/lesson-quiz.html","module-quiz":"lms/module-quiz.html",
+    "mock-exam":"lms/mock-exam.html","capability-matrix":"lms/capability-matrix.html",
+    "standard-evolution":"lms/standard-evolution.html","ethics-evolution":"lms/ethics-evolution.html",
+    "standard-comparison":"lms/standard-comparison.html","ethics-comparison":"lms/ethics-comparison.html",
+    reading:"lms/reading.html","definition-matrix":"lms/definition-matrix.html",
+    "phase-controller":"lms/phase-controller.html",curriculum:"lms/curriculum.html",
+    "core-terms":"lms/core-terms.html",
+    // other
+    games:"games/games.html",settings:"settings/settings.html",
+    "settings-notifications":"settings/settings-notifications.html",
+    "help-support":"support/help-support.html","wellness-checkin":"support/wellness-checkin.html",
+    certification:"commerce/certification.html",
+  };
+
   function goBack() {
     const params = new URLSearchParams(window.location.search);
     const from = params.get("from");
     if (from) {
-      window.location.href = from.indexOf(".html") !== -1 ? from : from + ".html";
+      const key = from.replace(/\.html$/, "");
+      const path = CANONICAL[key] || (key + ".html");
+      window.location.href = new URL(path, document.baseURI).href;
       return;
     }
     if (window.history.length > 1) {
       window.history.back();
       return;
     }
-    window.location.href = "more.html";
+    window.location.href = new URL("app/more.html", document.baseURI).href;
   }
 
   function renderFaqs(filter) {

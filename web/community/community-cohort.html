@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>Community Chat — CertSprints</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css?v=20260528-cm8" />
+    <link rel="stylesheet" href="css/community.css?v=20260528-cm8" />
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        background: #f1f5f9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+      button { font-family: inherit; cursor: pointer; }
+      img { display: block; }
+      img.cm-glyph { max-width: none; max-height: none; }
+    </style>
+  </head>
+  <body>
+    <div class="cm-chat-root" id="cmChatRoot">
+      <div class="cert-bg" aria-hidden="true"></div>
+
+      <div class="cm-chat-screen" id="cmChatScreen">
+        <!-- Default header -->
+        <header class="cm-chat-header" id="cmChatHeader">
+          <!-- Row 1: back button -->
+          <div class="cm-chat-header-back-row">
+            <button class="cm-nav-pill" type="button" id="cmChatBack" aria-label="Back to cohorts">
+              <span class="cm-icon-slot cm-icon-slot--24">
+                <img src="assets/icons/arrow-left-02.svg" alt="" style="width: 20px; height: 20px; object-fit: contain;" />
+              </span>
+            </button>
+          </div>
+          <!-- Row 2: cohort identity + actions -->
+          <div class="cm-chat-header-row">
+            <div class="cm-cohort-globe">
+              <img class="cm-glyph cm-glyph--globe-cohort" src="assets/community/icons/globe-cohort.svg" alt="" />
+            </div>
+            <div class="cm-chat-head-copy">
+              <p class="cm-chat-cohort-name" id="cmCohortName">PMP General Cohort</p>
+              <p class="cm-chat-cohort-meta" id="cmCohortMeta">22 members • 🟢 4 Online</p>
+            </div>
+            <div class="cm-chat-head-actions">
+              <button class="cm-nav-pill" type="button" id="cmSearchOpen" aria-label="Search messages">
+                <span class="cm-icon-slot cm-icon-slot--24">
+                  <img class="cm-glyph cm-glyph--search-24" src="assets/community/icons/search-24.svg" alt="" />
+                </span>
+              </button>
+              <!-- leave button kept hidden — JS binds to this id -->
+              <button style="display:none" type="button" id="cmLeaveCohort" aria-label="Leave cohort"></button>
+            </div>
+          </div>
+        </header>
+
+        <!-- Search header -->
+        <header class="cm-search-header" id="cmSearchHeader">
+          <button class="cm-nav-pill" type="button" id="cmSearchClose" aria-label="Close search">
+            <span class="cm-icon-slot cm-icon-slot--24">
+              <img src="assets/icons/arrow-left-02.svg" alt="" style="width: 20px; height: 20px; object-fit: contain;" />
+            </span>
+          </button>
+          <input class="cm-search-input" type="search" id="cmSearchInput" placeholder="Search messages…" autocomplete="off" />
+        </header>
+
+        <div class="cm-chat-tabs" id="cmChatTabs" role="tablist">
+          <button class="cm-chat-tab is-active" type="button" data-chat-tab="chats" role="tab" aria-selected="true">
+            <span class="cm-icon-slot cm-icon-slot--18">
+              <img class="cm-glyph cm-glyph--chats-tab" src="assets/community/icons/chats-tab.svg" alt="" />
+            </span>
+            Chats
+          </button>
+          <button class="cm-chat-tab" type="button" data-chat-tab="sessions" role="tab" aria-selected="false">
+            <span class="cm-icon-slot cm-icon-slot--18">
+              <img class="cm-glyph cm-glyph--sessions-tab" src="assets/community/icons/sessions-tab.svg" alt="" />
+            </span>
+            Sessions
+          </button>
+          <button class="cm-chat-tab" type="button" data-chat-tab="members" role="tab" aria-selected="false">
+            <span class="cm-icon-slot cm-icon-slot--18">
+              <img class="cm-glyph cm-glyph--members-tab" src="assets/community/icons/members-tab.svg" alt="" />
+            </span>
+            Members
+          </button>
+        </div>
+
+        <div class="cm-chat-messages" id="cmMessages" role="log"></div>
+
+        <div class="cm-sessions-scroll cm-tab-panel-hidden" id="cmSessionsPanel"></div>
+
+        <div class="cm-members-scroll cm-tab-panel-hidden" id="cmMembersPanel"></div>
+
+        <div class="cm-search-empty" id="cmSearchEmpty">
+          <h2>No results found</h2>
+          <p>Try a different keyword or check your spelling.</p>
+        </div>
+
+        <div class="cm-composer" id="cmComposer">
+          <div class="cm-reply-bar" id="cmReplyBar">
+            <button class="cm-reply-bar-close" type="button" id="cmReplyClose" aria-label="Cancel reply">✕</button>
+            <p class="cm-reply-bar-label" id="cmReplyLabel">Replying to Leo Culhane</p>
+            <p class="cm-reply-bar-text" id="cmReplyText"></p>
+            <img class="cm-reply-bar-thumb cm-screen-hidden" id="cmReplyThumb" src="" alt="" />
+          </div>
+          <div class="cm-audio-bar" id="cmAudioBar">
+            <button class="cm-audio-btn" type="button" id="cmAudioCancel" aria-label="Cancel recording">✕</button>
+            <div class="cm-audio-wave" id="cmAudioWave" aria-hidden="true"></div>
+            <span class="cm-audio-time" id="cmAudioTime">0:00</span>
+            <button class="cm-audio-btn" type="button" id="cmAudioToggle" aria-label="Pause recording">❚❚</button>
+            <button class="cm-audio-btn" type="button" id="cmAudioSend" aria-label="Send audio">➤</button>
+          </div>
+          <input type="file" id="cmAttachInput" accept="image/*" class="cm-screen-hidden" />
+          <div class="cm-composer-row">
+            <button class="cm-composer-tool" type="button" id="cmAttachBtn" aria-label="Attach">
+              <span class="cm-icon-slot cm-icon-slot--18">
+                <img class="cm-glyph cm-glyph--plus-sign-18" src="assets/community/icons/plus-sign-18.svg" alt="" />
+              </span>
+            </button>
+            <button class="cm-composer-tool cm-composer-tool--emoji" type="button" id="cmEmojiOpen" aria-label="Emoji">😁</button>
+            <button class="cm-composer-tool" type="button" id="cmMicBtn" aria-label="Record audio">
+              <span class="cm-icon-slot cm-icon-slot--18">
+                <img class="cm-glyph cm-glyph--mic-02-18" src="assets/community/icons/mic-02-18.svg" alt="" />
+              </span>
+            </button>
+            <div class="cm-composer-input-wrap">
+              <textarea class="cm-composer-input" id="cmMessageInput" rows="1" placeholder="Type a message"></textarea>
+              <button class="cm-send-btn" type="button" id="cmSendBtn" aria-label="Send">
+                <span class="cm-icon-slot cm-icon-slot--20">
+                  <img class="cm-glyph cm-glyph--sent-20" src="assets/community/icons/sent-20.svg" alt="" />
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Message options overlay -->
+      <div class="cm-overlay" id="cmMsgOptionsOverlay" aria-hidden="true">
+        <div class="cm-overlay-scrim" id="cmMsgOptionsScrim"></div>
+        <div class="cm-msg-options-panel" id="cmMsgOptionsPanel" role="menu"></div>
+      </div>
+
+      <!-- Emoji picker -->
+      <div class="cm-overlay" id="cmEmojiOverlay" aria-hidden="true">
+        <div class="cm-overlay-scrim" id="cmEmojiScrim"></div>
+        <div class="cm-emoji-sheet">
+          <div class="cm-emoji-grid" id="cmEmojiGrid"></div>
+        </div>
+      </div>
+
+      <!-- Request sent modal -->
+      <div class="cm-overlay" id="cmRequestSentOverlay" aria-hidden="true">
+        <div class="cm-overlay-scrim" id="cmRequestSentScrim"></div>
+        <div class="cm-request-sent-modal" role="dialog" aria-modal="true">
+          <img class="cm-request-confetti" src="assets/community/images/confetti-party.png" alt="" />
+          <h2>Your Session Request has been Sent</h2>
+          <p>Your session will be available for all PMP March Exam Cohort Members to join once approved by the CertSprints team.</p>
+          <div class="cm-sess-card cm-sess-card--modal" id="cmRequestSentCard"></div>
+          <button class="cm-request-ok-btn" type="button" id="cmRequestSentOk">Ok got it</button>
+        </div>
+      </div>
+
+      <!-- Delete upcoming session modal -->
+      <div class="cm-overlay" id="cmDeleteSessionOverlay" aria-hidden="true">
+        <div class="cm-overlay-scrim" id="cmDeleteSessionScrim"></div>
+        <div class="cm-modal" role="dialog" aria-modal="true">
+          <div class="cm-modal-head">
+            <h2 class="cm-modal-title">Delete session</h2>
+            <button class="cm-nav-pill" type="button" id="cmDeleteSessionClose" aria-label="Close">
+              <span class="cm-icon-slot cm-icon-slot--24">
+                <img class="cm-glyph cm-glyph--modal-close" src="assets/community/icons/modal-close.svg" alt="" />
+              </span>
+            </button>
+          </div>
+          <p class="cm-modal-body" id="cmDeleteSessionBody">Remove this upcoming session request?</p>
+          <div class="cm-modal-actions">
+            <button class="cm-modal-btn cm-modal-btn--muted" type="button" id="cmDeleteSessionCancel">Cancel</button>
+            <button class="cm-modal-btn cm-modal-btn--danger" type="button" id="cmDeleteSessionConfirm">Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast -->
+      <div class="cm-toast cm-screen-hidden" id="cmToast" role="status"></div>
+
+      <!-- Delete message modal -->
+      <div class="cm-overlay" id="cmDeleteOverlay" aria-hidden="true">
+        <div class="cm-overlay-scrim"></div>
+        <div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="cmDeleteTitle">
+          <div class="cm-modal-head">
+            <h2 class="cm-modal-title" id="cmDeleteTitle">Delete Message</h2>
+            <button class="cm-nav-pill" type="button" id="cmDeleteModalClose" aria-label="Close">
+              <span class="cm-icon-slot cm-icon-slot--24">
+                <img class="cm-glyph cm-glyph--modal-close" src="assets/community/icons/modal-close.svg" alt="" />
+              </span>
+            </button>
+          </div>
+          <p class="cm-modal-body">
+            You're about to delete your message. You and others in this cohort will no longer be able to see this message; others will see that you deleted a message.
+          </p>
+          <div class="cm-modal-actions">
+            <button class="cm-modal-btn cm-modal-btn--muted" type="button" id="cmDeleteCancel">No, Cancel</button>
+            <button class="cm-modal-btn cm-modal-btn--danger" type="button" id="cmDeleteConfirm">Yes, Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Report message modal -->
+      <div class="cm-overlay" id="cmReportOverlay" aria-hidden="true">
+        <div class="cm-overlay-scrim"></div>
+        <div class="cm-modal" role="dialog" aria-modal="true" aria-labelledby="cmReportTitle">
+          <div class="cm-modal-head">
+            <h2 class="cm-modal-title" id="cmReportTitle">Report Message</h2>
+            <button class="cm-nav-pill" type="button" id="cmReportModalClose" aria-label="Close">
+              <span class="cm-icon-slot cm-icon-slot--24">
+                <img class="cm-glyph cm-glyph--modal-close" src="assets/community/icons/modal-close.svg" alt="" />
+              </span>
+            </button>
+          </div>
+          <ul class="cm-report-list" id="cmReportList"></ul>
+          <div class="cm-modal-actions">
+            <button class="cm-modal-btn cm-modal-btn--muted" type="button" id="cmReportCancel">Cancel</button>
+            <button class="cm-modal-btn cm-modal-btn--danger" type="button" id="cmReportSubmit">Submit Report</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ongoing session bottom sheet -->
+      <div class="cm-ongoing-overlay" id="cmOngoingOverlay" aria-hidden="true">
+        <div class="cm-ongoing-scrim" id="cmOngoingScrim"></div>
+        <div class="cm-ongoing-sheet" id="cmOngoingSheet" role="dialog" aria-modal="true" aria-labelledby="cmOngoingSheetTitle">
+          <header class="cm-ongoing-sheet-head">
+            <h2 class="cm-ongoing-sheet-title" id="cmOngoingSheetTitle">Ongoing Session</h2>
+            <div class="cm-ongoing-sheet-actions">
+              <button class="cm-ongoing-sheet-icon-btn" type="button" id="cmSessionMinimize" aria-label="Minimize session">
+                <span class="cm-icon-slot cm-icon-slot--24">
+                  <img class="cm-glyph cm-glyph--arrow-shrink-02-24" src="assets/community/icons/arrow-shrink-02-24.svg" alt="" />
+                </span>
+              </button>
+              <button class="cm-ongoing-sheet-icon-btn" type="button" id="cmSessionClose" aria-label="Close session">
+                <span class="cm-icon-slot cm-icon-slot--24">
+                  <img class="cm-glyph cm-glyph--cancel-01-24" src="assets/community/icons/cancel-01-24.svg" alt="" />
+                </span>
+              </button>
+            </div>
+          </header>
+          <div class="cm-ongoing-main" id="cmOngoingMain"></div>
+          <footer class="cm-ongoing-footer" id="cmOngoingFooter"></footer>
+        </div>
+      </div>
+
+      <!-- Screen share prompt -->
+      <div class="cm-overlay" id="cmScreenPromptOverlay" aria-hidden="true">
+        <div class="cm-overlay-scrim" id="cmScreenPromptScrim"></div>
+        <div class="cm-modal cm-modal--dark" role="dialog" aria-modal="true">
+          <h2>Share your screen?</h2>
+          <p>Members will see your screen while you present. You can stop sharing anytime.</p>
+          <div class="cm-modal-actions">
+            <button class="cm-modal-btn cm-modal-btn--muted" type="button" id="cmScreenPromptCancel">Cancel</button>
+            <button class="cm-modal-btn cm-modal-btn--primary" type="button" id="cmScreenPromptConfirm">Start sharing</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- End session modal -->
+      <div class="cm-overlay" id="cmEndSessionOverlay" aria-hidden="true">
+        <div class="cm-overlay-scrim"></div>
+        <div class="cm-modal" role="dialog" aria-modal="true">
+          <div class="cm-modal-head">
+            <h2 class="cm-modal-title">End Session</h2>
+            <button class="cm-nav-pill" type="button" id="cmEndSessionClose" aria-label="Close">
+              <span class="cm-icon-slot cm-icon-slot--24">
+                <img class="cm-glyph cm-glyph--modal-close" src="assets/community/icons/modal-close.svg" alt="" />
+              </span>
+            </button>
+          </div>
+          <p class="cm-modal-body">You're about to end this session for everyone in the cohort. This action cannot be undone.</p>
+          <div class="cm-modal-actions">
+            <button class="cm-modal-btn cm-modal-btn--muted" type="button" id="cmEndSessionCancel">Cancel</button>
+            <button class="cm-modal-btn cm-modal-btn--danger" type="button" id="cmEndSessionConfirm">End Session</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leave session modal -->
+      <div class="cm-overlay" id="cmLeaveSessionOverlay" aria-hidden="true">
+        <div class="cm-overlay-scrim"></div>
+        <div class="cm-modal" role="dialog" aria-modal="true">
+          <div class="cm-modal-head">
+            <h2 class="cm-modal-title">Leave Session</h2>
+            <button class="cm-nav-pill" type="button" id="cmLeaveSessionClose" aria-label="Close">
+              <span class="cm-icon-slot cm-icon-slot--24">
+                <img class="cm-glyph cm-glyph--modal-close" src="assets/community/icons/modal-close.svg" alt="" />
+              </span>
+            </button>
+          </div>
+          <p class="cm-modal-body">Are you sure you want to leave this live session? You can rejoin while it's still active.</p>
+          <div class="cm-modal-actions">
+            <button class="cm-modal-btn cm-modal-btn--muted" type="button" id="cmLeaveSessionCancel">Stay</button>
+            <button class="cm-modal-btn cm-modal-btn--danger" type="button" id="cmLeaveSessionConfirm">Leave</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comment options -->
+      <div class="cm-overlay" id="cmCommentOptionsOverlay" aria-hidden="true">
+        <div class="cm-overlay-scrim" id="cmCommentOptionsScrim"></div>
+        <div class="cm-msg-options-panel cm-msg-options-panel--session" id="cmCommentOptionsPanel" role="menu"></div>
+      </div>
+
+      <!-- Speaker requests sheet -->
+      <div class="cm-overlay" id="cmSpeakerRequestsOverlay" aria-hidden="true">
+        <div class="cm-overlay-scrim" id="cmSpeakerRequestsScrim"></div>
+        <div class="cm-speaker-sheet" id="cmSpeakerRequestsPanel"></div>
+      </div>
+
+      <!-- Minimized live session bar -->
+      <div class="cm-minimized-player cm-screen-hidden" id="cmMinimizedPlayer">
+        <div class="cm-minimized-inner">
+          <span class="cm-icon-slot cm-icon-slot--24">
+            <img class="cm-glyph cm-glyph--broadcast-live-red-24" src="assets/community/icons/broadcast-live-red-24.svg" alt="" />
+          </span>
+          <span class="cm-minimized-title" id="cmMinimizedTitle">Risk Management Masterclass</span>
+          <button type="button" id="cmMinimizedExpand" aria-label="Expand session">
+            <span class="cm-icon-slot cm-icon-slot--24">
+              <img class="cm-glyph cm-glyph--arrow-shrink-02-24" src="assets/community/icons/arrow-shrink-02-24.svg" alt="" />
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/community-data.js?v=20260528-cm8"></script>
+    <script src="js/community-sessions.js?v=20260528-cm8"></script>
+    <script src="js/community-members.js?v=20260528-cm8"></script>
+    <script src="js/community-session.js?v=20260528-cm8"></script>
+    <script src="js/community-chat.js?v=20260528-cm8"></script>
+  </body>
+</html>

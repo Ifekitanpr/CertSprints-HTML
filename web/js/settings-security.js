@@ -247,9 +247,9 @@
     if (!btn) return;
     const action = btn.getAttribute("data-sec-action");
     if (action === "change-password") {
-      window.location.href = "settings-security-password.html?mode=change";
+      window.location.href = new URL("settings/settings-security-password.html?mode=change", document.baseURI).href;
     } else if (action === "set-password") {
-      window.location.href = "settings-security-password.html?mode=set";
+      window.location.href = new URL("settings/settings-security-password.html?mode=set", document.baseURI).href;
     } else if (action === "unlink-google") {
       openOverlay("secUnlinkGoogleSheet");
     } else if (action === "unlink-linkedin") {

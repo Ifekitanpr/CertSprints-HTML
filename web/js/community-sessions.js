@@ -197,9 +197,9 @@
   function hostFormUrl(editId) {
     const params = new URLSearchParams(window.location.search);
     const cohort = params.get("cohort") || "pmp-general";
-    let url = "community-host.html?cohort=" + encodeURIComponent(cohort);
+    let url = "community/community-host.html?cohort=" + encodeURIComponent(cohort);
     if (editId) url += "&edit=" + encodeURIComponent(editId);
-    return url;
+    return new URL(url, document.baseURI).href;
   }
 
   function render() {

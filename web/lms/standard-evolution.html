@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="../" />
+  <title>Standard Evolution — CertSprints</title>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/standard-evolution.css"/>
+</head>
+<body>
+
+<main class="phone-case" aria-label="CertSprints — Standard Evolution">
+  <div class="case-shell">
+    <div class="se" id="se">
+
+      <div class="cert-bg" aria-hidden="true"></div>
+
+      <!-- ═══════════════════════════
+           VIEW 1 — INTRO
+           ═══════════════════════════ -->
+      <div class="se-view" id="se-view-intro">
+        <div class="se-sb"></div>
+
+        <nav class="se-nav">
+          <button class="se-nav-btn" onclick="history.back()" aria-label="Back">
+            <span class="se-icon-slot se-icon-slot--20">
+              <img class="se-glyph se-glyph--arrow-left" src="assets/icons/arrow-left-02.svg" alt="">
+            </span>
+          </button>
+          <p>STANDARD EVOLUTION</p>
+          <button class="se-nav-btn se-nav-help" aria-label="Help">
+            <span class="se-icon-slot se-icon-slot--24">
+              <img class="se-glyph se-glyph--help" src="assets/icons/help-circle-24.svg" alt="">
+            </span>
+          </button>
+        </nav>
+
+        <div class="se-intro-body">
+          <div class="se-intro-illus-wrap">
+            <img class="se-intro-illus" src="assets/standard-evolution/intro-illustration.png" alt="">
+          </div>
+          <div class="se-intro-content">
+            <div class="se-intro-badge">EVOLUTION ROADMAP</div>
+            <h1 class="se-intro-title">Evolution of the ACMP Standard</h1>
+            <p class="se-intro-sub">See how change management evolved from fragmented practice to a globally recognised, outcome-driven standard.</p>
+          </div>
+          <div class="se-intro-card">
+            <div class="se-intro-card-icon">
+              <img src="assets/standard-evolution/intro-card-icon.png" alt="">
+            </div>
+            <div class="se-intro-card-text">
+              <span class="se-intro-card-label">3 Stages</span>
+              <p>From fragmented practice to outcome-driven execution</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="se-bnb">
+          <button class="se-cta" onclick="seShowView('timeline')">
+            Explore Evolution&nbsp;&nbsp;→
+          </button>
+        </div>
+
+        <div class="home-ind"><div class="home-bar"></div></div>
+      </div><!-- /se-view-intro -->
+
+
+      <!-- ═══════════════════════════
+           VIEW 2 — TIMELINE
+           ═══════════════════════════ -->
+      <div class="se-view" id="se-view-timeline" style="display:none">
+        <div class="se-sb"></div>
+
+        <nav class="se-nav">
+          <button class="se-nav-btn" onclick="seShowView('intro')" aria-label="Back">
+            <span class="se-icon-slot se-icon-slot--20">
+              <img class="se-glyph se-glyph--arrow-left" src="assets/icons/arrow-left-02.svg" alt="">
+            </span>
+          </button>
+          <p>STANDARD EVOLUTION</p>
+          <button class="se-nav-btn se-nav-help" aria-label="Help">
+            <span class="se-icon-slot se-icon-slot--24">
+              <img class="se-glyph se-glyph--help" src="assets/icons/help-circle-24.svg" alt="">
+            </span>
+          </button>
+        </nav>
+
+        <div class="se-timeline-body">
+
+          <div class="se-tl-head">
+            <div class="se-intro-badge">EVOLUTION ROADMAP</div>
+            <h2 class="se-tl-title">Track the Standard's Journey</h2>
+            <p class="se-tl-sub">Tap each milestone to explore how the standard evolved over time</p>
+          </div>
+
+          <div class="se-timeline-wrap">
+            <!-- Left: spine + dots -->
+            <div class="se-tl-track" aria-hidden="true">
+              <div class="se-tl-spine"></div>
+              <span class="se-ms-dot se-ms-dot--blue" id="se-dot-pre2014"></span>
+              <span class="se-ms-dot" id="se-dot-2014"></span>
+              <span class="se-ms-dot" id="se-dot-2025"></span>
+            </div>
+
+            <!-- Right: cards -->
+            <div class="se-tl-cards" role="list">
+
+              <!-- PRE-2014 (starts active) -->
+              <button class="se-ms-card se-ms-card--active" id="se-card-pre2014"
+                      onclick="seOpenSheet('pre2014')" role="listitem"
+                      aria-label="PRE-2014: The Fragmented Era">
+                <div class="se-ms-icon se-ms-icon--blue" id="se-icon-pre2014">
+                  <span class="se-icon-slot se-icon-slot--24">
+                    <img class="se-glyph se-glyph--puzzle" src="assets/icons/puzzle-24.svg" alt="">
+                  </span>
+                </div>
+                <div class="se-ms-text">
+                  <span class="se-ms-era">PRE-2014</span>
+                  <span class="se-ms-title">The Fragmented Era</span>
+                  <span class="se-ms-desc">No unified global standard. Practice was fragmented and model-driven.</span>
+                </div>
+                <span class="se-icon-slot se-icon-slot--24" id="se-action-pre2014">
+                  <img class="se-glyph se-glyph--arrow-right" src="assets/icons/arrow-right-01.svg" alt="">
+                </span>
+              </button>
+
+              <!-- 2014 RELEASE -->
+              <button class="se-ms-card" id="se-card-2014"
+                      onclick="seOpenSheet('2014')" role="listitem"
+                      aria-label="2014 RELEASE: Edition One">
+                <div class="se-ms-icon" id="se-icon-2014">
+                  <span class="se-icon-slot se-icon-slot--24">
+                    <img class="se-glyph se-glyph--bank" src="assets/icons/bank-24.svg" alt="">
+                  </span>
+                </div>
+                <div class="se-ms-text">
+                  <span class="se-ms-era">2014 RELEASE</span>
+                  <span class="se-ms-title">Edition One</span>
+                  <span class="se-ms-desc">First global, vendor-neutral standard. Focused on process discipline and standardization.</span>
+                </div>
+                <span class="se-icon-slot se-icon-slot--24" id="se-action-2014">
+                  <img class="se-glyph se-glyph--arrow-right" src="assets/icons/arrow-right-01.svg" alt="">
+                </span>
+              </button>
+
+              <!-- 2025 RELEASE -->
+              <button class="se-ms-card" id="se-card-2025"
+                      onclick="seOpenSheet('2025')" role="listitem"
+                      aria-label="2025 RELEASE: Edition Two">
+                <div class="se-ms-icon" id="se-icon-2025">
+                  <span class="se-icon-slot se-icon-slot--24">
+                    <img class="se-glyph se-glyph--chart" src="assets/icons/chart-increase.svg" alt="">
+                  </span>
+                </div>
+                <div class="se-ms-text">
+                  <span class="se-ms-era">2025 RELEASE</span>
+                  <span class="se-ms-title">Edition Two</span>
+                  <span class="se-ms-desc">Shifted toward adaptability, execution clarity, and real-world outcomes.</span>
+                </div>
+                <span class="se-icon-slot se-icon-slot--24" id="se-action-2025">
+                  <img class="se-glyph se-glyph--arrow-right" src="assets/icons/arrow-right-01.svg" alt="">
+                </span>
+              </button>
+
+            </div><!-- /se-tl-cards -->
+          </div><!-- /se-timeline-wrap -->
+
+          <div class="se-hint" id="se-hint">
+            <span class="se-icon-slot se-icon-slot--16">
+              <img class="se-glyph se-glyph--touchpad" src="assets/icons/touchpad-02-16.svg" alt="">
+            </span>
+            <span>Tap a milestone to open details</span>
+          </div>
+
+        </div><!-- /se-timeline-body -->
+
+        <div class="se-bnb">
+          <button class="se-continue" id="se-timeline-continue" disabled
+                  onclick="seShowView('enhancements')">
+            Continue
+          </button>
+        </div>
+
+        <div class="home-ind"><div class="home-bar"></div></div>
+      </div><!-- /se-view-timeline -->
+
+
+      <!-- ═══════════════════════════
+           VIEW 3 — MAJOR ENHANCEMENTS
+           ═══════════════════════════ -->
+      <div class="se-view" id="se-view-enhancements" style="display:none">
+        <div class="se-sb"></div>
+
+        <nav class="se-nav">
+          <button class="se-nav-btn" onclick="seShowView('timeline')" aria-label="Back">
+            <span class="se-icon-slot se-icon-slot--20">
+              <img class="se-glyph se-glyph--arrow-left" src="assets/icons/arrow-left-02.svg" alt="">
+            </span>
+          </button>
+          <p>STANDARD EVOLUTION</p>
+          <button class="se-nav-btn se-nav-help" aria-label="Help">
+            <span class="se-icon-slot se-icon-slot--24">
+              <img class="se-glyph se-glyph--help" src="assets/icons/help-circle-24.svg" alt="">
+            </span>
+          </button>
+        </nav>
+
+        <div class="se-enh-scroll">
+          <div class="se-enh-body">
+
+            <div class="se-enh-head">
+              <div class="se-enh-badge">Standard Update: Edition Two</div>
+              <h2 class="se-enh-title">Major Enhancements.</h2>
+              <p class="se-enh-sub">The shift across editions reflects a major transition: from defining the discipline to enabling real-world execution and outcomes.</p>
+            </div>
+
+            <!-- Accordions -->
+            <div class="se-accordions">
+
+              <!-- Accordion 1: New Focus Areas -->
+              <div class="se-acc" id="se-acc-focus">
+                <button class="se-acc-header" onclick="seToggleAcc('focus')" aria-expanded="false">
+                  <div class="se-acc-label">
+                    <span class="se-acc-dot se-acc-dot--blue"></span>
+                    <span>New Focus Areas</span>
+                  </div>
+                  <span class="se-icon-slot se-icon-slot--20">
+                    <img class="se-glyph se-glyph--chevron se-acc-chevron" id="se-chev-focus"
+                         src="assets/icons/chevron-down-20.svg" alt="">
+                  </span>
+                </button>
+                <div class="se-acc-body" id="se-body-focus" aria-hidden="true">
+                  <div class="se-acc-inner">
+                    <div class="se-acc-items">
+                      <div class="se-acc-item">
+                        <span class="se-acc-section-lbl" style="color:#007bff">Section 4.8 — Change Readiness</span>
+                        <p class="se-acc-item-title">Section 4.8</p>
+                        <p class="se-acc-item-desc">Proactive readiness evaluation before implementation.</p>
+                      </div>
+                      <div class="se-acc-item">
+                        <span class="se-acc-section-lbl" style="color:#007bff">Section 5.1.4 — Clear Role Definition</span>
+                        <p class="se-acc-item-title">Section 5.1.4</p>
+                        <p class="se-acc-item-desc">Stronger accountability structures for practitioners.</p>
+                      </div>
+                      <div class="se-acc-item">
+                        <span class="se-acc-section-lbl" style="color:#007bff">Section 5.1.4.x — Execution Sections</span>
+                        <p class="se-acc-item-title">Section 5.1.4.x</p>
+                        <p class="se-acc-item-desc">Dedicated operational clarity for the active phase.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Accordion 2: Process Improvements -->
+              <div class="se-acc" id="se-acc-process">
+                <button class="se-acc-header" onclick="seToggleAcc('process')" aria-expanded="false">
+                  <div class="se-acc-label">
+                    <span class="se-acc-dot se-acc-dot--orange"></span>
+                    <span>Process Improvements</span>
+                  </div>
+                  <span class="se-icon-slot se-icon-slot--20">
+                    <img class="se-glyph se-glyph--chevron se-acc-chevron" id="se-chev-process"
+                         src="assets/icons/chevron-down-20.svg" alt="">
+                  </span>
+                </button>
+                <div class="se-acc-body" id="se-body-process" aria-hidden="true">
+                  <div class="se-acc-inner">
+                    <div class="se-acc-items">
+                      <div class="se-acc-item">
+                        <p class="se-acc-item-title">Iterative &amp; Adaptive</p>
+                        <p class="se-acc-item-desc">Shift from rigid linear flows to responsive iterations.</p>
+                      </div>
+                      <div class="se-acc-item">
+                        <p class="se-acc-item-title">Unified Integration</p>
+                        <p class="se-acc-item-desc">Streamlined inputs and outputs for practitioner speed.</p>
+                      </div>
+                      <div class="se-acc-item">
+                        <p class="se-acc-item-title">Stronger Integration</p>
+                        <p class="se-acc-item-desc">Unified logic across all lifecycle stages.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Accordion 3: Terminology Updates -->
+              <div class="se-acc" id="se-acc-terms">
+                <button class="se-acc-header" onclick="seToggleAcc('terms')" aria-expanded="false">
+                  <div class="se-acc-label">
+                    <span class="se-acc-dot se-acc-dot--green"></span>
+                    <span>Terminology Updates</span>
+                  </div>
+                  <span class="se-icon-slot se-icon-slot--20">
+                    <img class="se-glyph se-glyph--chevron se-acc-chevron" id="se-chev-terms"
+                         src="assets/icons/chevron-down-20.svg" alt="">
+                  </span>
+                </button>
+                <div class="se-acc-body" id="se-body-terms" aria-hidden="true">
+                  <div class="se-acc-inner">
+                    <div class="se-acc-items">
+                      <div class="se-acc-term">
+                        <div class="se-acc-term-hd">
+                          <span class="se-acc-term-old">CHARTER</span>
+                          <span class="se-icon-slot se-icon-slot--16">
+                            <img class="se-glyph se-glyph--arrow-right-sm se-acc-term-arrow"
+                                 src="assets/icons/arrow-right-01.svg" alt="→">
+                          </span>
+                        </div>
+                        <p class="se-acc-item-title">Project Charter</p>
+                        <p class="se-acc-item-desc">Standardized to align with traditional PM methodologies and project documentation boundaries.</p>
+                      </div>
+                      <div class="se-acc-term">
+                        <div class="se-acc-term-hd">
+                          <span class="se-acc-term-old">SUCCESS MEASURES</span>
+                          <span class="se-icon-slot se-icon-slot--16">
+                            <img class="se-glyph se-glyph--arrow-right-sm se-acc-term-arrow"
+                                 src="assets/icons/arrow-right-01.svg" alt="→">
+                          </span>
+                        </div>
+                        <p class="se-acc-item-title">Criteria and Measures for Change Success and Benefits</p>
+                        <p class="se-acc-item-desc">Expanded language to prioritize high-level benefit realization over simple process outputs.</p>
+                      </div>
+                      <p class="se-acc-term-note">More accessible, practitioner-friendly language</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /se-accordions -->
+
+            <!-- The Fundamental Shift card -->
+            <button class="se-shift-card" id="se-shift-card" onclick="seVerifyShift()">
+              <div class="se-shift-hd">
+                <span class="se-icon-slot se-icon-slot--20">
+                  <img class="se-glyph se-glyph--sparkles se-shift-sparkles"
+                       src="assets/icons/sparkles.svg" alt="">
+                </span>
+                <span class="se-shift-lbl">THE FUNDAMENTAL SHIFT</span>
+              </div>
+              <div class="se-shift-cols">
+                <div class="se-shift-from">
+                  <span class="se-shift-dir">From</span>
+                  <p class="se-shift-val">Structured Process</p>
+                </div>
+                <div class="se-shift-arrow-circ" aria-hidden="true">
+                  <img class="se-glyph se-glyph--arrow-right-white"
+                       src="assets/icons/arrow-right-01.svg" alt="">
+                </div>
+                <div class="se-shift-to">
+                  <span class="se-shift-dir">TO</span>
+                  <p class="se-shift-val se-shift-val--green">Adaptive System for Outcomes</p>
+                </div>
+              </div>
+              <hr class="se-shift-divider">
+              <div class="se-shift-tap" id="se-shift-tap">
+                <span class="se-icon-slot se-icon-slot--16">
+                  <img class="se-glyph se-glyph--touchpad se-shift-icon-white"
+                       src="assets/icons/touchpad-02-16.svg" alt="">
+                </span>
+                <span>Tap card to verify the logic shift</span>
+              </div>
+              <div class="se-shift-verified" id="se-shift-verified" style="display:none">
+                <span>Rationale calibration verified!</span>
+                <span class="se-icon-slot se-icon-slot--16">
+                  <img class="se-glyph se-glyph--check-16 se-shift-icon-green"
+                       src="assets/icons/checkmark-circle-02-16.svg" alt="✓">
+                </span>
+              </div>
+            </button>
+
+          </div><!-- /se-enh-body -->
+        </div><!-- /se-enh-scroll -->
+
+        <div class="se-bnb">
+          <button class="se-continue" id="se-enh-continue" disabled
+                  onclick="window.location.href=new window.URL('lms/ethics-evolution.html',document.baseURI).href">
+            Continue
+          </button>
+        </div>
+
+        <div class="home-ind"><div class="home-bar"></div></div>
+      </div><!-- /se-view-enhancements -->
+
+
+      <!-- ═══════════════════════════
+           BACKDROP OVERLAY
+           ═══════════════════════════ -->
+      <div class="se-overlay" id="se-overlay" aria-hidden="true" onclick="seCloseSheet()"></div>
+
+
+      <!-- ═══════════════════════════
+           BOTTOM SHEET: PRE-2014
+           ═══════════════════════════ -->
+      <div class="se-sheet" id="se-sheet-pre2014" aria-hidden="true">
+        <div class="se-sheet-handle"></div>
+        <div class="se-sheet-scroll">
+          <div class="se-sheet-hero">
+            <div class="se-sheet-prosci">
+              <img src="assets/standard-evolution/pre2014-prosci.png" alt="Prosci ADKAR model">
+            </div>
+            <div class="se-sheet-hero-text">
+              <div class="se-sheet-status-badge">Status: Pre-Standard</div>
+              <h3 class="se-sheet-title">Before the <span class="se-sheet-title--orange">Standard.</span></h3>
+              <p class="se-sheet-desc">No unified global standard. Practice was fragmented and model-driven (Prosci, Kotter, ADKAR).</p>
+            </div>
+          </div>
+          <div class="se-sheet-item">
+            <div class="se-sheet-icon se-sheet-icon--orange">
+              <span class="se-icon-slot se-icon-slot--20">
+                <img class="se-glyph se-glyph--alert" src="assets/icons/alert-02-24.svg" alt="">
+              </span>
+            </div>
+            <div class="se-sheet-item-text">
+              <span class="se-sheet-item-label">The Problem</span>
+              <p>Different approaches across organizations led to inconsistent results.</p>
+            </div>
+          </div>
+          <div class="se-sheet-item">
+            <div class="se-sheet-icon se-sheet-icon--blue">
+              <span class="se-icon-slot se-icon-slot--20">
+                <img class="se-glyph se-glyph--puzzle" src="assets/icons/puzzle-24.svg" alt="">
+              </span>
+            </div>
+            <div class="se-sheet-item-text">
+              <span class="se-sheet-item-label">The Gap</span>
+              <p>Change management lacked consistency, credibility, and scalability</p>
+            </div>
+          </div>
+        </div>
+        <div class="se-sheet-foot">
+          <button class="se-sheet-done-btn" onclick="seCloseSheet()">Got it</button>
+        </div>
+      </div><!-- /se-sheet-pre2014 -->
+
+
+      <!-- ═══════════════════════════
+           BOTTOM SHEET: 2014
+           ═══════════════════════════ -->
+      <div class="se-sheet" id="se-sheet-2014" aria-hidden="true">
+        <div class="se-sheet-handle"></div>
+        <div class="se-sheet-scroll">
+          <div class="se-sheet-book-wrap">
+            <img class="se-sheet-book" src="assets/standard-evolution/book-2014.png" alt="">
+          </div>
+          <div class="se-sheet-badge se-sheet-badge--blue">STANDARD V1.0</div>
+          <h3 class="se-sheet-title">Structure &amp; Discipline.</h3>
+          <p class="se-sheet-desc">The first edition established the universal framework that professionalised change management globally.</p>
+          <div class="se-sheet-item">
+            <div class="se-sheet-icon se-sheet-icon--gray">
+              <span class="se-icon-slot se-icon-slot--16">
+                <img class="se-glyph se-glyph--check-16" src="assets/icons/checkmark-circle-02-16.svg" alt="">
+              </span>
+            </div>
+            <div class="se-sheet-item-text">
+              <span class="se-sheet-item-label">Defined End-to-End Lifecycle</span>
+            </div>
+          </div>
+          <div class="se-sheet-item">
+            <div class="se-sheet-icon se-sheet-icon--gray">
+              <span class="se-icon-slot se-icon-slot--20">
+                <img class="se-glyph se-glyph--arrow-right" src="assets/icons/arrow-right-01.svg" alt="">
+              </span>
+            </div>
+            <div class="se-sheet-item-text">
+              <span class="se-sheet-item-label">Established Common Language &amp; Domains</span>
+            </div>
+          </div>
+          <div class="se-sheet-item">
+            <div class="se-sheet-icon se-sheet-icon--gray">
+              <span class="se-icon-slot se-icon-slot--16">
+                <img class="se-glyph se-glyph--check-16" src="assets/icons/checkmark-circle-02-16.svg" alt="">
+              </span>
+            </div>
+            <div class="se-sheet-item-text">
+              <span class="se-sheet-item-label" style="color:#334155">Shift: Fragmented Practice → Unified Discipline</span>
+            </div>
+          </div>
+        </div>
+        <div class="se-sheet-foot">
+          <button class="se-sheet-done-btn" onclick="seCloseSheet()">Got it</button>
+        </div>
+      </div><!-- /se-sheet-2014 -->
+
+
+      <!-- ═══════════════════════════
+           BOTTOM SHEET: 2025
+           ═══════════════════════════ -->
+      <div class="se-sheet" id="se-sheet-2025" aria-hidden="true">
+        <div class="se-sheet-handle"></div>
+        <div class="se-sheet-scroll">
+          <div class="se-sheet-book-wrap">
+            <img class="se-sheet-book" src="assets/standard-evolution/book-2025.png" alt="">
+          </div>
+          <div class="se-sheet-badge se-sheet-badge--green">STANDARD V2.0</div>
+          <h3 class="se-sheet-title">Adaptability &amp; Outcomes.</h3>
+          <p class="se-sheet-desc">Based on 2024 Job Task Analysis (500+ practitioners). Introduces iterative, non-linear execution.</p>
+          <div class="se-sheet-section">
+            <span class="se-sheet-section-lbl" style="color:#007bff">New Focus: Readiness</span>
+            <p class="se-sheet-section-title">Section 4.8</p>
+            <p class="se-sheet-section-desc">Proactive evaluation of organisation readiness before implementation begins.</p>
+          </div>
+          <div class="se-sheet-section">
+            <span class="se-sheet-section-lbl" style="color:#007bff">Execution clarity</span>
+            <p class="se-sheet-section-title">Section 5.4.1.x</p>
+            <p class="se-sheet-section-desc">Dedicated operational sections for clearer practitioner guidance.</p>
+          </div>
+          <div class="se-sheet-section">
+            <span class="se-sheet-section-lbl" style="color:#ff6b35">Terminology Updates</span>
+            <ul class="se-sheet-list">
+              <li>"Charter" → Project Charter</li>
+              <li>"Success Measures" → Criteria and Measures</li>
+            </ul>
+          </div>
+        </div>
+        <div class="se-sheet-foot">
+          <button class="se-sheet-done-btn" onclick="seCloseSheet()">Got it</button>
+        </div>
+      </div><!-- /se-sheet-2025 -->
+
+    </div><!-- /se -->
+  </div><!-- /case-shell -->
+</main>
+
+
+<script>
+(function () {
+  var SE = {
+    explored: { 'pre2014': false, '2014': false, '2025': false },
+    currentSheet: null,
+    shiftVerified: false
+  };
+
+  var ORDER = ['pre2014', '2014', '2025'];
+
+  window.seShowView = function (name) {
+    document.querySelectorAll('.se-view').forEach(function (v) { v.style.display = 'none'; });
+    document.getElementById('se-view-' + name).style.display = 'flex';
+  };
+
+  window.seOpenSheet = function (id) {
+    SE.currentSheet = id;
+    document.getElementById('se-overlay').setAttribute('aria-hidden', 'false');
+    document.getElementById('se-sheet-' + id).setAttribute('aria-hidden', 'false');
+  };
+
+  window.seCloseSheet = function () {
+    if (!SE.currentSheet) return;
+    var id = SE.currentSheet;
+    SE.currentSheet = null;
+
+    var alreadyExplored = SE.explored[id];
+    SE.explored[id] = true;
+
+    if (!alreadyExplored) {
+      seMarkExplored(id);
+      seActivateNext(id);
+      seCheckAllExplored();
+    }
+
+    document.getElementById('se-sheet-' + id).setAttribute('aria-hidden', 'true');
+    document.getElementById('se-overlay').setAttribute('aria-hidden', 'true');
+  };
+
+  function seMarkExplored(id) {
+    // Dot → green CSS class
+    var dot = document.getElementById('se-dot-' + id);
+    if (dot) dot.className = 'se-ms-dot se-ms-dot--green';
+
+    // Arrow → checkmark SVG
+    var actionSlot = document.getElementById('se-action-' + id);
+    if (actionSlot) {
+      var img = actionSlot.querySelector('img');
+      if (img) {
+        img.src = 'assets/icons/checkmark-circle-02-16.svg';
+        img.className = 'se-glyph se-glyph--check-16';
+      }
+    }
+
+    // Card → explored style
+    var card = document.getElementById('se-card-' + id);
+    if (card) card.className = 'se-ms-card se-ms-card--explored';
+
+    // Icon box → green bg
+    var icon = document.getElementById('se-icon-' + id);
+    if (icon) icon.className = 'se-ms-icon se-ms-icon--green';
+  }
+
+  function seActivateNext(id) {
+    var idx = ORDER.indexOf(id);
+    if (idx < ORDER.length - 1) {
+      var nextId = ORDER[idx + 1];
+      if (!SE.explored[nextId]) {
+        var dot = document.getElementById('se-dot-' + nextId);
+        if (dot) dot.className = 'se-ms-dot se-ms-dot--blue';
+        var card = document.getElementById('se-card-' + nextId);
+        if (card) card.className = 'se-ms-card se-ms-card--active';
+        var icon = document.getElementById('se-icon-' + nextId);
+        if (icon) icon.className = 'se-ms-icon se-ms-icon--blue';
+      }
+    }
+  }
+
+  function seCheckAllExplored() {
+    var allDone = ORDER.every(function (id) { return SE.explored[id]; });
+    if (allDone) {
+      var btn = document.getElementById('se-timeline-continue');
+      if (btn) btn.disabled = false;
+      var hint = document.getElementById('se-hint');
+      if (hint) hint.classList.add('se-hint--done');
+    }
+  }
+
+  window.seToggleAcc = function (id) {
+    var body    = document.getElementById('se-body-' + id);
+    var chevron = document.getElementById('se-chev-' + id);
+    var header  = body.previousElementSibling;
+    var isOpen  = body.getAttribute('aria-hidden') === 'false';
+
+    document.querySelectorAll('.se-acc-body').forEach(function (b) {
+      b.setAttribute('aria-hidden', 'true');
+    });
+    document.querySelectorAll('.se-acc-chevron').forEach(function (c) {
+      c.classList.remove('se-acc-chevron--open');
+    });
+    document.querySelectorAll('.se-acc-header').forEach(function (h) {
+      h.setAttribute('aria-expanded', 'false');
+    });
+
+    if (!isOpen) {
+      body.setAttribute('aria-hidden', 'false');
+      chevron.classList.add('se-acc-chevron--open');
+      header.setAttribute('aria-expanded', 'true');
+    }
+  };
+
+  window.seVerifyShift = function () {
+    if (SE.shiftVerified) return;
+    SE.shiftVerified = true;
+
+    var card = document.getElementById('se-shift-card');
+    card.classList.add('se-shift-card--verified');
+
+    document.getElementById('se-shift-tap').style.display = 'none';
+    document.getElementById('se-shift-verified').style.display = 'flex';
+
+    var btn = document.getElementById('se-enh-continue');
+    if (btn) btn.disabled = false;
+  };
+
+}());
+</script>
+
+</body>
+</html>

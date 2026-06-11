@@ -165,17 +165,17 @@
     showView("chat");
   });
   document.getElementById("ar-intro-back").addEventListener("click", function () {
-    window.location.href = "sorting-type-2.html";
+    window.location.href = new URL("lms/sorting-type-2.html", document.baseURI).href;
   });
   document.getElementById("ar-intro-help").addEventListener("click", function () {
-    window.location.href = "help-support.html?from=active-recall";
+    window.location.href = new URL("support/help-support.html?from=active-recall", document.baseURI).href;
   });
 
   document.getElementById("ar-voice-back").addEventListener("click", function () {
     showView("intro");
   });
   document.getElementById("ar-voice-help").addEventListener("click", function () {
-    window.location.href = "help-support.html?from=active-recall";
+    window.location.href = new URL("support/help-support.html?from=active-recall", document.baseURI).href;
   });
   document.getElementById("ar-try-chat").addEventListener("click", function () {
     resetChatInput();
@@ -206,7 +206,7 @@
 
   document.getElementById("ar-log-close").addEventListener("click", closeLog);
   document.getElementById("ar-log-complete").addEventListener("click", function () {
-    window.location.href = "blurting-canvas.html";
+    window.location.href = new URL("lms/blurting-canvas.html", document.baseURI).href;
   });
 
   renderIntro();

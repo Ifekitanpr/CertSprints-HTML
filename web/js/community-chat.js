@@ -491,11 +491,11 @@
   }
 
   document.getElementById("cmChatBack").addEventListener("click", function () {
-    window.location.href = "community.html";
+    window.location.href = new URL("community/community.html", document.baseURI).href;
   });
 
   document.getElementById("cmLeaveCohort").addEventListener("click", function () {
-    window.location.href = "community.html";
+    window.location.href = new URL("community/community.html", document.baseURI).href;
   });
 
   document.getElementById("cmSearchOpen").addEventListener("click", function () {

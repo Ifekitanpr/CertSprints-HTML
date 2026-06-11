@@ -772,7 +772,7 @@
 
   document.getElementById("peResultsReviewBtn").addEventListener("click", openReview);
   function exitPracticeExam() {
-    window.location.href = "practice-exam.html";
+    window.location.href = new URL("practice/practice-exam.html", document.baseURI).href;
   }
 
   document.getElementById("peResultsExit").addEventListener("click", exitPracticeExam);

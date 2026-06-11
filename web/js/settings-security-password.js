@@ -66,6 +66,6 @@
   });
 
   successDone?.addEventListener("click", function () {
-    window.location.href = "settings-security.html";
+    window.location.href = new URL("settings/settings-security.html", document.baseURI).href;
   });
 })();

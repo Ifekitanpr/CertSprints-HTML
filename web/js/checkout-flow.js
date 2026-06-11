@@ -31,7 +31,7 @@
   const currentPlan = () => params.get("plan") || "advanced";
   const currentDuration = () => params.get("duration") || "30";
   const currentUrl = (path) => {
-    const url = new URL(path, window.location.href);
+    const url = new URL(path, document.baseURI);
     params.forEach((value, key) => url.searchParams.set(key, value));
     return url;
   };
@@ -47,10 +47,10 @@
     finishSetup.textContent = paid ? "Continue to Payment" : "Finish Setup";
     finishSetup.addEventListener("click", () => {
       if (!paid) {
-        window.location.href = currentUrl("index.html").href;
+        window.location.href = currentUrl("account/auth/index.html").href;
         return;
       }
-      window.location.href = currentUrl("checkout.html").href;
+      window.location.href = currentUrl("commerce/checkout.html").href;
     });
   }
 
@@ -149,16 +149,16 @@
       event.stopPropagation();
     });
     confirm.addEventListener("click", () => {
-      const url = currentUrl("checkout.html");
+      const url = currentUrl("commerce/checkout.html");
       url.searchParams.set("plan", draftPlan);
       url.searchParams.set("duration", draftDuration);
       window.location.href = url.href;
     });
     document.querySelector(".checkout-back")?.addEventListener("click", () => {
-      window.location.href = currentUrl("personal-details.html").href;
+      window.location.href = currentUrl("account/auth/personal-details.html").href;
     });
     document.querySelector(".checkout-continue")?.addEventListener("click", () => {
-      window.location.href = currentUrl("payment-success.html").href;
+      window.location.href = currentUrl("commerce/payment-success.html").href;
     });
   }
 
@@ -166,10 +166,10 @@
   if (successPlan) {
     successPlan.textContent = (plans[currentPlan()] || plans.advanced).name;
     document.querySelector(".payment-success-back")?.addEventListener("click", () => {
-      window.location.href = currentUrl("checkout.html").href;
+      window.location.href = currentUrl("commerce/checkout.html").href;
     });
     document.querySelector(".start-learning")?.addEventListener("click", () => {
-      window.location.href = currentUrl("dashboard.html").href;
+      window.location.href = currentUrl("app/dashboard.html").href;
     });
   }
 })();

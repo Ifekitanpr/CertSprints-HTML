@@ -158,7 +158,7 @@
   if (introStart) {
     introStart.addEventListener("click", function () {
       window.location.href =
-        "practice-exam-session.html?tier=" + encodeURIComponent(selectedTierId);
+        new URL("practice/practice-exam-session.html?tier=", document.baseURI).href + encodeURIComponent(selectedTierId);
     });
   }
 

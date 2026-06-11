@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>CertSprints Home Dashboard</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css?v=20260528-app-shell" />
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints home dashboard screen">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell">
+            <div class="dashboard-scroll">
+              <div id="cs-header-placeholder"></div>
+
+              <main class="dashboard-main">
+                <section class="dash-hero">
+                  <img class="dash-hero-texture" src="assets/dashboard/home/hero-texture.svg" alt="" />
+                  <div class="dash-hero-top">
+                    <div class="dash-hero-icon"><img src="assets/dashboard/home/hourglass.svg" alt="" /></div>
+                    <div>
+                      <p class="dash-label">DAYS TO EXAM</p>
+                      <h2 class="dash-hero-days">
+                        <span class="dash-hero-days-count">127 days</span>
+                        <span class="dash-hero-exam-date">March 24, 2026</span>
+                      </h2>
+                    </div>
+                  </div>
+                  <div class="dash-hero-alert">
+                    <span><img src="assets/dashboard/home/warning.svg" alt="" />Off track for exam date</span>
+                    <button type="button" onclick="window.location.href=new window.URL('settings/settings-reschedule-exam.html',document.baseURI).href">Reschedule</button>
+                  </div>
+                </section>
+
+                <section class="dash-grid-2">
+                  <article class="dash-card" role="button" tabindex="0"
+                           onclick="window.location.href=new window.URL('app/progress.html',document.baseURI).href"
+                           onkeydown="if(event.key==='Enter')window.location.href=new window.URL('app/progress.html',document.baseURI).href"
+                           style="cursor:pointer">
+                    <div class="dash-card-head">
+                      <div class="dash-card-title-wrap">
+                        <span class="dash-card-icon"><img src="assets/dashboard/home/readiness.svg" alt="" /></span>
+                        <p class="dash-card-title">Readiness</p>
+                      </div>
+                      <img class="dash-card-arrow" src="assets/dashboard/home/arrow-right.svg" alt="" />
+                    </div>
+                    <div class="dash-ring-chart readiness">
+                      <div class="dash-ring-center">
+                        <strong>40%</strong>
+                        <div class="dash-chip"><img src="assets/dashboard/home/target.svg" alt="" /><span>90%+</span></div>
+                      </div>
+                    </div>
+                    <p class="dash-state warn">Slow Progress</p>
+                  </article>
+                  <article class="dash-card" role="button" tabindex="0"
+                           onclick="window.location.href=new window.URL('app/progress.html',document.baseURI).href"
+                           onkeydown="if(event.key==='Enter')window.location.href=new window.URL('app/progress.html',document.baseURI).href"
+                           style="cursor:pointer">
+                    <div class="dash-card-head">
+                      <div class="dash-card-title-wrap">
+                        <span class="dash-card-icon danger"><img src="assets/dashboard/home/velocity.svg" alt="" /></span>
+                        <p class="dash-card-title">Velocity</p>
+                      </div>
+                      <img class="dash-card-arrow" src="assets/dashboard/home/arrow-right.svg" alt="" />
+                    </div>
+                    <div class="dash-ring-chart velocity">
+                      <svg class="velocity-ring-coded" viewBox="0 0 120 120" aria-hidden="true">
+                        <circle class="velocity-track" cx="60" cy="60" r="51.6" />
+                        <circle class="velocity-seg seg-blue" cx="60" cy="60" r="51.6" />
+                        <circle class="velocity-seg seg-orange" cx="60" cy="60" r="51.6" />
+                        <circle class="velocity-seg seg-green" cx="60" cy="60" r="51.6" />
+                      </svg>
+                      <div class="dash-ring-center">
+                        <strong>45</strong>
+                        <div class="dash-chip danger"><img src="assets/dashboard/home/down-double.svg" alt="" /><span>-8 pts</span></div>
+                      </div>
+                    </div>
+                  </article>
+                </section>
+
+                <section class="dash-panel dash-learning-panel">
+                  <div class="dash-panel-head">
+                    <div class="dash-card-title-wrap">
+                      <span class="dash-card-icon learning"><img src="assets/dashboard/home/note-01.svg" alt="" /></span>
+                      <p class="dash-card-title">Continue Learning</p>
+                    </div>
+                    <button type="button" onclick="window.location.href=new window.URL('lms/study-backlog.html',document.baseURI).href">Backlog <img src="assets/dashboard/home/backlog-arrow.svg" alt="" /></button>
+                  </div>
+                  <p class="dash-sprint-label-row">SPRINT 4</p>
+                  <div class="dash-days">
+                    <span class="done"><img src="assets/dashboard/home/checkmark-circle-02.svg" alt="" />D 1</span>
+                    <span class="done"><img src="assets/dashboard/home/checkmark-circle-02.svg" alt="" />D 2</span>
+                    <span class="today"><img src="assets/dashboard/home/clock-01.svg" alt="" />Day 3</span>
+                    <span><img src="assets/dashboard/home/circle-lock-02.svg" alt="" />D 4</span>
+                    <span><img src="assets/dashboard/home/circle-lock-02.svg" alt="" />D 5</span>
+                    <span><img src="assets/dashboard/home/circle-lock-02.svg" alt="" />D 6</span>
+                    <span><img src="assets/dashboard/home/circle-lock-02.svg" alt="" />D 7</span>
+                  </div>
+                  <div class="dash-study-block">
+                    <div class="meta">
+                      <h4>DAILY STUDY BLOCK</h4>
+                      <div class="meta-row">
+                        <div>
+                          <strong>3/4</strong>
+                          <span>Completed</span>
+                        </div>
+                        <div class="hour-pill"><img src="assets/dashboard/home/hourglass-14.svg" alt="" />1 hour</div>
+                      </div>
+                    </div>
+                    <div class="dash-mini-ring">
+                      <div><strong>45</strong><span>mins</span></div>
+                    </div>
+                  </div>
+                  <div class="dash-lessons">
+                    <div class="dash-lesson">
+                      <div>
+                        <h3>Risk Response Strategies</h3>
+                        <p>lesson · 15 min</p>
+                      </div>
+                      <img src="assets/dashboard/home/checkmark-01.svg" alt="" />
+                    </div>
+                    <div class="dash-lesson">
+                      <div>
+                        <h3>Risk Response Strategies</h3>
+                        <p>lesson · 15 min</p>
+                      </div>
+                      <img src="assets/dashboard/home/checkmark-01.svg" alt="" />
+                    </div>
+                    <div class="dash-lesson active">
+                      <div class="lesson-top">
+                        <div class="lesson-body">
+                          <h3>Risk Response Strategies</h3>
+                          <p>Quiz · 15 min</p>
+                        </div>
+                        <div class="dash-quiz-ring" aria-hidden="true"></div>
+                      </div>
+                      <button type="button" onclick="window.location.href=new window.URL('lms/lesson-player.html',document.baseURI).href">Continue</button>
+                    </div>
+                    <div class="dash-lesson">
+                      <div>
+                        <h3>Risk Response Strategies</h3>
+                        <p>Recall · 15 min</p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="dash-section-card">
+                  <div class="dash-section-head">
+                    <div class="dash-card-title-wrap">
+                      <span class="dash-card-icon"><img src="assets/dashboard/home/readiness.svg" alt="" /></span>
+                      <p class="dash-card-title">Sprint Retrospective</p>
+                    </div>
+                    <span class="dash-sprint-label">Sprint 2</span>
+                  </div>
+                  <div class="dash-retro-row">
+                    <div class="dash-retro-ring">
+                      <strong>45%</strong>
+                    </div>
+                    <div class="dash-retro-copy">
+                      <h3>Last Sprint Execution Rating</h3>
+                      <div class="dash-chip danger"><img src="assets/dashboard/home/down-double.svg" alt="" /><span>-8 pts from previous sprint</span></div>
+                    </div>
+                  </div>
+                  <div class="dash-metric-list">
+                    <div class="dash-metric-row">
+                      <span class="label"><img src="assets/dashboard/home/warning.svg" alt="" />Consistency<img class="metric-info" src="assets/dashboard/home/info-16.svg" alt="" /></span>
+                      <span class="value">Low - 23%</span>
+                    </div>
+                    <div class="dash-metric-row">
+                      <span class="label"><img src="assets/dashboard/home/warning.svg" alt="" />Spacing<img class="metric-info" src="assets/dashboard/home/info-16.svg" alt="" /></span>
+                      <span class="value">Poor - 10%</span>
+                    </div>
+                    <div class="dash-metric-row">
+                      <span class="label"><img src="assets/dashboard/home/warning.svg" alt="" />Quiz timing<img class="metric-info" src="assets/dashboard/home/info-16.svg" alt="" /></span>
+                      <span class="value">Delayed</span>
+                    </div>
+                    <div class="dash-metric-row">
+                      <span class="label"><img src="assets/dashboard/home/checkmark-01.svg" alt="" />Velocity<img class="metric-info" src="assets/dashboard/home/info-16.svg" alt="" /></span>
+                      <span class="value">Moderate</span>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="dash-section-card">
+                  <div class="dash-section-head">
+                    <div class="dash-card-title-wrap">
+                      <span class="dash-card-icon todos"><img src="assets/dashboard/home/note.svg" alt="" /></span>
+                      <p class="dash-card-title">To - Dos</p>
+                    </div>
+                  </div>
+                  <div class="dash-todo-item">
+                    <div class="dash-todo-row">
+                      <div class="dash-todo-main">
+                        <div class="dash-todo-icon"><img src="assets/dashboard/home/calendar-remove-01.svg" alt="" /></div>
+                        <div>
+                          <h3>Reschedule your exam</h3>
+                          <p>Now</p>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="mark-done" type="button">Mark as Done</button>
+                  </div>
+                  <div class="dash-todo-item">
+                    <div class="dash-todo-row">
+                      <div class="dash-todo-main">
+                        <div class="dash-todo-icon"><img src="assets/dashboard/home/payment-success-02.svg" alt="" /></div>
+                        <div>
+                          <h3>Pay for your exam</h3>
+                          <p>Now</p>
+                        </div>
+                      </div>
+                      <img src="assets/dashboard/home/checkmark-01.svg" alt="" width="20" height="20" />
+                    </div>
+                  </div>
+                </section>
+
+              </main>
+            </div>
+
+            <div id="cs-nav-placeholder"></div>
+
+            <div class="streak-overlay" data-streak-overlay hidden>
+              <div class="streak-scrim" data-streak-close></div>
+              <section class="streak-sheet" role="dialog" aria-modal="true" aria-labelledby="streak-sheet-title">
+                <div class="streak-sheet-handle" aria-hidden="true"></div>
+                <header class="streak-sheet-head">
+                  <div class="streak-sheet-title-row">
+                    <span class="streak-sheet-icon"><img src="assets/streak/fire-header.svg" alt="" /></span>
+                    <h2 id="streak-sheet-title">Streak Overview</h2>
+                  </div>
+                  <button class="streak-close-btn" type="button" data-streak-close aria-label="Close"><img src="assets/icons/cancel-01.svg" alt="" /></button>
+                </header>
+                <div class="streak-tabs" role="tablist">
+                  <button class="streak-tab active" type="button" role="tab" aria-selected="true" data-streak-tab="activity">Activity</button>
+                  <button class="streak-tab" type="button" role="tab" aria-selected="false" data-streak-tab="milestones">Milestones</button>
+                  <button class="streak-tab" type="button" role="tab" aria-selected="false" data-streak-tab="badges">Badges</button>
+                </div>
+                <div class="streak-panels">
+                  <div class="streak-panel active" data-streak-panel="activity" role="tabpanel">
+                    <div class="streak-summary-card">
+                      <button class="streak-share-btn" type="button" aria-label="Share streak"><img src="assets/streak/share-08.svg" alt="" /></button>
+                      <div class="streak-summary-value"><span class="streak-count">123</span><img src="assets/streak/fire-large.svg" alt="" /></div>
+                      <p class="streak-summary-label">Streak Days</p>
+                      <p class="streak-summary-sub">Longest Streak: 15 days</p>
+                    </div>
+                    <div class="streak-calendar-section">
+                      <div class="streak-calendar-head">
+                        <h3>Consistency Map</h3>
+                        <div class="streak-calendar-filters">
+                          <div class="streak-filter-wrap" data-streak-filter="month">
+                            <button type="button" class="streak-filter" data-streak-filter-trigger aria-haspopup="listbox" aria-expanded="false">
+                              <span data-streak-filter-label>January</span>
+                              <img src="assets/dashboard/home/arrow-down.svg" alt="" />
+                            </button>
+                            <ul class="streak-filter-menu" role="listbox" hidden></ul>
+                          </div>
+                          <div class="streak-filter-wrap" data-streak-filter="year">
+                            <button type="button" class="streak-filter" data-streak-filter-trigger aria-haspopup="listbox" aria-expanded="false">
+                              <span data-streak-filter-label>2026</span>
+                              <img src="assets/dashboard/home/arrow-down.svg" alt="" />
+                            </button>
+                            <ul class="streak-filter-menu" role="listbox" hidden></ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="streak-weekdays"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+                      <div class="streak-calendar-grid" data-streak-calendar></div>
+                    </div>
+                  </div>
+                  <div class="streak-panel" data-streak-panel="milestones" role="tabpanel" hidden>
+                    <p class="streak-section-label">Course Progress Milestones</p>
+                    <div class="streak-milestone-grid" data-milestone-grid></div>
+                  </div>
+                  <div class="streak-panel" data-streak-panel="badges" role="tabpanel" hidden>
+                    <div class="streak-badge-tabs" data-badge-tabs role="tablist"></div>
+                    <div class="streak-badge-panels" data-badge-panels></div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="reward-overlay" data-reward-overlay="badge" hidden>
+              <div class="reward-scrim" data-reward-close></div>
+              <section class="reward-sheet reward-badge-sheet" role="dialog" aria-modal="true" aria-labelledby="reward-badge-title">
+                <div class="streak-sheet-handle" aria-hidden="true"></div>
+                <header class="reward-sheet-head"><h2 id="reward-badge-title">New Achievement Badge</h2><button class="streak-close-btn" type="button" data-reward-close aria-label="Close"><img src="assets/icons/cancel-01.svg" alt="" /></button></header>
+                <div class="reward-badge-body">
+                  <img class="reward-confetti" src="assets/streak/confetti.png" alt="" />
+                  <div class="reward-badge-hero">
+                    <img class="reward-badge-medal" src="assets/streak/award-gold-perfect.svg" alt="" width="89" height="47" />
+                    <span class="streak-status earned">Earned</span>
+                  </div>
+                  <h3>Perfect Sprint</h3>
+                  <p>100% Correct in a single quiz</p>
+                  <div class="reward-actions">
+                    <button class="reward-btn secondary" type="button" data-reward-close>View achievements</button>
+                    <button class="reward-btn primary" type="button" data-open-showcase><img src="assets/streak/share-08.svg" alt="" /> Showcase</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="reward-overlay" data-reward-overlay="milestone" hidden>
+              <div class="reward-scrim" data-reward-close></div>
+              <section class="reward-sheet reward-milestone-sheet" role="dialog" aria-modal="true" aria-labelledby="reward-milestone-title">
+                <div class="streak-sheet-handle" aria-hidden="true"></div>
+                <header class="reward-sheet-head"><h2 id="reward-milestone-title">New Milestone</h2><button class="streak-close-btn" type="button" data-reward-close aria-label="Close"><img src="assets/icons/cancel-01.svg" alt="" /></button></header>
+                <div class="reward-milestone-body">
+                  <img class="reward-confetti" src="assets/streak/confetti.png" alt="" />
+                  <div class="reward-milestone-hero">
+                    <div class="streak-milestone-stack streak-milestone-stack--large">
+                      <img class="streak-milestone-medal" src="assets/streak/milestone-medal.svg" alt="" />
+                      <div class="streak-milestone-ribbon">
+                        <img class="streak-milestone-banner" src="assets/streak/milestone-banner.svg" alt="" />
+                        <span class="streak-milestone-percent" data-milestone-percent>25%</span>
+                      </div>
+                    </div>
+                    <span class="streak-status earned">Completed</span>
+                  </div>
+                  <h3 data-milestone-heading>25% of PMP Course Completed!</h3>
+                  <p data-milestone-copy>You have completed 25% of your certification preparation. Way to go!</p>
+                  <button class="reward-btn secondary full" type="button" data-reward-close>View achievements</button>
+                </div>
+              </section>
+            </div>
+
+            <div class="reward-overlay showcase-overlay" data-reward-overlay="showcase" hidden>
+              <div class="reward-scrim" data-reward-close></div>
+              <section class="reward-sheet showcase-sheet" role="dialog" aria-modal="true" aria-label="Showcase achievement">
+                <div class="showcase-top">
+                  <div class="showcase-brand"><span class="showcase-logo">C</span><strong>CertSprints</strong></div>
+                  <a class="showcase-site" href="https://certsprints.com">CertSprints.com</a>
+                </div>
+                <article class="showcase-card">
+                  <img class="showcase-avatar" src="assets/streak/showcase-profile.png" alt="" />
+                  <div class="showcase-copy">
+                    <p>Patrick Adanini</p>
+                    <h3>Perfect Sprint</h3>
+                    <span class="showcase-tag">100% Correct in a single quiz</span>
+                    <p class="showcase-desc">There's doing well, and then there's The Perfect Score. In a world full of close enoughs, hitting 100% on a single quiz is a masterclass in focus.</p>
+                  </div>
+                  <img class="showcase-medal" src="assets/streak/showcase-badge-silver.png" alt="" />
+                </article>
+                <div class="showcase-share">
+                  <h4>Share your achievements</h4>
+                  <div class="showcase-social">
+                    <img src="assets/streak/social-instagram.svg" alt="Instagram" />
+                    <img src="assets/streak/social-facebook.svg" alt="Facebook" />
+                    <img src="assets/streak/social-x.svg" alt="X" />
+                  </div>
+                  <button class="reward-btn primary full" type="button"><img src="assets/streak/link-01.svg" alt="" /> Copy link</button>
+                </div>
+              </section>
+            </div>
+
+            <div class="daily-challenge-overlay" data-daily-challenge data-daily-managed="standalone" hidden>
+              <div class="daily-challenge-scrim" onclick="window.CertSprintsDailyChallenge && window.CertSprintsDailyChallenge.close(false)"></div>
+              <section class="daily-challenge-sheet" aria-modal="true" role="dialog" aria-labelledby="daily-challenge-title">
+                <div class="daily-sheet-handle" aria-hidden="true"></div>
+
+                <div class="daily-intro" data-daily-view="intro">
+                  <div class="daily-streak-badge">
+                    <span><img src="assets/dashboard/home/fire.svg" alt="" /></span>
+                    <strong>123 days</strong>
+                    <small>Don’t lose it now.</small>
+                  </div>
+                  <img class="daily-hero-art" src="assets/daily-challenge/quick-win-illustration.svg" alt="" />
+                  <div class="daily-intro-copy">
+                    <h2 id="daily-challenge-title">Protect Your Streak</h2>
+                    <p>Answer 2 questions. Stay sharp.</p>
+                  </div>
+                  <div class="daily-facts">
+                    <span><img src="assets/daily-challenge/stop-watch.svg" alt="" />2 min</span>
+                    <span><img src="assets/daily-challenge/brain.svg" alt="" />Active Recall</span>
+                    <span><img src="assets/daily-challenge/calendar.svg" alt="" />Today</span>
+                  </div>
+                  <p class="daily-warning">Complete before entering dashboard to keep your streak alive.</p>
+                  <div class="daily-actions">
+                    <button class="daily-primary" type="button" data-daily-start onclick="window.CertSprintsDailyChallenge && window.CertSprintsDailyChallenge.start()">Keep My Streak <img src="assets/icons/arrow-right-02.svg" alt="" /></button>
+                    <button class="daily-link" type="button" data-daily-skip onclick="window.CertSprintsDailyChallenge && window.CertSprintsDailyChallenge.skip()">Skip for now</button>
+                  </div>
+                </div>
+
+                <div class="daily-drill" data-daily-view="question" hidden>
+                  <header class="daily-question-head">
+                    <div class="daily-title-lockup">
+                      <span><img src="assets/icons/figma-flash.svg" alt="" /></span>
+                      <strong>Quick-win Drill</strong>
+                    </div>
+                    <button class="daily-close" type="button" aria-label="Close daily challenge" data-daily-close onclick="window.CertSprintsDailyChallenge && window.CertSprintsDailyChallenge.intro()"><img src="assets/daily-challenge/cancel.svg" alt="" /></button>
+                  </header>
+                  <div class="daily-divider"></div>
+                  <div class="daily-question-body">
+                    <span class="daily-category" data-daily-category>Risk Management</span>
+                    <h2 data-daily-question>Your project has an identified risk with a 40% probability and $50,000 impact. What is the expected monetary value (EMV)?</h2>
+                    <div class="daily-options" data-daily-options></div>
+                    <div class="daily-feedback" data-daily-feedback hidden></div>
+                  </div>
+                  <button class="daily-primary daily-continue" type="button" data-daily-continue disabled onclick="window.CertSprintsDailyChallenge && window.CertSprintsDailyChallenge.continue()">Continue <img src="assets/icons/arrow-right-02.svg" alt="" /></button>
+                </div>
+
+                <div class="daily-result" data-daily-view="result" hidden>
+                  <header class="daily-result-head">
+                    <div class="daily-title-lockup">
+                      <span><img src="assets/icons/figma-flash.svg" alt="" /></span>
+                      <strong>Quick-win Drill</strong>
+                    </div>
+                    <div class="daily-mini-streak">
+                      <span><img src="assets/dashboard/home/fire.svg" alt="" /></span>
+                      <strong>123 days</strong>
+                    </div>
+                  </header>
+                  <div class="daily-divider"></div>
+                  <div class="daily-score-ring" data-daily-score-ring>
+                    <img src="assets/daily-challenge/award.svg" alt="" />
+                  </div>
+                  <h2 data-daily-result-title>Perfect Score!</h2>
+                  <p data-daily-result-meta>2 of 2 correct · 100%</p>
+                  <div class="daily-result-note">
+                    <img src="assets/dashboard/home/fire.svg" alt="" />
+                    <span data-daily-result-note>Streak protected. Daily commitment confirmed.</span>
+                  </div>
+                  <button class="daily-primary" type="button" data-daily-done onclick="window.CertSprintsDailyChallenge && window.CertSprintsDailyChallenge.close(true)">Go to Dashboard <img src="assets/icons/arrow-right-02.svg" alt="" /></button>
+                </div>
+
+                <div class="daily-intro daily-skipped" data-daily-view="skipped" hidden>
+                  <div class="daily-streak-badge">
+                    <span><img src="assets/dashboard/home/fire.svg" alt="" /></span>
+                    <strong>123 days</strong>
+                    <small>Don’t lose it now.</small>
+                  </div>
+                  <img class="daily-hero-art" src="assets/daily-challenge/quick-win-illustration.svg" alt="" />
+                  <div class="daily-intro-copy">
+                    <h2>Quick Daily Challenge</h2>
+                    <p>Answer 2 questions. Stay sharp.</p>
+                  </div>
+                  <div class="daily-facts">
+                    <span><img src="assets/daily-challenge/stop-watch.svg" alt="" />2 min</span>
+                    <span><img src="assets/daily-challenge/brain.svg" alt="" />Active Recall</span>
+                    <span><img src="assets/daily-challenge/calendar.svg" alt="" />Today</span>
+                  </div>
+                  <p class="daily-warning">Complete before entering dashboard to keep your streak alive.</p>
+                  <div class="daily-actions">
+                    <button class="daily-primary" type="button" data-daily-start onclick="window.CertSprintsDailyChallenge && window.CertSprintsDailyChallenge.start()">Keep My Streak <img src="assets/icons/arrow-right-02.svg" alt="" /></button>
+                    <div class="daily-skip-countdown">
+                      <span>Skipping in <strong data-daily-countdown>5s</strong> — streak may break</span>
+                      <button type="button" data-daily-cancel-skip onclick="window.CertSprintsDailyChallenge && window.CertSprintsDailyChallenge.intro()">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="js/components.js"></script>
+    <script>
+      CertSprintsComponents.injectHeader("#cs-header-placeholder");
+      CertSprintsComponents.injectBottomNav("#cs-nav-placeholder", "home");
+    </script>
+    <script src="js/streak-data.js?v=20260528-streak"></script>
+    <script src="js/streak.js?v=20260528-streak"></script>
+    <script src="js/app.js?v=20260528-skip-close"></script>
+    <script src="js/wellness.js?v=20260529-wc2"></script>
+    <script src="js/daily-challenge.js?v=20260529-wc2"></script>
+    <script>
+      (function () {
+        if (window.CertSprintsDailyChallenge) return;
+
+        const questions = [
+          {
+            category: "Risk Management",
+            prompt: "Your project has an identified risk with a 40% probability and $50,000 impact. What is the expected monetary value (EMV)?",
+            options: ["$20,000", "$50,000", "$90,000", "$10,000"],
+            answer: 0,
+          },
+          {
+            category: "Stakeholder Engagement",
+            prompt: 'A key stakeholder is classified as "resistant" in the stakeholder engagement assessment matrix. What is the BEST next step?',
+            options: ["Escalate to the project sponsor immediately", "Develop targeted communication and engagement strategies", "Remove them from the stakeholder register", "Proceed without their input"],
+            answer: 1,
+          },
+        ];
+
+        const state = { active: 0, selected: null, correct: 0, timer: null, seconds: 5 };
+
+        function root() {
+          return document.querySelector("[data-daily-challenge]");
+        }
+
+        function show(name) {
+          const overlay = root();
+          if (!overlay) return;
+          overlay.hidden = false;
+          overlay.querySelectorAll("[data-daily-view]").forEach((view) => {
+            view.hidden = view.getAttribute("data-daily-view") !== name;
+          });
+        }
+
+        function stopTimer() {
+          window.clearInterval(state.timer);
+          state.timer = null;
+        }
+
+        function renderQuestion() {
+          const overlay = root();
+          if (!overlay) return;
+          const q = questions[state.active];
+          state.selected = null;
+          overlay.querySelector("[data-daily-category]").textContent = q.category;
+          overlay.querySelector("[data-daily-question]").textContent = q.prompt;
+          const feedback = overlay.querySelector("[data-daily-feedback]");
+          feedback.hidden = true;
+          feedback.className = "daily-feedback";
+          feedback.textContent = "";
+          const next = overlay.querySelector("[data-daily-continue]");
+          next.disabled = true;
+          const wrap = overlay.querySelector("[data-daily-options]");
+          wrap.innerHTML = "";
+          q.options.forEach((option, index) => {
+            const button = document.createElement("button");
+            button.className = "daily-option";
+            button.type = "button";
+            button.innerHTML = '<span class="daily-option-dot"></span><span class="daily-option-letter">' + String.fromCharCode(65 + index) + '.</span><span class="daily-option-text"></span>';
+            button.querySelector(".daily-option-text").textContent = option;
+            button.addEventListener("click", function () {
+              state.selected = index;
+              const correct = index === q.answer;
+              wrap.querySelectorAll(".daily-option").forEach((item, itemIndex) => {
+                item.classList.toggle("correct", itemIndex === q.answer);
+                item.classList.toggle("wrong", itemIndex === index && !correct);
+              });
+              feedback.hidden = false;
+              feedback.className = "daily-feedback " + (correct ? "correct" : "wrong");
+              feedback.textContent = correct ? "Correct! Active recall reinforced." : "Not quite. The right answer is highlighted for review.";
+              next.disabled = false;
+            });
+            wrap.appendChild(button);
+          });
+        }
+
+        function result() {
+          const overlay = root();
+          const total = questions.length;
+          const percent = Math.round((state.correct / total) * 100);
+          const perfect = state.correct === total;
+          overlay.querySelector("[data-daily-result-title]").textContent = perfect ? "Perfect Score!" : state.correct === 0 ? "Well Done!" : "Streak Protected!";
+          overlay.querySelector("[data-daily-result-meta]").textContent = state.correct + " of " + total + " correct · " + percent + "%";
+          overlay.querySelector("[data-daily-result-note]").textContent = perfect ? "Streak protected. Daily commitment confirmed." : state.correct === 0 ? "Commitment made - attempts strengthen recall." : "Streak protected. Review the miss and keep momentum.";
+          show("result");
+        }
+
+        window.CertSprintsDailyChallenge = {
+          close: function () {
+            stopTimer();
+            const overlay = root();
+            if (overlay) overlay.hidden = true;
+          },
+          continue: function () {
+            if (state.selected === null) return;
+            if (state.selected === questions[state.active].answer) state.correct += 1;
+            if (state.active < questions.length - 1) {
+              state.active += 1;
+              renderQuestion();
+            } else {
+              result();
+            }
+          },
+          intro: function () {
+            stopTimer();
+            show("intro");
+          },
+          open: function () {
+            stopTimer();
+            show("intro");
+          },
+          skip: function () {
+            show("skipped");
+            state.seconds = 5;
+            const countdown = root().querySelector("[data-daily-countdown]");
+            countdown.textContent = "5s";
+            stopTimer();
+            state.timer = window.setInterval(function () {
+              state.seconds -= 1;
+              countdown.textContent = Math.max(state.seconds, 0) + "s";
+              if (state.seconds <= 0) window.CertSprintsDailyChallenge.close(true);
+            }, 1000);
+          },
+          start: function () {
+            stopTimer();
+            state.active = 0;
+            state.selected = null;
+            state.correct = 0;
+            renderQuestion();
+            show("question");
+          },
+        };
+      })();
+    </script>
+  </body>
+</html>

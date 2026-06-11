@@ -51,7 +51,7 @@
     const todayKey = new Date().toISOString().slice(0, 10);
     const path = window.location.pathname.toLowerCase();
     const isDashboardPage =
-      path.endsWith("/dashboard.html") || path.endsWith("dashboard.html");
+      path.endsWith("/dashboard.html") || path.endsWith("app/dashboard.html");
     const previewMode =
       isDashboardPage &&
       (params.get("daily") === "1" || window.location.protocol === "file:");

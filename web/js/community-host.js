@@ -23,11 +23,12 @@
   if (!rootEl) return;
 
   function cohortSessionsUrl() {
-    return (
-      "community-cohort.html?cohort=" +
-      encodeURIComponent(cohortId) +
-      "&tab=sessions"
-    );
+    return new URL(
+      "community/community-cohort.html?cohort=" +
+        encodeURIComponent(cohortId) +
+        "&tab=sessions",
+      document.baseURI,
+    ).href;
   }
 
   function glyph(name, file, slot) {

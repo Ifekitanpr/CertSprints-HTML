@@ -41,11 +41,11 @@
       company: document.getElementById("profCompany").value.trim(),
     };
     P.write(next);
-    window.location.href = "profile.html";
+    window.location.href = new URL("account/profile/profile.html", document.baseURI).href;
   });
 
   document.getElementById("profCancelBtn")?.addEventListener("click", function () {
-    window.location.href = "profile.html";
+    window.location.href = new URL("account/profile/profile.html", document.baseURI).href;
   });
 
   loadForm();

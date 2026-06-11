@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>CertSprints — Reschedule Exam Date</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css?v=20260529-sub1" />
+    <style>
+      .sub-nav {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 48px 20px 8px;
+      }
+      .sub-nav-title {
+        flex: 1;
+        text-align: center;
+        font: 600 16px/22px Inter, sans-serif;
+        color: #334155;
+        letter-spacing: -0.112px;
+        margin: 0;
+      }
+      .sub-nav-spacer { width: 40px; flex-shrink: 0; }
+      .sub-spacer { height: 16px; }
+      .sub-card { border-radius: 24px; padding: 16px 16px 64px; gap: 24px; }
+
+      /* Warning banner */
+      .warn-banner {
+        background: #fffbeb;
+        border-radius: 10px;
+        padding: 12px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .warn-banner-icon {
+        display: block;
+        flex-shrink: 0;
+        width: 17.2px;
+        height: 17.2px;
+        object-fit: contain;
+        margin-top: 1px;
+      }
+      .warn-banner p {
+        font: 500 14px/20px Inter, sans-serif;
+        color: #d97706;
+        margin: 0;
+        flex: 1;
+        letter-spacing: -0.084px;
+      }
+
+      /* Date picker card */
+      .date-card {
+        background: #fff;
+        border: 0.739px solid #f1f5f9;
+        border-radius: 10px;
+        box-shadow: 0 1px 2px rgba(23,23,23,.05);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .date-label-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+      }
+      .date-label-icon {
+        display: block;
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        object-fit: contain;
+        opacity: 0.4;
+      }
+      .date-label-text {
+        font: 500 14px/20px Inter, sans-serif;
+        color: #94a3b8;
+        letter-spacing: -0.084px;
+        white-space: nowrap;
+      }
+
+      /* Day / Month / Year chips */
+      .date-chips {
+        display: flex;
+        gap: 16px;
+        width: 100%;
+      }
+      .date-chip {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        align-items: center;
+        min-width: 0;
+      }
+      .date-chip-label {
+        font: 600 14px/20px Inter, sans-serif;
+        color: #64748b;
+        letter-spacing: -0.084px;
+      }
+      .date-chip-value {
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 10px 4px;
+        width: 100%;
+        font: 600 20px/28px Inter, sans-serif;
+        color: #007bff;
+        text-align: center;
+        letter-spacing: -0.2px;
+        box-sizing: border-box;
+      }
+
+      /* Month navigation */
+      .cal-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+      .cal-nav-btn {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .cal-nav-btn img {
+        display: block;
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+        max-width: none;
+      }
+      .cal-nav-label {
+        font: 700 16px/22px Inter, sans-serif;
+        color: #333;
+        letter-spacing: -0.112px;
+        white-space: nowrap;
+      }
+
+      /* Calendar grid */
+      .cal-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        row-gap: 2px;
+      }
+      .cal-day-hdr {
+        font: 500 14px/20px Inter, sans-serif;
+        color: #007bff;
+        text-align: center;
+        padding: 4px 0 8px;
+      }
+      .cal-day-cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 36px;
+        font: 500 14px/20px Inter, sans-serif;
+        color: #000;
+        cursor: pointer;
+        border-radius: 50%;
+        -webkit-tap-highlight-color: transparent;
+        transition: background 120ms;
+        user-select: none;
+      }
+      .cal-day-cell.prev-month,
+      .cal-day-cell.next-month { color: #94a3b8; cursor: default; }
+      .cal-day-cell.selected {
+        background: #007bff;
+        color: #fff;
+      }
+      .cal-day-cell:not(.selected):not(.prev-month):not(.next-month):active {
+        background: #f1f5f9;
+      }
+
+      /* Info note inside card */
+      .cal-info-note {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(230,242,255,0.5);
+        border-radius: 4px;
+        padding: 10px 16px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .cal-info-note-icon {
+        display: block;
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        object-fit: contain;
+        max-width: none;
+        opacity: 0.5;
+      }
+      .cal-info-note span {
+        font: 500 12px/16px Inter, sans-serif;
+        color: #334155;
+        flex: 1;
+        letter-spacing: -0.06px;
+      }
+
+      /* Proceed button */
+      .proceed-btn {
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 12px 20px;
+        min-height: 48px;
+        width: 100%;
+        font: 600 16px/22px Inter, sans-serif;
+        letter-spacing: -0.112px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .proceed-btn:active { background: #0066d6; }
+    </style>
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints — Reschedule Exam Date">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell">
+            <div class="dashboard-scroll">
+
+              <nav class="sub-nav">
+                <button class="cert-back" type="button" aria-label="Back"
+                  onclick="history.back()">
+                  <img src="assets/icons/arrow-left-02.svg" alt="" />
+                </button>
+                <h1 class="sub-nav-title">Reschedule exam date</h1>
+                <div class="sub-nav-spacer" aria-hidden="true"></div>
+              </nav>
+
+              <div class="sub-spacer"></div>
+
+              <main class="dashboard-main sub-card">
+
+                <!-- Warning notice -->
+                <div class="warn-banner" role="note">
+                  <img class="warn-banner-icon" src="assets/icons/information-circle-20.svg" alt="" />
+                  <p>Rescheduling your exam to a future date requires extending your payment plan access to confirm.</p>
+                </div>
+
+                <!-- Date picker card -->
+                <div class="date-card">
+
+                  <!-- Header row -->
+                  <div class="date-label-row">
+                    <img class="date-label-icon" src="assets/icons/calendar-02.svg" alt="" />
+                    <span class="date-label-text">Select your exam date</span>
+                  </div>
+
+                  <!-- Day / Month / Year chips -->
+                  <div class="date-chips">
+                    <div class="date-chip">
+                      <span class="date-chip-label">Day</span>
+                      <div class="date-chip-value" id="cal-day">12</div>
+                    </div>
+                    <div class="date-chip">
+                      <span class="date-chip-label">Month</span>
+                      <div class="date-chip-value" id="cal-mon">OCT</div>
+                    </div>
+                    <div class="date-chip">
+                      <span class="date-chip-label">Year</span>
+                      <div class="date-chip-value" id="cal-year">2026</div>
+                    </div>
+                  </div>
+
+                  <!-- Month navigation -->
+                  <div class="cal-nav">
+                    <button class="cal-nav-btn" id="cal-prev" type="button" aria-label="Previous month">
+                      <img src="assets/icons/arrow-left-01.svg" alt="" />
+                    </button>
+                    <span class="cal-nav-label" id="cal-month-label">October 2026</span>
+                    <button class="cal-nav-btn" id="cal-next" type="button" aria-label="Next month">
+                      <img src="assets/icons/arrow-right-01.svg" alt="" />
+                    </button>
+                  </div>
+
+                  <!-- Calendar grid -->
+                  <div class="cal-grid" id="cal-grid" aria-label="Calendar">
+                    <div class="cal-day-hdr" aria-hidden="true">S</div>
+                    <div class="cal-day-hdr" aria-hidden="true">M</div>
+                    <div class="cal-day-hdr" aria-hidden="true">T</div>
+                    <div class="cal-day-hdr" aria-hidden="true">W</div>
+                    <div class="cal-day-hdr" aria-hidden="true">T</div>
+                    <div class="cal-day-hdr" aria-hidden="true">F</div>
+                    <div class="cal-day-hdr" aria-hidden="true">S</div>
+                    <!-- days injected by JS -->
+                  </div>
+
+                  <!-- Info note -->
+                  <div class="cal-info-note">
+                    <img class="cal-info-note-icon" src="assets/icons/calendar-02.svg" alt="" />
+                    <span>You can change this later anytime.</span>
+                  </div>
+
+                </div><!-- /.date-card -->
+
+                <!-- Proceed button -->
+                <button class="proceed-btn" type="button"
+                  onclick="window.location.href=new window.URL('settings/settings-modify-plan.html',document.baseURI).href">
+                  Proceed
+                </button>
+
+              </main>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="js/app.js?v=20260529-sub1"></script>
+    <script>
+      (function () {
+        var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        var SHORT_MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+
+        var viewYear = 2026;
+        var viewMonth = 9; // October (0-indexed)
+        var selDay = 12;
+        var selMonth = 9;
+        var selYear = 2026;
+
+        function updateChips() {
+          document.getElementById('cal-day').textContent = selDay;
+          document.getElementById('cal-mon').textContent = SHORT_MONTHS[selMonth];
+          document.getElementById('cal-year').textContent = selYear;
+        }
+
+        function renderDays() {
+          document.getElementById('cal-month-label').textContent = MONTHS[viewMonth] + ' ' + viewYear;
+
+          var grid = document.getElementById('cal-grid');
+          // Remove old day cells (keep the 7 header divs)
+          var cells = grid.querySelectorAll('.cal-day-cell');
+          cells.forEach(function (c) { c.remove(); });
+
+          var firstDay = new Date(viewYear, viewMonth, 1).getDay();
+          var daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+          var daysInPrev = new Date(viewYear, viewMonth, 0).getDate();
+
+          // Trailing days from previous month
+          for (var i = firstDay - 1; i >= 0; i--) {
+            var cell = document.createElement('div');
+            cell.className = 'cal-day-cell prev-month';
+            cell.textContent = daysInPrev - i;
+            grid.appendChild(cell);
+          }
+
+          // Current month
+          for (var d = 1; d <= daysInMonth; d++) {
+            var cell = document.createElement('div');
+            cell.className = 'cal-day-cell';
+            cell.textContent = d;
+            if (d === selDay && viewMonth === selMonth && viewYear === selYear) {
+              cell.classList.add('selected');
+            }
+            (function (day) {
+              cell.addEventListener('click', function () {
+                selDay = day;
+                selMonth = viewMonth;
+                selYear = viewYear;
+                updateChips();
+                renderDays();
+              });
+            })(d);
+            grid.appendChild(cell);
+          }
+
+          // Leading days of next month
+          var total = grid.querySelectorAll('.cal-day-cell').length;
+          var remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
+          for (var n = 1; n <= remaining; n++) {
+            var cell = document.createElement('div');
+            cell.className = 'cal-day-cell next-month';
+            cell.textContent = n;
+            grid.appendChild(cell);
+          }
+        }
+
+        document.getElementById('cal-prev').addEventListener('click', function () {
+          viewMonth--;
+          if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+          renderDays();
+        });
+
+        document.getElementById('cal-next').addEventListener('click', function () {
+          viewMonth++;
+          if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+          renderDays();
+        });
+
+        updateChips();
+        renderDays();
+      })();
+    </script>
+  </body>
+</html>

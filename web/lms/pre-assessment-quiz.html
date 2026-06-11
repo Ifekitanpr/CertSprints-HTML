@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <base href="../" />
+  <title>CertSprints — Pre-Assessment Quiz</title>
+  <meta http-equiv="Cache-Control" content="no-store"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/pre-assessment-quiz.css"/>
+</head>
+<body>
+<main class="phone-case" aria-label="CertSprints — Pre-Assessment Quiz">
+  <div class="case-shell">
+    <div class="paq" id="paq">
+
+      <div class="cert-bg" aria-hidden="true"></div>
+      <div class="sb"></div>
+
+      <!-- ══════════════════ VIEW: INTRO ══════════════════ -->
+      <div class="paq-view active" id="paq-intro">
+
+        <nav class="paq-nav">
+          <button class="paq-nav-back" type="button" aria-label="Back" id="paq-back-intro">
+            <img src="assets/icons/arrow-left-02.svg" alt="" width="24" height="24"/>
+          </button>
+          <p class="paq-nav-title">PRE-ASSESSMENT QUIZ</p>
+          <button class="paq-nav-help" type="button" aria-label="Help">
+            <img src="assets/icons/help-circle-24.svg" alt="" width="21.5" height="21.5"/>
+          </button>
+        </nav>
+
+        <div class="paq-intro-scroll">
+
+          <div class="paq-intro-header">
+            <span class="paq-badge">CAREER AUDIT</span>
+            <h1 class="paq-intro-title">The Career Audit</h1>
+            <p class="paq-intro-sub">Answer 10 short questions to assess where you stand right now on key project management concepts</p>
+          </div>
+
+          <div class="paq-intro-illus">
+            <img src="https://www.figma.com/api/mcp/asset/a2e47cb9-f979-41f9-bf62-a2348a9a6def"
+                 alt="" width="304" height="210"/>
+          </div>
+
+          <div class="paq-how-card">
+            <p class="paq-how-title">How it works</p>
+            <p class="paq-how-body">You'll see 10 multiple-choice questions. Each has one correct answer. Select your answer and tap Next to continue. Your results will help personalise your learning journey.</p>
+          </div>
+
+        </div>
+
+        <div class="paq-bnb">
+          <button class="paq-btn-cta" type="button" id="paq-start-btn">
+            Get Started
+            <img src="assets/icons/arrow-right-02.svg" alt=""/>
+          </button>
+        </div>
+
+      </div><!-- /intro -->
+
+      <!-- ══════════════════ VIEW: QUESTION ══════════════════ -->
+      <div class="paq-view" id="paq-question">
+
+        <nav class="paq-nav">
+          <button class="paq-nav-back" type="button" aria-label="Back" id="paq-back-q">
+            <img src="assets/icons/arrow-left-02.svg" alt="" width="24" height="24"/>
+          </button>
+          <p class="paq-nav-title">PRE-ASSESSMENT QUIZ</p>
+          <button class="paq-nav-help" type="button" aria-label="Help">
+            <img src="assets/icons/help-circle-24.svg" alt="" width="21.5" height="21.5"/>
+          </button>
+        </nav>
+
+        <div class="paq-q-scroll" id="paq-q-scroll">
+
+          <div class="paq-q-card">
+            <div class="paq-q-meta">
+              <span class="paq-q-num" id="paq-q-num">QUESTION 01</span>
+              <div class="paq-progress-pill">
+                <span class="paq-progress-label">PROGRESS</span>
+                <span class="paq-progress-val" id="paq-progress-val">1/10</span>
+              </div>
+            </div>
+            <p class="paq-q-text" id="paq-q-text"></p>
+          </div>
+
+          <div class="paq-options" id="paq-options"></div>
+
+        </div>
+
+        <div class="paq-q-bnb">
+          <span class="paq-q-hint" id="paq-q-hint">SELECT AN ANSWER TO CONTINUE</span>
+          <button class="paq-btn-next" type="button" id="paq-next-btn">
+            Next
+            <img src="assets/icons/arrow-right-02.svg" alt=""/>
+          </button>
+        </div>
+
+      </div><!-- /question -->
+
+      <!-- ══════════════════ VIEW: RESULTS ══════════════════ -->
+      <div class="paq-view" id="paq-results">
+
+        <nav class="paq-nav">
+          <button class="paq-nav-back" type="button" aria-label="Back" id="paq-back-results">
+            <img src="assets/icons/arrow-left-02.svg" alt="" width="24" height="24"/>
+          </button>
+          <p class="paq-nav-title">YOUR RESULTS</p>
+          <button class="paq-nav-help" type="button" aria-label="Help">
+            <img src="assets/icons/help-circle-24.svg" alt="" width="21.5" height="21.5"/>
+          </button>
+        </nav>
+
+        <div class="paq-results-scroll">
+
+          <div class="paq-score-ring-wrap">
+            <svg class="paq-score-ring" viewBox="0 0 180 180" aria-hidden="true">
+              <circle class="paq-ring-track" cx="90" cy="90" r="77"/>
+              <circle class="paq-ring-progress" cx="90" cy="90" r="77" id="paq-ring-progress"/>
+            </svg>
+            <div class="paq-score-inner">
+              <span class="paq-score-label">SCORE</span>
+              <div class="paq-score-val"><span id="paq-score-n">0</span>/10</div>
+            </div>
+          </div>
+
+          <div class="paq-result-card">
+            <div class="paq-result-icon">
+              <img src="assets/icons/information-circle.svg" alt="" width="20" height="20"/>
+            </div>
+            <div class="paq-result-text-wrap">
+              <p class="paq-result-title" id="paq-result-title">Good Effort!</p>
+              <p class="paq-result-body" id="paq-result-body">Every gap you identify is a step closer to mastery. Review the areas you missed and revisit the lessons to strengthen your understanding.</p>
+            </div>
+          </div>
+
+          <div class="paq-stats-row">
+            <div class="paq-stat-card">
+              <div class="paq-stat-icon correct">
+                <img src="assets/icons/tick-02-20.svg" alt="" style="width:13.167px;height:10.667px;"/>
+              </div>
+              <div class="paq-stat-text">
+                <p class="paq-stat-num" id="paq-correct-n">0 Correct</p>
+                <p class="paq-stat-sub">Answers</p>
+              </div>
+            </div>
+            <div class="paq-stat-card">
+              <div class="paq-stat-icon incorrect">
+                <img src="assets/icons/cancel-01.svg" alt="" style="width:16px;height:16px;"/>
+              </div>
+              <div class="paq-stat-text">
+                <p class="paq-stat-num" id="paq-incorrect-n">0 Incorrect</p>
+                <p class="paq-stat-sub">Answers</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="paq-encouragement">
+            <div class="paq-enc-icon">
+              <img src="assets/icons/sparkles.svg" alt="" width="20" height="20"/>
+            </div>
+            <p class="paq-enc-title" id="paq-enc-title">Don't Worry!</p>
+            <p class="paq-enc-body" id="paq-enc-body">This quiz identifies your starting point. Your personalised sprint will fill the gaps and get you exam-ready.</p>
+          </div>
+
+        </div>
+
+        <div class="paq-bnb">
+          <button class="paq-btn-cta" type="button" id="paq-continue-btn">
+            Continue Learning
+            <img src="assets/icons/arrow-right-02.svg" alt=""/>
+          </button>
+        </div>
+
+      </div><!-- /results -->
+
+      <div class="home-ind"><div class="home-bar"></div></div>
+
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+
+  var QUESTIONS = [
+    {
+      text: "What is the primary purpose of a Project Charter?",
+      options: [
+        "To document the detailed project schedule",
+        "To formally authorize the project and grant the PM authority",
+        "To list all the project risks and mitigation plans",
+        "To define the communication plan for stakeholders"
+      ],
+      correct: 1
+    },
+    {
+      text: "Which process group involves coordinating people and resources to execute the project management plan?",
+      options: [
+        "Initiating",
+        "Planning",
+        "Executing",
+        "Monitoring and Controlling"
+      ],
+      correct: 2
+    },
+    {
+      text: "A Work Breakdown Structure (WBS) is best described as:",
+      options: [
+        "A network diagram showing task dependencies",
+        "A hierarchical decomposition of all project deliverables",
+        "A chart mapping team members to responsibilities",
+        "A schedule baseline for the project"
+      ],
+      correct: 1
+    },
+    {
+      text: "Which conflict resolution technique involves giving up something to reach an agreement?",
+      options: [
+        "Forcing",
+        "Smoothing",
+        "Compromising",
+        "Avoiding"
+      ],
+      correct: 2
+    },
+    {
+      text: "The Critical Path in a project schedule is:",
+      options: [
+        "The path with the most expensive activities",
+        "The longest path through the network determining the earliest completion date",
+        "The path with the highest-risk activities",
+        "The sequence of activities assigned to the lead developer"
+      ],
+      correct: 1
+    },
+    {
+      text: "Earned Value (EV) in project management represents:",
+      options: [
+        "The actual cost of work performed to date",
+        "The budgeted cost of work scheduled",
+        "The budgeted value of work actually completed",
+        "The forecasted cost at project completion"
+      ],
+      correct: 2
+    },
+    {
+      text: "Which of the following is an input to the Identify Risks process?",
+      options: [
+        "Risk register",
+        "Risk response plan",
+        "Lessons learned register",
+        "Issue log"
+      ],
+      correct: 2
+    },
+    {
+      text: "A Responsibility Assignment Matrix (RAM) is used to:",
+      options: [
+        "Track project costs against the budget baseline",
+        "Connect project deliverables to team members' roles",
+        "Schedule milestones across the project timeline",
+        "Prioritize risks by probability and impact"
+      ],
+      correct: 1
+    },
+    {
+      text: "Which communication method is most effective when a message must be delivered quickly to a large, dispersed team?",
+      options: [
+        "Push communication (e.g., email broadcast)",
+        "Pull communication (e.g., intranet portal)",
+        "Interactive communication (e.g., meeting)",
+        "Formal written communication (e.g., memo)"
+      ],
+      correct: 0
+    },
+    {
+      text: "In Agile project management, a Sprint Retrospective is held to:",
+      options: [
+        "Review and accept completed user stories with the product owner",
+        "Plan the work for the next sprint",
+        "Reflect on the team's process and identify improvements",
+        "Present the product increment to stakeholders"
+      ],
+      correct: 2
+    }
+  ];
+
+  var LETTERS = ['A', 'B', 'C', 'D'];
+
+  var current = 0;
+  var answers = new Array(QUESTIONS.length).fill(-1);
+
+  function showView(id) {
+    document.querySelectorAll('.paq-view').forEach(function (v) {
+      v.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+  }
+
+  function loadQuestion(idx) {
+    var q = QUESTIONS[idx];
+    var pad = idx < 9 ? '0' + (idx + 1) : '' + (idx + 1);
+    document.getElementById('paq-q-num').textContent = 'QUESTION ' + pad;
+    document.getElementById('paq-progress-val').textContent = (idx + 1) + '/10';
+    document.getElementById('paq-q-text').textContent = q.text;
+
+    var container = document.getElementById('paq-options');
+    container.innerHTML = '';
+    q.options.forEach(function (opt, i) {
+      var btn = document.createElement('button');
+      btn.className = 'paq-option' + (answers[idx] === i ? ' selected' : '');
+      btn.type = 'button';
+      btn.innerHTML =
+        '<div class="paq-radio"><div class="paq-radio-dot"></div></div>' +
+        '<span class="paq-opt-letter">' + LETTERS[i] + '.</span>' +
+        '<span class="paq-opt-text">' + escapeHtml(opt) + '</span>';
+      btn.addEventListener('click', function () { selectOption(idx, i); });
+      container.appendChild(btn);
+    });
+
+    updateFooter(idx);
+    document.getElementById('paq-q-scroll').scrollTop = 0;
+  }
+
+  function selectOption(qIdx, optIdx) {
+    answers[qIdx] = optIdx;
+    document.querySelectorAll('.paq-option').forEach(function (btn, i) {
+      btn.classList.toggle('selected', i === optIdx);
+    });
+    updateFooter(qIdx);
+  }
+
+  function updateFooter(idx) {
+    var hasAnswer = answers[idx] !== -1;
+    var hint = document.getElementById('paq-q-hint');
+    var next = document.getElementById('paq-next-btn');
+    if (hasAnswer) {
+      hint.style.display = 'none';
+      next.classList.add('visible');
+    } else {
+      hint.style.display = '';
+      next.classList.remove('visible');
+    }
+  }
+
+  var CIRCUMFERENCE = 2 * Math.PI * 77; // 483.81
+
+  function showResults() {
+    var correct = 0;
+    answers.forEach(function (a, i) {
+      if (a === QUESTIONS[i].correct) correct++;
+    });
+    var incorrect = QUESTIONS.length - correct;
+    var total = QUESTIONS.length;
+
+    document.getElementById('paq-score-n').textContent = correct;
+    document.getElementById('paq-correct-n').textContent = correct + ' Correct';
+    document.getElementById('paq-incorrect-n').textContent = incorrect + ' Incorrect';
+
+    // Animate ring: offset 0 = full, offset = circumference = empty
+    var ring = document.getElementById('paq-ring-progress');
+    ring.style.strokeDashoffset = CIRCUMFERENCE; // reset before transition
+    showView('paq-results');
+    // Small delay so the transition fires after the view becomes visible
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        ring.style.strokeDashoffset = CIRCUMFERENCE * (1 - correct / total);
+      });
+    });
+
+    var title, body, encTitle, encBody;
+    if (correct === 10) {
+      title = 'Perfect Score!';
+      body = 'You scored 10/10 — you already have an excellent grasp of project management fundamentals. Your sprint will sharpen the fine details that matter most for the exam.';
+      encTitle = 'Exceptional Work!';
+      encBody = 'A perfect score is rare. Keep this momentum going — exam day is well within reach.';
+    } else if (correct >= 8) {
+      title = 'Outstanding — ' + correct + '/10!';
+      body = 'You got ' + correct + ' out of 10 correct. You\'re well ahead of the curve. Focus your sprint on the ' + incorrect + ' area' + (incorrect === 1 ? '' : 's') + ' you missed to lock in a top exam result.';
+      encTitle = 'Almost There!';
+      encBody = 'You only missed ' + incorrect + '. A focused review will close those gaps fast.';
+    } else if (correct >= 6) {
+      title = 'Well Done — ' + correct + '/10';
+      body = 'You answered ' + correct + ' questions correctly. A solid base to build on — your sprint will target the ' + incorrect + ' concept' + (incorrect === 1 ? '' : 's') + ' you missed and turn them into strengths.';
+      encTitle = 'Keep Going!';
+      encBody = 'You\'re more than halfway there. Your personalised sprint will take you the rest of the way.';
+    } else if (correct >= 4) {
+      title = 'Good Effort — ' + correct + '/10';
+      body = 'You got ' + correct + ' right and missed ' + incorrect + '. That\'s exactly what this quiz is designed to find — your sprint will now focus on those gaps to fast-track your readiness.';
+      encTitle = 'Don\'t Worry!';
+      encBody = 'Every gap you find now is one less surprise on exam day. Your personalised sprint starts here.';
+    } else {
+      title = 'Great Start — ' + correct + '/10';
+      body = 'You scored ' + correct + ' out of 10. This is your starting point, not your finish line. Your sprint has been tailored to build the foundations you need, step by step.';
+      encTitle = 'You\'ve Got This!';
+      encBody = 'Everyone starts somewhere. Your personalised learning path is ready — let\'s close those gaps together.';
+    }
+
+    document.getElementById('paq-result-title').textContent = title;
+    document.getElementById('paq-result-body').textContent = body;
+    document.getElementById('paq-enc-title').textContent = encTitle;
+    document.getElementById('paq-enc-body').textContent = encBody;
+  }
+
+  function escapeHtml(str) {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  /* ── Event listeners ── */
+  document.getElementById('paq-start-btn').addEventListener('click', function () {
+    current = 0;
+    answers = new Array(QUESTIONS.length).fill(-1);
+    loadQuestion(0);
+    showView('paq-question');
+  });
+
+  document.getElementById('paq-next-btn').addEventListener('click', function () {
+    if (answers[current] === -1) return;
+    if (current < QUESTIONS.length - 1) {
+      current++;
+      loadQuestion(current);
+    } else {
+      showResults();
+    }
+  });
+
+  document.getElementById('paq-back-intro').addEventListener('click', function () {
+    window.location.href = new window.URL('lms/insight-exchange.html?from=gap-prompt', document.baseURI).href;
+  });
+
+  document.getElementById('paq-back-q').addEventListener('click', function () {
+    if (current > 0) {
+      current--;
+      loadQuestion(current);
+    } else {
+      showView('paq-intro');
+    }
+  });
+
+  document.getElementById('paq-back-results').addEventListener('click', function () {
+    current = QUESTIONS.length - 1;
+    loadQuestion(current);
+    showView('paq-question');
+  });
+
+  document.getElementById('paq-continue-btn').addEventListener('click', function () {
+    window.location.href = new window.URL('lms/decision-tree.html', document.baseURI).href;
+  });
+
+})();
+</script>
+</body>
+</html>

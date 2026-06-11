@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../../" />
+    <title>CertSprints — Edit Profile</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css?v=20260529-prof1" />
+    <link rel="stylesheet" href="css/profile.css?v=20260529-prof1" />
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints Edit Profile">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell">
+            <div class="dashboard-scroll">
+              <div class="prof-view">
+                <div class="cert-bg" aria-hidden="true"></div>
+
+                <header class="prof-nav-bar">
+                  <button class="prof-nav-pill" type="button" aria-label="Back" onclick="window.location.href=new window.URL('account/profile/profile.html',document.baseURI).href">
+                    <span class="prof-icon-slot prof-icon-slot--24">
+                      <img class="prof-glyph prof-glyph--arrow-left-20" src="assets/icons/arrow-left-02.svg" alt="" />
+                    </span>
+                  </button>
+                  <h1 class="prof-nav-title">Edit profile</h1>
+                  <span class="prof-nav-spacer" aria-hidden="true"></span>
+                </header>
+
+                <div class="prof-hero prof-hero--edit">
+                  <div class="prof-avatar-wrap prof-avatar-wrap--lg">
+                    <img class="prof-avatar prof-avatar--lg" id="profEditAvatar" src="assets/profile/images/user-avatar.jpg" alt="" />
+                    <button type="button" class="prof-camera-btn" aria-label="Change photo">
+                      <span class="prof-icon-slot prof-icon-slot--16">
+                        <img class="prof-glyph prof-glyph--camera-02-14" src="assets/profile/icons/camera-02-14.svg" alt="" />
+                      </span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="prof-panel">
+                  <form class="prof-form" id="profEditForm">
+                    <div class="prof-input-row">
+                      <div class="prof-field">
+                        <label for="profFirstName">First name</label>
+                        <input class="prof-input" id="profFirstName" name="firstName" type="text" autocomplete="given-name" />
+                      </div>
+                      <div class="prof-field">
+                        <label for="profLastName">Last name</label>
+                        <input class="prof-input" id="profLastName" name="lastName" type="text" autocomplete="family-name" />
+                      </div>
+                    </div>
+
+                    <div class="prof-field">
+                      <label for="profEmailInput">Email address</label>
+                      <input class="prof-input prof-input--readonly" id="profEmailInput" name="email" type="email" readonly />
+                    </div>
+
+                    <div class="prof-input-row">
+                      <div class="prof-field">
+                        <label for="profGender">Gender</label>
+                        <div class="prof-select-wrap">
+                          <select class="prof-select" id="profGender" name="gender"></select>
+                          <span class="prof-icon-slot prof-icon-slot--18">
+                            <img class="prof-glyph prof-glyph--arrow-down-18" src="assets/profile/icons/arrow-down-18.svg" alt="" />
+                          </span>
+                        </div>
+                      </div>
+                      <div class="prof-field">
+                        <label for="profJobTitle">Job title</label>
+                        <input class="prof-input" id="profJobTitle" name="jobTitle" type="text" placeholder="What is your role?" />
+                      </div>
+                    </div>
+
+                    <div class="prof-field">
+                      <label for="profPhone">Phone number</label>
+                      <div class="prof-phone-row">
+                        <input class="prof-input prof-phone-prefix" id="profPhonePrefix" name="phonePrefix" type="text" value="+234" />
+                        <input class="prof-input prof-phone-number" id="profPhone" name="phone" type="tel" placeholder="90 3200 0000" autocomplete="tel-national" />
+                      </div>
+                    </div>
+
+                    <div class="prof-field">
+                      <label for="profCompany">Company/Organization</label>
+                      <input class="prof-input" id="profCompany" name="company" type="text" placeholder="E.g. CertSprints" />
+                    </div>
+
+                    <div class="prof-actions">
+                      <button type="button" class="prof-btn prof-btn--ghost" id="profCancelBtn">Cancel</button>
+                      <button type="submit" class="prof-btn prof-btn--primary">Save changes</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="js/profile-data.js?v=20260529-prof1"></script>
+    <script src="js/profile-edit.js?v=20260529-prof1"></script>
+  </body>
+</html>

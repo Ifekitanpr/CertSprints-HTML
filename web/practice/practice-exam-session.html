@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>Practice Exam — CertSprints</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css?v=20260528-pe1" />
+    <link rel="stylesheet" href="css/practice-exam.css?v=20260528-pe11" />
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        background: #f1f5f9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+      button { font-family: inherit; cursor: pointer; }
+      img { display: block; }
+      img.pe-glyph { max-width: none; max-height: none; }
+    </style>
+  </head>
+  <body>
+    <div class="pe-session-root" id="peSessionRoot">
+      <div class="cert-bg" aria-hidden="true"></div>
+
+      <!-- Exam UI -->
+      <div class="pe-session" id="peExamView">
+        <header class="pe-session-header">
+          <button class="pe-menu-btn" type="button" id="peOpenNav" aria-label="Question navigator">
+            <img class="pe-glyph pe-glyph--menu-02-24" src="assets/resources/icons/menu-02-24.svg" alt="" />
+          </button>
+          <div class="pe-header-actions">
+            <div class="pe-timer-pill">
+              <span class="pe-timer-icon-slot">
+                <img class="pe-glyph pe-glyph--clock-24" src="assets/practice-exam/icons/clock-24.svg" alt="" />
+              </span>
+              <span id="peExamTimer">03:49:54</span>
+            </div>
+            <button class="pe-icon-pill" type="button" aria-label="Sound" id="peSoundBtn">
+              <img class="pe-glyph pe-glyph--volume-24" src="assets/practice-exam/icons/volume-24.svg" alt="" />
+            </button>
+            <button class="pe-icon-pill" type="button" aria-label="Take a break" id="pePauseBtn">
+              <img class="pe-glyph pe-glyph--pause-24" src="assets/practice-exam/icons/pause-24.svg" alt="" />
+            </button>
+            <button class="pe-icon-pill" type="button" aria-label="End exam" id="peEndBtn">
+              <img class="pe-glyph pe-glyph--close-24" src="assets/practice-exam/icons/close-24.svg" alt="" />
+            </button>
+          </div>
+        </header>
+
+        <div class="pe-progress-wrap">
+          <div class="pe-dots-grid" id="peDotsGrid" aria-hidden="true"></div>
+        </div>
+
+        <div class="pe-stats-row">
+          <div>Progress: <span class="val" id="peProgressPct">2%</span></div>
+          <div>Answered <span class="val-dark" id="peAnsweredStat">0/48</span></div>
+          <div>Flagged: <span class="val-flag" id="peFlaggedStat">0</span></div>
+        </div>
+
+        <div class="pe-question-panel">
+          <div class="pe-question-scroll">
+            <div class="pe-domain-legend" id="peDomainLegend"></div>
+            <div class="pe-q-card">
+              <div class="pe-q-card-head">
+                <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0">
+                  <span class="pe-q-domain-pill" id="peQDomainPill">People Domain</span>
+                  <span class="pe-q-num" id="peQNum">Question 01</span>
+                </div>
+                <button class="pe-flag-btn" type="button" id="peFlagBtn" aria-label="Flag question">
+                  <span class="pe-flag-icon-slot">
+                    <img class="pe-glyph pe-glyph--flag-16" src="assets/practice-exam/icons/flag-16.svg" alt="" id="peFlagIcon" />
+                  </span>
+                </button>
+              </div>
+              <p class="pe-q-text" id="peQText"></p>
+              <p class="pe-exhibit-label pe-screen-hidden" id="peExhibitLabel">Exhibit A: Situation Visualization</p>
+              <img class="pe-exhibit-img pe-screen-hidden" id="peExhibitImg" src="" alt="Question exhibit" />
+            </div>
+            <div class="pe-answers" id="peAnswers" role="radiogroup"></div>
+          </div>
+        </div>
+
+        <footer class="pe-session-foot">
+          <div class="pe-foot-btns">
+            <button class="pe-btn-prev" type="button" id="pePrevBtn">
+              <span class="pe-foot-icon-slot">
+                <img class="pe-glyph pe-glyph--arrow-left-20" src="assets/practice-exam/icons/arrow-left-20.svg" alt="" />
+              </span>
+              Prev
+            </button>
+            <button class="pe-btn-next" type="button" id="peNextBtn">
+              Next Question
+              <span class="pe-foot-icon-slot">
+                <img class="pe-glyph pe-glyph--arrow-right-20-white" src="assets/practice-exam/icons/arrow-right-20-white.svg" alt="" />
+              </span>
+            </button>
+          </div>
+        </footer>
+      </div>
+
+      <!-- Mock exam results (pass / fail) -->
+      <div class="pe-session pe-results-session pe-screen-hidden" id="peResultsView">
+        <div class="pe-results-hero" id="peResultsHero">
+          <header class="pe-results-top">
+            <div class="pe-results-status">
+              <p class="pe-results-result" id="peResultsResultLabel">Result: Unsuccessful</p>
+              <p class="pe-results-calibration">Calibration Completed</p>
+            </div>
+            <button class="pe-results-exit" type="button" id="peResultsExit" aria-label="Exit practice exam">
+              <span class="pe-results-exit-slot">
+                <img class="pe-glyph pe-glyph--close-24" src="assets/practice-exam/icons/close-24.svg" alt="" />
+              </span>
+            </button>
+          </header>
+        </div>
+
+        <div class="pe-results-panel">
+          <div class="pe-results-scroll">
+            <div class="pe-results-headline">
+              <div class="pe-results-copy">
+                <h1 class="pe-results-title" id="peResultsTitle">Mock Exam Results</h1>
+                <p class="pe-results-desc" id="peResultsDesc"></p>
+              </div>
+              <div class="pe-score-ring" id="peScoreRing" aria-hidden="true">
+                <div class="pe-score-ring-inner">
+                  <span class="pe-score-ring-pct" id="peScoreRingPct">0%</span>
+                  <span class="pe-score-ring-badge" id="peScoreRingBadge">Not Passed</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pe-results-stats-wrap">
+              <div class="pe-results-stats">
+                <div class="pe-results-stat">
+                  <p class="pe-results-stat-label">Correct Answers</p>
+                  <p class="pe-results-stat-val"><span id="peStatCorrect">0</span><span class="sep">/</span><span id="peStatTotal">48</span></p>
+                  <p class="pe-results-stat-foot">Items Secured</p>
+                </div>
+                <div class="pe-results-stat">
+                  <p class="pe-results-stat-label">Time Spent</p>
+                  <p class="pe-results-stat-val pe-results-stat-val--solo" id="peStatMinutes">0</p>
+                  <p class="pe-results-stat-foot">Minutes Elapsed</p>
+                </div>
+              </div>
+              <div class="pe-results-gap" id="peResultsGapBox">
+                <p class="pe-results-gap-label" id="peResultsGapLabel">Gap to Pass</p>
+                <p class="pe-results-gap-val" id="peResultsGapVal">0%</p>
+                <p class="pe-results-gap-foot" id="peResultsGapFoot">Points Required</p>
+              </div>
+            </div>
+
+            <p class="pe-results-section-label">Domain Performance Analysis</p>
+            <div class="pe-domain-performance" id="peDomainPerformance"></div>
+          </div>
+        </div>
+
+        <footer class="pe-results-foot">
+          <button class="pe-results-btn pe-results-btn--outline" type="button" id="peScoreReportBtn">
+            <span class="pe-results-btn-icon-slot">
+              <img class="pe-glyph pe-glyph--download-20" src="assets/practice-exam/icons/results/download-20.svg" alt="" />
+            </span>
+            Score Report
+          </button>
+          <button class="pe-results-btn pe-results-btn--primary" type="button" id="peResultsReviewBtn">
+            <span class="pe-results-btn-icon-slot">
+              <img class="pe-glyph pe-glyph--eye-20-white" src="assets/practice-exam/icons/results/eye-20-white.svg" alt="" />
+            </span>
+            Review
+          </button>
+        </footer>
+      </div>
+
+      <!-- Detailed result review -->
+      <div class="pe-session pe-review-session pe-screen-hidden" id="peReviewView">
+        <header class="pe-review-header">
+          <button class="pe-menu-btn" type="button" id="peReviewBack" aria-label="Back to results">
+            <img class="pe-glyph pe-glyph--arrow-left-24" src="assets/practice-exam/icons/arrow-left-24.svg" alt="" />
+          </button>
+          <div class="pe-review-domain-filters" id="peReviewDomainFilters" role="tablist"></div>
+        </header>
+
+        <div class="pe-review-panel">
+          <div class="pe-review-scroll">
+            <div class="pe-review-filters" id="peReviewFilters" role="tablist">
+              <button type="button" class="pe-review-filter is-active" data-filter="all">All Questions</button>
+              <button type="button" class="pe-review-filter" data-filter="missed" id="peReviewMissedTab">Missed (0)</button>
+              <button type="button" class="pe-review-filter" data-filter="correct" id="peReviewCorrectTab">Correct (0)</button>
+            </div>
+            <div class="pe-review-cards" id="peReviewList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question navigator -->
+      <div class="pe-nav-overlay" id="peNavOverlay" aria-hidden="true">
+        <div class="pe-nav-sheet" role="dialog" aria-modal="true" aria-labelledby="peNavTitle">
+          <div class="pe-nav-head">
+            <h2 id="peNavTitle">Question Navigator</h2>
+          </div>
+          <div class="pe-nav-grid-wrap">
+            <div class="pe-nav-grid" id="peNavGrid"></div>
+          </div>
+          <div class="pe-nav-foot">
+            <div class="pe-nav-legend">
+              <span><span class="pe-legend-answered-slot"><img class="pe-glyph pe-glyph--legend-answered-20" src="assets/practice-exam/icons/legend-answered-20.svg" alt="" /></span> Answered</span>
+              <span><i class="pe-legend-dot pe-legend-dot--flagged"></i> Flagged</span>
+              <span><i class="pe-legend-dot pe-legend-dot--current"></i> Current</span>
+            </div>
+            <button class="pe-nav-close-btn" type="button" id="peNavClose">Close Navigator</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Break modal -->
+      <div class="pe-modal-overlay" id="peBreakOverlay" aria-hidden="true">
+        <div class="pe-modal" role="dialog" aria-modal="true">
+          <div class="pe-modal-icon pe-modal-icon--break">
+            <img class="pe-glyph pe-glyph--coffee-24" src="assets/practice-exam/icons/coffee-24.svg" alt="" />
+          </div>
+          <h2>Break <em>Active</em></h2>
+          <p>Question content is hidden to maintain integrity. Use this time to recalibrate your focus.</p>
+          <div class="pe-modal-timers">
+            <div class="pe-modal-timer-box">
+              <label>Break Remaining</label>
+              <time id="peBreakTimer">10:00</time>
+            </div>
+            <div class="pe-modal-timer-box">
+              <label>Total Exam Left</label>
+              <time id="peBreakExamLeft">03:49:54</time>
+            </div>
+          </div>
+          <div class="pe-modal-actions">
+            <button class="pe-modal-primary" type="button" id="peResumeBreak">Resume Mock Exam</button>
+            <p class="pe-modal-note" id="peBreaksLeft">Available breaks remaining: 2 of 2</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- End exam modal -->
+      <div class="pe-modal-overlay" id="peEndOverlay" aria-hidden="true">
+        <div class="pe-modal pe-modal--end" role="dialog" aria-modal="true">
+          <div class="pe-modal-icon pe-modal-icon--end">
+            <img class="pe-glyph pe-glyph--close-24" src="assets/practice-exam/icons/close-24.svg" alt="" />
+          </div>
+          <h2>End <em>Exam?</em></h2>
+          <p>Your progress will be scored based on answered questions. You can review results after submitting.</p>
+          <div class="pe-modal-actions">
+            <button class="pe-modal-primary pe-modal-primary--dark" type="button" id="peConfirmEnd">Submit Exam</button>
+            <button class="pe-modal-secondary" type="button" id="peCancelEnd">Continue Exam</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/practice-exam-data.js?v=20260528-pe11"></script>
+    <script src="js/practice-exam-session.js?v=20260528-pe11"></script>
+  </body>
+</html>

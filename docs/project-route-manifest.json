@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "currentRoot": "web",
+  "targetConvention": "web/<domain>/<feature>/index.html",
+  "migrations": {
+    "accountAuth": {
+      "status": "migrated",
+      "canonicalDirectory": "web/account/auth",
+      "compatibilityRoutes": "web/*.html",
+      "pages": [
+        "index.html",
+        "signin-password.html",
+        "signin-code.html",
+        "signin-check-email.html",
+        "forgot-password.html",
+        "forgot-check-email.html",
+        "reset-password.html",
+        "verify-email.html",
+        "account-password.html",
+        "account-code.html",
+        "personal-details.html"
+      ]
+    },
+    "settings": {
+      "status": "migrated",
+      "canonicalDirectory": "web/settings",
+      "compatibilityRoutes": "web/settings*.html",
+      "pages": [
+        "settings.html",
+        "settings-account.html",
+        "settings-adjust-plan.html",
+        "settings-delete-account.html",
+        "settings-learning-plan.html",
+        "settings-notifications.html",
+        "settings-security.html",
+        "settings-security-password.html",
+        "settings-sounds.html"
+      ]
+    },
+    "commerce": {
+      "status": "migrated",
+      "canonicalDirectory": "web/commerce",
+      "compatibilityRoutes": "web/{certification,checkout,payment-success}.html",
+      "pages": [
+        "certification.html",
+        "checkout.html",
+        "payment-success.html"
+      ]
+    },
+    "community": {
+      "status": "migrated",
+      "canonicalDirectory": "web/community",
+      "compatibilityRoutes": "web/community*.html",
+      "pages": [
+        "community.html",
+        "community-cohort.html",
+        "community-host.html",
+        "community-session.html"
+      ]
+    },
+    "app": {
+      "status": "migrated",
+      "canonicalDirectory": "web/app",
+      "compatibilityRoutes": "web/{dashboard,progress,more,notifications,notes,resources,habits,timeline,sprint-timeline}.html",
+      "pages": [
+        "dashboard.html",
+        "progress.html",
+        "more.html",
+        "notifications.html",
+        "notes.html",
+        "resources.html",
+        "habits.html",
+        "timeline.html",
+        "sprint-timeline.html"
+      ]
+    },
+    "lms": {
+      "status": "migrated",
+      "canonicalDirectory": "web/lms",
+      "compatibilityRoutes": "web/<lms-files>.html",
+      "pages": [
+        "study-backlog.html",
+        "lesson-player.html",
+        "key-takeaway.html",
+        "key-takeaway-2.html",
+        "gap-prompt.html",
+        "insight-exchange.html",
+        "decision-simulator.html",
+        "scenario-sorting.html",
+        "risk-cycle-sequencer.html",
+        "sorting-type-2.html",
+        "boolean-flashcard.html",
+        "active-recall.html",
+        "blurting-canvas.html",
+        "retrieval-sprint.html",
+        "pre-assessment-quiz.html",
+        "decision-tree.html",
+        "knowledge-poll.html",
+        "knowledge-poll-2.html",
+        "peer-teachbacks.html",
+        "comprehension-check.html",
+        "lesson-quiz.html",
+        "module-quiz.html",
+        "mock-exam.html",
+        "capability-matrix.html",
+        "standard-evolution.html",
+        "ethics-evolution.html",
+        "standard-comparison.html",
+        "ethics-comparison.html",
+        "reading.html",
+        "definition-matrix.html",
+        "phase-controller.html",
+        "curriculum.html",
+        "core-terms.html"
+      ]
+    },
+    "games": {
+      "status": "migrated",
+      "canonicalDirectory": "web/games",
+      "compatibilityRoutes": "web/{games,mindset-sprint,logic-sniper,blueprint-builder,narrative-quest}.html",
+      "pages": [
+        "games.html",
+        "mindset-sprint.html",
+        "logic-sniper.html",
+        "blueprint-builder.html",
+        "narrative-quest.html"
+      ]
+    },
+    "practice": {
+      "status": "migrated",
+      "canonicalDirectory": "web/practice",
+      "compatibilityRoutes": "web/{practice-exam,practice-exam-session}.html",
+      "pages": [
+        "practice-exam.html",
+        "practice-exam-session.html"
+      ]
+    },
+    "onboarding": {
+      "status": "migrated",
+      "canonicalDirectory": "web/onboarding",
+      "compatibilityRoutes": "web/{plan,mapping}.html",
+      "pages": [
+        "plan.html",
+        "mapping.html"
+      ]
+    },
+    "support": {
+      "status": "migrated",
+      "canonicalDirectory": "web/support",
+      "compatibilityRoutes": "web/{help-support,wellness-checkin}.html",
+      "pages": [
+        "help-support.html",
+        "wellness-checkin.html"
+      ]
+    },
+    "accountProfile": {
+      "status": "migrated",
+      "canonicalDirectory": "web/account/profile",
+      "compatibilityRoutes": "web/{profile,profile-edit}.html",
+      "pages": [
+        "profile.html",
+        "profile-edit.html"
+      ]
+    }
+  },
+  "targetRoutes": {
+    "app": "web/app/<feature>/index.html",
+    "lms": "web/lms/activities/<activity-type>/index.html",
+    "games": "web/games/activities/<game-type>/index.html",
+    "practice": "web/practice/<feature>/index.html",
+    "community": "web/community/<feature>/index.html",
+    "account": "web/account/<feature>/index.html",
+    "settings": "web/settings/<feature>/index.html",
+    "commerce": "web/commerce/<feature>/index.html",
+    "onboarding": "web/onboarding/<feature>/index.html",
+    "support": "web/support/<feature>/index.html"
+  }
+}

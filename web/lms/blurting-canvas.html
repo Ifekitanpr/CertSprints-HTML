@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <base href="../" />
+  <title>CertSprints — Blurting Canvas</title>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/blurting-canvas.css?v=20260529-bc1"/>
+</head>
+<body>
+<main class="phone-case" aria-label="CertSprints Blurting Canvas">
+  <div class="case-shell">
+    <div class="bc" id="bc">
+
+      <div class="cert-bg" aria-hidden="true"></div>
+      <div class="sb"></div>
+
+      <nav class="bc-nav">
+        <button class="bc-nav-btn" type="button" aria-label="Back" id="bc-back">
+          <span class="bc-icon-slot bc-icon-slot--24">
+            <img class="bc-glyph bc-glyph--arrow-left-24" src="assets/icons/arrow-left-02.svg" alt=""/>
+          </span>
+        </button>
+        <p class="bc-nav-title" id="bc-nav-title">BLURTING CANVAS</p>
+        <button class="bc-nav-btn" type="button" aria-label="Help" id="bc-help">
+          <span class="bc-icon-slot bc-icon-slot--24">
+            <img class="bc-glyph bc-glyph--help-circle-24" src="assets/blurting-canvas/icons/help-circle-24.svg" alt=""/>
+          </span>
+        </button>
+      </nav>
+
+      <header class="bc-prompt">
+        <h1 class="bc-prompt-title">
+          <span id="bc-prompt-prefix">Explain the purpose of a </span>
+          <span class="bc-prompt-gradient" id="bc-prompt-highlight">Project Charter</span>
+        </h1>
+        <p class="bc-prompt-desc" id="bc-prompt-desc"></p>
+      </header>
+
+      <div class="bc-sheet">
+        <div class="bc-sheet-body">
+          <div class="bc-progress">
+            <div class="bc-progress-head">
+              <span class="bc-progress-label" id="bc-progress-label">Keyword Ideas Captured</span>
+              <span class="bc-progress-count" id="bc-progress-count">0/5</span>
+            </div>
+            <div class="bc-progress-track">
+              <div class="bc-progress-fill" id="bc-progress-fill"></div>
+            </div>
+            <p class="bc-progress-status" id="bc-progress-status">Waiting for retrieval signal</p>
+          </div>
+
+          <div class="bc-editor-wrap" id="bc-editor-wrap">
+            <textarea
+              class="bc-editor"
+              id="bc-editor"
+              rows="8"
+              aria-label="Write your explanation"
+            ></textarea>
+            <div class="bc-editor-foot">
+              <span class="bc-icon-slot bc-icon-slot--16">
+                <img class="bc-glyph bc-glyph--waterfall-down-03-16" src="assets/blurting-canvas/icons/waterfall-down-03-16.svg" alt=""/>
+              </span>
+              <span class="bc-detector-label" id="bc-detector-label">DETECTION ENGINE LISTENING</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bc-footer">
+        <button class="bc-finish-btn" type="button" id="bc-finish" disabled>
+          <span class="bc-icon-slot bc-icon-slot--20">
+            <img class="bc-glyph bc-glyph--tick-02-20" src="assets/blurting-canvas/icons/tick-02-20.svg" alt=""/>
+          </span>
+          <span id="bc-finish-label">I'm Finished</span>
+        </button>
+      </div>
+      <div class="home-ind"></div>
+
+      <!-- Feedback bottom sheet -->
+      <div class="bc-feedback" id="bc-feedback" aria-hidden="true">
+        <div class="bc-feedback-scrim" id="bc-feedback-scrim"></div>
+        <div class="bc-feedback-shell">
+          <div class="bc-feedback-sheet" role="dialog" aria-modal="true" aria-labelledby="bc-feedback-title">
+            <div class="bc-feedback-handle" aria-hidden="true"></div>
+            <div class="bc-feedback-banner" id="bc-feedback-banner">
+              <div class="bc-feedback-banner-top">
+                <div class="bc-feedback-icon">
+                  <img class="bc-glyph bc-glyph--feedback-ring-outer" src="assets/blurting-canvas/icons/feedback-ring-outer.svg" alt=""/>
+                  <img class="bc-glyph bc-glyph--feedback-ring-inner" src="assets/blurting-canvas/icons/feedback-ring-inner.svg" alt=""/>
+                  <span class="bc-icon-slot bc-icon-slot--20">
+                    <img class="bc-glyph bc-glyph--tick-01-20-white" src="assets/blurting-canvas/icons/tick-01-20-white.svg" alt=""/>
+                  </span>
+                </div>
+                <p class="bc-feedback-banner-title" id="bc-feedback-title">BLOCK SECURED</p>
+              </div>
+              <div class="bc-feedback-strength">
+                <p id="bc-feedback-strength">Retrieval Strength: 80%</p>
+              </div>
+            </div>
+
+            <div class="bc-feedback-gaps" id="bc-feedback-gaps" hidden>
+              <p class="bc-feedback-gaps-title" id="bc-gaps-title">Gaps to close:</p>
+              <ul class="bc-feedback-gaps-list" id="bc-gaps-list"></ul>
+            </div>
+
+            <div class="bc-keyword-grid" id="bc-keyword-grid"></div>
+
+            <div class="bc-feedback-actions">
+              <button class="bc-btn bc-btn--primary" type="button" id="bc-feedback-ok">
+                <span class="bc-icon-slot bc-icon-slot--20">
+                  <img class="bc-glyph bc-glyph--thumbs-up-20" src="assets/blurting-canvas/icons/thumbs-up-20.svg" alt=""/>
+                </span>
+                <span id="bc-ok-label">Ok, got it</span>
+              </button>
+              <button class="bc-btn bc-btn--ai" type="button" id="bc-feedback-ai">
+                <span class="bc-icon-slot bc-icon-slot--20">
+                  <img class="bc-glyph bc-glyph--ai-brain-03-20" src="assets/blurting-canvas/icons/ai-brain-03-20.svg" alt=""/>
+                </span>
+                <span id="bc-ai-label">Brainstorm with AI</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script src="js/blurting-canvas-data.js?v=20260529-bc1"></script>
+<script src="js/blurting-canvas.js?v=20260529-bc1"></script>
+</body>
+</html>

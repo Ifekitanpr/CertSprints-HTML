@@ -750,7 +750,7 @@
     });
 
     app.querySelector('[data-action="games"]')?.addEventListener("click", () => {
-      window.location.href = "games.html";
+      window.location.href = new URL("games/games.html", document.baseURI).href;
     });
 
     bindPlayEvents();
@@ -781,9 +781,9 @@
       state.view = "intro";
       render();
     } else if (state.view === "result") {
-      window.location.href = "games.html";
+      window.location.href = new URL("games/games.html", document.baseURI).href;
     } else {
-      window.location.href = "games.html";
+      window.location.href = new URL("games/games.html", document.baseURI).href;
     }
   }
 

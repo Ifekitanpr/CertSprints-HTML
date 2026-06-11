@@ -151,12 +151,12 @@
   function onGotIt() {
     closeFeedback();
     if (lastFeedbackCorrect) {
-      window.location.href = "insight-exchange.html";
+      window.location.href = new URL("lms/lesson-quiz.html", document.baseURI).href;
     }
   }
 
   document.getElementById("ds-intro-back").addEventListener("click", function () {
-    window.location.href = "key-takeaway-2.html";
+    window.location.href = new URL("lms/key-takeaway-2.html", document.baseURI).href;
   });
 
   document.getElementById("ds-start-btn").addEventListener("click", function () {
@@ -172,7 +172,7 @@
   document.getElementById("ds-got-it-btn").addEventListener("click", onGotIt);
 
   document.getElementById("ds-ai-btn").addEventListener("click", function () {
-    window.location.href = "help-support.html?from=decision-simulator";
+    window.location.href = new URL("support/help-support.html?from=decision-simulator", document.baseURI).href;
   });
 
   overlay.addEventListener("click", function (e) {

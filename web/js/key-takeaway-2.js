@@ -158,7 +158,7 @@
 
   function finish() {
     if (!finishBtn.classList.contains("enabled")) return;
-    window.location.href = "decision-simulator.html";
+    window.location.href = new URL("lms/comprehension-check.html", document.baseURI).href;
   }
 
   applyDemoPreset();

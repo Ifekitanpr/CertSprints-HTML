@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>CertSprints Plan</title>
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints onboarding screen">
+      <div class="case-shell">
+        <section class="screen ">
+          <div class="plan-view">
+            <div class="cert-bg"></div>
+            <div class="plan-content">
+              <div class="cert-nav">
+                <button class="cert-back plan-back" type="button" aria-label="Back"><img src="assets/icons/arrow-left-02.svg" alt="" /></button>
+                <div class="step-pill step-3" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="plan-heading">
+                <h2>Choose your plan</h2>
+                <p>Pick the study plan that fits your pace and prep goals.</p>
+              </div>
+              <div class="duration-tabs" role="tablist" aria-label="Plan duration">
+                <button class="active" type="button" role="tab" aria-selected="true" data-duration="30">30 days</button>
+                <button type="button" role="tab" aria-selected="false" data-duration="60">60 days</button>
+                <button type="button" role="tab" aria-selected="false" data-duration="90">90 days</button>
+              </div>
+              <div class="plan-grid">
+                <article class="plan-card" tabindex="0" role="button" data-plan="free" data-base-price="0">
+                  <p class="plan-name">Free</p>
+                  <p class="plan-price">$0</p>
+                  <p class="plan-intro">Start with the basics</p>
+                  <ul class="plan-features">
+                    <li>Readiness Forecast™</li>
+                    <li>5 Mindset Sprint Drills</li>
+                    <li>Study Heatmap</li>
+                  </ul>
+                </article>
+                <article class="plan-card" tabindex="0" role="button" data-plan="essentials" data-base-price="199">
+                  <p class="plan-name">Essentials</p>
+                  <p class="plan-price">$199</p>
+                  <p class="plan-intro">Everything in Pro, plus:</p>
+                  <ul class="plan-features">
+                    <li>Video Teach-Back Feedback</li>
+                    <li>Weekly 1-on-1 Logic Audits</li>
+                    <li>24h Priority Logic Support</li>
+                    <li>All Practice Games</li>
+                  </ul>
+                </article>
+                <article class="plan-card" tabindex="0" role="button" data-plan="advanced" data-base-price="299">
+                  <span class="plan-tag">Best Value</span>
+                  <p class="plan-name">Advanced</p>
+                  <p class="plan-price">$299</p>
+                  <p class="plan-intro">Everything in Free, plus:</p>
+                  <ul class="plan-features">
+                    <li>Full 14-Day Velocity Path</li>
+                    <li>35-Hour Official Certificate</li>
+                    <li>All 4 Mock Exam Levels</li>
+                    <li>Logic Sniper Elimination Game</li>
+                  </ul>
+                </article>
+                <article class="plan-card" tabindex="0" role="button" data-plan="elite" data-base-price="499">
+                  <p class="plan-name">Elite</p>
+                  <p class="plan-price">$499</p>
+                  <p class="plan-intro">All Pro features, plus:</p>
+                  <ul class="plan-features">
+                    <li>Video Teach-Back Feedback</li>
+                    <li>Weekly 1-on-1 Logic Audits</li>
+                    <li>24h Priority Logic Support</li>
+                    <li>All Practice Games</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+            <div class="plan-bottom">
+              <div class="plan-bottom-inner">
+                <button class="start-free" type="button" disabled>Select a plan <img src="assets/icons/arrow-right-02.svg" alt="" /></button>
+              </div>
+              <div class="home-indicator" aria-hidden="true"></div>
+            </div>
+          </div>
+
+        </section>
+      </div>
+    </main>
+    <script src="js/app.js?v=20260528-paid"></script>
+  </body>
+</html>

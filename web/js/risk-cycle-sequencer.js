@@ -32,7 +32,7 @@
   });
 
   document.getElementById('rcs-intro-back').addEventListener('click', function () {
-    window.history.length > 1 ? window.history.back() : (window.location.href = 'scenario-sorting.html');
+    window.history.length > 1 ? window.history.back() : (window.location.href = new URL('lms/scenario-sorting.html', document.baseURI).href);
   });
 
   document.getElementById('rcs-game-close').addEventListener('click', function () {
@@ -118,7 +118,7 @@
   }
 
   function complete() {
-    window.location.href = 'boolean-flashcard.html';
+    window.location.href = new URL('lms/boolean-flashcard.html', document.baseURI).href;
   }
 
   /* ── Overlays ───────────────────────────────────── */

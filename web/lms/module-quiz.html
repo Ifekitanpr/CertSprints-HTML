@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <base href="../" />
+  <title>CertSprints — Module Quiz</title>
+  <meta http-equiv="Cache-Control" content="no-store"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/module-quiz.css"/>
+</head>
+<body>
+<main class="phone-case" aria-label="CertSprints — Module Quiz">
+  <div class="case-shell">
+    <div class="mq" id="mq">
+      <div class="cert-bg" aria-hidden="true"></div>
+      <div class="sb"></div>
+
+      <!-- ════════════════════════════════════════
+           VIEW 1 — INTRO
+      ════════════════════════════════════════ -->
+      <div class="mq-view active" id="mq-intro">
+
+        <nav class="mq-nav">
+          <button class="mq-nav-back" type="button" id="mq-back" aria-label="Back">
+            <img src="assets/icons/arrow-left-02.svg" alt=""/>
+          </button>
+          <p class="mq-nav-title">MODULE QUIZ</p>
+          <button class="mq-nav-help" type="button" id="mq-help" aria-label="Help">
+            <img src="assets/icons/help-circle-24.svg" alt=""/>
+          </button>
+        </nav>
+
+        <div class="mq-intro-scroll">
+
+          <div class="mq-intro-header">
+            <div class="mq-module-gate"><span>Module Assessment</span></div>
+            <h1 class="mq-intro-title">Module Quiz</h1>
+            <p class="mq-intro-sub">Test your understanding of change management principles across all six knowledge areas.</p>
+          </div>
+
+          <div class="mq-intro-illus">
+            <img src="https://www.figma.com/api/mcp/asset/052efe91-d6cc-473a-9bf5-8c4903644e85" alt=""/>
+          </div>
+
+          <div class="mq-intro-stats">
+            <div class="mq-stat-card">
+              <div class="mq-stat-icon gray">
+                <img src="assets/icons/check-list-16.svg" alt=""/>
+              </div>
+              <div class="mq-stat-body">
+                <span class="mq-stat-label">Items</span>
+                <span class="mq-stat-value">30 Qs</span>
+              </div>
+            </div>
+            <div class="mq-stat-card">
+              <div class="mq-stat-icon orange">
+                <img src="assets/icons/clock-01-16.svg" alt=""/>
+              </div>
+              <div class="mq-stat-body">
+                <span class="mq-stat-label">Duration</span>
+                <span class="mq-stat-value">45 min</span>
+              </div>
+            </div>
+            <div class="mq-stat-card">
+              <div class="mq-stat-icon green">
+                <img src="assets/icons/target-02-16.svg" alt=""/>
+              </div>
+              <div class="mq-stat-body">
+                <span class="mq-stat-label">Threshold</span>
+                <span class="mq-stat-value">70%</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <footer class="mq-intro-bnb">
+          <button class="mq-start-btn" type="button" id="mq-start">
+            Start Quiz
+            <img src="assets/icons/arrow-right-02.svg" alt=""/>
+          </button>
+        </footer>
+
+      </div>
+
+      <!-- ════════════════════════════════════════
+           VIEW 2 — QUESTION
+      ════════════════════════════════════════ -->
+      <div class="mq-view" id="mq-question">
+
+        <nav class="mq-q-nav">
+          <button class="mq-q-nav-menu" type="button" id="mq-open-nav" aria-label="Question navigator">
+            <img src="assets/icons/menu-01.svg" alt="" style="width:17.5px;height:15.5px;max-width:none;"/>
+          </button>
+          <p class="mq-q-nav-title" id="mq-q-nav-label">QUESTION 1 / 30</p>
+          <button class="mq-q-nav-close" type="button" id="mq-q-close" aria-label="Close">
+            <img src="assets/icons/cancel-01.svg" alt="" style="width:18px;height:18px;max-width:none;"/>
+          </button>
+        </nav>
+
+        <div class="mq-q-scroll">
+
+          <div class="mq-q-card" id="mq-q-card">
+            <div class="mq-q-card-top">
+              <span class="mq-q-num" id="mq-q-label">QUESTION 1</span>
+              <button class="mq-q-flag" type="button" id="mq-flag" aria-label="Flag question">
+                <img src="assets/icons/flag-03.svg" alt="" style="width:12.168px;height:13.5px;max-width:none;"/>
+              </button>
+            </div>
+            <p class="mq-q-text" id="mq-q-text"></p>
+          </div>
+
+          <div class="mq-options" id="mq-options"></div>
+
+          <p class="mq-q-hint-text" id="mq-q-hint">SELECT AN ANSWER TO CONTINUE</p>
+
+        </div>
+
+        <footer class="mq-q-bnb">
+          <button class="mq-next-btn" type="button" id="mq-next">
+            Next <img src="assets/icons/arrow-right-02.svg" alt=""/>
+          </button>
+        </footer>
+
+
+      </div>
+
+      <!-- ════════════════════════════════════════
+           VIEW 3 — RESULT
+      ════════════════════════════════════════ -->
+      <div class="mq-view" id="mq-result">
+
+        <div class="mq-result-top" id="mq-result-top">
+          <div class="mq-result-nav">
+            <div class="mq-result-status">
+              <span class="mq-result-status-main" id="mq-result-main">Module Quiz</span>
+              <span class="mq-result-status-sub" id="mq-result-sub">MODULE FAILED.</span>
+            </div>
+            <button class="mq-result-close" type="button" id="mq-result-close" aria-label="Close">
+              <img src="assets/icons/cancel-01.svg" alt="" style="width:12px;height:12px;max-width:none;"/>
+            </button>
+          </div>
+          <div class="mq-result-header">
+            <div class="mq-result-headline">
+              <h2 id="mq-result-headline">Keep Practising</h2>
+              <p id="mq-result-tagline">Review the explanations below and retake to improve.</p>
+            </div>
+            <div class="mq-score-ring" id="mq-score-ring">
+              <svg viewBox="0 0 108 108" width="107.6" height="107.6">
+                <circle cx="54" cy="54" r="44" fill="none" stroke="#fecdd3" stroke-width="8" id="mq-ring-track"/>
+                <circle cx="54" cy="54" r="44" fill="none" stroke="#fb7185" stroke-width="8" stroke-linecap="round"
+                  stroke-dasharray="276.46" stroke-dashoffset="276.46"
+                  transform="rotate(-90 54 54)" id="mq-ring-arc"/>
+              </svg>
+              <span class="mq-score-pct" id="mq-score-pct">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mq-review-sheet" id="mq-review-list"></div>
+
+        <footer class="mq-result-bnb">
+          <div class="mq-struggle-banner" id="mq-struggle-banner" hidden>
+            <img src="assets/icons/information-circle-20.svg" alt="" style="width:17.2px;height:17.2px;display:block;max-width:none;flex-shrink:0;margin-top:1px;"/>
+            <p id="mq-struggle-text">You can continue to the mock exam, but we strongly recommend revisiting the module material first.</p>
+          </div>
+          <button class="mq-result-btn" type="button" id="mq-result-cta">
+            Retake Quiz <img src="assets/icons/arrow-right-02.svg" alt=""/>
+          </button>
+          <button class="mq-continue-anyway-btn" type="button" id="mq-continue-anyway" hidden>
+            Continue to Mock Exam Anyway
+          </button>
+        </footer>
+
+      </div>
+
+      <div class="home-ind"><div class="home-bar"></div></div>
+
+      <!-- ── Question Navigator Overlay + Sheet (global, on #mq root) ── -->
+      <div class="mq-nav-overlay" id="mq-nav-overlay" aria-hidden="true"></div>
+      <div class="mq-nav-sheet" id="mq-nav-sheet" aria-hidden="true" role="dialog" aria-label="Question Navigator">
+        <div class="mq-nav-sheet-inner">
+          <div class="mq-sheet-handle-row"><div class="mq-sheet-handle"></div></div>
+          <div class="mq-sheet-header">
+            <div class="mq-sheet-header-left">
+              <div class="mq-sheet-icon">
+                <img src="assets/icons/menu-01.svg" alt="" style="width:13.5px;height:12px;display:block;max-width:none;"/>
+              </div>
+              <div class="mq-sheet-header-text">
+                <p class="mq-sheet-title">Question Navigator</p>
+                <p class="mq-sheet-subtitle">Jump to specific item to review</p>
+              </div>
+            </div>
+            <button class="mq-sheet-close-x" type="button" id="mq-close-nav-x" aria-label="Close">
+              <img src="assets/icons/cancel-01.svg" alt="" style="width:12px;height:12px;display:block;max-width:none;"/>
+            </button>
+          </div>
+          <div class="mq-sheet-divider"></div>
+          <div class="mq-nav-grid-wrap">
+            <div class="mq-nav-grid" id="mq-nav-grid"></div>
+            <div class="mq-nav-grid-fade"></div>
+          </div>
+          <div class="mq-nav-sheet-footer">
+            <div class="mq-nav-legend">
+              <div class="mq-legend-item"><div class="mq-legend-dot answered"></div><span class="mq-legend-label">Answered</span></div>
+              <div class="mq-legend-item"><div class="mq-legend-dot flagged"></div><span class="mq-legend-label">Flagged</span></div>
+              <div class="mq-legend-item"><div class="mq-legend-dot current"></div><span class="mq-legend-label">Current</span></div>
+            </div>
+            <button class="mq-close-nav-btn" type="button" id="mq-close-nav">Close Navigator</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+  var PASS_THRESHOLD = 0.70;
+  var CIRCUMFERENCE = 276.46;
+
+  var QUESTIONS = [
+    {
+      q: 'A change manager discovers that key stakeholders are disengaged midway through a change initiative. What is the BEST first action?',
+      opts: ['Escalate to the project sponsor immediately', 'Conduct stakeholder re-engagement meetings to understand their concerns', 'Proceed with the plan and document disengagement as a risk', 'Delay the initiative until all stakeholders are re-engaged'],
+      correct: 1, cat: 'People'
+    },
+    {
+      q: 'Which activity is MOST important during the Change Impact Assessment phase?',
+      opts: ['Developing the training plan', 'Identifying affected groups and the degree of change they will experience', 'Creating communication messages', 'Defining the project governance structure'],
+      correct: 1, cat: 'Process'
+    },
+    {
+      q: 'A sponsor is not visibly supporting the change initiative. According to CCMP best practices, what should the change manager do FIRST?',
+      opts: ['Brief the project team and ask them to manage upward', 'Coach the sponsor on the critical role of active and visible sponsorship', 'Communicate the change without sponsor involvement', 'Escalate to the PMO for sponsor replacement'],
+      correct: 1, cat: 'People'
+    },
+    {
+      q: 'Which of the following BEST describes a resistance management plan?',
+      opts: ['A schedule for delivering training to all impacted employees', 'A document that identifies anticipated sources of resistance and planned responses', 'A communications calendar for change announcements', 'A risk register entry for project delays'],
+      correct: 1, cat: 'Process'
+    },
+    {
+      q: 'What is the PRIMARY purpose of a change readiness assessment?',
+      opts: ['To measure employee satisfaction with current processes', 'To evaluate the organisation\'s capacity and willingness to accept the change', 'To determine how many training hours employees need', 'To establish the project timeline milestones'],
+      correct: 1, cat: 'Business'
+    },
+    {
+      q: 'During stakeholder analysis, a group is identified as having HIGH power but LOW interest. What is the recommended engagement strategy?',
+      opts: ['Manage closely with frequent updates', 'Involve deeply in all decision-making', 'Keep satisfied with periodic high-level communications', 'Monitor with minimal direct contact'],
+      correct: 2, cat: 'People'
+    },
+    {
+      q: 'A change manager is completing a post-implementation review. Which metric BEST indicates sustained adoption?',
+      opts: ['Number of training sessions completed', 'Percentage of employees who attended launch events', 'Proficiency levels measured 90 days after go-live', 'Volume of support tickets raised at launch'],
+      correct: 2, cat: 'Business'
+    },
+    {
+      q: 'Which CCMP knowledge area focuses on the organisational and human factors that influence how change is accepted?',
+      opts: ['Change Strategy', 'Change Management Planning', 'Facilitating Change', 'People-Side Change Management'],
+      correct: 3, cat: 'People'
+    },
+    {
+      q: 'A project team skips the change management planning phase to accelerate delivery. What is the MOST likely consequence?',
+      opts: ['Reduced project budget consumption', 'Lower employee resistance due to speed', 'Inadequate adoption and benefits not realised', 'Improved stakeholder engagement scores'],
+      correct: 2, cat: 'Process'
+    },
+    {
+      q: 'When developing a change management strategy, what is the MOST critical input?',
+      opts: ['The project manager\'s experience level', 'Organisational attributes and change history', 'The number of impacted employees', 'Available budget for training'],
+      correct: 1, cat: 'Business'
+    },
+    {
+      q: 'A middle manager is actively undermining the change initiative. Which approach is MOST appropriate?',
+      opts: ['Bypass the manager and communicate directly with their team', 'Engage the manager privately to understand concerns and involve them as a change advocate', 'Report the manager to HR for non-compliance', 'Remove the manager from the affected team'],
+      correct: 1, cat: 'People'
+    },
+    {
+      q: 'Which tool BEST helps visualise the magnitude of change for different employee groups?',
+      opts: ['Gantt chart', 'Change impact map / heat map', 'Risk register', 'RACI matrix'],
+      correct: 1, cat: 'Process'
+    },
+    {
+      q: 'According to change management best practices, what is the MOST effective communication channel for delivering sensitive change messages to frontline employees?',
+      opts: ['Company-wide email from the CEO', 'A direct conversation with their immediate supervisor', 'An intranet news article', 'A town hall webcast'],
+      correct: 1, cat: 'People'
+    },
+    {
+      q: 'The ADKAR model represents which type of framework?',
+      opts: ['A project management lifecycle', 'An individual change framework for achieving successful outcomes', 'A training design model', 'An organisational change governance structure'],
+      correct: 1, cat: 'Business'
+    },
+    {
+      q: 'What does the "R" in ADKAR stand for?',
+      opts: ['Readiness', 'Reinforcement', 'Resilience', 'Responsibility'],
+      correct: 1, cat: 'Business'
+    },
+    {
+      q: 'A change initiative has high complexity and significant organisational impact. What is the recommended change management resourcing approach?',
+      opts: ['Assign change management tasks to the project manager', 'Assign a dedicated change management team with dedicated resources', 'Delegate change management to department heads', 'Outsource all change management activities to an external firm'],
+      correct: 1, cat: 'Process'
+    },
+    {
+      q: 'Which factor is MOST critical when building a case for change?',
+      opts: ['Providing detailed technical specifications', 'Clearly articulating the business case and the cost of not changing', 'Describing the change management methodology to be used', 'Listing all project team members and their roles'],
+      correct: 1, cat: 'Business'
+    },
+    {
+      q: 'Reinforcement activities after a change is implemented primarily aim to:',
+      opts: ['Close the project and free up resources', 'Celebrate early adopters only', 'Sustain and embed the change by preventing regression to old behaviours', 'Reduce training costs over time'],
+      correct: 2, cat: 'Process'
+    },
+    {
+      q: 'A change manager identifies that a key impacted group lacks awareness of why the change is happening. In the ADKAR model, which element needs attention?',
+      opts: ['Desire', 'Knowledge', 'Awareness', 'Ability'],
+      correct: 2, cat: 'Business'
+    },
+    {
+      q: 'What is the PRIMARY role of a change agent network?',
+      opts: ['To conduct technical testing of the new system', 'To extend the reach of change management activities and serve as local change champions', 'To approve budget allocations for change management', 'To replace the project manager during high-risk phases'],
+      correct: 1, cat: 'People'
+    },
+    {
+      q: 'Which of the following is a leading indicator of change readiness BEFORE go-live?',
+      opts: ['Post-implementation productivity scores', 'Employee proficiency test results from training', 'Number of support tickets after launch', 'Monthly revenue reports'],
+      correct: 1, cat: 'Process'
+    },
+    {
+      q: 'When should change management activities begin on a project?',
+      opts: ['Only during the implementation phase', 'At the start of the project, aligned with project initiation', 'After training has been completed', 'When resistance is first identified'],
+      correct: 1, cat: 'Process'
+    },
+    {
+      q: 'A change manager wants to assess the organisational culture before designing the change strategy. Which tool is MOST appropriate?',
+      opts: ['Work breakdown structure (WBS)', 'Organisational culture assessment instrument (OCAI) or cultural survey', 'Earned value management (EVM)', 'Network diagram'],
+      correct: 1, cat: 'Business'
+    },
+    {
+      q: 'Prosci\'s research consistently shows the PRIMARY cause of change failure is:',
+      opts: ['Poor technical execution', 'Insufficient project budget', 'Inadequate change management and lack of people-side focus', 'Incorrect project governance structure'],
+      correct: 2, cat: 'Business'
+    },
+    {
+      q: 'A change manager is developing a training needs analysis. What is the PRIMARY output?',
+      opts: ['A list of training vendors available', 'A schedule of all project milestones', 'A gap analysis identifying knowledge and skill gaps for impacted roles', 'A roster of employees who are resistant to change'],
+      correct: 2, cat: 'Process'
+    },
+    {
+      q: 'Which of the following actions BEST demonstrates active and visible sponsorship?',
+      opts: ['Approving the change management budget', 'Sending a single email announcement about the change', 'Personally communicating the change vision and participating in change activities', 'Delegating all change decisions to the project manager'],
+      correct: 2, cat: 'People'
+    },
+    {
+      q: 'When facilitating change, which of the following is MOST important for ensuring employee adoption?',
+      opts: ['Issuing a mandatory compliance policy', 'Providing employees with the knowledge and ability to perform in the new way', 'Reducing the project timeline to limit disruption', 'Limiting communication to avoid information overload'],
+      correct: 1, cat: 'Process'
+    },
+    {
+      q: 'The primary difference between change management and project management is:',
+      opts: ['Change management focuses on cost control; project management focuses on people', 'Change management focuses on the people side of change; project management focuses on the technical side', 'Change management replaces project management on complex initiatives', 'Project management is used only for IT projects'],
+      correct: 1, cat: 'Business'
+    },
+    {
+      q: 'A change manager observes that impacted employees are reverting to old behaviours three months after go-live. What is the MOST appropriate response?',
+      opts: ['Issue a formal warning to non-compliant employees', 'Conduct additional reinforcement activities, including performance support and recognition', 'Delay further change initiatives until compliance improves', 'Archive the project and declare it complete'],
+      correct: 1, cat: 'Process'
+    },
+    {
+      q: 'Which CCMP competency involves evaluating whether the change management effort delivered the intended outcomes?',
+      opts: ['Change Strategy Development', 'Measuring Change Effectiveness', 'Stakeholder Engagement Planning', 'Communication Execution'],
+      correct: 1, cat: 'Business'
+    }
+  ];
+
+  var currentQ = 0;
+  var selectedThisQ = -1;
+  var answers = new Array(QUESTIONS.length).fill(-1);
+  var flagged = new Array(QUESTIONS.length).fill(false);
+  var failCount = 0;
+
+  /* ── DOM refs ── */
+  var viewIntro    = document.getElementById('mq-intro');
+  var viewQuestion = document.getElementById('mq-question');
+  var viewResult   = document.getElementById('mq-result');
+  var qNavLabel    = document.getElementById('mq-q-nav-label');
+  var qLabelEl     = document.getElementById('mq-q-label');
+  var qTextEl      = document.getElementById('mq-q-text');
+  var optionsEl    = document.getElementById('mq-options');
+  var hintEl       = document.getElementById('mq-q-hint');
+  var nextBtn      = document.getElementById('mq-next');
+  var navSheet     = document.getElementById('mq-nav-sheet');
+  var navOverlay   = document.getElementById('mq-nav-overlay');
+  var navGrid      = document.getElementById('mq-nav-grid');
+  var resultTop    = document.getElementById('mq-result-top');
+  var ringArc      = document.getElementById('mq-ring-arc');
+  var ringTrack    = document.getElementById('mq-ring-track');
+  var scorePct     = document.getElementById('mq-score-pct');
+  var reviewList   = document.getElementById('mq-review-list');
+  var resultMain   = document.getElementById('mq-result-main');
+  var resultSub    = document.getElementById('mq-result-sub');
+  var resultHead   = document.getElementById('mq-result-headline');
+  var resultTag    = document.getElementById('mq-result-tagline');
+  var resultCta    = document.getElementById('mq-result-cta');
+  var flagBtn      = document.getElementById('mq-flag');
+
+  function showView(v) {
+    [viewIntro, viewQuestion, viewResult].forEach(function(el){ el.classList.remove('active'); });
+    v.classList.add('active');
+    if (v !== viewResult) {
+      document.getElementById('mq').classList.remove('result-fail', 'result-pass');
+    }
+  }
+
+  /* ── Load question ── */
+  function loadQuestion(idx) {
+    var q = QUESTIONS[idx];
+    selectedThisQ = answers[idx];
+
+    qNavLabel.textContent = 'QUESTION ' + (idx + 1) + ' / ' + QUESTIONS.length;
+    qLabelEl.textContent  = 'QUESTION ' + (idx + 1);
+    qTextEl.textContent   = q.q;
+
+    flagBtn.classList.toggle('flagged', flagged[idx]);
+
+    optionsEl.innerHTML = '';
+    q.opts.forEach(function(opt, i) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mq-option' + (selectedThisQ === i ? ' selected' : '');
+      var letters = ['A', 'B', 'C', 'D'];
+      btn.innerHTML =
+        '<span class="mq-radio"><span class="mq-radio-dot"></span></span>' +
+        '<span class="mq-opt-letter">' + letters[i] + '.</span>' +
+        '<span class="mq-opt-text">' + opt + '</span>';
+      btn.addEventListener('click', function () {
+        selectedThisQ = i;
+        answers[idx] = i;
+        optionsEl.querySelectorAll('.mq-option').forEach(function(o){ o.classList.remove('selected'); });
+        btn.classList.add('selected');
+        hintEl.style.display = 'none';
+        var lbl = (currentQ === QUESTIONS.length - 1) ? 'Submit' : 'Next';
+        nextBtn.innerHTML = lbl + ' <img src="assets/icons/arrow-right-02.svg" alt=""/>';
+        nextBtn.classList.add('visible');
+        updateNavGrid();
+      });
+      optionsEl.appendChild(btn);
+    });
+
+    hintEl.style.display = selectedThisQ === -1 ? '' : 'none';
+    if (selectedThisQ !== -1) {
+      var lbl = (idx === QUESTIONS.length - 1) ? 'Submit' : 'Next';
+      nextBtn.innerHTML = lbl + ' <img src="assets/icons/arrow-right-02.svg" alt=""/>';
+      nextBtn.classList.add('visible');
+    } else {
+      nextBtn.classList.remove('visible');
+    }
+
+    updateNavGrid();
+    /* Scroll question card to top */
+    var scroll = document.querySelector('.mq-q-scroll');
+    if (scroll) scroll.scrollTop = 0;
+  }
+
+  /* ── Navigator grid ── */
+  function buildNavGrid() {
+    navGrid.innerHTML = '';
+    for (var i = 0; i < QUESTIONS.length; i++) {
+      (function(idx){
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.dataset.idx = idx;
+        btn.innerHTML = (idx + 1 < 10 ? '0' : '') + (idx + 1);
+        btn.addEventListener('click', function(){
+          closeNavSheet();
+          currentQ = idx;
+          loadQuestion(currentQ);
+        });
+        navGrid.appendChild(btn);
+      })(i);
+    }
+  }
+
+  function updateNavGrid() {
+    var items = navGrid.querySelectorAll('button');
+    items.forEach(function(btn, idx) {
+      btn.className = 'mq-nav-item';
+      if (answers[idx] !== -1) btn.classList.add('answered');
+      if (flagged[idx]) btn.classList.add('flagged');
+      if (idx === currentQ) btn.classList.add('current');
+    });
+  }
+
+  /* ── Sheet open/close ── */
+  function openNavSheet() {
+    navSheet.setAttribute('aria-hidden', 'false');
+    navOverlay.setAttribute('aria-hidden', 'false');
+    updateNavGrid();
+  }
+  function closeNavSheet() {
+    navSheet.setAttribute('aria-hidden', 'true');
+    navOverlay.setAttribute('aria-hidden', 'true');
+  }
+
+  document.getElementById('mq-open-nav').addEventListener('click', openNavSheet);
+  document.getElementById('mq-close-nav').addEventListener('click', closeNavSheet);
+  document.getElementById('mq-close-nav-x').addEventListener('click', closeNavSheet);
+  navOverlay.addEventListener('click', closeNavSheet);
+
+  /* ── Flag toggle ── */
+  flagBtn.addEventListener('click', function() {
+    flagged[currentQ] = !flagged[currentQ];
+    flagBtn.classList.toggle('flagged', flagged[currentQ]);
+    updateNavGrid();
+  });
+
+  /* ── Next / Submit ── */
+  document.getElementById('mq-next').addEventListener('click', function () {
+    if (selectedThisQ === -1) return;
+    if (currentQ < QUESTIONS.length - 1) {
+      currentQ++;
+      loadQuestion(currentQ);
+    } else {
+      showResult();
+    }
+  });
+
+  /* ── Result ── */
+  function showResult() {
+    var correct = 0;
+    for (var i = 0; i < QUESTIONS.length; i++) {
+      if (answers[i] === QUESTIONS[i].correct) correct++;
+    }
+    var pct = correct / QUESTIONS.length;
+    var passed = pct >= PASS_THRESHOLD;
+
+    /* Ring animation */
+    var offset = CIRCUMFERENCE * (1 - pct);
+    setTimeout(function() { ringArc.style.strokeDashoffset = offset; }, 60);
+    scorePct.textContent = Math.round(pct * 100) + '%';
+
+    if (!passed) { failCount++; } else { failCount = 0; }
+
+    var mqEl = document.getElementById('mq');
+    mqEl.classList.toggle('result-fail', !passed);
+    mqEl.classList.toggle('result-pass', passed);
+
+    if (passed) {
+      resultTop.classList.add('pass');
+      ringTrack.setAttribute('stroke', '#bbf7d0');
+      resultSub.textContent = 'PASSED';
+      resultHead.textContent = 'Module Complete!';
+      resultTag.textContent = 'You\'ve demonstrated strong change management proficiency.';
+      resultCta.innerHTML = 'Continue <img src="assets/icons/arrow-right-02.svg" alt=""/>';
+    } else {
+      resultTop.classList.remove('pass');
+      ringTrack.setAttribute('stroke', '#fecdd3');
+      resultSub.textContent = failCount >= 2 ? 'ATTEMPT ' + failCount + ' — MODULE FAILED.' : 'MODULE FAILED.';
+      resultHead.textContent = failCount >= 3 ? 'Still Struggling?' : 'Keep Practising';
+      var failTag = failCount === 1
+        ? 'Review the explanations below and retake to improve.'
+        : failCount === 2
+          ? 'Study the areas you missed carefully before your next attempt.'
+          : 'You\'ve attempted this ' + failCount + ' times. Review carefully, or continue to the mock exam at your own risk.';
+      resultTag.textContent = failTag;
+      resultCta.innerHTML = 'Retake Quiz <img src="assets/icons/arrow-right-02.svg" alt=""/>';
+    }
+
+    /* Struggle banner + Continue Anyway */
+    var showStruggle = !passed && failCount >= 3;
+    document.getElementById('mq-struggle-banner').hidden = !showStruggle;
+    document.getElementById('mq-continue-anyway').hidden = !showStruggle;
+
+    buildReview(passed);
+    showView(viewResult);
+
+    /* Reset ring to 0 first, then animate in */
+    ringArc.style.transition = 'none';
+    ringArc.style.strokeDashoffset = CIRCUMFERENCE;
+    setTimeout(function() {
+      ringArc.style.transition = 'stroke-dashoffset 800ms cubic-bezier(0.22,1,0.36,1), stroke 300ms';
+      ringArc.style.strokeDashoffset = offset;
+    }, 80);
+  }
+
+  /* ── Build review cards ── */
+  function buildReview(passed) {
+    var letters = ['A', 'B', 'C', 'D'];
+    reviewList.innerHTML = '';
+    for (var i = 0; i < QUESTIONS.length; i++) {
+      var q = QUESTIONS[i];
+      var userAns = answers[i];
+      var isCorrect = userAns === q.correct;
+
+      var card = document.createElement('div');
+      card.className = 'mq-review-card';
+
+      /* head */
+      var iconClass = isCorrect ? 'correct' : 'wrong';
+      var iconSrc   = isCorrect ? 'assets/icons/tick-02-20.svg' : 'assets/icons/cancel-01.svg';
+      var tagClass  = isCorrect ? 'correct' : 'wrong';
+
+      card.innerHTML =
+        '<div class="mq-review-card-head">' +
+          '<div class="mq-review-icon ' + iconClass + '"><img src="' + iconSrc + '" alt=""/></div>' +
+          '<div class="mq-review-meta">' +
+            '<span class="mq-review-q-label">Question ' + (i + 1) + '</span>' +
+            '<span class="mq-category-tag ' + tagClass + '">' + q.cat + '</span>' +
+          '</div>' +
+          '<button class="mq-review-expand" type="button" aria-label="Expand"><svg width="12" height="7" viewBox="0 0 12 7" fill="none"><path d="M1 1l5 5 5-5" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
+        '</div>' +
+        '<div class="mq-review-divider"></div>' +
+        '<p class="mq-review-q-text">' + q.q + '</p>' +
+        '<div class="mq-review-body"></div>';
+
+      /* expandable body */
+      var body = card.querySelector('.mq-review-body');
+      q.opts.forEach(function(opt, j) {
+        var optDiv = document.createElement('div');
+        optDiv.className = 'mq-review-opt' + (j === q.correct ? ' correct-choice' : '');
+        var row = '<div class="mq-review-opt-row"><span class="letter">' + letters[j] + '.</span> ' + opt + '</div>';
+        if (j === q.correct) {
+          row += '<div class="mq-review-opt-correct-row"><span>Correct</span><img src="assets/icons/tick-02-20.svg" alt=""/></div>';
+        }
+        optDiv.innerHTML = row;
+        body.appendChild(optDiv);
+      });
+      /* explanation */
+      var expDiv = document.createElement('div');
+      expDiv.className = 'mq-explanation';
+      expDiv.innerHTML = '<p class="mq-explanation-title">Explanation</p><p class="mq-explanation-body">The correct answer for this question follows established CCMP change management principles. Review the relevant knowledge area for deeper understanding.</p>';
+      body.appendChild(expDiv);
+
+      /* expand toggle */
+      var expandBtn = card.querySelector('.mq-review-expand');
+      expandBtn.addEventListener('click', function() {
+        var c = this.closest('.mq-review-card');
+        var isOpen = c.classList.toggle('open');
+        this.classList.toggle('open', isOpen);
+      });
+
+      reviewList.appendChild(card);
+    }
+  }
+
+  /* ── Result CTA ── */
+  document.getElementById('mq-result-cta').addEventListener('click', function () {
+    if (resultTop.classList.contains('pass')) {
+      window.location.href = new window.URL('lms/mock-exam.html', document.baseURI).href;
+    } else {
+      /* Reset and retake */
+      answers = new Array(QUESTIONS.length).fill(-1);
+      flagged = new Array(QUESTIONS.length).fill(false);
+      ringArc.style.transition = 'none';
+      ringArc.style.strokeDashoffset = CIRCUMFERENCE;
+      resultTop.classList.remove('pass');
+      currentQ = 0;
+      showView(viewQuestion);
+      loadQuestion(0);
+    }
+  });
+
+  document.getElementById('mq-result-close').addEventListener('click', function () {
+    showView(viewIntro);
+  });
+
+  document.getElementById('mq-continue-anyway').addEventListener('click', function () {
+    window.location.href = new window.URL('lms/mock-exam.html', document.baseURI).href;
+  });
+
+  /* ── Start ── */
+  document.getElementById('mq-start').addEventListener('click', function () {
+    answers = new Array(QUESTIONS.length).fill(-1);
+    flagged = new Array(QUESTIONS.length).fill(false);
+    currentQ = 0;
+    buildNavGrid();
+    showView(viewQuestion);
+    loadQuestion(0);
+  });
+
+  /* ── Back / Close on question view ── */
+  document.getElementById('mq-q-close').addEventListener('click', function () {
+    showView(viewIntro);
+  });
+
+  /* ── Intro nav ── */
+  document.getElementById('mq-back').addEventListener('click', function () {
+    window.location.href = new window.URL('lms/lesson-quiz.html', document.baseURI).href;
+  });
+  document.getElementById('mq-help').addEventListener('click', function () {
+    window.location.href = new window.URL('support/help-support.html?from=module-quiz', document.baseURI).href;
+  });
+
+  /* Pre-build nav grid */
+  buildNavGrid();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <base href="../" />
+  <title>Blueprint Builder — CertSprints</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #f1f5f9; display: flex; justify-content: center; align-items: center; font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; -webkit-tap-highlight-color: transparent; }
+    img { display: block; }
+
+    .bb {
+      position: relative;
+      width: 390px;
+      height: 844px;
+      max-width: 100vw;
+      max-height: 100vh;
+      overflow: hidden;
+      border-radius: 0;
+      background: #0070e8;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+    }
+
+    /* Chevron pattern — same layer positioning as Mindset Sprint / Narrative Quest */
+    .bb-bg {
+      position: absolute;
+      top: -0.24%;
+      left: -58.63%;
+      right: -58.63%;
+      bottom: 0;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .bb-bg img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .bb-screen { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity 240ms ease; padding-top: 46px; box-sizing: border-box; }
+    .bb-screen.active { opacity: 1; pointer-events: all; }
+    .bb-screen > .bb-view { flex: 1; min-height: 0; }
+
+    /* Nav — Mindset Sprint grid */
+    .bb-nav { display: grid; grid-template-columns: 40px 1fr 40px; align-items: center; padding: 8px 20px 12px; flex-shrink: 0; }
+    .bb-nav-btn { width: 40px; height: 40px; border-radius: 999px; background: rgba(3,5,7,0.20); display: flex; align-items: center; justify-content: center; padding: 8px; }
+    .bb-nav-btn:active { background: rgba(3,5,7,0.35); }
+    .bb-nav-btn img { display: block; }
+    .bb-nav-btn .bb-back-icon { width: 24px; height: 24px; filter: brightness(0) invert(1); }
+    .bb-nav-btn .vol-icon { width: 20px; height: 16px; object-fit: contain; filter: brightness(0) invert(1); }
+    .bb-nav-label { margin: 0; text-align: center; font-size: 12px; font-weight: 400; line-height: 1.6; color: #fff; text-transform: uppercase; }
+
+    /* Bottom bar — flat like Mindset Sprint */
+    .bb-bottom-bar { flex-shrink: 0; padding: 0 24px 8px; }
+    .bb-screen#s-intro .bb-bottom-bar,
+    .bb-screen#s-how .bb-bottom-bar { padding-bottom: 28px; }
+    .bb-btn-primary { width: 100%; min-height: 48px; padding: 12px 20px; background: #f1f5f9; border-radius: 4px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 14px; font-weight: 600; line-height: 20px; letter-spacing: -0.084px; color: #007bff; border: none; transition: transform 100ms; }
+    .bb-btn-primary:active { transform: scale(0.97); }
+
+    /* ══ INTRO — Mindset Sprint layout ═════════════ */
+    .bb-view { display: flex; flex-direction: column; flex: 1; min-height: 0; height: 100%; }
+    .bb-scroll { flex: 1; overflow-y: auto; padding: 0 20px 12px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .bb-scroll::-webkit-scrollbar { display: none; }
+    .bb-intro-head { text-align: center; margin-bottom: 20px; padding-top: 40px; }
+    .bb-intro-title { margin: 0 0 4px; font-family: Montserrat, Inter, sans-serif; font-size: 30px; font-weight: 700; line-height: 38px; letter-spacing: -0.39px; color: #fff; }
+    .bb-intro-title span { color: #ffc83d; }
+    .bb-intro-kicker { margin: 0; font-size: 14px; font-weight: 500; font-style: italic; line-height: 16px; letter-spacing: -0.07px; color: #e2e8f0; }
+    .bb-intro-hero { display: block; width: 100%; max-width: 292px; height: auto; margin: 0 auto 20px; object-fit: contain; }
+    .bb-intro-desc { margin: 0 auto 20px; max-width: 252px; text-align: center; font-size: 14px; line-height: 1.6; color: #f1f5f9; }
+    .tip-box { background: #00346b; border-radius: 4px; padding: 16px; margin-bottom: 8px; }
+    .tip-label { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .tip-label img { width: 20px; height: 20px; flex: 0 0 20px; object-fit: contain; filter: brightness(0) invert(1); }
+    .tip-label span { font-size: 10px; font-weight: 800; color: #fff; letter-spacing: 1px; text-transform: uppercase; }
+    .tip-body { margin: 0; font-size: 12px; font-weight: 600; line-height: 16px; color: #e2e8f0; }
+    .tip-hl { color: #ffc83d; font-weight: 700; }
+
+    /* ══ HOW IT WORKS ═══════════════════════════════ */
+    .how-kicker { margin: 20px 0 4px; font-size: 14px; font-weight: 500; letter-spacing: -0.07px; color: #e2e8f0; text-transform: uppercase; }
+    .how-kicker span { color: #ffc83d; }
+    .how-title { margin: 0; font-size: 24px; font-weight: 700; line-height: 32px; letter-spacing: -0.288px; color: #fff; }
+    .how-sub { margin: 0 0 16px; font-size: 14px; line-height: 1.6; color: #f1f5f9; }
+    .how-card { background: #0057b5; border-radius: 4px; padding: 24px 16px; margin-bottom: 16px; display: flex; flex-direction: column; gap: 16px; }
+    .how-card-head { display: flex; align-items: center; gap: 10px; }
+    .how-card-head img { width: 20px; height: 20px; flex: 0 0 20px; object-fit: contain; filter: brightness(0) invert(1); }
+    .how-card-head span { font-size: 10px; font-weight: 800; color: #fff; letter-spacing: 1px; text-transform: uppercase; }
+    .how-step { display: flex; gap: 10px; align-items: flex-start; }
+    .how-step-icon { width: 32px; height: 32px; border-radius: 50%; background: #0070e8; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .how-step-icon img { width: 16px; height: 16px; display: block; object-fit: contain; filter: brightness(0) invert(1); }
+    .how-step-copy strong { display: block; font-size: 12px; font-weight: 600; line-height: 16px; letter-spacing: -0.06px; color: #fff; }
+    .how-step-copy p { margin: 0; font-size: 12px; color: #e2e8f0; line-height: 1.6; }
+
+    /* ══ GAMEPLAY ════════════════════════════════════ */
+    .game-body { flex: 1; display: flex; flex-direction: column; padding: 0 19px 8px; position: relative; overflow: hidden; z-index: 2; }
+    .stats-bar { background: #030507; border-radius: 10px; display: flex; flex-shrink: 0; overflow: hidden; margin-bottom: 10px; }
+    .stat-block { flex: 1; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; gap: 8px; border-right: 1px solid rgba(255,255,255,0.06); }
+    .stat-block:last-child { border-right: none; }
+    .stat-lbl { font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+    .stat-val { font-size: 14px; font-weight: 600; color: #fff; }
+    .stat-val.faults { color: #ff6b35; }
+    .integrity-wrap { width: 100%; height: 4px; background: #1e293b; border-radius: 20px; overflow: hidden; }
+    .integrity-fill { height: 100%; background: #ff6b35; border-radius: 20px; width: 0%; transition: width 400ms ease; }
+
+    .timer-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-shrink: 0; }
+
+    /* Figma exact dots: dark pill wrap, active=28×8 yellow pill, rest=8×8 white circles */
+    .dots-wrap { background: rgba(0,0,0,0.35); border-radius: 999px; padding: 4px; display: flex; align-items: center; gap: 6px; }
+    .pg-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); flex-shrink: 0; transition: all 280ms cubic-bezier(0.34,1.56,0.64,1); }
+    .pg-dot.active { width: 28px; border-radius: 999px; background: #ffc83d; }
+    .pg-dot.done  { background: rgba(255,255,255,0.75); }
+    .pg-dot.fault { background: #e11d48; }
+
+    /* Timer pill: 131×48, #030507, radius 60 */
+    .timer-pill { display: flex; align-items: center; gap: 8px; background: #030507; border-radius: 60px; padding: 6px 20px; flex-shrink: 0; transition: background 300ms; }
+    .timer-pill.danger { background: #e11d48; }
+    .timer-pill img { width: 32px; height: 32px; filter: brightness(0) invert(1); }
+    .timer-pill-text { display: flex; flex-direction: column; }
+    .timer-secs { font-size: 16px; font-weight: 700; color: #ffc83d; line-height: 22px; }
+    .timer-pill.danger .timer-secs { color: #fff; animation: bb-pulse 0.55s infinite; }
+    .timer-lbl { font-size: 10px; font-weight: 400; color: #94a3b8; line-height: 16px; }
+    .timer-pill.danger .timer-lbl { color: rgba(255,255,255,0.75); }
+    @keyframes bb-pulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    /* 2×2 zone grid */
+    .zones-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex-shrink: 0; }
+    .zone { background: rgba(255,255,255,0.22); border-radius: 24px; border: 2px dashed rgba(255,255,255,0.35); min-height: 130px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 20px; gap: 10px; position: relative; transition: background 180ms, border 180ms, transform 180ms, box-shadow 180ms; }
+    .zone.hovered { background: rgba(255,255,255,0.40); border: 2px solid rgba(255,255,255,0.7); transform: scale(1.04); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+    .zone.zone-correct { background: rgba(34,197,94,0.28); border: 2px solid #22c55e; box-shadow: 0 0 24px rgba(34,197,94,0.45); }
+    .zone.zone-wrong { background: rgba(225,29,72,0.28); border: 2px solid #e11d48; animation: zone-bump 360ms ease; }
+    @keyframes zone-bump { 0%,100%{transform:scale(1)} 35%{transform:scale(1.06)} 65%{transform:scale(0.97)} }
+    .zone-icon { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+    .zone-lbl { font-size: 14px; font-weight: 600; color: #fff; text-align: center; line-height: 1.3; padding: 0 10px; }
+
+    .drag-hint { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 4px 0; flex-shrink: 0; margin-top: 8px; }
+    .drag-hint img { width: 16px; height: 16px; filter: brightness(0) invert(1); opacity: 0.7; }
+    .drag-hint span { font-size: 12px; color: #ffc83d; }
+
+    .feedback-bar { width: 261px; height: 28px; margin: 6px auto; flex-shrink: 0; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 4px; font-size: 12px; font-weight: 700; letter-spacing: -0.06px; color: #fff; opacity: 0; pointer-events: none; transition: opacity 200ms; }
+    .feedback-bar img { width: 16px; height: 16px; display: block; flex-shrink: 0; object-fit: contain; }
+    .feedback-bar span { color: #fff; white-space: nowrap; }
+    .feedback-bar.show { opacity: 1; animation: bb-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    @keyframes bb-pop { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+    .feedback-bar.fb-ok   { background: #2ecc71; }
+    .feedback-bar.fb-bad  { background: #e11d48; }
+    .feedback-bar.fb-oops { background: #e11d48; }
+
+    /* Card slot with Figma card decorations */
+    .card-slot { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; min-height: 0; }
+    .card-wrap { position: relative; width: 305px; }
+
+    /* Decorations positioned from Figma absolute coords (relative to card left edge = frame x+23) */
+    .deco { position: absolute; pointer-events: none; }
+    .deco-sparkle-r { left: 283px; top: -28px; width: 14px; height: 17px; }
+    .deco-sparkle-l { left: -3px;  top: -24px; width: 14px; height: 17px; }
+    .deco-poly-1    { left: 265px; top: -24px; width: 10px; height: 10px; }
+    .deco-poly-2    { left: 18px;  top: -21px; width: 10px; height: 10px; }
+    .deco-poly-3    { left: 302px; top: -13px; width: 10px; height: 10px; }
+    .deco-poly-4    { left: -19px; top: -10px; width: 10px; height: 10px; }
+
+    /* ITTO card: 305×122, radius 24 */
+    .itto-card { width: 305px; background: #fff; border-radius: 24px; padding: 16px 32px; display: flex; flex-direction: column; align-items: center; gap: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.20); cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; transition: transform 340ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 200ms ease; }
+    .itto-card.dragging { cursor: grabbing; box-shadow: 0 20px 50px rgba(0,0,0,0.32); transition: box-shadow 200ms; }
+    .itto-card.card-in  { animation: card-enter 360ms cubic-bezier(0.34,1.56,0.64,1) forwards; }
+    @keyframes card-enter { from{opacity:0;transform:scale(0.86) translateY(18px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    .itto-card.flash-ok  { box-shadow: 0 0 0 3px #22c55e, 0 8px 28px rgba(34,197,94,0.30); }
+    .itto-card.flash-bad { animation: card-shake 420ms ease; }
+    @keyframes card-shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-11px) rotate(-1.5deg)} 40%{transform:translateX(11px) rotate(1.5deg)} 60%{transform:translateX(-6px)} 80%{transform:translateX(6px)} }
+    .itto-card.card-out  { opacity:0!important; transform:scale(0.88) translateY(14px)!important; transition:opacity 260ms ease,transform 260ms ease!important; }
+    .itto-badge { background: #ff6b35; border-radius: 20px; padding: 6px 16px; font-size: 10px; font-weight: 700; color: #fff; letter-spacing: 0.5px; text-transform: uppercase; }
+    .itto-name  { font-size: 18px; font-weight: 800; color: #000; text-align: center; line-height: 26px; }
+
+    #bb-confetti { position: absolute; inset: 0; pointer-events: none; z-index: 30; }
+
+    /* ══ RESULTS ════════════════════════════════════ */
+    .result-body { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 20px 19px 0; gap: 20px; overflow: hidden; }
+    .result-title { text-align: center; }
+    .result-title h2 { font-family: Montserrat, Inter, sans-serif; font-size: 30px; font-weight: 700; color: #fff; line-height: 38px; letter-spacing: -0.4px; }
+    .gold { color: #ffd500; } .red { color: #ff6b35; }
+    .result-title p { font-size: 14px; font-weight: 500; font-style: italic; color: #e2e8f0; margin-top: 4px; }
+    .result-img { width: 239px; height: 219px; object-fit: contain; flex-shrink: 0; }
+    .result-stats { width: 100%; display: flex; border-radius: 4px; overflow: hidden; flex-shrink: 0; }
+    .result-stat { flex: 1; background: #00346b; padding: 16px 8px; display: flex; flex-direction: column; align-items: center; gap: 6px; border-right: 1px solid rgba(255,255,255,0.08); }
+    .result-stat:last-child { border-right: none; }
+    .result-stat label { font-size: 10px; font-weight: 500; color: #b0d6ff; text-align: center; }
+    .result-stat img { width: 24px; height: 24px; }
+    .result-stat strong { font-size: 18px; font-weight: 700; }
+    .good { color: #2ecc71; } .bad { color: #e11d48; } .neu { color: #fff; }
+    .result-buttons { position: absolute; bottom: 24px; left: 0; right: 0; padding: 0 24px; display: flex; flex-direction: column; gap: 10px; }
+    .btn-secondary { width: 100%; height: 48px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 14px; font-weight: 600; color: #007bff; }
+    .btn-dark { width: 100%; height: 48px; background: #030507; border-radius: 4px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 14px; font-weight: 600; color: #fff; }
+  </style>
+</head>
+<body>
+<div class="bb" id="bb-frame">
+  <div class="bb-bg" aria-hidden="true"><img src="assets/mindset-sprint/bg-pattern-layer.svg" alt=""/></div>
+  <canvas id="bb-confetti" aria-hidden="true"></canvas>
+
+  <!-- INTRO -->
+  <div class="bb-screen active" id="s-intro">
+    <div class="bb-view">
+      <nav class="bb-nav">
+        <button class="bb-nav-btn" onclick="goBack()"><img class="bb-back-icon" src="assets/icons/arrow-left-02.svg" alt="" width="24" height="24"/></button>
+        <p class="bb-nav-label">Practice Games</p>
+        <button class="bb-nav-btn" onclick="toggleSound()"><img class="vol-icon" src="assets/mindset-sprint/icons/volume-high.svg" alt="" width="20" height="16"/></button>
+      </nav>
+      <div class="bb-scroll">
+        <div class="bb-intro-head">
+          <h1 class="bb-intro-title">Blueprint <span>Builder</span></h1>
+          <p class="bb-intro-kicker">Build the framework from memory</p>
+        </div>
+        <img class="bb-intro-hero" src="assets/blueprint-builder/hero.png" alt="Blueprint Builder"/>
+        <p class="bb-intro-desc">Engineer the framework for project success. Weld ITTO components to the blueprint to solidify your mastery.</p>
+        <div class="tip-box">
+          <div class="tip-label"><img src="assets/mindset-sprint/icons/bulb.svg" alt="" width="20" height="20"/><span>Expert Tip</span></div>
+          <p class="tip-body"><span class="tip-hl">Inputs</span> feed the process, <span class="tip-hl">Tools</span> transform the data, and <span class="tip-hl">Outputs</span> are the final products.</p>
+        </div>
+      </div>
+      <div class="bb-bottom-bar">
+        <button class="bb-btn-primary" onclick="showScreen('s-how')">Build Blueprint <img src="assets/games/blockchain.svg" alt="" width="20" height="20"/></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="bb-screen" id="s-how">
+    <div class="bb-view">
+      <nav class="bb-nav">
+        <button class="bb-nav-btn" onclick="showScreen('s-intro')"><img class="bb-back-icon" src="assets/icons/arrow-left-02.svg" alt="" width="24" height="24"/></button>
+        <p class="bb-nav-label">Practice Games</p>
+        <button class="bb-nav-btn" onclick="toggleSound()"><img class="vol-icon" src="assets/mindset-sprint/icons/volume-high.svg" alt="" width="20" height="16"/></button>
+      </nav>
+      <div class="bb-scroll">
+        <p class="how-kicker">Blueprint <span>Builder</span></p>
+        <h2 class="how-title">How it works</h2>
+        <p class="how-sub">Learn the rules before you start.</p>
+        <div class="how-card">
+          <div class="how-card-head"><img src="assets/mindset-sprint/icons/bulb.svg" alt="" width="20" height="20"/><span>How to Play</span></div>
+          <div class="how-step"><div class="how-step-icon"><img src="assets/mindset-sprint/icons/book-open.svg" alt="" width="16" height="16"/></div><div class="how-step-copy"><strong>Read the ITTO card</strong><p>Study the ITTO card carefully.</p></div></div>
+          <div class="how-step"><div class="how-step-icon"><img src="assets/mindset-sprint/icons/touch.svg" alt="" width="16" height="16"/></div><div class="how-step-copy"><strong>Drag the card to the correct ITTO option</strong><p>Move cards into the correct input, output, tools &amp; techniques or trash options.</p></div></div>
+          <div class="how-step"><div class="how-step-icon"><img src="assets/mindset-sprint/icons/timer.svg" alt="" width="16" height="16"/></div><div class="how-step-copy"><strong>Drag or swipe before time runs out</strong><p>You have 10 seconds for each card.</p></div></div>
+        </div>
+        <div class="how-card">
+          <div class="how-card-head"><img src="assets/mindset-sprint/icons/justice-scale.svg" alt="" width="20" height="20"/><span>Know the Difference</span></div>
+          <div class="how-step"><div class="how-step-icon"><img src="assets/blueprint-builder/icons/login-02.svg" alt="" width="16" height="16"/></div><div class="how-step-copy"><strong>Inputs</strong><p>What the process needs</p></div></div>
+          <div class="how-step"><div class="how-step-icon"><img src="assets/blueprint-builder/icons/wrench-01.svg" alt="" width="16" height="16"/></div><div class="how-step-copy"><strong>Tools &amp; Techniques</strong><p>How work is performed</p></div></div>
+          <div class="how-step"><div class="how-step-icon"><img src="assets/blueprint-builder/icons/file-verified.svg" alt="" width="16" height="16"/></div><div class="how-step-copy"><strong>Outputs</strong><p>What the process produces</p></div></div>
+          <div class="how-step"><div class="how-step-icon"><img src="assets/blueprint-builder/icons/delete-02.svg" alt="" width="16" height="16"/></div><div class="how-step-copy"><strong>Trash</strong><p>It doesn't belong to any of the ITTO Options</p></div></div>
+        </div>
+      </div>
+      <div class="bb-bottom-bar">
+        <button class="bb-btn-primary" onclick="startGame()"><img src="assets/mindset-sprint/icons/play-circle-blue.svg" alt="" width="20" height="20"/> Start Challenge</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAMEPLAY -->
+  <div class="bb-screen" id="s-game">
+    <nav class="bb-nav">
+      <button class="bb-nav-btn" onclick="confirmQuit()"><img class="bb-back-icon" src="assets/icons/arrow-left-02.svg" alt="" width="24" height="24"/></button>
+      <p class="bb-nav-label" id="game-nav-lbl">PROMPT 1 OF 10</p>
+      <button class="bb-nav-btn" onclick="toggleSound()"><img class="vol-icon" src="assets/mindset-sprint/icons/volume-high.svg" alt="" width="20" height="16"/></button>
+    </nav>
+    <div class="game-body">
+      <div class="stats-bar">
+        <div class="stat-block"><span class="stat-lbl">MAstery</span><span class="stat-val" id="stat-mastery">0%</span></div>
+        <div class="stat-block" style="flex:1.5"><span class="stat-lbl">INtegrity</span><div class="integrity-wrap"><div class="integrity-fill" id="integrity-fill"></div></div></div>
+        <div class="stat-block"><span class="stat-lbl">FAults</span><span class="stat-val faults" id="stat-faults">0/7</span></div>
+      </div>
+      <div class="timer-row">
+        <div class="dots-wrap" id="dots-wrap"></div>
+        <div class="timer-pill" id="timer-pill">
+          <img src="assets/logic-sniper/icon-clock.svg" alt="" width="32" height="32" style="filter:brightness(0) invert(1)"/>
+          <div class="timer-pill-text"><div class="timer-secs" id="timer-secs">10s</div><div class="timer-lbl">TIME LEFT</div></div>
+        </div>
+      </div>
+      <div class="zones-grid">
+        <div class="zone" id="zone-INPUTS"  data-zone="INPUTS"><img class="zone-icon" src="assets/blueprint-builder/zone-inputs.png" alt=""/><span class="zone-lbl">INPUTS</span></div>
+        <div class="zone" id="zone-OUTPUTS" data-zone="OUTPUTS"><img class="zone-icon" src="assets/blueprint-builder/zone-outputs.png" alt=""/><span class="zone-lbl">OUTPUTS</span></div>
+        <div class="zone" id="zone-TOOLS"   data-zone="TOOLS"><img class="zone-icon" src="assets/blueprint-builder/zone-tools.png" alt=""/><span class="zone-lbl">TOOLS &amp;<br>TECHNIQUES</span></div>
+        <div class="zone" id="zone-TRASH"   data-zone="TRASH"><img class="zone-icon" src="assets/blueprint-builder/zone-trash.png" alt=""/><span class="zone-lbl">TRASH</span></div>
+      </div>
+      <div class="drag-hint">
+        <img src="assets/mindset-sprint/icons/touchpad.svg" alt=""/>
+        <span>Drag or swipe the card below to the correct option</span>
+      </div>
+      <div class="feedback-bar" id="feedback-bar"></div>
+      <div class="card-slot">
+        <div class="card-wrap">
+          <img class="deco deco-sparkle-r" src="assets/blueprint-builder/deco-sparkle-r.svg" alt="" aria-hidden="true"/>
+          <img class="deco deco-sparkle-l" src="assets/blueprint-builder/deco-sparkle-l.svg" alt="" aria-hidden="true"/>
+          <img class="deco deco-poly-1"    src="assets/blueprint-builder/deco-poly-1.svg"    alt="" aria-hidden="true"/>
+          <img class="deco deco-poly-2"    src="assets/blueprint-builder/deco-poly-2.svg"    alt="" aria-hidden="true"/>
+          <img class="deco deco-poly-3"    src="assets/blueprint-builder/deco-poly-3.svg"    alt="" aria-hidden="true"/>
+          <img class="deco deco-poly-4"    src="assets/blueprint-builder/deco-poly-4.svg"    alt="" aria-hidden="true"/>
+          <div class="itto-card" id="itto-card">
+            <div class="itto-badge">ITTO Component</div>
+            <div class="itto-name" id="card-name">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="bb-screen" id="s-win">
+    <nav class="bb-nav">
+      <button class="bb-nav-btn" onclick="window.location.href=new window.URL('games/games.html',document.baseURI).href"><img class="bb-back-icon" src="assets/icons/arrow-left-02.svg" alt="" width="24" height="24"/></button>
+      <p class="bb-nav-label">Game Result</p>
+      <button class="bb-nav-btn" onclick="toggleSound()"><img class="vol-icon" src="assets/mindset-sprint/icons/volume-high.svg" alt="" width="20" height="16"/></button>
+    </nav>
+    <div class="result-body">
+      <div class="result-title"><h2>Mission<br><span class="gold">Complete!</span></h2><p>You hit the target and cleared the sprint.</p></div>
+      <img class="result-img" src="assets/blueprint-builder/result-success.png" alt=""/>
+      <div class="result-stats">
+        <div class="result-stat"><label>Mastery</label><img src="assets/blueprint-builder/icon-mastery.svg" alt=""/><strong class="good" id="r-mastery">—</strong></div>
+        <div class="result-stat"><label>Faults</label><img src="assets/blueprint-builder/icon-faults.svg" alt=""/><strong class="bad" id="r-faults">—</strong></div>
+        <div class="result-stat"><label>Readiness Boost</label><img src="assets/blueprint-builder/icon-boost.svg" alt=""/><strong class="neu" id="r-boost">—</strong></div>
+      </div>
+    </div>
+    <div class="result-buttons">
+      <button class="btn-secondary" onclick="startGame()"><img src="assets/logic-sniper/icon-play.svg" alt="" width="20" height="20" style="filter:brightness(0) saturate(100%) invert(27%) sepia(89%) saturate(1600%) hue-rotate(210deg)"/> Play Again</button>
+      <button class="btn-dark" onclick="window.location.href=new window.URL('games/games.html',document.baseURI).href"><img src="assets/logic-sniper/icon-gamepad.svg" alt="" width="20" height="20" style="filter:brightness(0) invert(1)"/> Back to Games</button>
+    </div>
+  </div>
+
+  <!-- FAIL -->
+  <div class="bb-screen" id="s-fail">
+    <nav class="bb-nav">
+      <button class="bb-nav-btn" onclick="window.location.href=new window.URL('games/games.html',document.baseURI).href"><img class="bb-back-icon" src="assets/icons/arrow-left-02.svg" alt="" width="24" height="24"/></button>
+      <p class="bb-nav-label">Game Result</p>
+      <button class="bb-nav-btn" onclick="toggleSound()"><img class="vol-icon" src="assets/mindset-sprint/icons/volume-high.svg" alt="" width="20" height="16"/></button>
+    </nav>
+    <div class="result-body">
+      <div class="result-title"><h2>Recalibration<br><span class="red">Required</span></h2><p>You completed the sprint,<br>but missed the target accuracy.</p></div>
+      <img class="result-img" src="assets/blueprint-builder/result-fail.png" alt=""/>
+      <div class="result-stats">
+        <div class="result-stat"><label>Mastery</label><img src="assets/blueprint-builder/icon-mastery.svg" alt=""/><strong class="good" id="f-mastery">—</strong></div>
+        <div class="result-stat"><label>Faults</label><img src="assets/blueprint-builder/icon-faults.svg" alt=""/><strong class="bad" id="f-faults">—</strong></div>
+        <div class="result-stat"><label>Readiness Boost</label><img src="assets/blueprint-builder/icon-boost.svg" alt=""/><strong class="neu" id="f-boost">—</strong></div>
+      </div>
+    </div>
+    <div class="result-buttons">
+      <button class="btn-secondary" onclick="startGame()"><img src="assets/logic-sniper/icon-play.svg" alt="" width="20" height="20" style="filter:brightness(0) saturate(100%) invert(27%) sepia(89%) saturate(1600%) hue-rotate(210deg)"/> Try Again</button>
+      <button class="btn-dark" onclick="window.location.href=new window.URL('games/games.html',document.baseURI).href"><img src="assets/logic-sniper/icon-gamepad.svg" alt="" width="20" height="20" style="filter:brightness(0) invert(1)"/> Back to Games</button>
+    </div>
+  </div>
+
+</div>
+<script>
+'use strict';
+const CARDS=[
+  {name:'Project Charter',zone:'INPUTS'},{name:'Business Case',zone:'INPUTS'},
+  {name:'Stakeholder Register',zone:'INPUTS'},{name:'Risk Register',zone:'INPUTS'},
+  {name:'Work Performance Data',zone:'INPUTS'},{name:'Requirements Documentation',zone:'INPUTS'},
+  {name:'Benefits Management Plan',zone:'INPUTS'},{name:'Lessons Learned Register',zone:'INPUTS'},
+  {name:'Change Requests',zone:'INPUTS'},{name:'Expert Judgment',zone:'TOOLS'},
+  {name:'Meetings',zone:'TOOLS'},{name:'Earned Value Analysis',zone:'TOOLS'},
+  {name:'Decomposition',zone:'TOOLS'},{name:'Rolling Wave Planning',zone:'TOOLS'},
+  {name:'Analogous Estimating',zone:'TOOLS'},{name:'Parametric Estimating',zone:'TOOLS'},
+  {name:'Variance Analysis',zone:'TOOLS'},{name:'Data Analysis',zone:'TOOLS'},
+  {name:'Monte Carlo Simulation',zone:'TOOLS'},{name:'Project Management Plan',zone:'OUTPUTS'},
+  {name:'Quality Metrics',zone:'OUTPUTS'},{name:'Work Performance Reports',zone:'OUTPUTS'},
+  {name:'Work Performance Information',zone:'OUTPUTS'},{name:'Change Log',zone:'OUTPUTS'},
+  {name:'Assumption Log',zone:'OUTPUTS'},{name:'Risk Report',zone:'OUTPUTS'},
+  {name:'Business Docs',zone:'TRASH'},{name:'Status Update',zone:'TRASH'},
+  {name:'Action Items List',zone:'TRASH'},{name:'Team Meeting Notes',zone:'TRASH'},
+];
+const SESSION=10,SECS=10,TICK=80,WIN_PCT=70,MAX_FAULTS=7;
+let G={deck:[],idx:0,correct:0,faults:0,missedCount:0,dotState:[],timeLeft:SECS,tickId:null,locked:false,cooldown:false,soundOn:true,active:false};
+let D={dragging:false,startX:0,startY:0,hoveredZone:null};
+
+/* Audio */
+let _ctx=null;
+function getCtx(){if(!_ctx)_ctx=new(window.AudioContext||window.webkitAudioContext)();if(_ctx.state==='suspended')_ctx.resume();return _ctx;}
+document.addEventListener('pointerdown',()=>{try{getCtx();}catch(e){}},{once:true});
+function note(f,d,type,v,delay,slide){if(!G.soundOn)return;try{const ctx=getCtx(),t=ctx.currentTime+(delay||0);const o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.type=type||'sine';o.frequency.setValueAtTime(f,t);if(slide)o.frequency.exponentialRampToValueAtTime(slide,t+d*0.7);g.gain.setValueAtTime(v||0.15,t);g.gain.exponentialRampToValueAtTime(0.001,t+d);o.start(t);o.stop(t+d+0.05);}catch(e){}}
+function noise(d,v,delay,freq){if(!G.soundOn)return;try{const ctx=getCtx(),t=ctx.currentTime+(delay||0);const buf=ctx.createBuffer(1,ctx.sampleRate*d,ctx.sampleRate);const data=buf.getChannelData(0);for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1);const src=ctx.createBufferSource();src.buffer=buf;const flt=ctx.createBiquadFilter();flt.type='bandpass';flt.frequency.value=freq||2000;flt.Q.value=0.8;const g=ctx.createGain();src.connect(flt);flt.connect(g);g.connect(ctx.destination);g.gain.setValueAtTime(v||0.08,t);g.gain.exponentialRampToValueAtTime(0.001,t+d);src.start(t);src.stop(t+d+0.01);}catch(e){}}
+const SFX={
+  click() {noise(0.025,0.08,0,1200);note(800,0.04,'sine',0.08,0.01);},
+  pickup(){noise(0.06,0.12,0,800);note(500,0.12,'sine',0.08,0.02,280);},
+  hover() {noise(0.02,0.06,0,1400);note(1100,0.04,'sine',0.05,0.01);},
+  correct(){noise(0.04,0.10,0,1600);note(392,0.06,'square',0.12,0.01);note(523,0.10,'sine',0.22,0.04);note(659,0.10,'sine',0.22,0.10);note(784,0.18,'sine',0.26,0.16);note(1047,0.14,'sine',0.18,0.23);},
+  wrong() {note(180,0.05,'sawtooth',0.28,0,90);note(110,0.22,'triangle',0.22,0.04);noise(0.12,0.14,0.02,400);},
+  missed(){note(440,0.06,'sine',0.14,0,220);note(330,0.06,'sine',0.12,0.08,165);note(220,0.28,'triangle',0.10,0.16);},
+  timeLow(){noise(0.03,0.10,0,1200);note(1200,0.03,'square',0.08,0.01);},
+  start() {note(261,0.08,'sine',0.14);note(329,0.08,'sine',0.16,0.08);note(392,0.08,'sine',0.18,0.16);note(523,0.14,'sine',0.20,0.24);note(659,0.10,'sine',0.16,0.34);},
+  win()   {[523,659,784,1047,1319].forEach((f,i)=>{note(f,0.30,'sine',0.24,i*0.08);note(f*1.5,0.18,'triangle',0.08,i*0.08+0.04);});noise(0.06,0.14,0.02,800);},
+  fail()  {note(523,0.10,'sine',0.18);note(466,0.10,'triangle',0.16,0.12);note(415,0.10,'sine',0.14,0.24);note(370,0.30,'sawtooth',0.18,0.36);note(262,0.40,'triangle',0.12,0.60);},
+  maxFault(){note(200,0.06,'sawtooth',0.30,0,100);note(150,0.04,'sawtooth',0.28,0.05);note(100,0.40,'triangle',0.20,0.09);noise(0.18,0.18,0.02,300);},
+};
+
+function showScreen(id){document.querySelectorAll('.bb-screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');SFX.click();}
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function startGame(){
+  G={deck:shuffle(CARDS.map((_,i)=>i)).slice(0,SESSION),idx:0,correct:0,faults:0,missedCount:0,dotState:[],timeLeft:SECS,tickId:null,locked:false,cooldown:false,soundOn:G.soundOn,active:true};
+  showScreen('s-game');SFX.start();setTimeout(loadCard,380);
+}
+
+const cardEl=document.getElementById('itto-card');
+const zones=Array.from(document.querySelectorAll('.zone'));
+function curCard(){return CARDS[G.deck[G.idx]];}
+
+function loadCard(){
+  const c=curCard();
+  G.timeLeft=SECS;G.locked=false;G.cooldown=false;D.dragging=false;D.hoveredZone=null;
+  cardEl.classList.remove('dragging','flash-ok','flash-bad','card-out');
+  cardEl.style.transform='';cardEl.style.transition='';cardEl.style.zIndex='';
+  document.getElementById('card-name').textContent=c.name;
+  document.getElementById('game-nav-lbl').textContent='PROMPT '+(G.idx+1)+' OF '+SESSION;
+  zones.forEach(z=>z.classList.remove('hovered','zone-correct','zone-wrong'));
+  hideFeedback();renderDots();renderStats();renderTimer();
+  cardEl.classList.add('card-in');
+  cardEl.addEventListener('animationend',()=>cardEl.classList.remove('card-in'),{once:true});
+  clearInterval(G.tickId);G.tickId=setInterval(timerTick,TICK);
+}
+
+function timerTick(){
+  G.timeLeft-=TICK/1000;renderTimer();
+  if(G.timeLeft<=5&&G.timeLeft>5-TICK/1000)SFX.timeLow();
+  if(G.timeLeft<=3&&G.timeLeft>3-TICK/1000)SFX.timeLow();
+  if(G.timeLeft<=2&&G.timeLeft>2-TICK/1000)SFX.timeLow();
+  if(G.timeLeft<=1&&G.timeLeft>1-TICK/1000)SFX.timeLow();
+  if(G.timeLeft<=0){clearInterval(G.tickId);handleMissed();}
+}
+function renderTimer(){
+  document.getElementById('timer-secs').textContent=Math.max(0,Math.ceil(G.timeLeft))+'s';
+  document.getElementById('timer-pill').classList.toggle('danger',G.timeLeft<=4);
+}
+
+cardEl.addEventListener('pointerdown',e=>{
+  if(G.locked||G.cooldown||!G.active)return;
+  if(!document.getElementById('s-game').classList.contains('active'))return;
+  e.preventDefault();cardEl.setPointerCapture(e.pointerId);
+  D.dragging=true;D.startX=e.clientX;D.startY=e.clientY;D.hoveredZone=null;
+  cardEl.style.transition='box-shadow 150ms ease';cardEl.classList.add('dragging');cardEl.style.zIndex='50';
+  SFX.pickup();try{navigator.vibrate(8);}catch(e){}
+},{passive:false});
+
+cardEl.addEventListener('pointermove',e=>{
+  if(!D.dragging)return;e.preventDefault();
+  const dx=e.clientX-D.startX,dy=e.clientY-D.startY;
+  cardEl.style.transform='translate('+dx+'px,'+dy+'px) rotate('+Math.max(-9,Math.min(9,dx*0.04))+'deg) scale(1.04)';
+  const fr=document.getElementById('bb-frame').getBoundingClientRect();
+  const px=e.clientX-fr.left,py=e.clientY-fr.top;
+  let hit=null;
+  zones.forEach(z=>{z.classList.remove('hovered');const r=z.getBoundingClientRect();if(px>=r.left-fr.left&&px<=r.right-fr.left&&py>=r.top-fr.top&&py<=r.bottom-fr.top)hit=z;});
+  if(hit!==D.hoveredZone){D.hoveredZone=hit;if(hit){hit.classList.add('hovered');SFX.hover();}}else if(hit)hit.classList.add('hovered');
+},{passive:false});
+
+cardEl.addEventListener('pointerup',e=>{
+  if(!D.dragging)return;D.dragging=false;
+  zones.forEach(z=>z.classList.remove('hovered'));cardEl.classList.remove('dragging');cardEl.style.zIndex='';
+  const dropped=D.hoveredZone;D.hoveredZone=null;
+  if(dropped&&!G.locked&&!G.cooldown)handleDrop(dropped.dataset.zone,dropped);
+  else{cardEl.style.transition='transform 360ms cubic-bezier(0.34,1.56,0.64,1)';cardEl.style.transform='';}
+},{passive:false});
+
+cardEl.addEventListener('pointercancel',()=>{
+  D.dragging=false;zones.forEach(z=>z.classList.remove('hovered'));D.hoveredZone=null;
+  cardEl.classList.remove('dragging');cardEl.style.zIndex='';
+  cardEl.style.transition='transform 360ms cubic-bezier(0.34,1.56,0.64,1)';cardEl.style.transform='';
+});
+
+function handleDrop(zone,zoneEl){if(curCard().zone===zone)handleCorrect(zoneEl);else handleWrong(zoneEl);}
+
+function handleCorrect(zoneEl){
+  G.locked=true;clearInterval(G.tickId);G.correct++;G.dotState.push('ok');
+  SFX.correct();try{navigator.vibrate([8,10,8]);}catch(e){}renderStats();
+  cardEl.style.transition='transform 300ms cubic-bezier(0.34,1.56,0.64,1)';cardEl.style.transform='';void cardEl.offsetWidth;
+  cardEl.classList.add('flash-ok');zoneEl.classList.add('zone-correct');showFeedback('ok');
+  setTimeout(()=>{cardEl.classList.remove('flash-ok');zoneEl.classList.remove('zone-correct');advanceCard();},900);
+}
+
+function handleWrong(zoneEl){
+  if(G.cooldown||G.locked)return;
+  G.cooldown=true;G.faults++;renderStats();
+
+  /* ── Game over at MAX_FAULTS ── */
+  if(G.faults>=MAX_FAULTS){
+    G.locked=true;clearInterval(G.tickId);G.active=false;
+    SFX.maxFault();try{navigator.vibrate([60,30,60,30,60]);}catch(e){}
+    cardEl.style.transition='none';cardEl.style.transform='';void cardEl.offsetWidth;
+    cardEl.classList.add('flash-bad');zoneEl.classList.add('zone-wrong');
+    showFeedback('bad','Max Faults! Game Over');
+    G.dotState.push('fault');
+    setTimeout(()=>showResult('maxFaults'),1400);
+    return;
+  }
+
+  SFX.wrong();try{navigator.vibrate([50,20,50]);}catch(e){}
+  cardEl.style.transition='none';cardEl.style.transform='';void cardEl.offsetWidth;
+  cardEl.classList.add('flash-bad');zoneEl.classList.add('zone-wrong');showFeedback('bad');
+  setTimeout(()=>{G.cooldown=false;cardEl.classList.remove('flash-bad');cardEl.style.transition='';zoneEl.classList.remove('zone-wrong');hideFeedback();},950);
+}
+
+function handleMissed(){
+  if(G.locked)return;G.locked=true;clearInterval(G.tickId);
+  G.missedCount++;G.dotState.push('missed');SFX.missed();renderStats();
+  showFeedback('oops');
+  cardEl.style.transition='none';cardEl.style.transform='';void cardEl.offsetWidth;
+  cardEl.classList.add('card-out');
+  setTimeout(()=>{cardEl.classList.remove('card-out');advanceCard();},950);
+}
+
+function advanceCard(){
+  hideFeedback();G.idx++;
+  if(G.idx>=SESSION){G.active=false;setTimeout(showResult,400);return;}
+  setTimeout(loadCard,300);
+}
+
+function renderStats(){
+  const answered=G.correct+G.missedCount;
+  const pct=answered===0?0:Math.round((G.correct/answered)*100);
+  document.getElementById('stat-mastery').textContent=pct+'%';
+  document.getElementById('stat-faults').textContent=G.faults+'/'+MAX_FAULTS;
+  document.getElementById('integrity-fill').style.width=(answered===0?0:(G.correct/answered)*100)+'%';
+}
+
+function renderDots(){
+  const wrap=document.getElementById('dots-wrap');wrap.innerHTML='';
+  for(let i=0;i<SESSION;i++){
+    const d=document.createElement('div');d.className='pg-dot';
+    if(i<G.dotState.length){if(G.dotState[i]==='ok')d.classList.add('done');else d.classList.add('fault');}
+    else if(i===G.idx)d.classList.add('active');
+    wrap.appendChild(d);
+  }
+}
+
+const FB_ICON={
+  ok:'assets/narrative-quest/icons/checkmark-badge-16.svg',
+  bad:'assets/narrative-quest/icons/alert-01-16.svg',
+  oops:'assets/narrative-quest/icons/alert-01-16.svg'
+};
+function showFeedback(type,msg){
+  const b=document.getElementById('feedback-bar');
+  const label=type==='ok'?'Correct':type==='oops'?"Time's up":(msg||'Incorrect');
+  const icon=type==='ok'?FB_ICON.ok:FB_ICON.bad;
+  const state=type==='ok'?'fb-ok':type==='bad'?'fb-bad':'fb-oops';
+  b.innerHTML='<img src="'+icon+'" alt="" width="16" height="16"/><span>'+label+'</span>';
+  b.className='feedback-bar show '+state;
+}
+function hideFeedback(){const b=document.getElementById('feedback-bar');b.className='feedback-bar';b.innerHTML='';}
+
+function showResult(forceFail){
+  const answered=G.correct+G.missedCount;
+  const pct=answered===0?0:Math.round((G.correct/answered)*100);
+  const boost=pct>=85?'+0.7%':pct>=70?'+0.5%':'+0.3%';
+  const failTitle=document.querySelector('#s-fail .result-title h2');
+  const failDesc=document.querySelector('#s-fail .result-title p');
+  const won=!forceFail&&pct>=WIN_PCT;
+  if(won){
+    document.getElementById('r-mastery').textContent=pct+'%';
+    document.getElementById('r-faults').textContent=G.faults+'/'+MAX_FAULTS;
+    document.getElementById('r-boost').textContent=boost;
+    showScreen('s-win');SFX.win();setTimeout(()=>spawnConfetti(true),350);
+  }else{
+    if(forceFail==='maxFaults'){
+      failTitle.innerHTML='Max Faults<br><span class="red">Game Over</span>';
+      failDesc.textContent='You hit the fault limit before finishing the sprint. Review your ITTO zones and try again.';
+    }else{
+      failTitle.innerHTML='Recalibration<br><span class="red">Required</span>';
+      failDesc.innerHTML='You completed the sprint,<br>but missed the target accuracy.';
+    }
+    document.getElementById('f-mastery').textContent=pct+'%';
+    document.getElementById('f-faults').textContent=G.faults+'/'+MAX_FAULTS;
+    document.getElementById('f-boost').textContent=boost;
+    showScreen('s-fail');SFX.fail();setTimeout(()=>spawnConfetti(false),350);
+  }
+}
+
+function spawnConfetti(win){
+  const cv=document.getElementById('bb-confetti'),cx=cv.getContext('2d');
+  cv.width=390;cv.height=844;
+  const cols=win?['#ffd500','#22c55e','#fff','#ff6b35','#60a5fa','#f472b6']:['#334155','#475569','#e11d48','#94a3b8'];
+  const pieces=Array.from({length:win?130:60},()=>({x:Math.random()*390,y:-20-Math.random()*(win?280:180),w:win?7+Math.random()*7:4+Math.random()*4,h:win?4+Math.random()*5:3+Math.random()*3,col:cols[Math.floor(Math.random()*cols.length)],rot:Math.random()*Math.PI*2,dR:(Math.random()-.5)*0.18,vy:win?2+Math.random()*4:1.5+Math.random()*2.5,vx:(Math.random()-.5)*2.2,op:1}));
+  (function draw(){cx.clearRect(0,0,390,844);let alive=false;pieces.forEach(p=>{p.y+=p.vy;p.x+=p.vx;p.rot+=p.dR;if(p.y>700)p.op=Math.max(0,p.op-.025);if(p.op>.01){alive=true;cx.save();cx.globalAlpha=p.op;cx.translate(p.x,p.y);cx.rotate(p.rot);cx.fillStyle=p.col;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore();}});if(alive)requestAnimationFrame(draw);else cx.clearRect(0,0,390,844);})();
+}
+
+function toggleSound(){G.soundOn=!G.soundOn;const s=G.soundOn?'assets/mindset-sprint/icons/volume-high.svg':'assets/mindset-sprint/icons/volume-off.svg';document.querySelectorAll('.vol-icon').forEach(i=>i.src=s);if(G.soundOn)SFX.click();}
+function goBack(){SFX.click();window.location.href=new window.URL('games/games.html',document.baseURI).href;}
+function confirmQuit(){if(G.active&&G.idx>0&&!confirm('Quit Blueprint Builder? Progress will be lost.'))return;clearInterval(G.tickId);G.active=false;window.location.href=new window.URL('games/games.html',document.baseURI).href;}
+</script>
+</body>
+</html>

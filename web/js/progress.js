@@ -135,11 +135,11 @@
     if (s.state === "completed") {
       return `<div class="progress-sprint-actions">
         <button type="button" class="progress-btn-retrospective" data-retrospective-open="${s.id}">Start Retrospective<img class="progress-btn-retrospective-icon" src="assets/progress/arrow-right-02-sharp.svg" alt="" width="20" height="20" /></button>
-        <button type="button" class="progress-btn-details" data-sprint-open="${s.id}">View details</button>
+        <button type="button" class="progress-btn-details" data-timeline-open="${s.id}">View details</button>
       </div>`;
     }
     if (s.state === "ongoing") {
-      return `<div class="progress-sprint-actions"><button type="button" class="progress-btn-details" data-sprint-open="${s.id}">View details</button></div>`;
+      return `<div class="progress-sprint-actions"><button type="button" class="progress-btn-details" data-timeline-open="${s.id}">View details</button></div>`;
     }
     return "";
   };
@@ -187,8 +187,8 @@
       label.textContent = `${pct}%`;
       if (state === "locked") label.classList.add("is-muted");
     });
-    sprintList.querySelectorAll("[data-sprint-open]").forEach((btn) => {
-      btn.addEventListener("click", () => openSprintSheet(btn.dataset.sprintOpen));
+    sprintList.querySelectorAll("[data-timeline-open]").forEach((btn) => {
+      btn.addEventListener("click", () => openSprintDetailSheet(btn.dataset.timelineOpen));
     });
   };
 
@@ -317,6 +317,194 @@
 
     sprintSheet.hidden = false;
   };
+
+  // ─── Sprint Detail Bottom Sheet (Figma timeline design) ──────────────
+  const sdOverlay  = document.querySelector("[data-sprint-detail-overlay]");
+  const sdScroll   = document.querySelector("[data-sd-scroll]");
+  const sdFooter   = document.querySelector("[data-sd-footer]");
+
+  const sdTimelineData = {
+    "sprint-1": {
+      completed: {
+        dateRange: "Jan 01 - Jan 07",
+        progress: 100,
+        stats: [
+          { label: "Velocity",   value: "64%",  colorClass: "sd-stat-value--green"  },
+          { label: "Quizzes",    value: "4/10", colorClass: "sd-stat-value--navy"   },
+          { label: "Quiz score", value: "24%",  colorClass: "sd-stat-value--red"    },
+          { label: "Readiness",  value: "24%",  colorClass: "sd-stat-value--orange" },
+        ],
+        days: [
+          { label: "Mon 01", status: "Done",      statusClass: "sd-day-status--done",      done: true,  pills: [{ type: "completed", text: "4 study block completed" }] },
+          { label: "Tue 02", status: "Done",      statusClass: "sd-day-status--done",      done: true,  pills: [{ type: "completed", text: "4 study block completed" }] },
+          { label: "Thu 04", status: "Scheduled", statusClass: "sd-day-status--scheduled", done: true,  pills: [{ type: "completed", text: "4 study block completed" }] },
+          { label: "Fri 05", status: "Scheduled", statusClass: "sd-day-status--scheduled", done: true,  pills: [{ type: "completed", text: "4 study block completed" }] },
+        ],
+      },
+      ongoing: {
+        dateRange: "Jan 01 - Jan 07",
+        progress: 50,
+        stats: [
+          { label: "Velocity",   value: "64%",  colorClass: "sd-stat-value--green"  },
+          { label: "Quizzes",    value: "4/10", colorClass: "sd-stat-value--navy"   },
+          { label: "Quiz score", value: "24%",  colorClass: "sd-stat-value--red"    },
+          { label: "Readiness",  value: "24%",  colorClass: "sd-stat-value--orange" },
+        ],
+        days: [
+          { label: "Mon 01", status: "Done",      statusClass: "sd-day-status--done",      done: true,  pills: [{ type: "completed", text: "4 study block completed" }] },
+          { label: "Tue 02", status: "Done",      statusClass: "sd-day-status--done",      active: true, pills: [
+              { type: "completed", text: "3 study block completed" },
+              { type: "active",    text: "Active study block"       },
+              { type: "scheduled", text: "1 study block scheduled"  },
+            ]},
+          { label: "Thu 04", status: "Scheduled", statusClass: "sd-day-status--scheduled", done: false, pills: [{ type: "scheduled", text: "4 study block scheduled" }] },
+          { label: "Fri 05", status: "Scheduled", statusClass: "sd-day-status--scheduled", done: false, pills: [{ type: "scheduled", text: "4 study block scheduled" }] },
+        ],
+      },
+    },
+    "sprint-2": {
+      ongoing: {
+        dateRange: "Jan 08 - Jan 16",
+        progress: 45,
+        stats: [
+          { label: "Velocity",   value: "52%",  colorClass: "sd-stat-value--green"  },
+          { label: "Quizzes",    value: "2/10", colorClass: "sd-stat-value--navy"   },
+          { label: "Quiz score", value: "18%",  colorClass: "sd-stat-value--red"    },
+          { label: "Readiness",  value: "20%",  colorClass: "sd-stat-value--orange" },
+        ],
+        days: [
+          { label: "Mon 08", status: "Done",      statusClass: "sd-day-status--done",      done: true,  pills: [{ type: "completed", text: "3 study block completed" }] },
+          { label: "Tue 09", status: "Done",      statusClass: "sd-day-status--done",      active: true, pills: [
+              { type: "completed", text: "2 study block completed" },
+              { type: "active",    text: "Active study block"       },
+            ]},
+          { label: "Thu 11", status: "Scheduled", statusClass: "sd-day-status--scheduled", done: false, pills: [{ type: "scheduled", text: "3 study block scheduled" }] },
+          { label: "Fri 12", status: "Scheduled", statusClass: "sd-day-status--scheduled", done: false, pills: [{ type: "scheduled", text: "3 study block scheduled" }] },
+        ],
+      },
+    },
+  };
+
+  const sdIconDone = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M8 12.5L11 15.5L16.5 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const sdIconActive = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#007bff" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="#007bff"/></svg>`;
+  const sdIconEmpty = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#cbd5e1" stroke-width="2"/></svg>`;
+  const sdIconLock = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="3" stroke="#cbd5e1" stroke-width="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/></svg>`;
+  const sdIconArrow = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+
+  const renderSdDayIcon = (day) => {
+    if (day.done)   return sdIconDone;
+    if (day.active) return sdIconActive;
+    return sdIconEmpty;
+  };
+
+  const renderSdPills = (pills) =>
+    pills.map(p => `<span class="sd-pill sd-pill--${p.type}">${p.text}</span>`).join("");
+
+  const renderSdTimeline = (days, isLast) =>
+    days.map((day, i) => {
+      const isLastDay = i === days.length - 1;
+      const connector = isLastDay ? "" : `<div class="sd-connector"></div>`;
+      return `<div class="sd-day">
+        <div class="sd-day-track">
+          <div class="sd-day-icon">${renderSdDayIcon(day)}</div>
+          ${connector}
+        </div>
+        <div class="sd-day-content">
+          <div class="sd-day-header">
+            <span class="sd-day-label">${day.label}</span>
+            <span class="sd-day-status ${day.statusClass}">${day.status}</span>
+          </div>
+          <div class="sd-day-pills">${renderSdPills(day.pills)}</div>
+        </div>
+      </div>`;
+    }).join("");
+
+  const renderSdLockedSprints = (currentSprintId) => {
+    const locked = data.sprints.filter(s => s.state === "locked");
+    if (!locked.length) return "";
+    return locked.map(s => `
+      <div class="sd-locked-sprint">
+        <div class="sd-locked-icon">${sdIconLock}</div>
+        <span class="sd-locked-name">${s.name}</span>
+        <span class="sd-locked-tag">Locked</span>
+      </div>`).join("");
+  };
+
+  const openSprintDetailSheet = (sprintId = "sprint-1") => {
+    if (!sdOverlay || !sdScroll || !sdFooter) return;
+
+    const sprint = data.sprints.find(s => s.id === sprintId);
+    if (!sprint || sprint.state === "locked") return;
+
+    const tData = (sdTimelineData[sprintId] || {})[sprint.state]
+      || (sdTimelineData[sprintId] || {})[Object.keys(sdTimelineData[sprintId] || {})[0]];
+    if (!tData) return;
+
+    const badgeClass  = sprint.state === "completed" ? "sd-badge--completed" : "sd-badge--ongoing";
+    const badgeLabel  = sprint.state === "completed" ? "Completed" : "Ongoing";
+    const statsHtml   = tData.stats.map((s, i) => {
+      const divider = i < tData.stats.length - 1 ? `<div class="sd-stat-divider"></div>` : "";
+      return `<div class="sd-stat">
+        <span class="sd-stat-value ${s.colorClass}">${s.value}</span>
+        <span class="sd-stat-label">${s.label}</span>
+      </div>${divider}`;
+    }).join("");
+
+    sdScroll.innerHTML = `
+      <div class="sd-header">
+        <div class="sd-header-left">
+          <span class="sd-badge ${badgeClass}">${badgeLabel}</span>
+          <span class="sd-sprint-name">${sprint.name}</span>
+        </div>
+        <span class="sd-date-range">${tData.dateRange}</span>
+      </div>
+      <div class="sd-divider"></div>
+      <div class="sd-progress-section">
+        <div class="sd-progress-row">
+          <span class="sd-progress-label">Overall Sprint Progress</span>
+          <span class="sd-progress-pct">${tData.progress}% complete</span>
+        </div>
+        <div class="sd-progress-track">
+          <div class="sd-progress-fill" style="width:${tData.progress}%"></div>
+        </div>
+      </div>
+      <div class="sd-stats-row">${statsHtml}</div>
+      <div class="sd-timeline">${renderSdTimeline(tData.days)}</div>
+      ${renderSdLockedSprints(sprintId)}
+    `;
+
+    if (sprint.state === "completed") {
+      const detail = data.sprintDetailSheets[sprintId] || data.sprintDetailSheets["sprint-1"];
+      sdFooter.innerHTML = `
+        <button type="button" class="sd-btn-primary" data-sd-sprint-review>
+          Sprint review ${sdIconArrow}
+        </button>
+        <button type="button" class="sd-btn-secondary" data-sd-start-retro>
+          Start Retrospective
+        </button>`;
+      sdFooter.querySelector("[data-sd-sprint-review]").addEventListener("click", () => {
+        closeSdSheet();
+        openAnalysis(sprint.name);
+      });
+      sdFooter.querySelector("[data-sd-start-retro]").addEventListener("click", () => {
+        closeSdSheet();
+        openRetrospective(sprintId);
+      });
+    } else {
+      sdFooter.innerHTML = `<button type="button" class="sd-btn-primary" data-sd-continue>Continue</button>`;
+      sdFooter.querySelector("[data-sd-continue]").addEventListener("click", () => {
+        closeSdSheet();
+      });
+    }
+
+    sdOverlay.setAttribute("aria-hidden", "false");
+  };
+
+  const closeSdSheet = () => {
+    sdOverlay?.setAttribute("aria-hidden", "true");
+  };
+
+  sdOverlay?.querySelector("[data-close-sd]")?.addEventListener("click", closeSdSheet);
 
   const studyBlockDetails = {
     "2024-12-29": {
@@ -887,7 +1075,7 @@
 
   const finishRetrospective = () => {
     closeRetrospective();
-    window.location.href = "dashboard.html";
+    window.location.href = new URL("app/dashboard.html", document.baseURI).href;
   };
 
   document.querySelector("[data-open-sprint-detail]")?.addEventListener("click", openSprintSheet);
@@ -932,17 +1120,6 @@
       renderRetrospective();
     }
     if (e.target.closest("[data-retro-finish]")) finishRetrospective();
-  });
-
-  // Backlog module accordion toggle
-  document.addEventListener("click", (e) => {
-    const toggleBtn = e.target.closest("[data-module-toggle]");
-    if (toggleBtn) {
-      const card = toggleBtn.closest("[data-module]");
-      if (card) {
-        card.classList.toggle("open");
-      }
-    }
   });
 
   // ─── Dynamic Progress Calendar ────────────────────────────────────

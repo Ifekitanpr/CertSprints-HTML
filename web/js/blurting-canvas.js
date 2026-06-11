@@ -160,10 +160,10 @@
   }
 
   document.getElementById("bc-back").addEventListener("click", function () {
-    window.location.href = "active-recall.html";
+    window.location.href = new URL("lms/active-recall.html", document.baseURI).href;
   });
   document.getElementById("bc-help").addEventListener("click", function () {
-    window.location.href = "help-support.html?from=blurting-canvas";
+    window.location.href = new URL("support/help-support.html?from=blurting-canvas", document.baseURI).href;
   });
 
   editor.addEventListener("input", scheduleDetect);
@@ -175,10 +175,10 @@
   });
 
   document.getElementById("bc-feedback-ok").addEventListener("click", function () {
-    window.location.href = "study-backlog.html";
+    window.location.href = new URL("lms/retrieval-sprint.html", document.baseURI).href;
   });
   document.getElementById("bc-feedback-ai").addEventListener("click", function () {
-    window.location.href = "active-recall.html?view=chat";
+    window.location.href = new URL("lms/active-recall.html?view=chat", document.baseURI).href;
   });
   document.getElementById("bc-feedback-scrim").addEventListener("click", closeFeedback);
 

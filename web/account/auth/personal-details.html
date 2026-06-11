@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../../" />
+    <title>CertSprints Personal Details</title>
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints personal details screen">
+      <div class="case-shell">
+        <section class="screen">
+          <div class="plan-view account-view details-view">
+            <div class="cert-bg"></div>
+            <div class="auth-nav">
+              <button class="cert-back auth-back" type="button" aria-label="Back"><img src="assets/icons/arrow-left-02.svg" alt="" /></button>
+            </div>
+            <div class="details-content">
+              <div class="account-heading details-heading">
+                <h2>Tell us about yourself</h2>
+                <p>How should we address you?</p>
+              </div>
+              <div class="account-form details-form">
+                <label class="account-field">
+                  <span>First Name</span>
+                  <input type="text" placeholder="e.g., David" autocomplete="given-name" />
+                </label>
+                <label class="account-field">
+                  <span>Last Name</span>
+                  <input type="text" placeholder="e.g., Angel" autocomplete="family-name" />
+                </label>
+                <label class="account-field">
+                  <span>Phone Number</span>
+                  <span class="phone-inputs">
+                    <input class="country-code" type="text" value="+234" aria-label="Country code" />
+                    <input type="tel" placeholder="90 3200 0000" autocomplete="tel-national" />
+                  </span>
+                </label>
+              </div>
+            </div>
+            <div class="details-bottom">
+              <button class="btn account-primary finish-setup" type="button">Finish Setup</button>
+              <div class="home-indicator" aria-hidden="true"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="js/app.js?v=20260528-paid"></script>
+    <script src="js/checkout-flow.js?v=20260528-paid"></script>
+  </body>
+</html>

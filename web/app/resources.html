@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>CertSprints — Resources</title>
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints Resources">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell">
+            <!-- Hub -->
+            <div class="dashboard-scroll" id="resourcesMainScroll">
+              <div class="resources-view">
+                <div class="cert-bg" aria-hidden="true"></div>
+
+                <nav class="resources-nav">
+                  <button
+                    class="resources-back-btn"
+                    type="button"
+                    aria-label="Go back"
+                    onclick="window.location.href=new window.URL('app/more.html',document.baseURI).href"
+                  >
+                    <img class="resources-icon resources-icon--24" src="assets/icons/arrow-left-02.svg" alt="" />
+                  </button>
+                </nav>
+
+                <header class="resources-page-header">
+                  <h1 class="resources-page-title">Resources</h1>
+                  <p class="resources-page-desc" id="resourcesHubSubtitle"></p>
+                </header>
+
+                <div class="resources-hub-list" id="resourcesHubList" role="list"></div>
+              </div>
+            </div>
+
+            <!-- PMP Fundamentals -->
+            <div class="resources-pane" id="paneFundamentals" hidden>
+              <div class="resources-pane-scroll">
+                <div class="cert-bg" aria-hidden="true"></div>
+
+                <nav class="resources-nav resources-nav--compact">
+                  <button class="resources-back-btn resources-pane-back" type="button" aria-label="Back to Resources">
+                    <img class="resources-icon resources-icon--24" src="assets/icons/arrow-left-02.svg" alt="" />
+                  </button>
+                </nav>
+
+                <div class="resources-chapter-bar">
+                  <button class="resources-chapter-select" id="fundamentalsChapterBtn" type="button" aria-expanded="false" aria-haspopup="listbox">
+                    <img class="resources-icon resources-icon--24" src="assets/resources/icons/menu-02-24.svg" alt="" />
+                    <span class="resources-chapter-label" id="fundamentalsChapterLabel">Introduction to PMP</span>
+                    <img class="resources-chapter-chevron resources-icon resources-icon--20" src="assets/resources/icons/arrow-down-01-20.svg" alt="" />
+                  </button>
+                  <div class="resources-chapter-menu" id="fundamentalsChapterMenu" role="listbox" hidden></div>
+                </div>
+
+                <div class="resources-article-panel" id="fundamentalsContent"></div>
+              </div>
+            </div>
+
+            <!-- Body of Knowledge -->
+            <div class="resources-pane" id="paneBodyOfKnowledge" hidden>
+              <div class="resources-pane-scroll">
+                <div class="cert-bg" aria-hidden="true"></div>
+
+                <nav class="resources-nav resources-nav--compact">
+                  <button class="resources-back-btn resources-pane-back" type="button" aria-label="Back to Resources">
+                    <img class="resources-icon resources-icon--24" src="assets/icons/arrow-left-02.svg" alt="" />
+                  </button>
+                </nav>
+
+                <div class="resources-chapter-bar">
+                  <div class="resources-chapter-select resources-chapter-select--static">
+                    <img class="resources-icon resources-icon--16" src="assets/resources/icons/book-04-16.svg" alt="" />
+                    <span class="resources-chapter-label">Body of Knowledge</span>
+                  </div>
+                </div>
+
+                <div class="resources-article-panel" id="bodyOfKnowledgeContent"></div>
+              </div>
+            </div>
+
+            <!-- ECO -->
+            <div class="resources-pane" id="paneEco" hidden>
+              <div class="resources-pane-scroll">
+                <div class="cert-bg" aria-hidden="true"></div>
+
+                <nav class="resources-nav resources-nav--compact">
+                  <button class="resources-back-btn resources-pane-back" type="button" aria-label="Back to Resources">
+                    <img class="resources-icon resources-icon--24" src="assets/icons/arrow-left-02.svg" alt="" />
+                  </button>
+                </nav>
+
+                <div class="resources-eco-wrap">
+                  <div class="resources-eco-tabs" id="ecoTabs" role="tablist"></div>
+                  <div class="resources-eco-body" id="ecoTabPanels"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Templates -->
+            <div class="resources-pane" id="paneTemplates" hidden>
+              <div class="resources-pane-scroll">
+                <div class="cert-bg" aria-hidden="true"></div>
+
+                <nav class="resources-nav">
+                  <button class="resources-back-btn resources-pane-back" type="button" aria-label="Back to Resources">
+                    <img class="resources-icon resources-icon--24" src="assets/icons/arrow-left-02.svg" alt="" />
+                  </button>
+                </nav>
+
+                <header class="resources-page-header">
+                  <h1 class="resources-page-title" id="templatesTitle">Templates</h1>
+                  <p class="resources-page-desc" id="templatesSubtitle"></p>
+                </header>
+
+                <div class="resources-hub-list" id="templatesList" role="list"></div>
+              </div>
+
+              <div class="resources-toast" id="resourcesToast" role="status" aria-live="polite">
+                <span id="resourcesToastText"></span>
+              </div>
+            </div>
+
+            <!-- Glossary -->
+            <div class="resources-pane" id="paneGlossary" hidden>
+              <div class="resources-pane-scroll">
+                <div class="cert-bg" aria-hidden="true"></div>
+
+                <nav class="resources-nav">
+                  <button class="resources-back-btn resources-pane-back" type="button" aria-label="Back to Resources">
+                    <img class="resources-icon resources-icon--24" src="assets/icons/arrow-left-02.svg" alt="" />
+                  </button>
+                </nav>
+
+                <header class="resources-page-header">
+                  <h1 class="resources-page-title" id="glossaryTitle">Glossary</h1>
+                  <p class="resources-page-desc" id="glossarySubtitle"></p>
+                </header>
+
+                <div class="resources-glossary-search">
+                  <img class="resources-icon resources-icon--18 resources-glossary-search-icon" src="assets/resources/icons/search-18.svg" alt="" />
+                  <input
+                    class="resources-glossary-search-input"
+                    id="glossarySearchInput"
+                    type="search"
+                    placeholder="Search anything"
+                    autocomplete="off"
+                  />
+                </div>
+
+                <div class="resources-glossary-alpha" id="glossaryAlpha" role="toolbar" aria-label="Filter by letter"></div>
+
+                <div class="resources-glossary-list" id="glossaryList" role="list"></div>
+
+                <p class="resources-glossary-empty" id="glossaryEmpty" hidden>No terms match your search.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="js/resources-data.js"></script>
+    <script src="js/resources.js"></script>
+  </body>
+</html>

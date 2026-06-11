@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <base href="../" />
+  <title>CertSprints — Sorting Type 2</title>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/sorting-type-2.css?v=20260529-st22"/>
+</head>
+<body>
+<main class="phone-case" aria-label="CertSprints Sorting Type 2">
+  <div class="case-shell">
+  <div class="st2" id="st2">
+
+    <div class="cert-bg" aria-hidden="true"></div>
+    <div class="sb"></div>
+
+    <!-- INTRO -->
+    <div class="st2-view active" id="st2-intro-view">
+      <nav class="st2-intro-nav">
+        <button class="nav-btn" type="button" aria-label="Back" id="st2-intro-back">
+          <img src="assets/icons/arrow-left-02.svg" width="24" height="24" alt=""/>
+        </button>
+        <div class="nav-progress" aria-hidden="true">
+          <div class="prog-active"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div>
+        </div>
+        <div class="nav-btn" style="opacity:0;pointer-events:none" aria-hidden="true"></div>
+      </nav>
+
+      <div class="st2-intro-scroll">
+        <div class="st2-intro-head">
+          <span class="st2-section-badge" id="st2-intro-badge">Section Progress</span>
+          <h1 class="st2-intro-title" id="st2-intro-title">Sorting Type 2</h1>
+          <p class="st2-intro-desc" id="st2-intro-desc"></p>
+        </div>
+        <img class="st2-intro-illus" id="st2-intro-illus" src="assets/sorting-type-2/images/intro-illustration.png" alt=""/>
+        <div class="st2-stat-row">
+          <div class="st2-stat-card">
+            <div class="st2-stat-icon items">
+              <img src="assets/sorting-type-2/icons/list-view-20.svg" alt="" width="20" height="20"/>
+            </div>
+            <div class="st2-stat-copy">
+              <p class="st2-stat-eyebrow">Items</p>
+              <p class="st2-stat-num" id="st2-stat-items">06</p>
+            </div>
+          </div>
+          <div class="st2-stat-card">
+            <div class="st2-stat-icon time">
+              <img src="assets/sorting-type-2/icons/clock-01-20.svg" alt="" width="20" height="20"/>
+            </div>
+            <div class="st2-stat-copy">
+              <p class="st2-stat-eyebrow">Time</p>
+              <p class="st2-stat-num st2-stat-time" id="st2-stat-time">1 min</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lp-bnb">
+        <button class="btn-primary" type="button" id="st2-start-btn">
+          <span id="st2-start-label">Start Sorting Type 2</span>
+          <img src="assets/icons/arrow-right-02.svg" alt=""/>
+        </button>
+      </div>
+      <div class="home-ind"></div>
+    </div>
+
+    <!-- GAME -->
+    <div class="st2-view" id="st2-game-view">
+      <nav class="st2-game-nav">
+        <button class="st2-close-btn" type="button" aria-label="Close" id="st2-game-close">
+          <img src="assets/icons/cancel-01.svg" alt="" width="24" height="24"/>
+        </button>
+        <p class="st2-game-nav-title" id="st2-game-nav-title">SORTING TYPE 2</p>
+        <button class="st2-help-btn" type="button" aria-label="Help" id="st2-help">
+          <img src="assets/sorting-type-2/icons/help-circle-24.svg" alt="" width="24" height="24"/>
+        </button>
+      </nav>
+
+      <div class="st2-counter" id="st2-counter">1/6</div>
+
+      <div class="st2-panel">
+        <div class="st2-panel-scroll">
+          <div class="st2-q-head">
+            <h2 class="st2-q-title" id="st2-q-title"></h2>
+            <p class="st2-q-sub" id="st2-q-sub"></p>
+          </div>
+
+          <div class="st2-quote-box">
+            <img src="assets/sorting-type-2/icons/quote-up-16.svg" alt="" width="16" height="16"/>
+            <p class="st2-quote" id="st2-quote"></p>
+          </div>
+
+          <div class="st2-options-wrap">
+            <p class="st2-select-label" id="st2-select-label">Select one answer</p>
+            <div class="st2-options" id="st2-options"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="st2-progress-track">
+        <div class="st2-progress-fill" id="st2-progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- FEEDBACK SHEET -->
+    <div class="st2-overlay" id="st2-overlay" aria-hidden="true">
+      <div class="st2-sheet">
+        <div class="st2-sheet-handle"><span></span></div>
+        <div class="st2-sheet-body">
+          <div class="st2-feedback-banner" id="st2-feedback-banner">
+            <div class="st2-feedback-top">
+              <div class="st2-feedback-icon">
+                <img class="ring outer" id="st2-ring-outer" src="assets/sorting-type-2/icons/feedback-ring-outer.svg" alt=""/>
+                <img class="ring inner" id="st2-ring-inner" src="assets/sorting-type-2/icons/feedback-ring-inner.svg" alt=""/>
+                <img class="glyph" id="st2-feedback-glyph" src="assets/sorting-type-2/icons/tick-01-20.svg" alt=""/>
+              </div>
+              <p class="st2-feedback-title" id="st2-feedback-title">Accurate Retrieval</p>
+            </div>
+            <div class="st2-answer-pill">
+              <p id="st2-answer-label">A MENTOR CAN</p>
+            </div>
+          </div>
+          <div class="st2-reasoning">
+            <p class="st2-reasoning-label" id="st2-reasoning-label">Expert Reasoning</p>
+            <p class="st2-reasoning-text" id="st2-reasoning-text"></p>
+          </div>
+          <button class="btn-primary st2-sheet-continue" type="button" id="st2-continue">
+            <span id="st2-continue-label">Continue</span>
+            <img src="assets/icons/arrow-right-02.svg" alt=""/>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</main>
+
+<script src="js/sorting-type-2-data.js?v=20260529-st21"></script>
+<script src="js/sorting-type-2.js?v=20260529-st21"></script>
+</body>
+</html>

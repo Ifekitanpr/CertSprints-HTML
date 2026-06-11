@@ -7,6 +7,7 @@
   var overlay = document.getElementById("ie-overlay");
   var root = document.getElementById("ie");
   var peerList = document.getElementById("ie-peer-list");
+  var _ieParams = new URLSearchParams(window.location.search);
 
   function renderReflection() {
     var r = data.reflection;
@@ -143,7 +144,7 @@
   }
 
   function applyDemo() {
-    var demo = new URLSearchParams(window.location.search).get("demo");
+    var demo = _ieParams.get("demo");
     if (demo === "filled") {
       textarea.value = "This is a sample of contribrution to the discuss";
       syncInput();
@@ -158,7 +159,7 @@
   textarea.addEventListener("input", syncInput);
 
   document.getElementById("ie-back").addEventListener("click", function () {
-    window.location.href = "decision-simulator.html";
+    window.location.href = new URL("lms/lesson-player.html", document.baseURI).href;
   });
 
   postBtn.addEventListener("click", openSheet);
@@ -170,7 +171,8 @@
   document.getElementById("ie-sheet-close").addEventListener("click", closeSheet);
 
   document.getElementById("ie-done-btn").addEventListener("click", function () {
-    window.location.href = "scenario-sorting.html";
+    var from = _ieParams.get("from");
+    window.location.href = from === "gap-prompt" ? "lms/pre-assessment-quiz.html" : "lms/decision-simulator.html";
   });
 
   overlay.addEventListener("click", function (e) {

@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "description": "Backend-selectable CertSprints mobile LMS activity renderers.",
+  "orchestration": {
+    "entrySurface": {
+      "id": "study_backlog",
+      "prototypeRoute": "study-backlog.html",
+      "activityRenderer": false
+    },
+    "routeBy": "activity.type",
+    "nextActivitySource": "activity.navigation.nextActivityId",
+    "prototypeLinksAreAuthoritative": false
+  },
+  "activities": [
+    {
+      "type": "lesson",
+      "displayName": "Lesson",
+      "category": "content",
+      "prototypeRoutes": ["lesson-player.html"],
+      "capabilities": ["resume", "progress"]
+    },
+    {
+      "type": "key_takeaway",
+      "displayName": "Key Takeaway",
+      "category": "reflection",
+      "prototypeRoutes": ["key-takeaway.html", "key-takeaway-2.html"],
+      "capabilities": ["resume", "response"]
+    },
+    {
+      "type": "gap_prompt",
+      "displayName": "Gap Prompt",
+      "category": "reflection",
+      "prototypeRoutes": ["gap-prompt.html"],
+      "capabilities": ["resume", "response"]
+    },
+    {
+      "type": "insight_exchange",
+      "displayName": "Insight Exchange",
+      "category": "reflection",
+      "prototypeRoutes": ["insight-exchange.html"],
+      "capabilities": ["resume", "response"]
+    },
+    {
+      "type": "decision_simulator",
+      "displayName": "Decision Simulator",
+      "category": "interactive",
+      "prototypeRoutes": ["decision-simulator.html"],
+      "capabilities": ["resume", "scored"]
+    },
+    {
+      "type": "scenario_sorting",
+      "displayName": "Scenario Sorting",
+      "category": "interactive",
+      "prototypeRoutes": ["scenario-sorting.html"],
+      "capabilities": ["resume", "scored"]
+    },
+    {
+      "type": "risk_cycle_sequencer",
+      "displayName": "Risk Cycle Sequencer",
+      "category": "interactive",
+      "prototypeRoutes": ["risk-cycle-sequencer.html"],
+      "capabilities": ["resume", "scored"]
+    },
+    {
+      "type": "sorting_classification",
+      "displayName": "Sorting Classification",
+      "category": "interactive",
+      "prototypeRoutes": ["sorting-type-2.html"],
+      "capabilities": ["resume", "scored"]
+    },
+    {
+      "type": "boolean_flashcard",
+      "displayName": "Boolean Flashcard",
+      "category": "interactive",
+      "prototypeRoutes": ["boolean-flashcard.html"],
+      "capabilities": ["resume", "scored"]
+    },
+    {
+      "type": "active_recall",
+      "displayName": "Active Recall",
+      "category": "practice",
+      "prototypeRoutes": ["active-recall.html"],
+      "capabilities": ["resume", "response"]
+    },
+    {
+      "type": "blurting_canvas",
+      "displayName": "Blurting Canvas",
+      "category": "practice",
+      "prototypeRoutes": ["blurting-canvas.html"],
+      "capabilities": ["resume", "response"]
+    },
+    {
+      "type": "retrieval_sprint",
+      "displayName": "Retrieval Sprint",
+      "category": "practice",
+      "prototypeRoutes": ["retrieval-sprint.html"],
+      "capabilities": ["resume", "timed", "scored"]
+    },
+    {
+      "type": "pre_assessment_quiz",
+      "displayName": "Pre-Assessment Quiz",
+      "category": "assessment",
+      "prototypeRoutes": ["pre-assessment-quiz.html"],
+      "capabilities": ["resume", "scored"]
+    },
+    {
+      "type": "decision_tree",
+      "displayName": "Decision Tree",
+      "category": "interactive",
+      "prototypeRoutes": ["decision-tree.html"],
+      "capabilities": ["resume", "branching"]
+    },
+    {
+      "type": "knowledge_poll",
+      "displayName": "Knowledge Poll",
+      "category": "assessment",
+      "prototypeRoutes": ["knowledge-poll.html", "knowledge-poll-2.html"],
+      "capabilities": ["resume", "response", "scored"]
+    },
+    {
+      "type": "peer_teachback",
+      "displayName": "Peer Teachbacks",
+      "category": "social_learning",
+      "prototypeRoutes": ["peer-teachbacks.html"],
+      "capabilities": ["resume", "camera", "microphone", "upload", "peer_review", "ai_review"]
+    },
+    {
+      "type": "comprehension_check",
+      "displayName": "Comprehension Check",
+      "category": "assessment",
+      "prototypeRoutes": ["comprehension-check.html"],
+      "capabilities": ["resume", "scored"]
+    },
+    {
+      "type": "lesson_quiz",
+      "displayName": "Lesson Quiz",
+      "category": "assessment",
+      "prototypeRoutes": ["lesson-quiz.html"],
+      "capabilities": ["resume", "scored", "review"]
+    },
+    {
+      "type": "module_quiz",
+      "displayName": "Module Quiz",
+      "category": "assessment",
+      "prototypeRoutes": ["module-quiz.html"],
+      "capabilities": ["resume", "scored", "review"]
+    },
+    {
+      "type": "mock_exam",
+      "displayName": "Mock Exam",
+      "category": "assessment",
+      "prototypeRoutes": ["mock-exam.html"],
+      "capabilities": ["resume", "external_completion", "scored", "review", "certificate"]
+    },
+    {
+      "type": "capability_matrix",
+      "displayName": "Capability Matrix",
+      "category": "guided_exploration",
+      "prototypeRoutes": ["capability-matrix.html"],
+      "capabilities": ["resume", "gated_completion"]
+    },
+    {
+      "type": "standard_evolution",
+      "displayName": "Standard Evolution",
+      "category": "guided_exploration",
+      "prototypeRoutes": ["standard-evolution.html"],
+      "capabilities": ["resume"]
+    },
+    {
+      "type": "ethics_evolution",
+      "displayName": "Ethics Evolution",
+      "category": "guided_exploration",
+      "prototypeRoutes": ["ethics-evolution.html"],
+      "capabilities": ["resume", "gated_completion"]
+    },
+    {
+      "type": "standard_comparison",
+      "displayName": "Standard Comparison",
+      "category": "guided_exploration",
+      "prototypeRoutes": ["standard-comparison.html"],
+      "capabilities": ["resume", "gated_completion"]
+    },
+    {
+      "type": "ethics_comparison",
+      "displayName": "Ethics Comparison",
+      "category": "guided_exploration",
+      "prototypeRoutes": ["ethics-comparison.html"],
+      "capabilities": ["resume", "gated_completion"]
+    },
+    {
+      "type": "reading",
+      "displayName": "Reading",
+      "category": "content",
+      "prototypeRoutes": ["reading.html"],
+      "capabilities": ["resume", "progress"]
+    },
+    {
+      "type": "definition_matrix",
+      "displayName": "Definition Matrix",
+      "category": "guided_exploration",
+      "prototypeRoutes": ["definition-matrix.html"],
+      "capabilities": ["resume", "gated_completion"]
+    },
+    {
+      "type": "phase_controller",
+      "displayName": "The Phase Controller",
+      "category": "guided_exploration",
+      "prototypeRoutes": ["phase-controller.html"],
+      "capabilities": ["resume", "swipe"]
+    },
+    {
+      "type": "curriculum_overview",
+      "displayName": "Curriculum",
+      "category": "content",
+      "prototypeRoutes": ["curriculum.html"],
+      "capabilities": ["resume", "progress"]
+    },
+    {
+      "type": "core_terms",
+      "displayName": "Core Terms & Definitions",
+      "category": "content",
+      "prototypeRoutes": ["core-terms.html"],
+      "capabilities": ["resume", "progress"]
+    }
+  ],
+  "excludedDomains": [
+    "dashboard",
+    "progress",
+    "games",
+    "settings",
+    "notifications",
+    "account",
+    "community",
+    "help_support"
+  ]
+}

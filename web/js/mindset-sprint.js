@@ -440,7 +440,7 @@
     app.querySelector('[data-action="play"]')?.addEventListener("click", startGame);
     app.querySelector('[data-action="replay"]')?.addEventListener("click", startGame);
     app.querySelector('[data-action="games"]')?.addEventListener("click", () => {
-      window.location.href = "games.html";
+      window.location.href = new URL("games/games.html", document.baseURI).href;
     });
   }
 
@@ -460,7 +460,7 @@
       return;
     }
     if (state.view === "result") {
-      window.location.href = "games.html";
+      window.location.href = new URL("games/games.html", document.baseURI).href;
       return;
     }
     if (state.view === "how") {
@@ -468,7 +468,7 @@
       render();
       return;
     }
-    window.location.href = "games.html";
+    window.location.href = new URL("games/games.html", document.baseURI).href;
   }
 
   function startGame() {

@@ -7,7 +7,7 @@
       window.history.back();
       return;
     }
-    window.location.href = "more.html";
+    window.location.href = new URL("app/more.html", document.baseURI).href;
   }
 
   function render() {
@@ -38,7 +38,7 @@
 
   document.getElementById("profBackBtn")?.addEventListener("click", goBack);
   document.getElementById("profEditBtn")?.addEventListener("click", function () {
-    window.location.href = "profile-edit.html";
+    window.location.href = new URL("account/profile/profile-edit.html", document.baseURI).href;
   });
 
   render();

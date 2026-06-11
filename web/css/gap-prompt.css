@@ -1,0 +1,297 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+button { cursor: pointer; border: none; background: none; -webkit-tap-highlight-color: transparent; font-family: inherit; }
+a { -webkit-tap-highlight-color: transparent; }
+img { display: block; max-width: 100%; }
+.cert-bg { pointer-events: none; }
+
+/* ── Container ── */
+.gp {
+  position: relative;
+  width: 390px;
+  height: 844px;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.gp .sb {
+  flex-shrink: 0;
+  height: 44px;
+  position: relative;
+  z-index: 5;
+}
+
+/* ── Nav ── */
+.gp-nav {
+  flex-shrink: 0;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  position: relative;
+  z-index: 5;
+}
+
+.gp-nav-back {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-decoration: none;
+  transition: background 120ms;
+}
+.gp-nav-back:active { background: #e2e8f0; }
+.gp-nav-back img { width: 24px; height: 24px; }
+
+.gp-nav-title {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 400;
+  color: #64748b;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.gp-nav-help {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 120ms;
+}
+.gp-nav-help:active { background: rgba(255, 255, 255, 0.75); }
+.gp-nav-help img { width: 21.5px; height: 21.5px; }
+
+/* ── Header ── */
+.gp-header {
+  flex-shrink: 0;
+  padding: 20px 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.gp-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: rgba(230, 242, 255, 0.5);
+  border: 1px solid #b0d6ff;
+  font-size: 10px;
+  font-weight: 700;
+  color: #007bff;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 14px;
+  white-space: nowrap;
+}
+
+.gp-title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 32px;
+  letter-spacing: -0.288px;
+  text-transform: uppercase;
+  color: #000;
+  text-align: center;
+}
+.gp-title-grad {
+  background: linear-gradient(90deg, #007bff 0%, #ff6b35 17.8%, #007bff 72%, #007bff 80.8%, #ff6b35 92.3%, #007bff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gp-subtitle {
+  font-size: 12px;
+  font-weight: 500;
+  color: #334155;
+  line-height: 16px;
+  letter-spacing: -0.06px;
+  text-align: center;
+}
+
+/* ── Panel (white card, rounded-top, blue border) ── */
+.gp-panel {
+  flex: 1;
+  min-height: 0;
+  background: #fff;
+  border-radius: 24px 24px 0 0;
+  border: 1px solid #007bff;
+  border-bottom: none;
+  position: relative;
+  z-index: 1;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.gp-panel::-webkit-scrollbar { display: none; }
+
+.gp-panel-inner {
+  padding: 40px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  min-height: 100%;
+}
+
+/* ── Question card ── */
+.gp-q-card {
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow:
+    1px 1px 24.3px rgba(0, 123, 255, 0.1),
+    0px 8px 8px rgba(23, 23, 23, 0.03);
+}
+
+.gp-q-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 14px;
+  text-align: center;
+}
+
+.gp-q-text {
+  font-size: 20px;
+  font-weight: 800;
+  color: #030507;
+  line-height: 28px;
+  letter-spacing: -0.2px;
+  text-align: center;
+}
+.gp-q-grad {
+  background: linear-gradient(90deg, #007bff 0%, #ff6b35 17.8%, #007bff 72%, #007bff 80.8%, #ff6b35 92.3%, #007bff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Hint row ── */
+.gp-hint-row {
+  background: rgba(230, 242, 255, 0.5);
+  border-radius: 10px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gp-hint-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  background: #e6f2ff;
+  border: 0.8px solid #b0d6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.gp-hint-icon img {
+  width: 19.2px;
+  height: 19.2px;
+  /* make the black SVG render as #007bff */
+  filter: invert(35%) sepia(95%) saturate(2000%) hue-rotate(202deg) brightness(100%) contrast(103%);
+}
+
+.gp-hint-text {
+  flex: 1;
+  font-size: 10px;
+  font-weight: 400;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* ── Illustration ── */
+.gp-illustration {
+  flex: 1;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gp-illustration img {
+  width: 198px;
+  height: 148px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── Bottom bar ── */
+.gp-bnb {
+  flex-shrink: 0;
+  background: #fff;
+  height: 75px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+}
+
+.gp-btn-cta {
+  flex: 1;
+  height: 48px;
+  border-radius: 4px;
+  background: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.112px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 80ms, background 120ms;
+}
+.gp-btn-cta:active { transform: scale(0.97); background: #0068d6; }
+.gp-btn-cta img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+
+/* ── Home indicator ── */
+.gp .home-ind {
+  flex-shrink: 0;
+  height: 24px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+.gp .home-bar {
+  width: 135px;
+  height: 5px;
+  background: #121212;
+  border-radius: 100px;
+}

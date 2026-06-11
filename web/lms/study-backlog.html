@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>CertSprints — Study Backlog</title>
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints Study Backlog">
+      <div class="case-shell">
+        <section class="screen backlog-screen">
+          <div class="backlog-shell">
+
+            <div class="backlog-bg" aria-hidden="true"></div>
+            <div class="backlog-status-bar" aria-hidden="true"></div>
+
+            <!-- Header: back | centred title | help — mirrors notification-header pattern -->
+            <header class="backlog-header">
+              <button class="cert-back backlog-side-btn" type="button" aria-label="Back" data-backlog-back>
+                <img src="assets/icons/arrow-left-02.svg" alt="" width="20" height="20" />
+              </button>
+              <div class="backlog-header-copy">
+                <p class="backlog-title">Study Backlog</p>
+                <p class="backlog-subtitle">14 sprints total</p>
+              </div>
+              <button class="cert-back backlog-side-btn" type="button" aria-label="Help" onclick="window.location.href=new window.URL('support/help-support.html?from=study-backlog',document.baseURI).href">
+                <img src="assets/study-backlog/help-circle.svg" alt="" width="20" height="20" />
+              </button>
+            </header>
+
+            <!-- Scrollable content -->
+            <div class="backlog-scroll">
+              <div class="backlog-section">
+
+                <!-- Course mastery card -->
+                <div class="backlog-mastery-card">
+                  <div class="backlog-mastery-info">
+                    <p class="backlog-mastery-label">Total Course Mastery</p>
+                    <p class="backlog-mastery-sub">You're doing great! Keep going</p>
+                  </div>
+                  <span class="backlog-mastery-pct">20%</span>
+                </div>
+
+                <!-- Sprint accordion list -->
+                <div class="backlog-sprints" id="sprintList">
+
+                  <!-- Sprint 1 — active, expanded -->
+                  <div class="backlog-sprint open" data-sprint>
+                    <button class="backlog-sprint-head" type="button" data-sprint-toggle>
+                      <span class="backlog-sprint-badge">
+                        <img src="assets/study-backlog/motion-02.svg" alt="" width="14" height="14" />
+                      </span>
+                      <span class="backlog-sprint-name">Sprint 1</span>
+                      <span class="bl-chevron-wrap">
+                        <img class="bl-chevron" src="assets/study-backlog/arrow-down.svg" alt="" />
+                      </span>
+                    </button>
+
+                    <div class="backlog-sprint-body">
+
+                      <!-- Study block 1 — completed & open -->
+                      <div class="backlog-block open" data-block>
+                        <button class="backlog-block-head" type="button" data-block-toggle>
+                          <div class="backlog-block-left">
+                            <img src="assets/study-backlog/book-open.svg" alt="" width="16" height="15" />
+                            <span>Study block 1</span>
+                          </div>
+                          <div class="backlog-block-right">
+                            <!-- green completed ring -->
+                            <span class="bl-ring-done">
+                              <img src="assets/study-backlog/tick-white.svg" alt="" width="10" height="9" />
+                            </span>
+                            <span class="bl-chevron-wrap">
+                              <img class="bl-chevron" src="assets/study-backlog/arrow-down.svg" alt="" />
+                            </span>
+                          </div>
+                        </button>
+                        <div class="backlog-lessons open">
+                          <div class="backlog-lesson completed">
+                            <img src="assets/study-backlog/play-gray.svg" alt="" width="14" height="15" />
+                            <span class="bl-name">Introduction to PMI and PMBOK</span>
+                            <span class="bl-dur">0.4 hrs</span>
+                          </div>
+                          <div class="backlog-lesson completed">
+                            <img src="assets/study-backlog/play-gray.svg" alt="" width="14" height="15" />
+                            <span class="bl-name">Introduction to PMI and PMBOK</span>
+                            <span class="bl-dur">0.4 hrs</span>
+                          </div>
+                          <div class="backlog-lesson completed quiz">
+                            <img src="assets/study-backlog/quiz-gray.svg" alt="" width="16" height="15" />
+                            <span class="bl-name">Study Block Quizzes</span>
+                            <span class="bl-dur bl-dur--muted">10 mins</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="backlog-divider"></div>
+
+                      <!-- Study block 2 — in-progress & open -->
+                      <div class="backlog-block open" data-block>
+                        <button class="backlog-block-head" type="button" data-block-toggle>
+                          <div class="backlog-block-left">
+                            <img src="assets/study-backlog/book-open.svg" alt="" width="16" height="15" />
+                            <span>Study block 2</span>
+                          </div>
+                          <div class="backlog-block-right">
+                            <!-- progress ring — 80% -->
+                            <span class="bl-ring-progress">
+                              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                                <circle cx="18" cy="18" r="15" stroke="#f1f5f9" stroke-width="3"/>
+                                <circle cx="18" cy="18" r="15" stroke="#007bff" stroke-width="3"
+                                  stroke-dasharray="75.4 18.85" stroke-linecap="round"
+                                  transform="rotate(-90 18 18)"/>
+                                <text x="18" y="22" text-anchor="middle" fill="white"
+                                  font-size="9" font-weight="500" font-family="Inter,sans-serif">80</text>
+                              </svg>
+                            </span>
+                            <span class="bl-chevron-wrap">
+                              <img class="bl-chevron" src="assets/study-backlog/arrow-down.svg" alt="" />
+                            </span>
+                          </div>
+                        </button>
+                        <div class="backlog-lessons open">
+                          <div class="backlog-lesson active">
+                            <img src="assets/study-backlog/play-blue.svg" alt="" width="14" height="15" />
+                            <span class="bl-name">Introduction to PMI and PMBOK</span>
+                            <span class="bl-dur">0.4 hrs</span>
+                            <div class="bl-progress-bar"></div>
+                          </div>
+                          <div class="backlog-lesson">
+                            <img src="assets/study-backlog/play-pending.svg" alt="" width="14" height="15" />
+                            <span class="bl-name">Introduction to PMI and PMBOK</span>
+                            <span class="bl-dur">0.4 hrs</span>
+                          </div>
+                          <div class="backlog-lesson">
+                            <img src="assets/study-backlog/play-pending.svg" alt="" width="14" height="15" />
+                            <span class="bl-name">Introduction to PMI and PMBOK</span>
+                            <span class="bl-dur">0.4 hrs</span>
+                          </div>
+                          <div class="backlog-lesson quiz">
+                            <img src="assets/study-backlog/quiz-dark.svg" alt="" width="16" height="15" />
+                            <span class="bl-name">Quiz</span>
+                            <span class="bl-dur">12 mins</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="backlog-divider"></div>
+
+                      <!-- Study block 3 — not started, collapsed -->
+                      <div class="backlog-block" data-block>
+                        <button class="backlog-block-head" type="button" data-block-toggle>
+                          <div class="backlog-block-left">
+                            <img src="assets/study-backlog/book-open.svg" alt="" width="16" height="15" />
+                            <span>Study block 3</span>
+                          </div>
+                          <div class="backlog-block-right">
+                            <!-- progress ring — 0% -->
+                            <span class="bl-ring-progress">
+                              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                                <circle cx="18" cy="18" r="15" stroke="#f1f5f9" stroke-width="3"/>
+                                <text x="18" y="22" text-anchor="middle" fill="#334155"
+                                  font-size="9" font-weight="500" font-family="Inter,sans-serif">0</text>
+                              </svg>
+                            </span>
+                            <span class="bl-chevron-wrap">
+                              <img class="bl-chevron" src="assets/study-backlog/arrow-down.svg" alt="" />
+                            </span>
+                          </div>
+                        </button>
+                        <div class="backlog-lessons"></div>
+                      </div>
+
+                    </div>
+                  </div><!-- /Sprint 1 -->
+
+                  <!-- Sprint 2 — locked -->
+                  <div class="backlog-sprint locked" data-sprint>
+                    <button class="backlog-sprint-head" type="button" data-sprint-toggle>
+                      <span class="backlog-sprint-badge">
+                        <img src="assets/study-backlog/motion-02.svg" alt="" width="14" height="14" />
+                      </span>
+                      <span class="backlog-sprint-name">Sprint 2</span>
+                      <img src="assets/account/lock.svg" class="bl-lock-icon" alt="Locked" width="16" height="16" />
+                    </button>
+                    <div class="backlog-sprint-body"></div>
+                  </div>
+
+                  <!-- Sprint 3 — locked -->
+                  <div class="backlog-sprint locked" data-sprint>
+                    <button class="backlog-sprint-head" type="button" data-sprint-toggle>
+                      <span class="backlog-sprint-badge">
+                        <img src="assets/study-backlog/motion-02.svg" alt="" width="14" height="14" />
+                      </span>
+                      <span class="backlog-sprint-name">Sprint 3</span>
+                      <img src="assets/account/lock.svg" class="bl-lock-icon" alt="Locked" width="16" height="16" />
+                    </button>
+                    <div class="backlog-sprint-body"></div>
+                  </div>
+
+                  <template id="sprintTemplate">
+                    <div class="backlog-sprint locked" data-sprint>
+                      <button class="backlog-sprint-head" type="button" data-sprint-toggle>
+                        <span class="backlog-sprint-badge">
+                          <img src="assets/study-backlog/motion-02.svg" alt="" width="14" height="14" />
+                        </span>
+                        <span class="backlog-sprint-name"></span>
+                        <img src="assets/account/lock.svg" class="bl-lock-icon" alt="Locked" width="16" height="16" />
+                      </button>
+                      <div class="backlog-sprint-body"></div>
+                    </div>
+                  </template>
+
+                  <button class="backlog-more-btn" type="button" id="loadMoreSprints">
+                    +11 more sprints
+                    <span class="bl-chevron-wrap">
+                      <img src="assets/study-backlog/arrow-down.svg" alt="" />
+                    </span>
+                  </button>
+
+                </div><!-- /backlog-sprints -->
+              </div>
+            </div><!-- /backlog-scroll -->
+
+            <!-- Fixed bottom bar -->
+            <div class="backlog-bottom">
+              <button class="backlog-resume-btn" type="button" onclick="window.location.href=new window.URL('lms/lesson-player.html',document.baseURI).href">
+                <img src="assets/study-backlog/play-circle.svg" alt="" width="20" height="20" />
+                Resume
+              </button>
+              <div class="backlog-home-indicator" aria-hidden="true"></div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="js/components.js"></script>
+    <script>
+      document.querySelector("[data-backlog-back]")?.addEventListener("click", () => {
+        history.length > 1 ? history.back() : (window.location.href = "app/dashboard.html");
+      });
+
+      document.addEventListener("click", (e) => {
+        const sprintBtn = e.target.closest("[data-sprint-toggle]");
+        if (sprintBtn) {
+          const sprint = sprintBtn.closest("[data-sprint]");
+          if (!sprint.classList.contains("locked")) {
+            sprint.classList.toggle("open");
+          }
+          return;
+        }
+        const blockBtn = e.target.closest("[data-block-toggle]");
+        if (blockBtn) {
+          const block = blockBtn.closest("[data-block]");
+          const isOpen = block.classList.toggle("open");
+          block.querySelector(".backlog-lessons")?.classList.toggle("open", isOpen);
+        }
+      });
+
+      const loadMoreBtn = document.getElementById("loadMoreSprints");
+      const sprintList  = document.getElementById("sprintList");
+      const tmpl        = document.getElementById("sprintTemplate");
+      const MORE_SPRINTS = ["Sprint 4","Sprint 5","Sprint 6","Sprint 7","Sprint 8",
+                            "Sprint 9","Sprint 10","Sprint 11","Sprint 12","Sprint 13","Sprint 14"];
+      let extraNodes = [];
+      let expanded = false;
+
+      loadMoreBtn?.addEventListener("click", () => {
+        if (!expanded) {
+          MORE_SPRINTS.forEach((name) => {
+            const frag = tmpl.content.cloneNode(true);
+            frag.querySelector(".backlog-sprint-name").textContent = name;
+            sprintList.insertBefore(frag, loadMoreBtn);
+            extraNodes.push(loadMoreBtn.previousElementSibling);
+          });
+          loadMoreBtn.innerHTML = 'Show less <span class="bl-chevron-wrap"><img class="bl-chevron open-chevron" src="assets/study-backlog/arrow-down.svg" alt="" /></span>';
+          expanded = true;
+        } else {
+          extraNodes.forEach((n) => n.remove());
+          extraNodes = [];
+          loadMoreBtn.innerHTML = '+' + MORE_SPRINTS.length + ' more sprints <span class="bl-chevron-wrap"><img class="bl-chevron" src="assets/study-backlog/arrow-down.svg" alt="" /></span>';
+          expanded = false;
+        }
+      });
+    </script>
+  </body>
+</html>

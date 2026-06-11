@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <base href="../" />
+  <title>CertSprints — Knowledge Poll</title>
+  <meta http-equiv="Cache-Control" content="no-store"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/knowledge-poll-2.css"/>
+</head>
+<body>
+<main class="phone-case" aria-label="CertSprints — Knowledge Poll">
+  <div class="case-shell">
+    <div class="kp2" id="kp2">
+      <div class="cert-bg" aria-hidden="true"></div>
+      <div class="sb"></div>
+
+      <!-- ════════════════════════════════════════
+           VIEW 1 — RATING
+      ════════════════════════════════════════ -->
+      <div class="kp2-view active" id="kp2-rating">
+
+        <nav class="kp2-nav">
+          <button class="kp2-nav-back" type="button" id="kp2-back" aria-label="Back">
+            <img src="assets/icons/arrow-left-02.svg" alt=""/>
+          </button>
+          <p class="kp2-nav-title">POLL</p>
+          <button class="kp2-nav-help" type="button" id="kp2-help" aria-label="Help">
+            <img src="assets/icons/help-circle-24.svg" alt=""/>
+          </button>
+        </nav>
+
+        <div class="kp2-scroll">
+          <div class="kp2-card">
+
+            <div>
+              <p class="kp2-scale-label">Self-Rating Scale (1–10)</p>
+            </div>
+            <p class="kp2-question">Before diving in — how familiar are you with assessing change impact and organizational readiness before designing a strategy?</p>
+
+            <div class="kp2-hint-row">
+              <img src="assets/icons/drag-left-03-20.svg" alt=""/>
+              <span class="kp2-hint-text">Tap or drag the scale to choose your level</span>
+            </div>
+
+            <div class="kp2-display">
+              <p class="kp2-number" id="kp2-number">—</p>
+              <p class="kp2-level" id="kp2-level">Choose your level</p>
+            </div>
+
+            <div class="kp2-bars-wrap">
+              <div class="kp2-bars" id="kp2-bars" role="group" aria-label="Self-rating scale">
+                <div class="kp2-bar-col" data-val="1"><div class="kp2-bar" style="height:40px"></div></div>
+                <div class="kp2-bar-col" data-val="2"><div class="kp2-bar" style="height:50px"></div></div>
+                <div class="kp2-bar-col" data-val="3"><div class="kp2-bar" style="height:60px"></div></div>
+                <div class="kp2-bar-col" data-val="4"><div class="kp2-bar" style="height:70px"></div></div>
+                <div class="kp2-bar-col" data-val="5"><div class="kp2-bar" style="height:80px"></div></div>
+                <div class="kp2-bar-col" data-val="6"><div class="kp2-bar" style="height:90px"></div></div>
+                <div class="kp2-bar-col" data-val="7"><div class="kp2-bar" style="height:100px"></div></div>
+                <div class="kp2-bar-col" data-val="8"><div class="kp2-bar" style="height:110px"></div></div>
+                <div class="kp2-bar-col" data-val="9"><div class="kp2-bar" style="height:120px"></div></div>
+                <div class="kp2-bar-col" data-val="10"><div class="kp2-bar" style="height:130px"></div></div>
+              </div>
+              <div class="kp2-bar-nums">
+                <span class="kp2-bar-num">1</span>
+                <span class="kp2-bar-num">2</span>
+                <span class="kp2-bar-num">3</span>
+                <span class="kp2-bar-num">4</span>
+                <span class="kp2-bar-num">5</span>
+                <span class="kp2-bar-num">6</span>
+                <span class="kp2-bar-num">7</span>
+                <span class="kp2-bar-num">8</span>
+                <span class="kp2-bar-num">9</span>
+                <span class="kp2-bar-num">10</span>
+              </div>
+              <div class="kp2-ends">
+                <span>Not at all familiar</span>
+                <span>Very confident</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <footer class="kp2-bnb">
+          <button class="kp2-lock-btn" type="button" id="kp2-lock">
+            <img class="icon-locked" src="assets/icons/lock-01.svg" alt=""/>
+            Lock Response
+          </button>
+          <p class="kp2-bnb-hint">Choose a rating on the scale above to enable</p>
+        </footer>
+
+      </div>
+
+      <!-- ════════════════════════════════════════
+           VIEW 2 — RESULT
+      ════════════════════════════════════════ -->
+      <div class="kp2-view" id="kp2-result">
+
+        <nav class="kp2-nav">
+          <button class="kp2-nav-back" type="button" id="kp2-result-back" aria-label="Back">
+            <img src="assets/icons/arrow-left-02.svg" alt=""/>
+          </button>
+          <p class="kp2-nav-title">POLL</p>
+          <button class="kp2-nav-help" type="button" aria-label="Help">
+            <img src="assets/icons/help-circle-24.svg" alt=""/>
+          </button>
+        </nav>
+
+        <div class="kp2-result-scroll">
+
+          <div class="kp2-result-header">
+            <div>
+              <h2 class="kp2-result-title">Logic Synced.</h2>
+              <p class="kp2-result-sub">Benchmarking calibration against community data.</p>
+            </div>
+            <div class="kp2-entry-badge">
+              <span class="kp2-entry-badge-label">Your Entry</span>
+              <span class="kp2-entry-badge-num" id="kp2-entry-num">5</span>
+            </div>
+          </div>
+
+          <div class="kp2-chart-card">
+            <div class="kp2-chart-cols" id="kp2-chart-cols">
+              <!-- bar 1: 15% = 63px -->
+              <div class="kp2-chart-col">
+                <span class="kp2-chart-pct">15%</span>
+                <div class="kp2-chart-track"><div class="kp2-chart-fill" data-res="1" style="height:63px"></div></div>
+                <span class="kp2-chart-num">1</span>
+              </div>
+              <!-- bar 2: 12% = 47px -->
+              <div class="kp2-chart-col">
+                <span class="kp2-chart-pct">12%</span>
+                <div class="kp2-chart-track"><div class="kp2-chart-fill" data-res="2" style="height:47px"></div></div>
+                <span class="kp2-chart-num">2</span>
+              </div>
+              <!-- bar 3: 18% = 74px -->
+              <div class="kp2-chart-col">
+                <span class="kp2-chart-pct">18%</span>
+                <div class="kp2-chart-track"><div class="kp2-chart-fill" data-res="3" style="height:74px"></div></div>
+                <span class="kp2-chart-num">3</span>
+              </div>
+              <!-- bar 4: 20% = 88px -->
+              <div class="kp2-chart-col">
+                <span class="kp2-chart-pct">20%</span>
+                <div class="kp2-chart-track"><div class="kp2-chart-fill" data-res="4" style="height:88px"></div></div>
+                <span class="kp2-chart-num">4</span>
+              </div>
+              <!-- bar 5: 14% = 72px -->
+              <div class="kp2-chart-col">
+                <span class="kp2-chart-pct">14%</span>
+                <div class="kp2-chart-track"><div class="kp2-chart-fill" data-res="5" style="height:72px"></div></div>
+                <span class="kp2-chart-num">5</span>
+              </div>
+              <!-- bar 6: 10% = 49px -->
+              <div class="kp2-chart-col">
+                <span class="kp2-chart-pct">10%</span>
+                <div class="kp2-chart-track"><div class="kp2-chart-fill" data-res="6" style="height:49px"></div></div>
+                <span class="kp2-chart-num">6</span>
+              </div>
+              <!-- bar 7: 6% = 35px -->
+              <div class="kp2-chart-col">
+                <span class="kp2-chart-pct">6%</span>
+                <div class="kp2-chart-track"><div class="kp2-chart-fill" data-res="7" style="height:35px"></div></div>
+                <span class="kp2-chart-num">7</span>
+              </div>
+              <!-- bar 8: 3% = 19px -->
+              <div class="kp2-chart-col">
+                <span class="kp2-chart-pct">3%</span>
+                <div class="kp2-chart-track"><div class="kp2-chart-fill" data-res="8" style="height:19px"></div></div>
+                <span class="kp2-chart-num">8</span>
+              </div>
+              <!-- bar 9: 1% = 10px -->
+              <div class="kp2-chart-col">
+                <span class="kp2-chart-pct">1%</span>
+                <div class="kp2-chart-track"><div class="kp2-chart-fill" data-res="9" style="height:10px"></div></div>
+                <span class="kp2-chart-num">9</span>
+              </div>
+              <!-- bar 10: 1% = 11px -->
+              <div class="kp2-chart-col">
+                <span class="kp2-chart-pct">1%</span>
+                <div class="kp2-chart-track"><div class="kp2-chart-fill" data-res="10" style="height:11px"></div></div>
+                <span class="kp2-chart-num">10</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="kp2-baseline-card">
+            <div class="kp2-baseline-head">
+              <div class="kp2-baseline-icon">
+                <img src="https://www.figma.com/api/mcp/asset/b49e2b2c-41f7-4b59-8327-f82112d65a5d" alt=""/>
+              </div>
+              <p class="kp2-baseline-title">Baseline Metric</p>
+            </div>
+            <p class="kp2-baseline-body">"Your rating creates a personal baseline that will be compared to your post-module score to measure growth."</p>
+          </div>
+
+        </div>
+
+        <footer class="kp2-continue-bnb">
+          <button class="kp2-continue-btn" type="button" id="kp2-continue">
+            Continue Learning
+            <img src="assets/icons/arrow-right-02.svg" alt=""/>
+          </button>
+        </footer>
+
+      </div>
+
+      <div class="home-ind"><div class="home-bar"></div></div>
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+  var selected = null;
+
+  var LABELS = {
+    1:  'NOT AT ALL FAMILIAR',
+    2:  'BARELY FAMILIAR',
+    3:  'SLIGHTLY FAMILIAR',
+    4:  'APPROACHING FAMILIAR',
+    5:  'SOMEWHAT FAMILIAR',
+    6:  'MODERATELY FAMILIAR',
+    7:  'CONFIDENT',
+    8:  'QUITE CONFIDENT',
+    9:  'VERY CONFIDENT',
+    10: 'HIGHLY CONFIDENT'
+  };
+
+  function colorClass(v) {
+    if (v <= 3) return 'color-red';
+    if (v <= 6) return 'color-orange';
+    if (v <= 8) return 'color-blue';
+    return 'color-green';
+  }
+
+  function barActiveClass(v) {
+    if (v <= 3) return 'active-red';
+    if (v <= 6) return 'active-orange';
+    if (v <= 8) return 'active-blue';
+    return 'active-green';
+  }
+
+  function selectVal(v) {
+    if (v === selected) return;
+    selected = v;
+
+    var numEl   = document.getElementById('kp2-number');
+    var levelEl = document.getElementById('kp2-level');
+    var lockBtn = document.getElementById('kp2-lock');
+    var cc = colorClass(v);
+
+    numEl.textContent = String(v);
+    numEl.className   = 'kp2-number ' + cc;
+    levelEl.textContent = LABELS[v];
+    levelEl.className   = 'kp2-level ' + cc;
+
+    var cols = document.querySelectorAll('#kp2-bars .kp2-bar-col');
+    for (var i = 0; i < cols.length; i++) {
+      var bar = cols[i].querySelector('.kp2-bar');
+      bar.className = 'kp2-bar';
+      if (Number(cols[i].dataset.val) === v) {
+        bar.classList.add(barActiveClass(v));
+      }
+    }
+
+    lockBtn.classList.add('enabled');
+  }
+
+  /* Tap + drag on bars */
+  var barsEl = document.getElementById('kp2-bars');
+  var dragging = false;
+
+  function colFromX(x) {
+    var cols = barsEl.querySelectorAll('.kp2-bar-col');
+    for (var i = 0; i < cols.length; i++) {
+      var r = cols[i].getBoundingClientRect();
+      if (x >= r.left && x <= r.right) return Number(cols[i].dataset.val);
+    }
+    return null;
+  }
+
+  barsEl.addEventListener('mousedown', function (e) {
+    dragging = true;
+    var v = colFromX(e.clientX);
+    if (v) selectVal(v);
+  });
+  document.addEventListener('mousemove', function (e) {
+    if (!dragging) return;
+    var v = colFromX(e.clientX);
+    if (v) selectVal(v);
+  });
+  document.addEventListener('mouseup', function () { dragging = false; });
+
+  barsEl.addEventListener('touchstart', function (e) {
+    dragging = true;
+    var t = e.touches[0];
+    var v = colFromX(t.clientX);
+    if (v) selectVal(v);
+  }, { passive: true });
+  barsEl.addEventListener('touchmove', function (e) {
+    if (!dragging) return;
+    var t = e.touches[0];
+    var v = colFromX(t.clientX);
+    if (v) selectVal(v);
+  }, { passive: true });
+  barsEl.addEventListener('touchend', function () { dragging = false; });
+
+  /* Lock → result */
+  document.getElementById('kp2-lock').addEventListener('click', function () {
+    if (!this.classList.contains('enabled')) return;
+    document.getElementById('kp2-entry-num').textContent = String(selected);
+    var fills = document.querySelectorAll('.kp2-chart-fill');
+    for (var i = 0; i < fills.length; i++) {
+      fills[i].classList.remove('user-bar');
+      if (Number(fills[i].dataset.res) === selected) {
+        fills[i].classList.add('user-bar');
+      }
+    }
+    document.getElementById('kp2-rating').classList.remove('active');
+    document.getElementById('kp2-result').classList.add('active');
+  });
+
+  /* Back buttons */
+  document.getElementById('kp2-back').addEventListener('click', function () {
+    window.location.href = new window.URL('lms/peer-teachbacks.html', document.baseURI).href;
+  });
+  document.getElementById('kp2-result-back').addEventListener('click', function () {
+    document.getElementById('kp2-result').classList.remove('active');
+    document.getElementById('kp2-rating').classList.add('active');
+  });
+
+  /* Help */
+  document.getElementById('kp2-help').addEventListener('click', function () {
+    window.location.href = new window.URL('support/help-support.html?from=knowledge-poll-2', document.baseURI).href;
+  });
+
+  /* Continue */
+  document.getElementById('kp2-continue').addEventListener('click', function () {
+    window.location.href = new window.URL('lms/capability-matrix.html', document.baseURI).href;
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <base href="../" />
+  <title>CertSprints — Risk Cycle Sequencer</title>
+  <meta http-equiv="Cache-Control" content="no-store"/>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/risk-cycle-sequencer.css?v=20260529-rcs2"/>
+</head>
+<body>
+<main class="phone-case" aria-label="CertSprints Risk Cycle Sequencer">
+  <div class="case-shell">
+  <div class="rcs" id="rcs">
+
+    <div class="cert-bg" aria-hidden="true"></div>
+    <div class="sb"></div>
+
+    <!-- INTRO -->
+    <div class="rcs-view active" id="rcs-intro-view">
+      <nav class="rcs-intro-nav">
+        <button class="nav-btn" type="button" aria-label="Back" id="rcs-intro-back">
+          <span class="rcs-icon-slot rcs-icon-slot--24">
+            <img class="rcs-glyph rcs-glyph--arrow-left-24" src="assets/icons/arrow-left-02.svg" alt=""/>
+          </span>
+        </button>
+        <div class="nav-progress" aria-hidden="true">
+          <div class="prog-active"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+          <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+          <div class="prog-dot"></div>
+        </div>
+        <div class="nav-btn" style="opacity:0;pointer-events:none" aria-hidden="true"></div>
+      </nav>
+
+      <div class="rcs-intro-scroll">
+        <div class="rcs-intro-head">
+          <span class="rcs-challenge-badge">ORDERING CHALLENGE</span>
+          <h1 class="rcs-intro-title">Risk Cycle Sequencer</h1>
+          <p class="rcs-intro-desc">Put these five shuffled steps in the correct order to show how to manage project risks continuously.</p>
+        </div>
+        <img class="rcs-intro-illus" src="assets/risk-cycle-sequencer/hero.png" alt="Risk cycle sequencer illustration"/>
+        <div class="rcs-stat-row">
+          <div class="rcs-stat-card">
+            <div class="rcs-stat-icon rcs-stat-icon--gray">
+              <span class="rcs-icon-slot rcs-icon-slot--20">
+                <img class="rcs-glyph rcs-glyph--list-20" src="assets/risk-cycle-sequencer/icon-list.svg" alt=""/>
+              </span>
+            </div>
+            <div class="rcs-stat-meta">
+              <p class="rcs-stat-label">STEPS</p>
+              <p class="rcs-stat-value">05</p>
+            </div>
+          </div>
+          <div class="rcs-stat-card">
+            <div class="rcs-stat-icon rcs-stat-icon--orange">
+              <span class="rcs-icon-slot rcs-icon-slot--20">
+                <img class="rcs-glyph rcs-glyph--clock-20" src="assets/risk-cycle-sequencer/icon-clock.svg" alt=""/>
+              </span>
+            </div>
+            <div class="rcs-stat-meta">
+              <p class="rcs-stat-label">TARGET</p>
+              <p class="rcs-stat-value">1 min</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lp-bnb">
+        <button class="btn-primary" type="button" id="rcs-start-btn">
+          Start Sequencing
+          <span class="rcs-icon-slot rcs-icon-slot--20">
+            <img class="rcs-glyph rcs-glyph--arrow-right-20-white" src="assets/icons/arrow-right-02.svg" alt=""/>
+          </span>
+        </button>
+      </div>
+      <div class="home-ind"><div class="home-bar"></div></div>
+    </div>
+
+    <!-- GAME -->
+    <div class="rcs-view" id="rcs-game-view">
+      <nav class="rcs-game-nav">
+        <button class="nav-btn" type="button" aria-label="Back" id="rcs-game-close">
+          <span class="rcs-icon-slot rcs-icon-slot--24">
+            <img class="rcs-glyph rcs-glyph--arrow-left-24" src="assets/icons/arrow-left-02.svg" alt=""/>
+          </span>
+        </button>
+        <p class="rcs-game-label">ORDER SEQUENCE</p>
+        <button class="nav-btn rcs-help-btn" type="button" aria-label="Help" id="rcs-help-btn">
+          <span class="rcs-icon-slot rcs-icon-slot--24">
+            <img class="rcs-glyph rcs-glyph--help-24" src="assets/risk-cycle-sequencer/icon-help.svg" alt=""/>
+          </span>
+        </button>
+      </nav>
+
+      <div class="rcs-game-head">
+        <p class="rcs-game-title">Arrange the Workflow</p>
+        <p class="rcs-game-sub">Place the first step at the top and the final step at the bottom.</p>
+      </div>
+
+      <div class="rcs-card">
+        <div class="rcs-card-inner">
+          <div class="rcs-tip">
+            <div class="rcs-tip-icon">
+              <span class="rcs-icon-slot rcs-icon-slot--15">
+                <img class="rcs-glyph rcs-glyph--drag-tip-15" src="assets/risk-cycle-sequencer/icon-drag-tip.svg" alt=""/>
+              </span>
+            </div>
+            <p class="rcs-tip-text"><strong>Tip:</strong> Hold the grip handle to move a step</p>
+          </div>
+          <div class="rcs-step-list" id="rcs-step-list" role="list"></div>
+        </div>
+      </div>
+
+      <div class="lp-bnb" id="rcs-bnb">
+        <button class="btn-secondary rcs-reset-btn" type="button" id="rcs-reset-btn">
+          <span class="rcs-icon-slot rcs-icon-slot--20">
+            <img class="rcs-glyph rcs-glyph--reload-20" src="assets/risk-cycle-sequencer/icon-reload.svg" alt=""/>
+          </span>
+          Reset
+        </button>
+        <button class="btn-primary" type="button" id="rcs-check-btn">
+          Check My Order
+          <span class="rcs-icon-slot rcs-icon-slot--20">
+            <img class="rcs-glyph rcs-glyph--tick-20-white" src="assets/risk-cycle-sequencer/icon-tick.svg" alt=""/>
+          </span>
+        </button>
+      </div>
+      <div class="home-ind"><div class="home-bar"></div></div>
+
+      <div class="rcs-overlay" id="rcs-ov1" aria-hidden="true">
+        <div class="rcs-scrim" data-close="rcs-ov1"></div>
+        <div class="rcs-sheet">
+          <div class="rcs-sheet-handle" aria-hidden="true"></div>
+          <div class="rcs-sheet-body">
+            <div class="rcs-banner rcs-banner--red">
+              <div class="rcs-banner-top">
+                <div class="rcs-banner-icon">
+                  <span class="rcs-icon-slot rcs-icon-slot--20">
+                    <img class="rcs-glyph rcs-glyph--info-diamond-20" src="assets/risk-cycle-sequencer/icon-info-diamond.svg" alt=""/>
+                  </span>
+                </div>
+                <span class="rcs-banner-label">ATTEMPT 1 FAILED</span>
+              </div>
+              <p class="rcs-banner-sub">Sequence Mismatch</p>
+            </div>
+            <div class="rcs-info-box">
+              <p class="rcs-info-title">Here's why:</p>
+              <p class="rcs-info-text">The highlighted steps are in the wrong order. You have one more trial to fix the workflow before the correct solution is revealed.</p>
+            </div>
+            <button class="btn-primary" type="button" id="rcs-try-again-btn">
+              <span class="rcs-icon-slot rcs-icon-slot--20">
+                <img class="rcs-glyph rcs-glyph--thumbsup-20" src="assets/risk-cycle-sequencer/icon-thumbsup.svg" alt=""/>
+              </span>
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="rcs-overlay" id="rcs-ov2" aria-hidden="true">
+        <div class="rcs-scrim" data-close="rcs-ov2"></div>
+        <div class="rcs-sheet">
+          <div class="rcs-sheet-handle" aria-hidden="true"></div>
+          <div class="rcs-sheet-body">
+            <div class="rcs-banner rcs-banner--red">
+              <div class="rcs-banner-top">
+                <div class="rcs-banner-icon">
+                  <span class="rcs-icon-slot rcs-icon-slot--20">
+                    <img class="rcs-glyph rcs-glyph--info-diamond-20" src="assets/risk-cycle-sequencer/icon-info-diamond.svg" alt=""/>
+                  </span>
+                </div>
+                <span class="rcs-banner-label">ATTEMPT 2 FAILED</span>
+              </div>
+              <p class="rcs-banner-sub">Sequence Mismatch</p>
+            </div>
+            <div class="rcs-info-box">
+              <p class="rcs-info-title">Here's why:</p>
+              <p class="rcs-info-text">Professional standards require 'Assessment before Action'. You have exhausted your trials. You can now choose to see the verified sequence.</p>
+            </div>
+            <button class="btn-primary" type="button" id="rcs-reveal-btn">
+              <span class="rcs-icon-slot rcs-icon-slot--20">
+                <img class="rcs-glyph rcs-glyph--eye-20" src="assets/risk-cycle-sequencer/icon-eye.svg" alt=""/>
+              </span>
+              Reveal Sequence
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="rcs-overlay" id="rcs-ov-valid" aria-hidden="true">
+        <div class="rcs-scrim"></div>
+        <div class="rcs-sheet">
+          <div class="rcs-sheet-handle" aria-hidden="true"></div>
+          <div class="rcs-sheet-body">
+            <div class="rcs-banner rcs-banner--green">
+              <div class="rcs-banner-top">
+                <div class="rcs-banner-icon">
+                  <span class="rcs-icon-slot rcs-icon-slot--20">
+                    <img class="rcs-glyph rcs-glyph--tick-circle-20" src="assets/risk-cycle-sequencer/icon-tick-circle.svg" alt=""/>
+                  </span>
+                </div>
+                <span class="rcs-banner-label">SEQUENCE VALIDATED</span>
+              </div>
+              <p class="rcs-banner-sub">Correct Alignment</p>
+            </div>
+            <div class="rcs-info-box">
+              <p class="rcs-info-title">Expert Reasoning</p>
+              <p class="rcs-info-text">Spot on! The Risk Management cycle follows this logical path: You first Identify the risks, then Analyze their potential impact. Only after understanding them do you Plan responses and then Execute those responses. Finally, you must continuously Monitor the environment to restart the cycle.</p>
+            </div>
+            <button class="btn-primary" type="button" id="rcs-complete-btn">
+              Mark as completed
+              <span class="rcs-icon-slot rcs-icon-slot--20">
+                <img class="rcs-glyph rcs-glyph--tick-20-white" src="assets/risk-cycle-sequencer/icon-tick.svg" alt=""/>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</main>
+
+<script src="js/risk-cycle-sequencer.js?v=20260529-rcs2"></script>
+</body>
+</html>

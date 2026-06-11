@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>CertSprints — Account</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css?v=20260529-sub1" />
+    <style>
+      .sub-nav {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 48px 20px 8px;
+      }
+      .sub-nav-title {
+        flex: 1;
+        text-align: center;
+        font: 600 16px/22px Inter, sans-serif;
+        color: #334155;
+        letter-spacing: -0.112px;
+        margin: 0;
+      }
+      .sub-nav-spacer { width: 40px; flex-shrink: 0; }
+      .sub-spacer { height: 16px; }
+
+      .sub-card {
+        border-radius: 24px;
+        padding: 16px 16px 64px;
+        gap: 24px;
+      }
+      .sub-group {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .sub-group-head {
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .sub-group-label {
+        font: 600 16px/22px Inter, sans-serif;
+        color: #334155;
+        margin: 0;
+        letter-spacing: -0.112px;
+      }
+      .sub-group-desc {
+        font: 400 14px/1.6 Inter, sans-serif;
+        color: #64748b;
+        margin: 0;
+      }
+      .sub-row {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 20px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      /* Select field */
+      .select-field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .select-label {
+        font: 500 14px/20px Inter, sans-serif;
+        color: #475569;
+        letter-spacing: -0.084px;
+      }
+      .select-wrap { position: relative; }
+      .select-wrap select {
+        width: 100%;
+        height: 58px;
+        padding: 0 44px 0 20px;
+        border: 1px solid #e2e8f0;
+        border-radius: 4px;
+        background: #fff;
+        font: 400 14px/1.6 Inter, sans-serif;
+        color: #0f172a;
+        appearance: none;
+        -webkit-appearance: none;
+        cursor: pointer;
+        box-sizing: border-box;
+      }
+      .select-wrap::after {
+        content: '';
+        position: absolute;
+        right: 18px;
+        top: 50%;
+        transform: translateY(-65%) rotate(45deg);
+        width: 8px;
+        height: 8px;
+        border-right: 1.5px solid #94a3b8;
+        border-bottom: 1.5px solid #94a3b8;
+        pointer-events: none;
+      }
+
+      /* Toggle */
+      .toggle-row {
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 16px;
+        display: flex;
+        align-items: flex-start;
+        gap: 40px;
+      }
+      .toggle-info { flex: 1; min-width: 0; }
+      .toggle-title {
+        font: 500 14px/20px Inter, sans-serif;
+        color: #334155;
+        letter-spacing: -0.084px;
+        margin: 0 0 12px;
+      }
+      .toggle-desc {
+        font: 400 12px/1.6 Inter, sans-serif;
+        color: #64748b;
+        margin: 0;
+      }
+      .toggle-switch {
+        position: relative;
+        width: 36px;
+        height: 20px;
+        border-radius: 123px;
+        cursor: pointer;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .toggle-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+      .toggle-track {
+        position: absolute;
+        inset: 0;
+        border-radius: 123px;
+        background: #f1f5f9;
+        transition: background 150ms;
+      }
+      .toggle-switch input:checked + .toggle-track { background: #007bff; }
+      .toggle-thumb {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0,0,0,.15);
+        transition: left 150ms;
+        pointer-events: none;
+      }
+      .toggle-switch input:checked ~ .toggle-thumb { left: 18px; }
+
+      /* Delete button */
+      .delete-btn {
+        width: 100%;
+        padding: 10px 16px;
+        border: 1px solid #f43f5e;
+        border-radius: 4px;
+        background: #fff;
+        font: 500 14px/20px Inter, sans-serif;
+        color: #f43f5e;
+        letter-spacing: -0.084px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        transition: background 150ms;
+      }
+      .delete-btn:hover { background: #fff1f2; }
+    </style>
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints Account Settings">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell">
+            <div class="dashboard-scroll">
+
+              <nav class="sub-nav">
+                <button class="cert-back" type="button" aria-label="Back" onclick="window.location.href=new window.URL('settings/settings.html',document.baseURI).href">
+                  <img src="assets/icons/arrow-left-02.svg" alt="" />
+                </button>
+                <h1 class="sub-nav-title">Account</h1>
+                <div class="sub-nav-spacer" aria-hidden="true"></div>
+              </nav>
+
+              <div class="sub-spacer"></div>
+
+              <main class="dashboard-main sub-card">
+
+                <!-- General -->
+                <div class="sub-group">
+                  <div class="sub-group-head">
+                    <p class="sub-group-label">General</p>
+                    <p class="sub-group-desc">Manage your account preferences.</p>
+                  </div>
+                  <div class="sub-row">
+                    <div class="select-field">
+                      <label class="select-label">Language</label>
+                      <div class="select-wrap">
+                        <select aria-label="Language">
+                          <option>English (UK)</option>
+                          <option>English (US)</option>
+                          <option>French</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="select-field">
+                      <label class="select-label">Timezone</label>
+                      <div class="select-wrap">
+                        <select aria-label="Timezone">
+                          <option>GMT +1</option>
+                          <option>GMT +0</option>
+                          <option>GMT -5</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Privacy -->
+                <div class="sub-group">
+                  <div class="sub-group-head">
+                    <p class="sub-group-label">Privacy</p>
+                    <p class="sub-group-desc">Control who can see your profile and activity.</p>
+                  </div>
+                  <div class="sub-row">
+                    <div class="select-field">
+                      <label class="select-label">Who can see your profile?</label>
+                      <div class="select-wrap">
+                        <select aria-label="Profile visibility">
+                          <option>Private - Only you</option>
+                          <option>Friends only</option>
+                          <option>Everyone</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Data Sharing -->
+                <div class="sub-group">
+                  <div class="sub-group-head">
+                    <p class="sub-group-label">Data Sharing</p>
+                    <p class="sub-group-desc">Manage how your data is shared with third parties.</p>
+                  </div>
+                  <div class="sub-row" style="gap:8px;">
+                    <div class="toggle-row">
+                      <div class="toggle-info">
+                        <p class="toggle-title">Usage Analytics</p>
+                        <p class="toggle-desc">Help us improve by sharing anonymous usage data</p>
+                      </div>
+                      <label class="toggle-switch" aria-label="Usage Analytics">
+                        <input type="checkbox" checked />
+                        <span class="toggle-track"></span>
+                        <span class="toggle-thumb"></span>
+                      </label>
+                    </div>
+                    <div class="toggle-row">
+                      <div class="toggle-info">
+                        <p class="toggle-title">Third-Party Data Sharing</p>
+                        <p class="toggle-desc">Allow sharing data with partner services</p>
+                      </div>
+                      <label class="toggle-switch" aria-label="Third-Party Data Sharing">
+                        <input type="checkbox" checked />
+                        <span class="toggle-track"></span>
+                        <span class="toggle-thumb"></span>
+                      </label>
+                    </div>
+                    <div class="toggle-row">
+                      <div class="toggle-info">
+                        <p class="toggle-title">Personalized Recommendations</p>
+                        <p class="toggle-desc">Use your data to suggest relevant content</p>
+                      </div>
+                      <label class="toggle-switch" aria-label="Personalized Recommendations">
+                        <input type="checkbox" />
+                        <span class="toggle-track"></span>
+                        <span class="toggle-thumb"></span>
+                      </label>
+                    </div>
+                    <div class="toggle-row">
+                      <div class="toggle-info">
+                        <p class="toggle-title">Marketing Communications</p>
+                        <p class="toggle-desc">Receive promotional emails and offers</p>
+                      </div>
+                      <label class="toggle-switch" aria-label="Marketing Communications">
+                        <input type="checkbox" />
+                        <span class="toggle-track"></span>
+                        <span class="toggle-thumb"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Delete Account -->
+                <div class="sub-group">
+                  <div class="sub-group-head">
+                    <p class="sub-group-label">Delete Account</p>
+                    <p class="sub-group-desc">Permanently remove your account and all data</p>
+                  </div>
+                  <div class="sub-row" style="padding:20px 16px;">
+                    <a class="delete-btn" href="settings/settings-delete-account.html">Delete my account</a>
+                  </div>
+                </div>
+
+              </main>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="js/app.js?v=20260529-sub1"></script>
+  </body>
+</html>

@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>CertSprints — Security</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css?v=20260529-sec2" />
+    <link rel="stylesheet" href="css/settings-security.css?v=20260529-sec2" />
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints Security">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell">
+            <div class="dashboard-scroll">
+              <div class="sec-view">
+                <div class="cert-bg" aria-hidden="true"></div>
+
+                <header class="sec-nav-bar">
+                  <button class="sec-nav-pill" type="button" aria-label="Back" onclick="window.location.href=new window.URL('settings/settings.html',document.baseURI).href">
+                    <span class="sec-icon-slot sec-icon-slot--24">
+                      <img class="sec-glyph sec-glyph--arrow-left-20" src="assets/icons/arrow-left-02.svg" alt="" />
+                    </span>
+                  </button>
+                  <h1 class="sec-nav-title">Security</h1>
+                  <span class="sec-nav-spacer" aria-hidden="true"></span>
+                </header>
+
+                <div id="secHub" class="sec-panel" aria-live="polite"></div>
+              </div>
+            </div>
+
+            <!-- 07 Unlink Google -->
+            <div class="sec-overlay" id="secUnlinkGoogleSheet" aria-hidden="true">
+              <div class="sec-overlay-scrim" data-sec-close></div>
+              <div class="sec-sheet-wrap">
+                <div class="sec-sheet" role="dialog" aria-modal="true" aria-labelledby="secUnlinkGoogleTitle">
+                  <div class="sec-sheet-handle" aria-hidden="true"></div>
+                  <div class="sec-sheet-body">
+                    <div class="sec-sheet-brand-row">
+                      <span class="sec-icon-box"><span class="sec-icon-slot sec-icon-slot--24"><img class="sec-glyph sec-glyph--google-24" src="assets/security/icons/google-24.svg" alt="" /></span></span>
+                      <button type="button" class="sec-sheet-close sec-sheet-close--40" data-sec-close aria-label="Close"><span class="sec-icon-slot sec-icon-slot--24"><img class="sec-glyph sec-glyph--cancel-01-24" src="assets/icons/cancel-01.svg" alt="" /></span></button>
+                    </div>
+                    <hr class="sec-sheet-rule" />
+                    <h2 class="sec-sheet-title-xl" id="secUnlinkGoogleTitle">Unlink your google account</h2>
+                    <p class="sec-sheet-desc">You'll no longer be able to sign in with your Google account. Make sure you have another way to access your account.</p>
+                  </div>
+                  <div class="sec-sheet-foot">
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--danger sec-sheet-btn--sm" id="secUnlinkGoogleConfirm">Yes, Remove Google</button>
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--muted sec-sheet-btn--sm" data-sec-close>No, Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 08 Unlink LinkedIn -->
+            <div class="sec-overlay" id="secUnlinkLinkedinSheet" aria-hidden="true">
+              <div class="sec-overlay-scrim" data-sec-close></div>
+              <div class="sec-sheet-wrap">
+                <div class="sec-sheet" role="dialog" aria-modal="true" aria-labelledby="secUnlinkLinkedinTitle">
+                  <div class="sec-sheet-handle" aria-hidden="true"></div>
+                  <div class="sec-sheet-body">
+                    <div class="sec-sheet-brand-row">
+                      <span class="sec-icon-box"><span class="sec-icon-slot sec-icon-slot--24"><img class="sec-glyph sec-glyph--linkedin-24" src="assets/security/icons/linkedin-24.svg" alt="" /></span></span>
+                      <button type="button" class="sec-sheet-close sec-sheet-close--40" data-sec-close aria-label="Close"><span class="sec-icon-slot sec-icon-slot--24"><img class="sec-glyph sec-glyph--cancel-01-24" src="assets/icons/cancel-01.svg" alt="" /></span></button>
+                    </div>
+                    <hr class="sec-sheet-rule" />
+                    <h2 class="sec-sheet-title-xl" id="secUnlinkLinkedinTitle">Unlink your LinkedIn account</h2>
+                    <p class="sec-sheet-desc">You'll no longer be able to sign in with your LinkedIn account. Make sure you have another way to access your account.</p>
+                  </div>
+                  <div class="sec-sheet-foot">
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--danger sec-sheet-btn--sm" id="secUnlinkLinkedinConfirm">Yes, Remove LinkedIn</button>
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--muted sec-sheet-btn--sm" data-sec-close>No, Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 09 Sign out device -->
+            <div class="sec-overlay" id="secSignOutSheet" aria-hidden="true">
+              <div class="sec-overlay-scrim" data-sec-close></div>
+              <div class="sec-sheet-wrap">
+                <div class="sec-sheet" role="dialog" aria-modal="true" aria-labelledby="secSignOutTitle">
+                  <div class="sec-sheet-handle" aria-hidden="true"></div>
+                  <div class="sec-sheet-body" style="padding-bottom: 0;">
+                    <div class="sec-sheet-head">
+                      <h2 id="secSignOutTitle">Sign out of device</h2>
+                      <button type="button" class="sec-sheet-close" data-sec-close aria-label="Close"><span class="sec-icon-slot sec-icon-slot--24"><img class="sec-glyph sec-glyph--cancel-01-24" src="assets/icons/cancel-01.svg" alt="" /></span></button>
+                    </div>
+                    <hr class="sec-sheet-rule" />
+                    <div class="sec-warning-box">
+                      <p>This will immediately log you out of your account on all devices and browsers, except for the one you are currently using. Use this if:</p>
+                      <ul>
+                        <li>You signed in on a public or shared computer.</li>
+                        <li>You suspect someone else might have access to your account.</li>
+                        <li>You just want to refresh your security.</li>
+                        <li>Note: You'll need to re-enter your password on those devices to log back in.</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="sec-sheet-foot">
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--danger" id="secSignOutConfirm">Sign out of device</button>
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--muted" data-sec-close>No, Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 10/13 Enable 2FA method select -->
+            <div class="sec-overlay" id="secEnable2faSheet" aria-hidden="true">
+              <div class="sec-overlay-scrim" data-sec-close></div>
+              <div class="sec-sheet-wrap">
+                <div class="sec-sheet" role="dialog" aria-modal="true" aria-labelledby="secEnable2faTitle">
+                  <div class="sec-sheet-handle" aria-hidden="true"></div>
+                  <div class="sec-sheet-body">
+                    <div class="sec-sheet-head">
+                      <h2 id="secEnable2faTitle">Enable 2FA</h2>
+                      <button type="button" class="sec-sheet-close" data-sec-close aria-label="Close"><span class="sec-icon-slot sec-icon-slot--24"><img class="sec-glyph sec-glyph--cancel-01-24" src="assets/icons/cancel-01.svg" alt="" /></span></button>
+                    </div>
+                    <hr class="sec-sheet-rule" />
+                    <p class="sec-sheet-lead">Select a method for your two factor authentication</p>
+                    <div class="sec-method-list">
+                      <button type="button" class="sec-method-card is-selected" data-sec-method="authenticator">
+                        <span class="sec-radio" aria-hidden="true"></span>
+                        <div class="sec-method-copy">
+                          <h3>Authenticator app <span class="sec-tag">recommended</span></h3>
+                          <p>Use apps like Google Authenticator or Authy.</p>
+                        </div>
+                      </button>
+                      <button type="button" class="sec-method-card" data-sec-method="sms">
+                        <span class="sec-radio" aria-hidden="true"></span>
+                        <div class="sec-method-copy">
+                          <h3>SMS code</h3>
+                          <p>Get a code by text message.</p>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="sec-sheet-foot sec-sheet-foot--row">
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--muted" id="secEnable2faCancel">No, Cancel</button>
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--primary" id="secEnable2faProceed">Proceed</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 11 Authenticator setup -->
+            <div class="sec-overlay" id="secAuthSetupSheet" aria-hidden="true">
+              <div class="sec-overlay-scrim" data-sec-close></div>
+              <div class="sec-sheet-wrap">
+                <div class="sec-sheet" role="dialog" aria-modal="true" aria-labelledby="secAuthSetupTitle">
+                  <div class="sec-sheet-handle" aria-hidden="true"></div>
+                  <div class="sec-sheet-body">
+                    <div class="sec-sheet-head">
+                      <h2 id="secAuthSetupTitle">Set up authenticator app</h2>
+                      <button type="button" class="sec-sheet-close" data-sec-close aria-label="Close"><span class="sec-icon-slot sec-icon-slot--24"><img class="sec-glyph sec-glyph--cancel-01-24" src="assets/icons/cancel-01.svg" alt="" /></span></button>
+                    </div>
+                    <hr class="sec-sheet-rule" />
+                    <p class="sec-sheet-lead">Scan the QR code with your authenticator app (e.g., Google Authenticator) and enter the generated code below.</p>
+                    <div class="sec-qr-wrap">
+                      <img src="assets/security/images/qr-code.svg" alt="Authenticator QR code" />
+                      <div>
+                        <p class="sec-secret-copy">If u have any problems scanning the code enter the code below into the authenticator app</p>
+                        <div class="sec-secret-pill">
+                          <span>EU235 8433 8474 4848</span>
+                          <button type="button" id="secCopySecret" aria-label="Copy secret"><span class="sec-icon-slot sec-icon-slot--16"><img class="sec-glyph sec-glyph--copy-01-16" src="assets/security/icons/copy-01-16.svg" alt="" /></span></button>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="sec-code-label">Enter 2FA code</p>
+                    <div class="sec-code-row" id="secAuthCodeInputs">
+                      <div class="sec-code-group">
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 1" />
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 2" />
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 3" />
+                      </div>
+                      <span class="sec-code-dash" aria-hidden="true"></span>
+                      <div class="sec-code-group">
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 4" />
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 5" />
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 6" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sec-sheet-foot sec-sheet-foot--row">
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--muted" id="secAuthSetupBack">Back</button>
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--primary" id="secAuthSetupVerify">Verify</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 14 SMS phone -->
+            <div class="sec-overlay" id="secSmsPhoneSheet" aria-hidden="true">
+              <div class="sec-overlay-scrim" data-sec-close></div>
+              <div class="sec-sheet-wrap">
+                <div class="sec-sheet" role="dialog" aria-modal="true" aria-labelledby="secSmsPhoneTitle">
+                  <div class="sec-sheet-handle" aria-hidden="true"></div>
+                  <div class="sec-sheet-body">
+                    <div class="sec-sheet-head">
+                      <h2 id="secSmsPhoneTitle">Enter your phone number</h2>
+                      <button type="button" class="sec-sheet-close" data-sec-close aria-label="Close"><span class="sec-icon-slot sec-icon-slot--24"><img class="sec-glyph sec-glyph--cancel-01-24" src="assets/icons/cancel-01.svg" alt="" /></span></button>
+                    </div>
+                    <hr class="sec-sheet-rule" />
+                    <p class="sec-sheet-lead">Provide a phone number we will send 2FA codes</p>
+                    <label class="sec-field-label" for="secSmsPhoneNumber">Phone number</label>
+                    <div class="sec-phone-row">
+                      <input class="sec-phone-prefix" type="text" value="+234" readonly aria-label="Country code" />
+                      <input class="sec-phone-number" id="secSmsPhoneNumber" type="tel" placeholder="90 3200 0000" />
+                    </div>
+                  </div>
+                  <div class="sec-sheet-foot sec-sheet-foot--row">
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--muted" id="secSmsPhoneBack">Back</button>
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--primary" id="secSmsPhoneProceed">Proceed</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 15 SMS code verification -->
+            <div class="sec-overlay" id="secSmsCodeSheet" aria-hidden="true">
+              <div class="sec-overlay-scrim" data-sec-close></div>
+              <div class="sec-sheet-wrap">
+                <div class="sec-sheet" role="dialog" aria-modal="true" aria-labelledby="secSmsCodeTitle">
+                  <div class="sec-sheet-handle" aria-hidden="true"></div>
+                  <div class="sec-sheet-body">
+                    <div class="sec-sheet-head">
+                      <h2 id="secSmsCodeTitle">Enter 6-digit code</h2>
+                      <button type="button" class="sec-sheet-close" data-sec-close aria-label="Close"><span class="sec-icon-slot sec-icon-slot--24"><img class="sec-glyph sec-glyph--cancel-01-24" src="assets/icons/cancel-01.svg" alt="" /></span></button>
+                    </div>
+                    <hr class="sec-sheet-rule" />
+                    <p class="sec-sheet-lead">Enter the 6-digit unlock code sent as SMS to your phone to complete setup</p>
+                    <p class="sec-code-label">Enter 2FA code</p>
+                    <div class="sec-code-row" id="secSmsCodeInputs">
+                      <div class="sec-code-group">
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 1" />
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 2" />
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 3" />
+                      </div>
+                      <span class="sec-code-dash" aria-hidden="true"></span>
+                      <div class="sec-code-group">
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 4" />
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 5" />
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 6" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sec-sheet-foot">
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--primary" id="secSmsCodeVerify">Verify 2FA code</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 17 Unbind warning -->
+            <div class="sec-overlay" id="secUnbindWarningSheet" aria-hidden="true">
+              <div class="sec-overlay-scrim" data-sec-close></div>
+              <div class="sec-sheet-wrap">
+                <div class="sec-sheet" role="dialog" aria-modal="true" aria-labelledby="secUnbindTitle">
+                  <div class="sec-sheet-handle" aria-hidden="true"></div>
+                  <div class="sec-sheet-body">
+                    <div class="sec-sheet-head">
+                      <h2 id="secUnbindTitle">Unbind Authenticator App</h2>
+                      <button type="button" class="sec-sheet-close" data-sec-close aria-label="Close"><span class="sec-icon-slot sec-icon-slot--24"><img class="sec-glyph sec-glyph--cancel-01-24" src="assets/icons/cancel-01.svg" alt="" /></span></button>
+                    </div>
+                    <hr class="sec-sheet-rule" />
+                    <p class="sec-sheet-lead">For the sake of your account security, if you go ahead to unbind, you will be suspended from all transactions on the platform for 24 hours. This is part of our security policies to ensure security of funds</p>
+                  </div>
+                  <div class="sec-sheet-foot">
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--muted" id="secUnbindCancel">No, Cancel</button>
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--danger" id="secUnbindConfirm">Yes, unbind</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 18 Unbind code verification -->
+            <div class="sec-overlay" id="secUnbindCodeSheet" aria-hidden="true">
+              <div class="sec-overlay-scrim" data-sec-close></div>
+              <div class="sec-sheet-wrap">
+                <div class="sec-sheet" role="dialog" aria-modal="true" aria-labelledby="secUnbindCodeTitle">
+                  <div class="sec-sheet-handle" aria-hidden="true"></div>
+                  <div class="sec-sheet-body">
+                    <div class="sec-sheet-head">
+                      <h2 id="secUnbindCodeTitle">Enter 2FA code</h2>
+                      <button type="button" class="sec-sheet-close" data-sec-close aria-label="Close"><span class="sec-icon-slot sec-icon-slot--24"><img class="sec-glyph sec-glyph--cancel-01-24" src="assets/icons/cancel-01.svg" alt="" /></span></button>
+                    </div>
+                    <hr class="sec-sheet-rule" />
+                    <p class="sec-sheet-lead">Enter the code from your authenticator app to confirm unbinding</p>
+                    <p class="sec-code-label">Enter 2FA code</p>
+                    <div class="sec-code-row" id="secUnbindCodeInputs">
+                      <div class="sec-code-group">
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 1" />
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 2" />
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 3" />
+                      </div>
+                      <span class="sec-code-dash" aria-hidden="true"></span>
+                      <div class="sec-code-group">
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 4" />
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 5" />
+                        <input class="sec-code-input" type="text" inputmode="numeric" maxlength="1" placeholder="-" aria-label="Digit 6" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sec-sheet-foot">
+                    <button type="button" class="sec-sheet-btn sec-sheet-btn--primary" id="secUnbindCodeVerify">Verify 2FA code</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 03 Password changed modal (return from password page) -->
+            <div class="sec-overlay" id="secPasswordChangedModal" aria-hidden="true">
+              <div class="sec-overlay-scrim" data-sec-close></div>
+              <div class="sec-modal" role="dialog" aria-modal="true" aria-labelledby="secPasswordChangedTitle">
+                <img class="sec-modal-icon" src="assets/security/images/password-success.svg" alt="" />
+                <h2 id="secPasswordChangedTitle">Password changed!</h2>
+                <p>Your password has been updated successfully. You can now sign in with your new password.</p>
+                <div class="sec-modal-actions">
+                  <button type="button" class="sec-modal-btn sec-modal-btn--primary" id="secPasswordChangedDone">Back to Security</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 06 Password set modal -->
+            <div class="sec-overlay" id="secPasswordSetModal" aria-hidden="true">
+              <div class="sec-overlay-scrim" data-sec-close></div>
+              <div class="sec-modal" role="dialog" aria-modal="true" aria-labelledby="secPasswordSetTitle">
+                <img class="sec-modal-icon" src="assets/security/images/password-success.svg" alt="" />
+                <h2 id="secPasswordSetTitle">Password set!</h2>
+                <p>Your password has been set successfully. You can now sign in with your password.</p>
+                <div class="sec-modal-actions">
+                  <button type="button" class="sec-modal-btn sec-modal-btn--primary" data-sec-close>Back to Security</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 12 Authenticator setup complete -->
+            <div class="sec-overlay" id="secAuthCompleteModal" aria-hidden="true">
+              <div class="sec-overlay-scrim" data-sec-close></div>
+              <div class="sec-modal" role="dialog" aria-modal="true" aria-labelledby="secAuthCompleteTitle">
+                <img class="sec-modal-icon" src="assets/security/images/tfa-success.svg" alt="" />
+                <h2 id="secAuthCompleteTitle">2FA enabled!</h2>
+                <p>Authenticator app has been linked to your account. You'll need a code from your app when signing in.</p>
+                <div class="sec-modal-actions">
+                  <button type="button" class="sec-modal-btn sec-modal-btn--primary" id="secAuthCompleteDone">Done</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 16 SMS setup complete -->
+            <div class="sec-overlay" id="secSmsCompleteModal" aria-hidden="true">
+              <div class="sec-overlay-scrim" data-sec-close></div>
+              <div class="sec-modal" role="dialog" aria-modal="true" aria-labelledby="secSmsCompleteTitle">
+                <img class="sec-modal-icon" src="assets/security/images/tfa-success.svg" alt="" />
+                <h2 id="secSmsCompleteTitle">2FA enabled!</h2>
+                <p>SMS verification has been linked to your account. You'll receive a code by text when signing in.</p>
+                <div class="sec-modal-actions">
+                  <button type="button" class="sec-modal-btn sec-modal-btn--primary" id="secSmsCompleteDone">Done</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 19 2FA unbound modal -->
+            <div class="sec-overlay" id="secUnboundModal" aria-hidden="true">
+              <div class="sec-overlay-scrim" data-sec-close></div>
+              <div class="sec-modal" role="dialog" aria-modal="true" aria-labelledby="secUnboundTitle">
+                <img class="sec-modal-icon" src="assets/security/images/tfa-success.svg" alt="" />
+                <h2 id="secUnboundTitle">2FA method unbound</h2>
+                <p>Two factor authentication has been removed from your account.</p>
+                <div class="sec-modal-actions">
+                  <button type="button" class="sec-modal-btn sec-modal-btn--primary" id="secUnboundDone">Done</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="js/settings-security-data.js?v=20260529-sec2"></script>
+    <script src="js/settings-security.js?v=20260529-sec2"></script>
+  </body>
+</html>

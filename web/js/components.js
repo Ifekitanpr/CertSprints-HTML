@@ -33,9 +33,8 @@
             <p>Hi, ${profile.firstName} 👋</p>
           </button>
           <div class="dash-meta">
-            <button class="dash-pill" type="button" data-streak-trigger aria-haspopup="dialog">
+            <button class="dash-pill dash-pill--icon" type="button" data-streak-trigger aria-haspopup="dialog">
               <img src="${ASSETS}/fire.svg" alt="" width="20" height="20" />
-              <strong>123 days</strong>
             </button>
             <button class="dash-icon-btn" type="button" aria-label="Notes">
               <img src="${ASSETS}/note.svg" alt="" width="20" height="20" />
@@ -46,11 +45,21 @@
           </div>
         </div>
         <div class="dash-row dash-cert-row">
-          <div class="dash-cert-select">
+          <div class="dash-cert-select" data-cert-select-trigger role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
             <img class="dash-cert-icon-img" src="${ASSETS}/certificate.svg" alt="" width="24" height="24" />
             <p>PMP Project Management Professional</p>
             <img class="dash-cert-caret-img" src="${ASSETS}/arrow-down.svg" alt="" width="20" height="20" />
           </div>
+          <ul class="dash-cert-dropdown" data-cert-dropdown hidden role="listbox" aria-label="Your courses">
+            <li class="dash-cert-dropdown-item dash-cert-dropdown-item--active" role="option" aria-selected="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007bff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>PMP Project Management Professional</span>
+            </li>
+            <li class="dash-cert-dropdown-item dash-cert-dropdown-item--explore" data-explore-courses role="option">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Explore Courses</span>
+            </li>
+          </ul>
         </div>
         ${extraBlock}
       </header>`;
@@ -58,20 +67,15 @@
 
   /**
    * Reliable back navigation for static HTML flows (avoid history.back() traps).
-   * @param {string} fallback e.g. "more.html" or "dashboard.html"
+   * @param {string} fallback e.g. "app/more.html" or "app/dashboard.html"
    */
   function goBack(fallback) {
     const params = new URLSearchParams(window.location.search);
     const from = params.get("from");
-    if (from === "more") {
-      window.location.href = "more.html";
-      return;
-    }
-    if (from === "dashboard" || from === "home") {
-      window.location.href = "dashboard.html";
-      return;
-    }
-    window.location.href = fallback || "dashboard.html";
+    const nav = (p) => { window.location.href = new URL(p, document.baseURI).href; };
+    if (from === "more") { nav("app/more.html"); return; }
+    if (from === "dashboard" || from === "home") { nav("app/dashboard.html"); return; }
+    nav(fallback || "app/dashboard.html");
   }
 
   window.CertSprintsNav = { goBack };
@@ -90,16 +94,38 @@
       container.innerHTML = headerMarkup(extraHtml, sticky);
 
       container.querySelector(".dash-welcome")?.addEventListener("click", () => {
-        window.location.href = "profile.html";
+        window.location.href = new URL("account/profile/profile.html", document.baseURI).href;
       });
 
       container.querySelector("[data-notification-trigger]")?.addEventListener("click", () => {
-        window.location.href = "notifications.html";
+        window.location.href = new URL("app/notifications.html", document.baseURI).href;
       });
 
       container.querySelector(".dash-icon-btn[aria-label='Notes']")?.addEventListener("click", () => {
-        window.location.href = "notes.html";
+        window.location.href = new URL("app/notes.html", document.baseURI).href;
       });
+
+      const certTrigger = container.querySelector("[data-cert-select-trigger]");
+      const certDropdown = container.querySelector("[data-cert-dropdown]");
+      if (certTrigger && certDropdown) {
+        const toggleDropdown = (e) => {
+          e.stopPropagation();
+          const isOpen = !certDropdown.hidden;
+          certDropdown.hidden = isOpen;
+          certTrigger.setAttribute("aria-expanded", String(!isOpen));
+        };
+        certTrigger.addEventListener("click", toggleDropdown);
+        certTrigger.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleDropdown(e); }
+        });
+        certDropdown.querySelector("[data-explore-courses]")?.addEventListener("click", () => {
+          window.location.href = new URL("commerce/certification.html", document.baseURI).href;
+        });
+        document.addEventListener("click", () => {
+          certDropdown.hidden = true;
+          certTrigger.setAttribute("aria-expanded", "false");
+        }, { once: false, capture: false });
+      }
     },
 
     /**
@@ -144,19 +170,19 @@
         </nav>`;
 
       container.querySelector("[data-nav-home-btn]")?.addEventListener("click", () => {
-        window.location.href = "dashboard.html";
+        window.location.href = new URL("app/dashboard.html", document.baseURI).href;
       });
       container.querySelector("[data-nav-progress-btn]")?.addEventListener("click", () => {
-        window.location.href = "progress.html";
+        window.location.href = new URL("app/progress.html", document.baseURI).href;
       });
       container.querySelector("[data-daily-preview]")?.addEventListener("click", () => {
-        window.location.href = "study-backlog.html";
+        window.location.href = new URL("lms/study-backlog.html", document.baseURI).href;
       });
       container.querySelector("[data-nav-games-btn]")?.addEventListener("click", () => {
-        window.location.href = "games.html";
+        window.location.href = new URL("games/games.html", document.baseURI).href;
       });
       container.querySelector("[data-nav-more-btn]")?.addEventListener("click", () => {
-        window.location.href = "more.html";
+        window.location.href = new URL("app/more.html", document.baseURI).href;
       });
     },
   };

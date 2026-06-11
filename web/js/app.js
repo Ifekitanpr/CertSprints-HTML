@@ -230,16 +230,17 @@
         let selectedRest = params.get("rest") || "Sun";
 
         function navigateTo(url) {
+          const targetUrl = new URL(url, document.baseURI).href;
           const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
           if (document.startViewTransition && !reduceMotion) {
             document.startViewTransition(() => {
-              window.location.href = url;
+              window.location.href = targetUrl;
             });
             return;
           }
           document.body.classList.add("route-exiting");
           window.setTimeout(() => {
-            window.location.href = url;
+            window.location.href = targetUrl;
           }, 90);
         }
 
@@ -440,20 +441,20 @@
         }
 
         function goToPlan() {
-          const url = new URL("plan.html", window.location.href);
+          const url = new URL("onboarding/plan.html", document.baseURI);
           url.searchParams.set("category", currentCategory);
           url.searchParams.set("course", String(currentCourseIndex));
           navigateTo(url.href);
         }
         function backToCertificationDetail() {
-          const url = new URL("certification.html", window.location.href);
+          const url = new URL("commerce/certification.html", document.baseURI);
           url.searchParams.set("sheet", "detail");
           url.searchParams.set("category", currentCategory);
           url.searchParams.set("course", String(currentCourseIndex));
           navigateTo(url.href);
         }
         function currentFlowUrl(path) {
-          const url = new URL(path, window.location.href);
+          const url = new URL(path, document.baseURI);
           params.forEach((value, key) => {
             url.searchParams.set(key, value);
           });
@@ -461,7 +462,7 @@
         }
         function goToTimeline() {
           if (!selectedPlan) return;
-          const url = currentFlowUrl("timeline.html");
+          const url = currentFlowUrl("app/timeline.html");
           url.searchParams.set("category", currentCategory);
           url.searchParams.set("course", String(currentCourseIndex));
           url.searchParams.set("plan", selectedPlan);
@@ -469,45 +470,45 @@
           navigateTo(url.href);
         }
         function goBackToPlan() {
-          const url = currentFlowUrl("plan.html");
+          const url = currentFlowUrl("onboarding/plan.html");
           navigateTo(url.href);
         }
         function goBackToTimeline() {
-          const url = currentFlowUrl("timeline.html");
+          const url = currentFlowUrl("app/timeline.html");
           navigateTo(url.href);
         }
         function goBackToHabits() {
-          const url = currentFlowUrl("habits.html");
+          const url = currentFlowUrl("app/habits.html");
           navigateTo(url.href);
         }
-        function goToAccount(path = "account-code.html") {
+        function goToAccount(path = "account/auth/account-code.html") {
           const url = currentFlowUrl(path);
           navigateTo(url.href);
         }
-        function goToSignIn(path = "signin-code.html") {
+        function goToSignIn(path = "account/auth/signin-code.html") {
           const url = currentFlowUrl(path);
           navigateTo(url.href);
         }
         function goToVerifyEmail() {
-          const url = currentFlowUrl("verify-email.html");
+          const url = currentFlowUrl("account/auth/verify-email.html");
           const email = document.querySelector(".account-email")?.value.trim();
           if (email) url.searchParams.set("email", email);
           navigateTo(url.href);
         }
         function goToSignInVerify() {
-          const url = currentFlowUrl("signin-check-email.html");
+          const url = currentFlowUrl("account/auth/signin-check-email.html");
           const email = document.querySelector(".signin-email")?.value.trim();
           if (email) url.searchParams.set("email", email);
           navigateTo(url.href);
         }
         function goToForgotVerify() {
-          const url = currentFlowUrl("forgot-check-email.html");
+          const url = currentFlowUrl("account/auth/forgot-check-email.html");
           const email = document.querySelector(".forgot-email")?.value.trim();
           if (email) url.searchParams.set("email", email);
           navigateTo(url.href);
         }
         function goToPersonalDetails() {
-          const url = currentFlowUrl("personal-details.html");
+          const url = currentFlowUrl("account/auth/personal-details.html");
           navigateTo(url.href);
         }
         function isPaidPlan(plan = selectedPlan) {
@@ -522,62 +523,62 @@
           return params.get("plan") || selectedPlan || "advanced";
         }
         function goToCheckout() {
-          const url = currentFlowUrl("checkout.html");
+          const url = currentFlowUrl("commerce/checkout.html");
           if (!url.searchParams.get("plan")) url.searchParams.set("plan", currentPlanId());
           if (!url.searchParams.get("duration")) url.searchParams.set("duration", selectedDuration);
           navigateTo(url.href);
         }
         function goToPaymentSuccess() {
-          const url = currentFlowUrl("payment-success.html");
+          const url = currentFlowUrl("commerce/payment-success.html");
           navigateTo(url.href);
         }
         function goBackFromAuth() {
           const path = window.location.pathname;
-          if (path.endsWith("signin-password.html")) {
-            goToSignIn("signin-code.html");
+          if (path.endsWith("account/auth/signin-password.html")) {
+            goToSignIn("account/auth/signin-code.html");
             return;
           }
-          if (path.endsWith("signin-check-email.html")) {
-            goToSignIn(params.get("signinMode") === "password" ? "signin-password.html" : "signin-code.html");
+          if (path.endsWith("account/auth/signin-check-email.html")) {
+            goToSignIn(params.get("signinMode") === "password" ? "account/auth/signin-password.html" : "account/auth/signin-code.html");
             return;
           }
-          if (path.endsWith("forgot-password.html")) {
-            goToSignIn("signin-password.html");
+          if (path.endsWith("account/auth/forgot-password.html")) {
+            goToSignIn("account/auth/signin-password.html");
             return;
           }
-          if (path.endsWith("forgot-check-email.html")) {
-            const url = currentFlowUrl("forgot-password.html");
+          if (path.endsWith("account/auth/forgot-check-email.html")) {
+            const url = currentFlowUrl("account/auth/forgot-password.html");
             navigateTo(url.href);
             return;
           }
-          if (path.endsWith("reset-password.html")) {
-            const url = currentFlowUrl("forgot-check-email.html");
+          if (path.endsWith("account/auth/reset-password.html")) {
+            const url = currentFlowUrl("account/auth/forgot-check-email.html");
             navigateTo(url.href);
             return;
           }
-          if (path.endsWith("account-password.html")) {
-            goToAccount("account-code.html");
+          if (path.endsWith("account/auth/account-password.html")) {
+            goToAccount("account/auth/account-code.html");
             return;
           }
-          if (path.endsWith("verify-email.html")) {
-            goToAccount(params.get("authMode") === "password" ? "account-password.html" : "account-code.html");
+          if (path.endsWith("account/auth/verify-email.html")) {
+            goToAccount(params.get("authMode") === "password" ? "account/auth/account-password.html" : "account/auth/account-code.html");
             return;
           }
-          if (path.endsWith("personal-details.html")) {
-            const url = currentFlowUrl("verify-email.html");
+          if (path.endsWith("account/auth/personal-details.html")) {
+            const url = currentFlowUrl("account/auth/verify-email.html");
             navigateTo(url.href);
             return;
           }
-          if (path.endsWith("checkout.html")) {
-            const url = currentFlowUrl("personal-details.html");
+          if (path.endsWith("commerce/checkout.html")) {
+            const url = currentFlowUrl("account/auth/personal-details.html");
             navigateTo(url.href);
             return;
           }
-          const url = currentFlowUrl("mapping.html");
+          const url = currentFlowUrl("onboarding/mapping.html");
           navigateTo(url.href);
         }
         function goHomeAfterAuth() {
-          navigateTo("dashboard.html");
+          navigateTo("app/dashboard.html");
         }
         function updateTimelineTabs(nextTab) {
           selectedTimelineTab = nextTab;
@@ -645,7 +646,7 @@
           }
         }
         function goToHabits() {
-          const url = currentFlowUrl("habits.html");
+          const url = currentFlowUrl("app/habits.html");
           if (selectedTimelineTab === "specific") {
             url.searchParams.set("timelineType", "specific");
             url.searchParams.set("examDate", selectedDate.toISOString().slice(0, 10));
@@ -685,7 +686,7 @@
           });
         }
         function goToMapping() {
-          const url = currentFlowUrl("mapping.html");
+          const url = currentFlowUrl("onboarding/mapping.html");
           url.searchParams.set("hours", selectedHours);
           url.searchParams.set("focus", selectedFocus);
           url.searchParams.set("rest", selectedRest);
@@ -726,8 +727,8 @@
             planCta.append(icon);
           }
         }
-        startButton?.addEventListener("click", () => { navigateTo("certification.html"); });
-        certBack?.addEventListener("click", () => { navigateTo("index.html"); });
+        startButton?.addEventListener("click", () => { navigateTo("commerce/certification.html"); });
+        certBack?.addEventListener("click", () => { navigateTo("account/auth/index.html"); });
         planBack?.addEventListener("click", backToCertificationDetail);
         planCta?.addEventListener("click", goToTimeline);
         timelineBack?.addEventListener("click", goBackToPlan);
@@ -946,16 +947,16 @@
           });
         });
 
-        planPreviewPrimary?.addEventListener("click", () => goToAccount("account-code.html"));
+        planPreviewPrimary?.addEventListener("click", () => goToAccount("account/auth/account-code.html"));
         planPreviewSecondary?.addEventListener("click", goBackToTimeline);
         planPreviewOverlay?.addEventListener("click", (event) => {
           if (event.target === planPreviewOverlay) closePlanPreviewSheet();
         });
-        signInEntry?.addEventListener("click", () => goToSignIn("signin-code.html"));
+        signInEntry?.addEventListener("click", () => goToSignIn("account/auth/signin-code.html"));
         accountSwitchButtons.forEach((button) => {
           button.addEventListener("click", () => {
             const mode = button.dataset.accountMode || "code";
-            const target = mode === "password" ? "account-password.html" : "account-code.html";
+            const target = mode === "password" ? "account/auth/account-password.html" : "account/auth/account-code.html";
             const url = currentFlowUrl(target);
             url.searchParams.set("authMode", mode);
             navigateTo(url.href);
@@ -965,7 +966,7 @@
         signinModeButtons.forEach((button) => {
           button.addEventListener("click", () => {
             const mode = button.dataset.signinMode || "code";
-            const target = mode === "password" ? "signin-password.html" : "signin-code.html";
+            const target = mode === "password" ? "account/auth/signin-password.html" : "account/auth/signin-code.html";
             const url = currentFlowUrl(target);
             url.searchParams.set("signinMode", mode);
             navigateTo(url.href);
@@ -974,7 +975,7 @@
         signinContinueButtons.forEach((button) => button.addEventListener("click", goToSignInVerify));
         signinPasswordSubmit?.addEventListener("click", goHomeAfterAuth);
         forgotPasswordLink?.addEventListener("click", () => {
-          const url = currentFlowUrl("forgot-password.html");
+          const url = currentFlowUrl("account/auth/forgot-password.html");
           const email = document.querySelector(".signin-email")?.value.trim();
           if (email) url.searchParams.set("email", email);
           navigateTo(url.href);
@@ -983,12 +984,12 @@
           button.addEventListener("click", () => {
             resetSuccessOverlay?.classList.add("hidden");
             resetSuccessOverlay?.setAttribute("aria-hidden", "true");
-            goToSignIn("signin-password.html");
+            goToSignIn("account/auth/signin-password.html");
           }),
         );
         sendResetCode?.addEventListener("click", goToForgotVerify);
         changeEmail?.addEventListener("click", () => {
-          const url = currentFlowUrl("forgot-password.html");
+          const url = currentFlowUrl("account/auth/forgot-password.html");
           navigateTo(url.href);
         });
         resetPasswordSubmit?.addEventListener("click", () => {
@@ -1048,12 +1049,12 @@
         });
         verifyPrimary?.addEventListener("click", () => {
           const path = window.location.pathname;
-          if (path.endsWith("signin-check-email.html")) {
+          if (path.endsWith("account/auth/signin-check-email.html")) {
             goHomeAfterAuth();
             return;
           }
-          if (path.endsWith("forgot-check-email.html")) {
-            const url = currentFlowUrl("reset-password.html");
+          if (path.endsWith("account/auth/forgot-check-email.html")) {
+            const url = currentFlowUrl("account/auth/reset-password.html");
             navigateTo(url.href);
             return;
           }
@@ -1064,10 +1065,10 @@
             goToCheckout();
             return;
           }
-          navigateTo("dashboard.html");
+          navigateTo("app/dashboard.html");
         });
         checkoutBack?.addEventListener("click", () => {
-          const url = currentFlowUrl("personal-details.html");
+          const url = currentFlowUrl("account/auth/personal-details.html");
           navigateTo(url.href);
         });
         checkoutContinue?.addEventListener("click", goToPaymentSuccess);
@@ -1095,7 +1096,7 @@
               renderChangePlanGrid();
               return;
             }
-            const url = currentFlowUrl("checkout.html");
+            const url = currentFlowUrl("commerce/checkout.html");
             url.searchParams.set("duration", durationValue);
             url.searchParams.set("plan", currentPlanId());
             navigateTo(url.href);
@@ -1103,7 +1104,7 @@
         });
         changePlanConfirm?.addEventListener("click", () => {
           const { plan, duration } = changePlanModalSelection();
-          const url = currentFlowUrl("checkout.html");
+          const url = currentFlowUrl("commerce/checkout.html");
           url.searchParams.set("plan", plan);
           url.searchParams.set("duration", duration);
           navigateTo(url.href);
@@ -1112,10 +1113,10 @@
           event.stopPropagation();
         });
         paymentSuccessBack?.addEventListener("click", () => {
-          const url = currentFlowUrl("checkout.html");
+          const url = currentFlowUrl("commerce/checkout.html");
           navigateTo(url.href);
         });
-        startLearning?.addEventListener("click", () => navigateTo("dashboard.html"));
+        startLearning?.addEventListener("click", () => navigateTo("app/dashboard.html"));
         initPaymentConfetti();
         syncVerifyButton();
         renderPersonalDetailsCta();
@@ -1626,7 +1627,7 @@
         }
 
         document.querySelector("[data-notification-trigger]")?.addEventListener("click", () => {
-          window.location.href = "notifications.html";
+          window.location.href = new URL("app/notifications.html", document.baseURI).href;
         });
 
         restartTimer();

@@ -125,8 +125,10 @@
 
     listEl.querySelectorAll("[data-cohort-id]").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        window.location.href =
-          "community-cohort.html?cohort=" + encodeURIComponent(btn.getAttribute("data-cohort-id"));
+        window.location.href = new URL(
+          "community/community-cohort.html?cohort=" + encodeURIComponent(btn.getAttribute("data-cohort-id")),
+          document.baseURI,
+        ).href;
       });
     });
   }

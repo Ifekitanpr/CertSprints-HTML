@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <base href="../" />
+  <title>CertSprints — Lesson Quiz</title>
+  <meta http-equiv="Cache-Control" content="no-store"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/lesson-quiz.css"/>
+</head>
+<body>
+<main class="phone-case" aria-label="CertSprints — Lesson Quiz">
+  <div class="case-shell">
+    <div class="lq" id="lq">
+      <div class="cert-bg" aria-hidden="true"></div>
+      <div class="sb"></div>
+
+      <!-- ════════════════════════════════════════
+           VIEW 1 — INTRO
+      ════════════════════════════════════════ -->
+      <div class="lq-view active" id="lq-intro">
+
+        <nav class="lq-nav">
+          <button class="lq-nav-back" type="button" id="lq-back-intro" aria-label="Back">
+            <img src="assets/icons/arrow-left-02.svg" alt=""/>
+          </button>
+          <p class="lq-nav-title">LESSON QUIZ</p>
+          <button class="lq-nav-help" type="button" id="lq-help-intro" aria-label="Help">
+            <img src="assets/icons/help-circle-24.svg" alt=""/>
+          </button>
+        </nav>
+
+        <div class="lq-intro-scroll">
+
+          <div class="lq-intro-header">
+            <div class="lq-knowledge-gate"><span>Knowledge Gate</span></div>
+            <h1 class="lq-intro-title">Lesson Quiz</h1>
+            <p class="lq-intro-sub">Verify your expertise on the concepts just covered. Meet the threshold to unlock the next level.</p>
+          </div>
+
+          <div class="lq-intro-illus">
+            <img src="https://www.figma.com/api/mcp/asset/6fb7239f-1960-45a1-a298-10e23fd1ef3f" alt="Lesson Quiz illustration"/>
+          </div>
+
+          <div class="lq-intro-stats">
+            <div class="lq-stat-card">
+              <div class="lq-stat-icon gray">
+                <img src="assets/icons/check-list-16.svg" alt=""/>
+              </div>
+              <div class="lq-stat-body">
+                <p class="lq-stat-label">Items</p>
+                <p class="lq-stat-value">10 Qs</p>
+              </div>
+            </div>
+            <div class="lq-stat-card">
+              <div class="lq-stat-icon orange">
+                <img src="assets/icons/target-02-16.svg" alt=""/>
+              </div>
+              <div class="lq-stat-body">
+                <p class="lq-stat-label">Threshold</p>
+                <p class="lq-stat-value">80%</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <footer class="lq-intro-bnb">
+          <button class="lq-start-btn" type="button" id="lq-start">
+            Get Started
+            <img src="assets/icons/arrow-right-02.svg" alt=""/>
+          </button>
+        </footer>
+
+        <div class="home-ind"><div class="home-bar"></div></div>
+      </div>
+
+      <!-- ════════════════════════════════════════
+           VIEW 2 — QUESTION
+      ════════════════════════════════════════ -->
+      <div class="lq-view" id="lq-question">
+
+        <nav class="lq-nav">
+          <button class="lq-nav-back" type="button" id="lq-back-q" aria-label="Back">
+            <img src="assets/icons/arrow-left-02.svg" alt=""/>
+          </button>
+          <p class="lq-nav-title">LESSON QUIZ</p>
+          <button class="lq-nav-help" type="button" id="lq-help-q" aria-label="Help">
+            <img src="assets/icons/help-circle-24.svg" alt=""/>
+          </button>
+        </nav>
+
+        <div class="lq-q-scroll">
+
+          <div class="lq-q-card">
+            <div class="lq-q-card-top">
+              <p class="lq-q-num" id="lq-q-num">Question 1</p>
+              <div class="lq-q-progress">
+                <span class="lq-q-progress-label">Progress</span>
+                <span class="lq-q-progress-val" id="lq-q-prog">1/10</span>
+              </div>
+            </div>
+            <p class="lq-q-text" id="lq-q-text"></p>
+          </div>
+
+          <div class="lq-options-section">
+            <p class="lq-options-label">Select Your Response</p>
+            <div class="lq-options" id="lq-options">
+              <!-- populated by JS -->
+            </div>
+          </div>
+
+        </div>
+
+        <footer class="lq-q-bnb">
+          <p class="lq-q-hint" id="lq-q-hint">Select an answer to continue,</p>
+          <button class="lq-next-btn" type="button" id="lq-next">
+            Next
+            <img src="assets/icons/arrow-right-02.svg" alt=""/>
+          </button>
+        </footer>
+
+        <div class="home-ind"><div class="home-bar"></div></div>
+      </div>
+
+      <!-- ════════════════════════════════════════
+           VIEW 3 — RESULT
+      ════════════════════════════════════════ -->
+      <div class="lq-view" id="lq-result">
+
+        <!-- Colored top section -->
+        <div class="lq-result-top" id="lq-result-top">
+
+          <div class="lq-result-nav">
+            <div class="lq-result-status">
+              <p class="lq-result-status-main" id="lq-result-main-status">Result: Unsuccessful</p>
+              <p class="lq-result-status-sub" id="lq-result-sub-status">Calibration REQUIRED</p>
+            </div>
+            <button class="lq-result-close" type="button" id="lq-result-close" aria-label="Close">
+              <img src="assets/icons/cancel-01.svg" alt=""/>
+            </button>
+          </div>
+
+          <div class="lq-result-header">
+            <div class="lq-result-headline">
+              <h2 id="lq-result-headline">Lesson Failed.</h2>
+              <p id="lq-result-desc">You didn't meet the threshold. Review the gaps below and try again.</p>
+            </div>
+            <div class="lq-score-ring">
+              <svg viewBox="0 0 108 108" width="107.6" height="107.6">
+                <!-- track -->
+                <circle cx="54" cy="54" r="44" fill="none" stroke="#fecdd3" stroke-width="8" id="lq-ring-track"/>
+                <!-- progress arc -->
+                <circle cx="54" cy="54" r="44" fill="none"
+                  stroke="#fb7185" stroke-width="8" stroke-linecap="round"
+                  stroke-dasharray="276.46" stroke-dashoffset="276.46"
+                  transform="rotate(-90 54 54)"
+                  id="lq-ring-arc"/>
+              </svg>
+              <span class="lq-score-pct" id="lq-score-pct">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scrollable review sheet -->
+        <div class="lq-review-sheet" id="lq-review-sheet">
+          <!-- populated by JS -->
+        </div>
+
+        <footer class="lq-result-bnb">
+          <div class="lq-struggle-banner" id="lq-struggle-banner" hidden>
+            <img src="assets/icons/information-circle-20.svg" alt="" style="width:17.2px;height:17.2px;display:block;max-width:none;flex-shrink:0;margin-top:1px;"/>
+            <p id="lq-struggle-text">You can continue, but we strongly recommend revisiting the lesson before your mock exam.</p>
+          </div>
+          <button class="lq-result-btn" type="button" id="lq-result-btn">
+            <span id="lq-result-btn-label">Review &amp; Reattempt</span>
+            <img src="assets/icons/arrow-right-02.svg" alt=""/>
+          </button>
+          <button class="lq-continue-anyway-btn" type="button" id="lq-continue-anyway" hidden>
+            Continue Anyway
+          </button>
+        </footer>
+
+        <div class="home-ind"><div class="home-bar"></div></div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+
+  /* ─── Question bank ─── */
+  var QUESTIONS = [
+    {
+      num: 1,
+      category: 'Business',
+      text: '"What is the core distinction Alex Smith makes between \'delivery\' and \'change\'?"',
+      options: [
+        'A list of system features, training schedules, and go-live dates',
+        'A description of the behavioral and organizational transition required to realize strategic value',
+        'A high-level communication plan for all impacted stakeholders',
+        'A summary of the project budget and resource allocation'
+      ],
+      correct: 1,
+      explanation: 'Alex Smith distinguishes "delivery" (what is built and launched) from "change" (the human, behavioral, and organizational shift required for that delivery to realize its intended value).'
+    },
+    {
+      num: 2,
+      category: 'Process',
+      text: '"Which element is CRITICAL for a transition from a \'Current State\' to a \'Future State\' in Change Formulation?"',
+      options: [
+        'A finalized project budget',
+        'A detailed list of technical software bugs',
+        'Individual readiness and behavioral competency',
+        'The Executive Sponsor\'s personal office location'
+      ],
+      correct: 2,
+      explanation: 'Change Formulation requires understanding whether individuals have the awareness, desire, knowledge, ability, and reinforcement to move from their current behaviors to the required future behaviors.'
+    },
+    {
+      num: 3,
+      category: 'Business',
+      text: '"In change management, what does a \'Change Vision\' primarily define?"',
+      options: [
+        'The exact timeline and budget for the project',
+        'The desired future state and why it matters to the organization',
+        'A list of employees who will be retrained',
+        'The technical architecture of the new system'
+      ],
+      correct: 1,
+      explanation: 'A Change Vision describes the compelling picture of the desired future state — what success looks like and why it is important — to align and inspire stakeholders throughout the change journey.'
+    },
+    {
+      num: 4,
+      category: 'Process',
+      text: '"What is the primary purpose of a Stakeholder Impact Assessment?"',
+      options: [
+        'To document who has access to the project budget',
+        'To identify how each stakeholder group will be affected by a change',
+        'To schedule all stakeholder meetings for the year',
+        'To assign accountability for project delays'
+      ],
+      correct: 1,
+      explanation: 'A Stakeholder Impact Assessment maps which groups are impacted, how significantly, and in what ways — enabling the change team to tailor communications, training, and support for each audience.'
+    },
+    {
+      num: 5,
+      category: 'People',
+      text: '"Which of the following best describes \'Resistance to Change\'?"',
+      options: [
+        'An employee requesting a salary review',
+        'A natural human reaction to perceived threats arising from unfamiliar situations',
+        'A software defect that prevents system upgrades',
+        'Management\'s failure to approve the project budget'
+      ],
+      correct: 1,
+      explanation: 'Resistance is a predictable, natural psychological response when people perceive a threat to their security, identity, or way of working. Effective change management anticipates and addresses it proactively.'
+    },
+    {
+      num: 6,
+      category: 'Process',
+      text: '"In the ADKAR model, what does the \'R\' stand for?"',
+      options: [
+        'Risk',
+        'Reinforcement',
+        'Resilience',
+        'Readiness'
+      ],
+      correct: 1,
+      explanation: 'ADKAR stands for Awareness, Desire, Knowledge, Ability, and Reinforcement. Reinforcement ensures that individuals sustain the change over time through recognition, rewards, and corrective actions.'
+    },
+    {
+      num: 7,
+      category: 'People',
+      text: '"What is the primary role of a Sponsor in a change initiative?"',
+      options: [
+        'Funding the project\'s technology costs exclusively',
+        'Actively supporting and visibly advocating for the change',
+        'Writing the project communication plan',
+        'Training end-users on the new system'
+      ],
+      correct: 1,
+      explanation: 'An active and visible Sponsor is the single most important success factor in organizational change. Their role is to build a coalition, communicate directly with impacted employees, and remove obstacles.'
+    },
+    {
+      num: 8,
+      category: 'Business',
+      text: '"Which communication principle is most critical when messaging about organizational change?"',
+      options: [
+        'Communicating only once to avoid information overload',
+        'Using technical jargon to demonstrate subject-matter expertise',
+        'Tailoring messages to the specific needs and concerns of each audience',
+        'Focusing exclusively on benefits to shareholders'
+      ],
+      correct: 2,
+      explanation: 'Audience-specific messaging is critical because different stakeholders have different concerns, roles, and levels of impact. A single generic message often fails to motivate or inform effectively.'
+    },
+    {
+      num: 9,
+      category: 'Process',
+      text: '"What does \'Change Saturation\' describe in an organizational context?"',
+      options: [
+        'A project that has significantly exceeded its budget',
+        'The point at which an organization\'s capacity to absorb change is overwhelmed',
+        'Excessive documentation in a change management plan',
+        'When all stakeholders have fully embraced a new process'
+      ],
+      correct: 1,
+      explanation: 'Change Saturation occurs when the volume, pace, and complexity of concurrent changes exceeds an organization\'s ability to adopt them, leading to initiative fatigue, disengagement, and failed adoption.'
+    },
+    {
+      num: 10,
+      category: 'Business',
+      text: '"In Change Formulation, what is the purpose of a \'Current State Analysis\'?"',
+      options: [
+        'To assign performance improvement plans to resistant employees',
+        'To understand existing processes, behaviors, and pain points before designing a change strategy',
+        'To finalize the go-live date with the executive team',
+        'To determine return on investment for the change initiative'
+      ],
+      correct: 1,
+      explanation: 'A Current State Analysis maps how things work today — processes, behaviors, culture, capabilities, and pain points — providing the baseline from which the gap to the desired future state can be accurately measured.'
+    }
+  ];
+
+  var LETTERS = ['A', 'B', 'C', 'D'];
+  var CIRCUMFERENCE = 276.46;
+
+  /* ─── State ─── */
+  var currentQ = 0;
+  var userAnswers = [];
+  var selectedThisQ = null;
+  var failCount = 0;
+
+  /* ─── Helpers ─── */
+  function setView(id) {
+    var views = document.querySelectorAll('.lq-view');
+    for (var i = 0; i < views.length; i++) {
+      views[i].classList.toggle('active', views[i].id === id);
+    }
+    if (id !== 'lq-result') {
+      document.getElementById('lq').classList.remove('result-fail', 'result-pass');
+    }
+  }
+
+  /* ─── VIEW 1: INTRO ─── */
+  document.getElementById('lq-back-intro').addEventListener('click', function () {
+    window.location.href = new window.URL('lms/knowledge-poll-2.html', document.baseURI).href;
+  });
+  document.getElementById('lq-help-intro').addEventListener('click', function () {
+    window.location.href = new window.URL('support/help-support.html?from=lesson-quiz', document.baseURI).href;
+  });
+  document.getElementById('lq-start').addEventListener('click', function () {
+    currentQ = 0;
+    userAnswers = [];
+    loadQuestion(0);
+    setView('lq-question');
+  });
+
+  /* ─── VIEW 2: QUESTION ─── */
+  document.getElementById('lq-back-q').addEventListener('click', function () {
+    if (currentQ === 0) {
+      setView('lq-intro');
+    } else {
+      currentQ--;
+      selectedThisQ = userAnswers[currentQ] !== undefined ? userAnswers[currentQ] : null;
+      loadQuestion(currentQ);
+    }
+  });
+  document.getElementById('lq-help-q').addEventListener('click', function () {
+    window.location.href = new window.URL('support/help-support.html?from=lesson-quiz', document.baseURI).href;
+  });
+  document.getElementById('lq-next').addEventListener('click', function () {
+    if (selectedThisQ === null) return;
+    userAnswers[currentQ] = selectedThisQ;
+    if (currentQ < QUESTIONS.length - 1) {
+      currentQ++;
+      selectedThisQ = userAnswers[currentQ] !== undefined ? userAnswers[currentQ] : null;
+      loadQuestion(currentQ);
+    } else {
+      showResult();
+    }
+  });
+
+  function loadQuestion(idx) {
+    var q = QUESTIONS[idx];
+    selectedThisQ = userAnswers[idx] !== undefined ? userAnswers[idx] : null;
+
+    document.getElementById('lq-q-num').textContent = 'Question ' + q.num;
+    document.getElementById('lq-q-prog').textContent = q.num + '/10';
+    document.getElementById('lq-q-text').textContent = q.text;
+
+    var optionsEl = document.getElementById('lq-options');
+    optionsEl.innerHTML = '';
+    for (var i = 0; i < q.options.length; i++) {
+      (function(i) {
+        var btn = document.createElement('button');
+        btn.className = 'lq-option' + (selectedThisQ === i ? ' selected' : '');
+        btn.type = 'button';
+        btn.innerHTML =
+          '<div class="lq-radio"><div class="lq-radio-dot"></div></div>' +
+          '<span class="lq-opt-letter">' + LETTERS[i] + '.</span>' +
+          '<span class="lq-opt-text">' + q.options[i] + '</span>';
+        btn.addEventListener('click', function () {
+          selectedThisQ = i;
+          var all = optionsEl.querySelectorAll('.lq-option');
+          for (var j = 0; j < all.length; j++) all[j].classList.remove('selected');
+          btn.classList.add('selected');
+          document.getElementById('lq-q-hint').style.display = 'none';
+          var nb = document.getElementById('lq-next');
+          var lbl = (currentQ === QUESTIONS.length - 1) ? 'Submit' : 'Next';
+          nb.innerHTML = lbl + ' <img src="assets/icons/arrow-right-02.svg" alt=""/>';
+          nb.classList.add('visible');
+        });
+        optionsEl.appendChild(btn);
+      })(i);
+    }
+
+    var isLast = (idx === QUESTIONS.length - 1);
+    var nextBtn = document.getElementById('lq-next');
+    var hintEl = document.getElementById('lq-q-hint');
+    var btnLabel = isLast ? 'Submit' : 'Next';
+    nextBtn.innerHTML = btnLabel + ' <img src="assets/icons/arrow-right-02.svg" alt=""/>';
+
+    if (selectedThisQ !== null) {
+      hintEl.style.display = 'none';
+      nextBtn.classList.add('visible');
+    } else {
+      hintEl.style.display = '';
+      nextBtn.classList.remove('visible');
+    }
+  }
+
+  /* ─── VIEW 3: RESULT ─── */
+  function showResult() {
+    var correct = 0;
+    for (var i = 0; i < QUESTIONS.length; i++) {
+      if (userAnswers[i] === QUESTIONS[i].correct) correct++;
+    }
+    var pct = Math.round(correct / QUESTIONS.length * 100);
+    var passed = pct >= 80;
+
+    if (!passed) { failCount++; } else { failCount = 0; }
+
+    var topEl = document.getElementById('lq-result-top');
+    topEl.classList.toggle('pass', passed);
+    var lqEl = document.getElementById('lq');
+    lqEl.classList.toggle('result-fail', !passed);
+    lqEl.classList.toggle('result-pass', passed);
+
+    document.getElementById('lq-result-main-status').textContent = passed ? 'Result: Successful' : 'Result: Unsuccessful';
+    var subText = passed ? 'CERTIFICATION THRESHOLD MET'
+      : (failCount >= 2 ? 'ATTEMPT ' + failCount + ' — CALIBRATION REQUIRED' : 'Calibration REQUIRED');
+    document.getElementById('lq-result-sub-status').textContent = subText;
+    document.getElementById('lq-result-headline').textContent = passed ? 'Lesson Passed.' : 'Lesson Failed.';
+    var failDesc = failCount === 1
+      ? "You didn't meet the 80% threshold. Review the gaps below and try again."
+      : failCount === 2
+        ? "Close — but not there yet. Study the explanations carefully, focusing on the questions you missed."
+        : "You've attempted this " + failCount + " times. Review the breakdowns carefully, or continue and revisit before your mock exam.";
+    document.getElementById('lq-result-desc').textContent = passed ? 'You met the 80% threshold — great work.' : failDesc;
+
+    /* Struggle banner + Continue Anyway — visible from attempt 3 onwards */
+    var showStruggle = !passed && failCount >= 3;
+    document.getElementById('lq-struggle-banner').hidden = !showStruggle;
+    document.getElementById('lq-continue-anyway').hidden = !showStruggle;
+    document.getElementById('lq-score-pct').textContent = pct + '%';
+    document.getElementById('lq-result-btn-label').textContent = passed ? 'Continue Learning' : 'Review & Reattempt';
+
+    /* Score ring */
+    var arcEl = document.getElementById('lq-ring-arc');
+    var trackEl = document.getElementById('lq-ring-track');
+    var offset = CIRCUMFERENCE * (1 - pct / 100);
+    arcEl.style.stroke = passed ? '#22c55e' : '#fb7185';
+    trackEl.style.stroke = passed ? '#bbf7d0' : '#fecdd3';
+    /* animate after paint */
+    setTimeout(function () { arcEl.style.strokeDashoffset = offset; }, 80);
+
+    /* Build review list */
+    buildReview(passed);
+
+    setView('lq-result');
+  }
+
+  function buildReview(passed) {
+    var sheet = document.getElementById('lq-review-sheet');
+    sheet.innerHTML = '';
+
+    for (var i = 0; i < QUESTIONS.length; i++) {
+      (function(i) {
+        var q = QUESTIONS[i];
+        var isCorrect = (userAnswers[i] === q.correct);
+        var card = document.createElement('div');
+        card.className = 'lq-review-card' + (i === 0 ? ' open' : '');
+
+        var tickSrc = isCorrect ? 'assets/icons/tick-02-20.svg' : 'assets/icons/cancel-01.svg';
+        var iconClass = isCorrect ? 'correct' : 'wrong';
+        var tagClass = isCorrect ? 'correct' : 'wrong';
+
+        /* Head */
+        var head = document.createElement('div');
+        head.className = 'lq-review-card-head';
+        head.innerHTML =
+          '<div class="lq-review-icon ' + iconClass + '"><img src="' + tickSrc + '" alt=""/></div>' +
+          '<div class="lq-review-meta">' +
+            '<span class="lq-review-q-label">Question ' + q.num + '</span>' +
+            '<span class="lq-category-tag ' + tagClass + '">' + q.category + '</span>' +
+          '</div>' +
+          '<button class="lq-review-expand' + (i === 0 ? ' open' : '') + '" type="button" aria-label="Expand">' +
+            '<svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+              '<path d="M1 1L7 7L13 1" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+            '</svg>' +
+          '</button>';
+        card.appendChild(head);
+
+        /* Divider */
+        var div = document.createElement('div');
+        div.className = 'lq-review-divider';
+        card.appendChild(div);
+
+        /* Question text */
+        var qText = document.createElement('div');
+        qText.className = 'lq-review-q-text';
+        qText.textContent = q.text;
+        card.appendChild(qText);
+
+        /* Answer options (shown when open) */
+        var body = document.createElement('div');
+        body.className = 'lq-review-body';
+        for (var j = 0; j < q.options.length; j++) {
+          (function(j) {
+            var opt = document.createElement('div');
+            opt.className = 'lq-review-opt' + (j === q.correct ? ' correct-choice' : '');
+            var row = '<div class="lq-review-opt-row"><span class="letter">' + LETTERS[j] + '.</span> ' + q.options[j] + '</div>';
+            if (j === q.correct) {
+              row += '<div class="lq-review-opt-correct-row"><span>Correct</span><img src="assets/icons/tick-02-20.svg" alt=""/></div>';
+            }
+            opt.innerHTML = row;
+            body.appendChild(opt);
+          })(j);
+        }
+
+        /* Explanation */
+        var expl = document.createElement('div');
+        expl.className = 'lq-explanation';
+        expl.innerHTML = '<p class="lq-explanation-title">Explanation</p><p class="lq-explanation-body">' + q.explanation + '</p>';
+        body.appendChild(expl);
+        card.appendChild(body);
+
+        /* Expand toggle */
+        var expandBtn = head.querySelector('.lq-review-expand');
+        expandBtn.addEventListener('click', function () {
+          var isOpen = card.classList.contains('open');
+          card.classList.toggle('open', !isOpen);
+          expandBtn.classList.toggle('open', !isOpen);
+        });
+
+        sheet.appendChild(card);
+      })(i);
+    }
+  }
+
+  document.getElementById('lq-result-close').addEventListener('click', function () {
+    setView('lq-intro');
+  });
+
+  document.getElementById('lq-continue-anyway').addEventListener('click', function () {
+    window.location.href = new window.URL('lms/module-quiz.html', document.baseURI).href;
+  });
+
+  document.getElementById('lq-result-btn').addEventListener('click', function () {
+    var passed = document.getElementById('lq-result-top').classList.contains('pass');
+    if (passed) {
+      window.location.href = new window.URL('lms/module-quiz.html', document.baseURI).href;
+    } else {
+      /* Reset ring before re-entering question view */
+      var arcEl = document.getElementById('lq-ring-arc');
+      arcEl.style.strokeDashoffset = CIRCUMFERENCE;
+      currentQ = 0;
+      userAnswers = [];
+      selectedThisQ = null;
+      loadQuestion(0);
+      setView('lq-question');
+    }
+  });
+
+})();
+</script>
+</body>
+</html>

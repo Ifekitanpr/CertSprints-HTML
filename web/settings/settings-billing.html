@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>CertSprints — Billing &amp; Payment</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/billing.css" />
+    <style>
+      /* Override nav top padding to include status-bar space */
+      .blg-nav { padding-top: 48px; height: auto; }
+    </style>
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints — Billing &amp; Payment">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell" id="blg-shell">
+
+            <!-- Everything scrollable goes here -->
+            <div class="dashboard-scroll" style="padding-bottom:40px;">
+
+              <!-- Nav bar (48px top pad = 40px status bar + 8px) -->
+              <nav class="blg-nav" aria-label="Billing navigation">
+                <button class="cert-back" type="button" aria-label="Back"
+                  onclick="window.location.href=new window.URL('settings/settings.html',document.baseURI).href">
+                  <img src="assets/icons/arrow-left-02.svg" alt="" />
+                </button>
+                <h1 class="blg-nav-title">Billing &amp; Payment</h1>
+                <div class="blg-nav-spacer" aria-hidden="true"></div>
+              </nav>
+
+              <!-- Tab bar -->
+              <div class="blg-tab-bar" role="tablist" aria-label="Billing sections">
+                <button class="blg-tab" role="tab" id="blg-tab-myplan"
+                  aria-selected="true" aria-controls="blg-panel-myplan"
+                  onclick="blgSwitchTab('myplan')">My plan</button>
+                <button class="blg-tab" role="tab" id="blg-tab-payments"
+                  aria-selected="false" aria-controls="blg-panel-payments"
+                  onclick="blgSwitchTab('payments')">Payment methods</button>
+                <button class="blg-tab" role="tab" id="blg-tab-invoices"
+                  aria-selected="false" aria-controls="blg-panel-invoices"
+                  onclick="blgSwitchTab('invoices')">Invoices</button>
+              </div>
+
+              <!-- Main content card -->
+              <div class="dashboard-main blg-main">
+
+                <!-- ═══ MY PLAN TAB ════════════════════════════════ -->
+                <div class="blg-panel" id="blg-panel-myplan"
+                  role="tabpanel" aria-labelledby="blg-tab-myplan" aria-hidden="false">
+                  <div class="blg-inner-wrap">
+
+                    <!-- Single outer card: plan + readiness + stats all inside -->
+                    <div class="blg-outer-card">
+
+                      <!-- Plan details + certification readiness stacked -->
+                      <div class="blg-plan-section">
+
+                        <!-- Plan details -->
+                        <div class="blg-plan-details">
+                          <div class="blg-plan-top">
+                            <h2 class="blg-plan-name">Professional Growth</h2>
+                            <span class="blg-status-badge blg-status-badge--active">Active</span>
+                          </div>
+
+                          <div class="blg-plan-price-row">
+                            <span class="blg-plan-price">₦50,000</span>
+                            <span class="blg-plan-price-tag">One-time payment</span>
+                          </div>
+
+                          <div class="blg-plan-date-row">
+                            <img src="assets/icons/calendar-01.svg" alt="" />
+                            <p class="blg-plan-date-text">Nov 11, 2025 – Dec 11, 2025</p>
+                          </div>
+
+                          <p class="blg-no-renewal">No automatic renewals</p>
+
+                          <div class="blg-plan-actions">
+                            <button class="blg-btn-modify" type="button"
+                              onclick="window.location.href=new window.URL('settings/settings-billing-modify.html',document.baseURI).href">
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M2 8h10M8 3l5 5-5 5" stroke="#007bff" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                              Modify plan
+                            </button>
+                            <button class="blg-btn-details" type="button"
+                              onclick="blgOpenSheet('overlay-plan-details')">
+                              View plan details
+                            </button>
+                          </div>
+                        </div>
+
+                        <!-- Certification readiness -->
+                        <div class="blg-readiness">
+                          <p class="blg-readiness-label">Certification readiness</p>
+                          <p class="blg-readiness-pct">74%</p>
+
+                          <div class="blg-readiness-status">
+                            <img src="assets/icons/checkmark-circle-02-16.svg" alt=""
+                              style="--stroke-0:#22c55e;width:20px;height:20px;" />
+                            <p class="blg-readiness-status-text">On track</p>
+                          </div>
+
+                          <p class="blg-readiness-target">
+                            Target: 80% readiness by Dec 11, 2025
+                          </p>
+
+                          <div class="blg-progress-wrap">
+                            <div class="blg-progress-track">
+                              <div class="blg-progress-fill" style="width:74%"></div>
+                            </div>
+                            <div class="blg-progress-labels">
+                              <span>0%</span>
+                              <span>100%</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- /blg-plan-section -->
+
+                      <!-- Divider -->
+                      <hr class="blg-card-divider" />
+
+                      <!-- Stats: 3 individual bordered cards -->
+                      <div class="blg-stats">
+
+                        <div class="blg-stat-item">
+                          <div class="blg-stat-icon blg-stat-icon--green" aria-hidden="true">
+                            <img src="assets/icons/calendar-01.svg" alt="" />
+                          </div>
+                          <div class="blg-stat-body">
+                            <p class="blg-stat-label">Days remaining</p>
+                            <div class="blg-stat-val-row">
+                              <span class="blg-stat-num">12</span>
+                              <span class="blg-stat-unit">of 30 days</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="blg-stat-item">
+                          <div class="blg-stat-icon blg-stat-icon--blue" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                              xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                              <rect x="4" y="3" width="16" height="11" rx="2"
+                                stroke="#007bff" stroke-width="1.5"/>
+                              <path d="M9 14v5M15 14v5" stroke="#007bff" stroke-width="1.5" stroke-linecap="round"/>
+                              <path d="M7 19h10" stroke="#007bff" stroke-width="1.5" stroke-linecap="round"/>
+                              <path d="M8 8h8M8 11h5" stroke="#007bff" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                          </div>
+                          <div class="blg-stat-body">
+                            <p class="blg-stat-label">Mock exams</p>
+                            <div class="blg-stat-val-row">
+                              <span class="blg-stat-num">3</span>
+                              <span class="blg-stat-unit">of 5 taken</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="blg-stat-item">
+                          <div class="blg-stat-icon blg-stat-icon--orange" aria-hidden="true">
+                            <img src="assets/icons/clock-03.svg" alt="" />
+                          </div>
+                          <div class="blg-stat-body">
+                            <p class="blg-stat-label">Subscription usage</p>
+                            <div class="blg-stat-val-row">
+                              <span class="blg-stat-num">60%</span>
+                              <span class="blg-stat-unit">of plan used</span>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div><!-- /blg-stats -->
+                    </div><!-- /blg-outer-card -->
+
+                  </div>
+                </div><!-- /My plan panel -->
+
+                <!-- ═══ PAYMENT METHODS TAB ═══════════════════════ -->
+                <div class="blg-panel" id="blg-panel-payments"
+                  role="tabpanel" aria-labelledby="blg-tab-payments" aria-hidden="true">
+                  <div class="blg-inner-wrap">
+                    <div class="blg-pm-panel">
+
+                      <!-- Billing currency -->
+                      <div>
+                        <h2 class="blg-pm-section-title" style="margin-bottom:10px;">Billing currency</h2>
+                        <div class="blg-currency-row">
+                          <img src="assets/icons/checkmark-circle-02-16.svg" alt=""
+                            style="--stroke-0:#22c55e;width:20px;height:20px;" />
+                          <span>Nigerian Naira (₦ NGN)</span>
+                        </div>
+                      </div>
+
+                      <!-- Payment methods list -->
+                      <div>
+                        <h2 class="blg-pm-section-title" style="margin-bottom:12px;">Payment methods</h2>
+                        <div class="blg-pm-list">
+
+                          <div class="blg-pm-item">
+                            <div class="blg-pm-logo" aria-hidden="true">
+                              <div class="mc-logo">
+                                <div class="mc-logo-left"></div>
+                                <div class="mc-logo-right"></div>
+                              </div>
+                            </div>
+                            <div class="blg-pm-item-body">
+                              <p class="blg-pm-item-name">Mastercard</p>
+                              <p class="blg-pm-item-sub">•••• 4521 · Exp 09/27</p>
+                            </div>
+                            <div class="blg-pm-actions">
+                              <span class="blg-pm-default">Default</span>
+                            </div>
+                          </div>
+
+                          <div class="blg-pm-item">
+                            <div class="blg-pm-logo" aria-hidden="true">
+                              <div class="kuda-logo">K</div>
+                            </div>
+                            <div class="blg-pm-item-body">
+                              <p class="blg-pm-item-name">Kuda Bank</p>
+                              <p class="blg-pm-item-sub">•••• 7839</p>
+                            </div>
+                            <div class="blg-pm-actions">
+                              <button class="blg-pm-remove" type="button" aria-label="Remove Kuda Bank">
+                                <img src="assets/icons/cancel-01.svg" alt="" />
+                              </button>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <!-- Add payment method -->
+                      <button class="blg-pm-add-btn" type="button"
+                        onclick="blgOpenSheet('overlay-add-payment')">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                          xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                          <path d="M10 4v12M4 10h12" stroke="#007bff" stroke-width="1.8"
+                            stroke-linecap="round"/>
+                        </svg>
+                        Add payment method
+                      </button>
+
+                    </div>
+                  </div>
+                </div><!-- /Payments panel -->
+
+                <!-- ═══ INVOICES TAB ════════════════════════════════ -->
+                <div class="blg-panel" id="blg-panel-invoices"
+                  role="tabpanel" aria-labelledby="blg-tab-invoices" aria-hidden="true">
+                  <div class="blg-inner-wrap">
+
+                    <!-- Heading -->
+                    <div class="blg-inv-header">
+                      <h2 class="blg-inv-title">Invoice history</h2>
+                      <p class="blg-inv-sub">Recent transactions on your account</p>
+                    </div>
+
+                    <!-- Horizontally scrollable table -->
+                    <div class="blg-inv-scroll" role="region" aria-label="Invoice table, scroll right for more">
+                      <table class="blg-inv-table">
+                        <thead class="visually-hidden">
+                          <tr>
+                            <th scope="col">Invoice</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Download</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr class="blg-inv-row">
+                            <td class="blg-inv-td blg-inv-td--id">INV-0041</td>
+                            <td class="blg-inv-td blg-inv-td--desc">Essentials Plan</td>
+                            <td class="blg-inv-td blg-inv-td--date">Sep 15, 2026</td>
+                            <td class="blg-inv-td blg-inv-td--amt">₦199,000</td>
+                            <td class="blg-inv-td blg-inv-td--status">
+                              <span class="blg-inv-badge blg-inv-badge--active">Active</span>
+                            </td>
+                            <td class="blg-inv-td blg-inv-td--dl">
+                              <span class="sc-icon-slot sc-icon-slot--20" aria-label="Download invoice">
+                                <img class="sc-glyph sc-glyph--mock-download"
+                                  src="assets/icons/mock-download.svg" alt="" />
+                              </span>
+                            </td>
+                          </tr>
+
+                          <tr class="blg-inv-row">
+                            <td class="blg-inv-td blg-inv-td--id">INV-0038</td>
+                            <td class="blg-inv-td blg-inv-td--desc">Advanced Tier upgrade</td>
+                            <td class="blg-inv-td blg-inv-td--date">Aug 3, 2026</td>
+                            <td class="blg-inv-td blg-inv-td--amt">₦100,000</td>
+                            <td class="blg-inv-td blg-inv-td--status">
+                              <span class="blg-inv-badge blg-inv-badge--active">Active</span>
+                            </td>
+                            <td class="blg-inv-td blg-inv-td--dl">
+                              <span class="sc-icon-slot sc-icon-slot--20" aria-label="Download invoice">
+                                <img class="sc-glyph sc-glyph--mock-download"
+                                  src="assets/icons/mock-download.svg" alt="" />
+                              </span>
+                            </td>
+                          </tr>
+
+                          <tr class="blg-inv-row">
+                            <td class="blg-inv-td blg-inv-td--id">INV-0031</td>
+                            <td class="blg-inv-td blg-inv-td--desc">60-day extension</td>
+                            <td class="blg-inv-td blg-inv-td--date">Jul 12, 2026</td>
+                            <td class="blg-inv-td blg-inv-td--amt">₦50,000</td>
+                            <td class="blg-inv-td blg-inv-td--status">
+                              <span class="blg-inv-badge blg-inv-badge--refunded">Refunded</span>
+                            </td>
+                            <td class="blg-inv-td blg-inv-td--dl">
+                              <span class="sc-icon-slot sc-icon-slot--20" aria-label="Download invoice">
+                                <img class="sc-glyph sc-glyph--mock-download"
+                                  src="assets/icons/mock-download.svg" alt="" />
+                              </span>
+                            </td>
+                          </tr>
+
+                          <tr class="blg-inv-row">
+                            <td class="blg-inv-td blg-inv-td--id">INV-0024</td>
+                            <td class="blg-inv-td blg-inv-td--desc">Essentials Plan</td>
+                            <td class="blg-inv-td blg-inv-td--date">Jun 1, 2026</td>
+                            <td class="blg-inv-td blg-inv-td--amt">₦199,000</td>
+                            <td class="blg-inv-td blg-inv-td--status">
+                              <span class="blg-inv-badge blg-inv-badge--active">Active</span>
+                            </td>
+                            <td class="blg-inv-td blg-inv-td--dl">
+                              <span class="sc-icon-slot sc-icon-slot--20" aria-label="Download invoice">
+                                <img class="sc-glyph sc-glyph--mock-download"
+                                  src="assets/icons/mock-download.svg" alt="" />
+                              </span>
+                            </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div><!-- /blg-inv-scroll -->
+
+                  </div>
+                </div><!-- /Invoices panel -->
+
+              </div><!-- /dashboard-main blg-main -->
+            </div><!-- /dashboard-scroll -->
+
+            <!-- ══════════════════════════════════════════════
+                 BOTTOM SHEETS (outside scroll, absolute inside shell)
+            ══════════════════════════════════════════════ -->
+
+            <!-- Plan Details sheet -->
+            <div class="bsheet-overlay" id="overlay-plan-details"
+              aria-hidden="true" role="dialog" aria-modal="true" aria-label="Plan details">
+              <div class="bsheet-scrim" onclick="blgCloseSheet('overlay-plan-details')"></div>
+              <div class="bsheet-panel">
+                <div class="bsheet-handle" aria-hidden="true"></div>
+                <div class="bsheet-head">
+                  <h2 class="bsheet-title">Plan details</h2>
+                  <button class="bsheet-close" type="button" aria-label="Close"
+                    onclick="blgCloseSheet('overlay-plan-details')">
+                    <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M1 1L11 11M11 1L1 11" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                  </button>
+                </div>
+                <div class="bsheet-divider"></div>
+                <div class="bsheet-body">
+                  <div class="bpd-name-card">
+                    <p class="bpd-name">Professional Growth</p>
+                    <p class="bpd-name-sub">Active plan</p>
+                  </div>
+                  <div class="bpd-feature-row">
+                    <span class="bpd-feat-label">Duration</span>
+                    <span class="bpd-feat-value">30 days</span>
+                  </div>
+                  <div class="bpd-feature-row">
+                    <span class="bpd-feat-label">Mock exams</span>
+                    <span class="bpd-feat-value">5 included</span>
+                  </div>
+                  <div class="bpd-feature-row">
+                    <span class="bpd-feat-label">Practice questions</span>
+                    <span class="bpd-feat-value">Unlimited</span>
+                  </div>
+                  <div class="bpd-feature-row">
+                    <span class="bpd-feat-label">Study resources</span>
+                    <span class="bpd-feat-value">Full access</span>
+                  </div>
+                  <div class="bpd-feature-row">
+                    <span class="bpd-feat-label">Start date</span>
+                    <span class="bpd-feat-value">Nov 11, 2025</span>
+                  </div>
+                  <div class="bpd-feature-row">
+                    <span class="bpd-feat-label">Expiry date</span>
+                    <span class="bpd-feat-value">Dec 11, 2025</span>
+                  </div>
+                  <div class="bpd-amount-row">
+                    <span class="bpd-amount-label">Amount paid</span>
+                    <span class="bpd-amount-value">₦50,000</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add payment method sheet -->
+            <div class="bsheet-overlay" id="overlay-add-payment"
+              aria-hidden="true" role="dialog" aria-modal="true" aria-label="Add payment method">
+              <div class="bsheet-scrim" onclick="blgCloseSheet('overlay-add-payment')"></div>
+              <div class="bsheet-panel">
+                <div class="bsheet-handle" aria-hidden="true"></div>
+                <div class="bsheet-head">
+                  <h2 class="bsheet-title">Add card</h2>
+                  <button class="bsheet-close" type="button" aria-label="Close"
+                    onclick="blgCloseSheet('overlay-add-payment')">
+                    <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M1 1L11 11M11 1L1 11" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                  </button>
+                </div>
+                <div class="bsheet-divider"></div>
+                <div class="bsheet-body">
+                  <form class="bapm-form" onsubmit="return false;">
+                    <div class="bapm-field">
+                      <label class="bapm-label" for="card-name">Cardholder name</label>
+                      <input class="bapm-input" id="card-name" type="text"
+                        placeholder="Full name on card" autocomplete="cc-name" />
+                    </div>
+                    <div class="bapm-field">
+                      <label class="bapm-label" for="card-number">Card number</label>
+                      <input class="bapm-input" id="card-number" type="tel"
+                        placeholder="0000 0000 0000 0000" inputmode="numeric" autocomplete="cc-number" />
+                    </div>
+                    <div class="bapm-row">
+                      <div class="bapm-field">
+                        <label class="bapm-label" for="card-expiry">Expiry</label>
+                        <input class="bapm-input" id="card-expiry" type="tel"
+                          placeholder="MM / YY" inputmode="numeric" autocomplete="cc-exp" />
+                      </div>
+                      <div class="bapm-field">
+                        <label class="bapm-label" for="card-cvv">CVV</label>
+                        <input class="bapm-input" id="card-cvv" type="tel"
+                          placeholder="123" inputmode="numeric" autocomplete="cc-csc" />
+                      </div>
+                    </div>
+                    <div class="bapm-secure-note">
+                      <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M7.5 1L2 3.5V7c0 3.033 2.333 5.867 5.5 6.5 3.167-.633 5.5-3.467 5.5-6.5V3.5L7.5 1Z"
+                          stroke="#007bff" stroke-width="1.2" stroke-linejoin="round"/>
+                        <path d="M5 7.5l1.5 1.5L10 5.5" stroke="#007bff" stroke-width="1.2"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      <p class="bapm-secure-text">Your card details are encrypted and secure. We never store your full card number.</p>
+                    </div>
+                  </form>
+                </div>
+                <div class="bsheet-footer">
+                  <button class="bapm-submit" type="button"
+                    onclick="blgCloseSheet('overlay-add-payment')">Save card</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Home indicator -->
+            <div class="home-ind" aria-hidden="true"><div class="home-bar"></div></div>
+
+          </div><!-- /dashboard-shell -->
+        </section>
+      </div>
+    </main>
+
+    <script>
+      function blgSwitchTab(id) {
+        ['myplan','payments','invoices'].forEach(function(t) {
+          var tab   = document.getElementById('blg-tab-' + t);
+          var panel = document.getElementById('blg-panel-' + t);
+          var active = (t === id);
+          tab.setAttribute('aria-selected', String(active));
+          panel.setAttribute('aria-hidden', String(!active));
+        });
+      }
+      function blgOpenSheet(id) {
+        var el = document.getElementById(id);
+        if (el) el.setAttribute('aria-hidden', 'false');
+      }
+      function blgCloseSheet(id) {
+        var el = document.getElementById(id);
+        if (el) el.setAttribute('aria-hidden', 'true');
+      }
+    </script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

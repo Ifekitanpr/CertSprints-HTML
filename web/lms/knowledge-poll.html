@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <base href="../" />
+  <title>CertSprints — Knowledge Poll</title>
+  <meta http-equiv="Cache-Control" content="no-store"/>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/knowledge-poll.css"/>
+</head>
+<body>
+<main class="phone-case" aria-label="CertSprints — Knowledge Poll">
+  <div class="case-shell">
+    <div class="kp" id="kp">
+      <div class="cert-bg" aria-hidden="true"></div>
+      <div class="sb"></div>
+
+      <nav class="kp-nav">
+        <button class="kp-nav-btn" type="button" id="kp-back" aria-label="Back">
+          <img src="assets/icons/arrow-left-02.svg" alt=""/>
+        </button>
+        <p class="kp-nav-title">KNOWLEDGE POLL</p>
+        <button class="kp-nav-btn kp-nav-help" type="button" id="kp-help" aria-label="Help">
+          <img src="assets/icons/help-circle-24.svg" alt=""/>
+        </button>
+      </nav>
+
+      <section class="kp-view active" id="kp-rating" aria-label="Rate this response">
+        <div class="kp-scroll">
+          <header class="kp-header">
+            <h1>Rate this response</h1>
+            <p>Use your judgement to assess the decision logic.</p>
+          </header>
+
+          <article class="kp-rating-card">
+            <span class="kp-topic">TOPIC: DECISION LOGIC</span>
+            <h2>How effective is ‘Withdraw/Avoid’ when a team conflict is based on technical debt?</h2>
+
+            <div class="kp-drag-hint">
+              <img src="assets/icons/drag-left-03-20.svg" alt=""/>
+              <span>Drag the marker to rate the response</span>
+            </div>
+
+            <div class="kp-scale-wrap">
+              <div class="kp-scale-ends">
+                <span>EXTREMELY POOR</span>
+                <span>OPTIMAL CHOICE</span>
+              </div>
+
+              <div class="kp-scale" id="kp-scale">
+                <div class="kp-track"></div>
+                <div class="kp-fill" id="kp-fill"></div>
+                <div class="kp-stops" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i>
+                </div>
+                <output class="kp-marker" id="kp-marker" for="kp-range">0</output>
+                <input id="kp-range" type="range" min="-2" max="2" step="1" value="0"
+                       aria-label="Response effectiveness rating"/>
+              </div>
+
+              <div class="kp-values" aria-hidden="true">
+                <span>-2</span><span>-1</span><span>0</span><span>+1</span><span>+2</span>
+              </div>
+              <p class="kp-rating-label" id="kp-rating-label">NEUTRAL / UNDECIDED</p>
+            </div>
+          </article>
+
+          <div class="kp-info">
+            <div class="kp-info-icon">
+              <img src="assets/icons/figma/information-circle-blue.svg" alt=""/>
+            </div>
+            <p>You can revise before locking your response</p>
+          </div>
+        </div>
+
+        <footer class="kp-bnb kp-bnb-rating">
+          <button class="kp-lock-btn" type="button" id="kp-lock" disabled>
+            <span>Lock Response</span>
+            <img src="assets/icons/lock-01.svg" alt=""/>
+          </button>
+          <p>Choose a rating on the scale above to enable</p>
+        </footer>
+      </section>
+
+      <section class="kp-view" id="kp-result" aria-label="Logic Synced result">
+        <div class="kp-result-scroll">
+          <header class="kp-result-header">
+            <div>
+              <h1>Logic Synced.</h1>
+              <p>Compare your diagnostic with 1,240 specialists.</p>
+            </div>
+            <div class="kp-consistency">
+              <span>Consistency</span>
+              <strong>84%</strong>
+            </div>
+          </header>
+
+          <article class="kp-chart-card">
+            <div class="kp-chart" id="kp-chart">
+              <div class="kp-bar" data-rating="-2"><strong>31%</strong><div><i style="height:31%"></i></div><span>-2</span></div>
+              <div class="kp-bar" data-rating="-1"><strong>42%</strong><div><i style="height:42%"></i></div><span>-1</span></div>
+              <div class="kp-bar" data-rating="0"><strong>12%</strong><div><i style="height:12%"></i></div><span>0</span></div>
+              <div class="kp-bar" data-rating="1"><strong>9%</strong><div><i style="height:9%"></i></div><span>+1</span></div>
+              <div class="kp-bar" data-rating="2"><strong>6%</strong><div><i style="height:6%"></i></div><span>+2</span></div>
+            </div>
+          </article>
+
+          <article class="kp-consensus-card">
+            <div class="kp-brain">
+              <img src="assets/icons/ai-brain-03-20.svg" alt=""/>
+            </div>
+            <div>
+              <p class="kp-consensus-label">EXPERT CONSENSUS</p>
+              <blockquote>“Avoidance is highly ineffective for technical blockers as it ignores the project's foundational stability, leading to exponential risk decay.”</blockquote>
+            </div>
+          </article>
+        </div>
+
+        <footer class="kp-bnb">
+          <button class="kp-close-btn" type="button" id="kp-close">
+            Close Audit Result
+            <img src="assets/icons/arrow-right-02.svg" alt=""/>
+          </button>
+        </footer>
+      </section>
+
+      <div class="home-ind"><div class="home-bar"></div></div>
+    </div>
+  </div>
+</main>
+<script src="js/knowledge-poll.js"></script>
+</body>
+</html>

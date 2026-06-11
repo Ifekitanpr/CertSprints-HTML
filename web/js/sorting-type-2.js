@@ -137,7 +137,7 @@
     closeFeedback();
     questionIndex += 1;
     if (questionIndex >= data.questions.length) {
-      window.location.href = "active-recall.html";
+      window.location.href = new URL("lms/insight-exchange.html", document.baseURI).href;
       return;
     }
     loadQuestion();
@@ -179,7 +179,7 @@
   });
 
   document.getElementById("st2-intro-back").addEventListener("click", function () {
-    window.location.href = "boolean-flashcard.html";
+    window.location.href = new URL("lms/boolean-flashcard.html", document.baseURI).href;
   });
 
   document.getElementById("st2-game-close").addEventListener("click", function () {
@@ -191,7 +191,7 @@
   });
 
   document.getElementById("st2-help").addEventListener("click", function () {
-    window.location.href = "help-support.html?from=sorting-type-2";
+    window.location.href = new URL("support/help-support.html?from=sorting-type-2", document.baseURI).href;
   });
 
   document.getElementById("st2-continue").addEventListener("click", onContinue);

@@ -343,13 +343,13 @@
   }
 
   document.getElementById("ss-intro-back").addEventListener("click", function () {
-    window.location.href = "insight-exchange.html";
+    window.location.href = new URL("lms/insight-exchange.html", document.baseURI).href;
   });
 
   document.getElementById("ss-start-btn").addEventListener("click", startGame);
 
   document.getElementById("ss-game-close").addEventListener("click", function () {
-    window.location.href = "insight-exchange.html";
+    window.location.href = new URL("lms/insight-exchange.html", document.baseURI).href;
   });
 
   resetBtn.addEventListener("click", function () {
@@ -362,11 +362,11 @@
   });
 
   document.getElementById("ss-recap-help").addEventListener("click", function () {
-    window.location.href = "help-support.html?from=scenario-sorting";
+    window.location.href = new URL("support/help-support.html?from=scenario-sorting", document.baseURI).href;
   });
 
   document.getElementById("ss-complete-btn").addEventListener("click", function () {
-    window.location.href = "risk-cycle-sequencer.html";
+    window.location.href = new URL("lms/risk-cycle-sequencer.html", document.baseURI).href;
   });
 
   renderIntro();

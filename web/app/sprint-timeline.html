@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>CertSprints — Sprint Timeline</title>
+    <link rel="stylesheet" href="css/app.css" />
+    <style>
+      .sprint-tl-nav {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 48px 20px 8px;
+        flex-shrink: 0;
+      }
+      .sprint-tl-nav-title {
+        flex: 1;
+        font-size: 17px;
+        font-weight: 700;
+        color: #0f172a;
+        letter-spacing: -0.2px;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .sprint-tl-nav-spacer {
+        width: 40px;
+        flex-shrink: 0;
+      }
+      .sprint-tl-scroll {
+        flex: 1;
+        overflow-y: auto;
+        padding: 12px 16px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints — Sprint Timeline">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell">
+
+            <nav class="sprint-tl-nav" aria-label="Sprint timeline navigation">
+              <button class="cert-back" type="button" aria-label="Back" id="tl-back-btn">
+                <img src="assets/icons/arrow-left-02.svg" alt="" />
+              </button>
+              <h1 class="sprint-tl-nav-title" id="tl-heading">Sprint Timeline</h1>
+              <div class="sprint-tl-nav-spacer" aria-hidden="true"></div>
+            </nav>
+
+            <div class="sprint-tl-scroll">
+              <div class="timeline-wrapper">
+
+                <!-- Sprint 1 (Active) -->
+                <div class="timeline-sprint-card">
+                  <header class="timeline-sprint-header">
+                    <div class="timeline-sprint-title-row">
+                      <span class="timeline-sprint-badge active">Ongoing</span>
+                      <h3>Sprint 1</h3>
+                    </div>
+                    <span class="timeline-sprint-dates">Jan 01 - Jan 07</span>
+                  </header>
+
+                  <div class="timeline-progress-section">
+                    <div class="timeline-progress-meta">
+                      <span>Overall sprint progress</span>
+                      <strong>50% complete</strong>
+                    </div>
+                    <div class="timeline-progress-bar-wrap">
+                      <div class="timeline-progress-bar-fill" style="width: 50%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="timeline-metrics-grid">
+                    <div class="timeline-metric-mini">
+                      <span class="timeline-metric-value green">64%</span>
+                      <span class="timeline-metric-label">Velocity</span>
+                    </div>
+                    <div class="timeline-metric-mini">
+                      <span class="timeline-metric-value green">4/10</span>
+                      <span class="timeline-metric-label">Quizzes</span>
+                    </div>
+                    <div class="timeline-metric-mini">
+                      <span class="timeline-metric-value red">24%</span>
+                      <span class="timeline-metric-label">Quiz Score</span>
+                    </div>
+                    <div class="timeline-metric-mini">
+                      <span class="timeline-metric-value orange">24%</span>
+                      <span class="timeline-metric-label">Readiness</span>
+                    </div>
+                  </div>
+
+                  <div class="timeline-days-track">
+                    <h4 class="timeline-track-title">Week 1 Timeline</h4>
+
+                    <div class="timeline-day-node completed">
+                      <div class="timeline-bullet-wrap">
+                        <span class="timeline-bullet">
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" stroke-width="4"><polyline points="20 6 9 17 4 12"/></svg>
+                        </span>
+                        <div class="timeline-line"></div>
+                      </div>
+                      <div class="timeline-day-content">
+                        <div class="timeline-day-header">
+                          <strong class="timeline-day-name">Mon 01</strong>
+                          <span class="timeline-day-status">Done</span>
+                        </div>
+                        <div class="timeline-day-details">
+                          <span class="timeline-study-badge completed">4 Study blocks completed</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="timeline-day-node completed">
+                      <div class="timeline-bullet-wrap">
+                        <span class="timeline-bullet">
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" stroke-width="4"><polyline points="20 6 9 17 4 12"/></svg>
+                        </span>
+                        <div class="timeline-line"></div>
+                      </div>
+                      <div class="timeline-day-content">
+                        <div class="timeline-day-header">
+                          <strong class="timeline-day-name">Tue 02</strong>
+                          <span class="timeline-day-status">Done</span>
+                        </div>
+                        <div class="timeline-day-details">
+                          <span class="timeline-study-badge completed">4 Study blocks completed</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="timeline-day-node active">
+                      <div class="timeline-bullet-wrap">
+                        <span class="timeline-bullet active"></span>
+                        <div class="timeline-line"></div>
+                      </div>
+                      <div class="timeline-day-content">
+                        <div class="timeline-day-header">
+                          <strong class="timeline-day-name">Wed 03</strong>
+                          <span class="timeline-day-status">Today</span>
+                        </div>
+                        <div class="timeline-day-details">
+                          <div class="timeline-study-badge-list">
+                            <span class="timeline-study-badge completed">3 Study blocks completed</span>
+                            <span class="timeline-study-badge active">Active Study block</span>
+                            <span class="timeline-study-badge pending">1 Study block scheduled</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="timeline-day-node pending">
+                      <div class="timeline-bullet-wrap">
+                        <span class="timeline-bullet"></span>
+                        <div class="timeline-line"></div>
+                      </div>
+                      <div class="timeline-day-content">
+                        <div class="timeline-day-header">
+                          <strong class="timeline-day-name">Thu 04</strong>
+                          <span class="timeline-day-status">Scheduled</span>
+                        </div>
+                        <div class="timeline-day-details">
+                          <span class="timeline-study-badge pending">4 Study blocks scheduled</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="timeline-day-node pending">
+                      <div class="timeline-bullet-wrap">
+                        <span class="timeline-bullet"></span>
+                      </div>
+                      <div class="timeline-day-content">
+                        <div class="timeline-day-header">
+                          <strong class="timeline-day-name">Fri 05</strong>
+                          <span class="timeline-day-status">Scheduled</span>
+                        </div>
+                        <div class="timeline-day-details">
+                          <span class="timeline-study-badge pending">4 Study blocks scheduled</span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- Sprint 2 (Locked) -->
+                <div class="timeline-sprint-card locked">
+                  <button type="button" class="timeline-locked-header">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                      </svg>
+                      <h3>Sprint 2</h3>
+                    </div>
+                    <span class="timeline-sprint-badge locked">Locked</span>
+                  </button>
+                </div>
+
+                <!-- Sprint 3 (Locked) -->
+                <div class="timeline-sprint-card locked">
+                  <button type="button" class="timeline-locked-header">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                      </svg>
+                      <h3>Sprint 3</h3>
+                    </div>
+                    <span class="timeline-sprint-badge locked">Locked</span>
+                  </button>
+                </div>
+
+                <!-- Sprint 4 (Locked) -->
+                <div class="timeline-sprint-card locked">
+                  <button type="button" class="timeline-locked-header">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                      </svg>
+                      <h3>Sprint 4</h3>
+                    </div>
+                    <span class="timeline-sprint-badge locked">Locked</span>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+    </main>
+    <script>
+      (() => {
+        const params = new URLSearchParams(location.search);
+        const sprintId = params.get("sprint") || "sprint-1";
+        const nameMap = {
+          "sprint-1": "Sprint 1", "sprint-2": "Sprint 2",
+          "sprint-3": "Sprint 3", "sprint-4": "Sprint 4",
+        };
+        const name = nameMap[sprintId] || sprintId;
+        document.getElementById("tl-heading").textContent = name + " — Timeline";
+
+        document.getElementById("tl-back-btn").addEventListener("click", () => {
+          window.location.href = "app/progress.html?tab=sprints";
+        });
+      })();
+    </script>
+  </body>
+</html>

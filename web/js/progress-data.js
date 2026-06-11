@@ -4,9 +4,7 @@ window.PROGRESS_DATA = {
   tabs: [
     { id: "overview", label: "Overview", icon: "analytics-01.svg" },
     { id: "sprints", label: "Sprints", icon: "motion-02.svg" },
-    { id: "backlog", label: "Study backlog", icon: "menu-01.svg" },
     { id: "calendar", label: "Calendar", icon: "calendar-03.svg" },
-    { id: "timeline", label: "Timeline", icon: "menu-03.svg" },
   ],
   currentSprint: {
     title: "Sprint 3: Foundations & Core Concepts",

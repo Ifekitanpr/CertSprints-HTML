@@ -129,7 +129,7 @@
     if (!revealed) return;
     cardIndex += 1;
     if (cardIndex >= data.cards.length) {
-      window.location.href = "sorting-type-2.html";
+      window.location.href = new URL("lms/sorting-type-2.html", document.baseURI).href;
       return;
     }
     loadCard();
@@ -163,13 +163,13 @@
   continueBtn.addEventListener("click", onContinue);
 
   document.getElementById("bf-back").addEventListener("click", function () {
-    window.location.href = "risk-cycle-sequencer-play.html";
+    window.location.href = new URL("lms/risk-cycle-sequencer.html", document.baseURI).href;
   });
   document.getElementById("bf-close").addEventListener("click", function () {
     loadCard();
   });
   document.getElementById("bf-help").addEventListener("click", function () {
-    window.location.href = "help-support.html?from=boolean-flashcard";
+    window.location.href = new URL("support/help-support.html?from=boolean-flashcard", document.baseURI).href;
   });
 
   renderStatic();

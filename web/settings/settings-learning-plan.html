@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>CertSprints — My Learning Plan</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css?v=20260529-sub1" />
+    <style>
+      .sub-nav {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 48px 20px 8px;
+      }
+      .sub-nav-title {
+        flex: 1;
+        text-align: center;
+        font: 600 16px/22px Inter, sans-serif;
+        color: #334155;
+        letter-spacing: -0.112px;
+        margin: 0;
+      }
+      .sub-nav-spacer { width: 40px; flex-shrink: 0; }
+      .sub-spacer { height: 16px; }
+
+      .sub-card { border-radius: 24px; padding: 16px 16px 64px; gap: 24px; }
+
+      .sub-group {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      /* Section header */
+      .section-header {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 8px 4px;
+      }
+      .section-top-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .section-icon-wrap {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: #fff0eb;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .section-icon-wrap img {
+        width: 24px;
+        height: 24px;
+        display: block;
+        object-fit: contain;
+      }
+      .section-text { flex: 1; }
+      .section-title { font: 600 16px/22px Inter, sans-serif; color: #334155; margin: 0 0 4px; letter-spacing: -0.112px; }
+      .section-desc { font: 400 12px/1.6 Inter, sans-serif; color: #64748b; margin: 0; }
+
+      /* Reschedule button inline in exam date row */
+      .plan-reschedule-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 12px;
+        border: 1px solid #007bff;
+        border-radius: 4px;
+        background: #fff;
+        font: 500 14px/20px Inter, sans-serif;
+        color: #007bff;
+        letter-spacing: -0.084px;
+        cursor: pointer;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: background 150ms;
+      }
+      .plan-reschedule-btn:hover { background: #e6f2ff; }
+
+      /* White inner panel */
+      .sub-row {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 12px 16px;
+      }
+
+      /* Data table */
+      .plan-table { display: flex; flex-direction: column; }
+      .plan-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 0;
+        border-bottom: 1px solid #e2e8f0;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: -0.084px;
+      }
+      .plan-row:last-child { border-bottom: none; }
+      .plan-row--top { align-items: flex-start; }
+      .plan-key { font-weight: 500; color: #64748b; width: 140px; flex-shrink: 0; }
+      .plan-val { font-weight: 600; color: #334155; flex: 1; min-width: 0; }
+
+      /* Exam date cell is a column layout */
+      .plan-row-col {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        flex: 1;
+        min-width: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints My Learning Plan">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell">
+            <div class="dashboard-scroll">
+
+              <nav class="sub-nav">
+                <button class="cert-back" type="button" aria-label="Back" onclick="window.location.href=new window.URL('settings/settings.html',document.baseURI).href">
+                  <img src="assets/icons/arrow-left-02.svg" alt="" />
+                </button>
+                <h1 class="sub-nav-title">My Learning Plan</h1>
+                <div class="sub-nav-spacer" aria-hidden="true"></div>
+              </nav>
+
+              <div class="sub-spacer"></div>
+
+              <main class="dashboard-main sub-card">
+
+                <!-- Current Study Schedule -->
+                <div class="sub-group">
+                  <div class="section-header">
+                    <div class="section-top-row">
+                      <div class="section-icon-wrap">
+                        <img src="assets/settings/plan-schedule.svg" alt="" />
+                      </div>
+                      <div class="section-text">
+                        <p class="section-title">Current Study schedule</p>
+                        <p class="section-desc">Your daily study schedule and availability.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sub-row">
+                    <div class="plan-table">
+                      <div class="plan-row">
+                        <span class="plan-key">Daily Study Hours:</span>
+                        <span class="plan-val">2 hours</span>
+                      </div>
+                      <div class="plan-row">
+                        <span class="plan-key">Max Study Stretch (Study Block)</span>
+                        <span class="plan-val">1 hour</span>
+                      </div>
+                      <div class="plan-row">
+                        <span class="plan-key">Rest Day</span>
+                        <span class="plan-val">Sunday</span>
+                      </div>
+                      <div class="plan-row">
+                        <span class="plan-key">Study Blocks per day</span>
+                        <span class="plan-val">3</span>
+                      </div>
+                      <div class="plan-row plan-row--top">
+                        <span class="plan-key">Exam Date</span>
+                        <div class="plan-row-col">
+                          <span class="plan-val">12, Feb, 2026</span>
+                          <a class="plan-reschedule-btn" href="settings/settings-reschedule-exam.html">Reschedule</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </main>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="js/app.js?v=20260529-sub1"></script>
+  </body>
+</html>

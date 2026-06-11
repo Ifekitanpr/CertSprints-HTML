@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>CertSprints — Sprint Feed</title>
+    <link rel="stylesheet" href="css/app.css?v=20260528-notifications-fix3" />
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints Sprint Feed">
+      <div class="case-shell">
+        <section class="screen notification-screen">
+          <div class="cert-bg" aria-hidden="true"></div>
+
+          <div class="notification-app">
+            <header class="notification-header">
+              <button class="cert-back notification-nav-btn" type="button" data-notification-back aria-label="Back">
+                <img src="assets/icons/arrow-left-02.svg" alt="" />
+              </button>
+              <h1 data-notification-title>Sprint Feed</h1>
+              <button class="cert-back notification-nav-btn notification-nav-btn--more" type="button" data-notification-more-btn aria-label="More options">
+                <img src="assets/notifications/more-vertical.svg" alt="" />
+              </button>
+            </header>
+
+            <div class="notification-tabs-wrap">
+              <div class="notification-tabs" data-notification-tabs role="tablist"></div>
+            </div>
+
+            <div class="notification-sheet-shell" data-notification-feed>
+              <div class="notification-sheet">
+                <div class="notification-sheet-body">
+                  <div class="notification-list" data-notification-list></div>
+                  <div class="notification-empty" data-notification-empty hidden>
+                    <div class="notification-empty-icon">
+                      <img src="assets/notifications/notification-off.svg" alt="" />
+                    </div>
+                    <h2>Nothing here right now</h2>
+                    <p>You're all clear in this tab. Check back after your next study session.</p>
+                  </div>
+                </div>
+                <footer class="notification-footer-bar">
+                  <img src="assets/notifications/footer-bell.svg" alt="" width="20" height="20" />
+                  <p>We'll keep you updated with what matters</p>
+                  <button type="button" data-manage-feed>Manage</button>
+                </footer>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="notification-overlay" data-notification-more-overlay hidden>
+            <div class="notification-overlay-scrim" data-notification-more-close></div>
+            <div class="notification-action-sheet">
+              <div class="notification-sheet-handle" aria-hidden="true"></div>
+              <button type="button" class="notification-action-item" data-mark-all-read>
+                <img src="assets/notifications/tick-double.svg" alt="" />
+                <span>Mark all as read</span>
+              </button>
+              <button type="button" class="notification-action-item" data-open-settings>
+                <img src="assets/notifications/settings.svg" alt="" />
+                <span>Settings</span>
+              </button>
+            </div>
+          </div>
+
+        </section>
+      </div>
+    </main>
+    <script src="js/notifications-data.js?v=20260610-canonical-settings"></script>
+    <script src="js/notifications.js?v=20260610-canonical-settings"></script>
+  </body>
+</html>

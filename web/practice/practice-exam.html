@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>CertSprints — Practice Exam</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css?v=20260528-pe3" />
+    <link rel="stylesheet" href="css/practice-exam.css?v=20260528-pe11" />
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints Practice Exam">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell">
+            <div class="dashboard-scroll">
+              <div class="pe-view">
+                <div class="cert-bg" aria-hidden="true"></div>
+
+                <nav class="pe-nav">
+                  <button
+                    class="notes-back-btn"
+                    type="button"
+                    aria-label="Go back"
+                    onclick="window.location.href=new window.URL('app/more.html',document.baseURI).href"
+                  >
+                    <img src="assets/icons/arrow-left-02.svg" alt="" />
+                  </button>
+                </nav>
+
+                <header class="pe-page-head">
+                  <h1 class="pe-page-title">PMP Exam Questions</h1>
+                  <p class="pe-page-desc">
+                    Prepare for success with our comprehensive logic-based practice simulations.
+                  </p>
+                </header>
+
+                <div class="pe-tier-list" id="peTierList" role="list"></div>
+              </div>
+            </div>
+
+            <!-- Intro sheet on shell viewport — not inside scrollable .pe-view -->
+            <div class="pe-intro-overlay" id="peIntroOverlay" hidden aria-hidden="true">
+              <div class="pe-intro-scrim" id="peIntroScrim" aria-hidden="true"></div>
+              <div class="pe-intro-sheet" role="dialog" aria-modal="true" aria-labelledby="peIntroTitle">
+                <div class="pe-intro-handle" aria-hidden="true"></div>
+                <div class="pe-intro-nav">
+                  <button class="pe-intro-close" type="button" id="peIntroClose" aria-label="Close">
+                    <img class="pe-icon-24" src="assets/icons/cancel-01.svg" alt="" />
+                  </button>
+                </div>
+                <div class="pe-intro-scroll">
+                  <h2 class="pe-intro-title" id="peIntroTitle">PMP® Practice Questions</h2>
+                  <p class="pe-intro-desc">
+                    This practice session simulates the actual PMP exam environment. Prepare yourself by
+                    understanding the structure and timing before starting.
+                  </p>
+
+                  <p class="pe-intro-section-label pe-intro-section-label--left">Domain Content Breakdown</p>
+                  <div id="peIntroDomains"></div>
+
+                  <div class="pe-specs-box">
+                    <h3>Exam Specifications</h3>
+                    <div class="pe-specs-grid">
+                      <div class="pe-specs-row">
+                        <div class="pe-spec-item">
+                          <label>Questions</label>
+                          <span id="peSpecQuestions">48 Items</span>
+                        </div>
+                        <div class="pe-spec-item">
+                          <label>Time Limit</label>
+                          <span>250 minutes</span>
+                        </div>
+                      </div>
+                      <div class="pe-specs-row">
+                        <div class="pe-spec-item">
+                          <label>Passing Score</label>
+                          <span class="pass">80%</span>
+                        </div>
+                        <div class="pe-spec-item">
+                          <label>Question Types</label>
+                          <span>Multiple Choice</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="pe-intro-section-label pe-intro-section-label--left">Before You Begin</p>
+                  <ul class="pe-checklist" id="peChecklist"></ul>
+                </div>
+                <div class="pe-intro-foot">
+                  <button class="pe-intro-start" type="button" id="peIntroStart">
+                    I understand and I'm ready.
+                    <img src="assets/progress/arrow-right-02-sharp-white.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="js/practice-exam-data.js?v=20260528-pe11"></script>
+    <script src="js/practice-exam.js?v=20260528-pe11"></script>
+  </body>
+</html>

@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>CertSprints — Modify Plan</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/billing.css" />
+  </head>
+  <body>
+    <main class="phone-case" aria-label="CertSprints — Modify Plan">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell">
+
+            <!-- ─── Scrollable content ─── -->
+            <div class="dashboard-scroll">
+
+              <!-- Nav -->
+              <nav class="bmod-nav" aria-label="Modify plan navigation">
+                <button class="cert-back" type="button" aria-label="Back"
+                  onclick="window.location.href=new window.URL('settings/settings-billing.html',document.baseURI).href">
+                  <img src="assets/icons/arrow-left-02.svg" alt="" />
+                </button>
+                <h1 class="bmod-nav-title">Reschedule exam date</h1>
+                <span class="bmod-nav-spacer" aria-hidden="true"></span>
+              </nav>
+
+              <!-- Content -->
+              <div class="bmod-scroll">
+                <div class="bmod-card">
+
+                  <!-- Header -->
+                  <div class="bmod-header">
+                    <h2 class="bmod-heading">Modify your plan</h2>
+                    <p class="bmod-sub">Extend your access or move to a plan with more support.</p>
+                  </div>
+
+                  <!-- Extend / Upgrade toggle -->
+                  <div class="bmod-toggle" role="tablist" aria-label="Modification type">
+                    <button class="bmod-toggle-btn" role="tab" aria-selected="true"
+                      id="bmod-tab-extend" aria-controls="bmod-panel-extend"
+                      data-bmod-tab="extend" type="button">
+                      <!-- calendar icon -->
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 3v3M17 3v3M4.5 9.5h15M6.5 5h11A2.5 2.5 0 0 1 20 7.5v10A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-10A2.5 2.5 0 0 1 6.5 5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Extend duration
+                    </button>
+                    <button class="bmod-toggle-btn" role="tab" aria-selected="false"
+                      id="bmod-tab-upgrade" aria-controls="bmod-panel-upgrade"
+                      data-bmod-tab="upgrade" type="button">
+                      <!-- arrow up-right icon -->
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Upgrade tier
+                    </button>
+                  </div>
+
+                  <!-- ── Extend duration panel ── -->
+                  <div class="bmod-options" id="bmod-panel-extend"
+                    role="tabpanel" aria-labelledby="bmod-tab-extend">
+
+                    <!-- Professional Growth -->
+                    <div class="bmod-option" aria-selected="true" role="radio"
+                      data-bmod-option="extend" data-option-id="pro-growth"
+                      data-price="₦50,000" data-name="60 Days Extension"
+                      data-desc="Duration extension to your Essentials Plan"
+                      tabindex="0">
+                      <div class="bmod-option-top">
+                        <div class="bmod-opt-icon bmod-opt-icon--blue" aria-hidden="true">
+                          <!-- 4-pointed star (blue) -->
+                          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 2C10 2 10.8 6.5 12.5 8C14.2 9.5 18 10 18 10C18 10 14.2 10.5 12.5 12C10.8 13.5 10 18 10 18C10 18 9.2 13.5 7.5 12C5.8 10.5 2 10 2 10C2 10 5.8 9.5 7.5 8C9.2 6.5 10 2 10 2Z" fill="#007bff" opacity="0.9"/>
+                          </svg>
+                        </div>
+                        <div class="bmod-opt-info">
+                          <p class="bmod-opt-name">Professional Growth</p>
+                          <p class="bmod-opt-duration">+60 days access</p>
+                        </div>
+                        <div class="bmod-radio" aria-hidden="true">
+                          <div class="bmod-radio-dot"></div>
+                        </div>
+                      </div>
+                      <div class="bmod-price-row">
+                        <span class="bmod-price">₦50,000</span>
+                        <span class="bmod-price-unit">one-time</span>
+                        <span class="bmod-badge bmod-badge--recommended">Recommended</span>
+                      </div>
+                      <div class="bmod-features">
+                        <div class="bmod-feature">
+                          <div class="bmod-feat-tick" aria-hidden="true">
+                            <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </div>
+                          Extended support
+                        </div>
+                        <div class="bmod-feature">
+                          <div class="bmod-feat-tick" aria-hidden="true">
+                            <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </div>
+                          Full mock exams
+                        </div>
+                        <div class="bmod-feature">
+                          <div class="bmod-feat-tick" aria-hidden="true">
+                            <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </div>
+                          Resource centre access
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Mastery Path -->
+                    <div class="bmod-option" aria-selected="false" role="radio"
+                      data-bmod-option="extend" data-option-id="mastery"
+                      data-price="₦99,000" data-name="90 Days Extension"
+                      data-desc="Duration extension to your Essentials Plan"
+                      tabindex="0">
+                      <div class="bmod-option-top">
+                        <div class="bmod-opt-icon bmod-opt-icon--orange" aria-hidden="true">
+                          <!-- 4-pointed star (orange) -->
+                          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 2C10 2 10.8 6.5 12.5 8C14.2 9.5 18 10 18 10C18 10 14.2 10.5 12.5 12C10.8 13.5 10 18 10 18C10 18 9.2 13.5 7.5 12C5.8 10.5 2 10 2 10C2 10 5.8 9.5 7.5 8C9.2 6.5 10 2 10 2Z" fill="#ea580c" opacity="0.85"/>
+                          </svg>
+                        </div>
+                        <div class="bmod-opt-info">
+                          <p class="bmod-opt-name">Mastery Path</p>
+                          <p class="bmod-opt-duration">+90 days access</p>
+                        </div>
+                        <div class="bmod-radio" aria-hidden="true">
+                          <div class="bmod-radio-dot"></div>
+                        </div>
+                      </div>
+                      <div class="bmod-price-row">
+                        <span class="bmod-price">₦99,000</span>
+                        <span class="bmod-price-unit">one-time</span>
+                        <span class="bmod-badge bmod-badge--popular">Popular</span>
+                      </div>
+                      <div class="bmod-features">
+                        <div class="bmod-feature">
+                          <div class="bmod-feat-tick" aria-hidden="true">
+                            <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </div>
+                          Everything in 60 days
+                        </div>
+                        <div class="bmod-feature">
+                          <div class="bmod-feat-tick" aria-hidden="true">
+                            <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </div>
+                          Mentor access
+                        </div>
+                        <div class="bmod-feature">
+                          <div class="bmod-feat-tick" aria-hidden="true">
+                            <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </div>
+                          Priority support
+                        </div>
+                      </div>
+                    </div>
+
+                  </div><!-- /bmod-panel-extend -->
+
+                  <!-- ── Upgrade tier panel ── -->
+                  <div class="bmod-options" id="bmod-panel-upgrade"
+                    aria-hidden="true" role="tabpanel" aria-labelledby="bmod-tab-upgrade">
+
+                    <!-- Advanced -->
+                    <div class="bmod-option" aria-selected="true" role="radio"
+                      data-bmod-option="upgrade" data-option-id="advanced"
+                      data-price="₦100,000" data-name="Advanced Upgrade"
+                      data-desc="Upgrade to Advanced tier on your Essentials Plan"
+                      tabindex="0">
+                      <div class="bmod-option-top">
+                        <div class="bmod-opt-icon bmod-opt-icon--blue" aria-hidden="true">
+                          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 2C10 2 10.8 6.5 12.5 8C14.2 9.5 18 10 18 10C18 10 14.2 10.5 12.5 12C10.8 13.5 10 18 10 18C10 18 9.2 13.5 7.5 12C5.8 10.5 2 10 2 10C2 10 5.8 9.5 7.5 8C9.2 6.5 10 2 10 2Z" fill="#007bff" opacity="0.9"/>
+                          </svg>
+                        </div>
+                        <div class="bmod-opt-info">
+                          <p class="bmod-opt-name">Advanced</p>
+                          <p class="bmod-opt-duration">More content &amp; exams</p>
+                        </div>
+                        <div class="bmod-radio" aria-hidden="true">
+                          <div class="bmod-radio-dot"></div>
+                        </div>
+                      </div>
+                      <div class="bmod-price-row">
+                        <span class="bmod-price">₦100,000</span>
+                        <span class="bmod-price-unit">one-time</span>
+                        <span class="bmod-badge bmod-badge--recommended">Recommended</span>
+                      </div>
+                      <div class="bmod-features">
+                        <div class="bmod-feature">
+                          <div class="bmod-feat-tick" aria-hidden="true">
+                            <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </div>
+                          Practical case studies
+                        </div>
+                        <div class="bmod-feature">
+                          <div class="bmod-feat-tick" aria-hidden="true">
+                            <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </div>
+                          Explainer videos
+                        </div>
+                        <div class="bmod-feature">
+                          <div class="bmod-feat-tick" aria-hidden="true">
+                            <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </div>
+                          4 mock exams
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Elite -->
+                    <div class="bmod-option" aria-selected="false" role="radio"
+                      data-bmod-option="upgrade" data-option-id="elite"
+                      data-price="₦400,000" data-name="Elite Upgrade"
+                      data-desc="Upgrade to Elite tier on your Essentials Plan"
+                      tabindex="0">
+                      <div class="bmod-option-top">
+                        <div class="bmod-opt-icon bmod-opt-icon--orange" aria-hidden="true">
+                          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 2C10 2 10.8 6.5 12.5 8C14.2 9.5 18 10 18 10C18 10 14.2 10.5 12.5 12C10.8 13.5 10 18 10 18C10 18 9.2 13.5 7.5 12C5.8 10.5 2 10 2 10C2 10 5.8 9.5 7.5 8C9.2 6.5 10 2 10 2Z" fill="#ea580c" opacity="0.85"/>
+                          </svg>
+                        </div>
+                        <div class="bmod-opt-info">
+                          <p class="bmod-opt-name">Elite</p>
+                          <p class="bmod-opt-duration">Career-accelerator bundle</p>
+                        </div>
+                        <div class="bmod-radio" aria-hidden="true">
+                          <div class="bmod-radio-dot"></div>
+                        </div>
+                      </div>
+                      <div class="bmod-price-row">
+                        <span class="bmod-price">₦400,000</span>
+                        <span class="bmod-price-unit">one-time</span>
+                        <span class="bmod-badge bmod-badge--popular">Popular</span>
+                      </div>
+                      <div class="bmod-features">
+                        <div class="bmod-feature">
+                          <div class="bmod-feat-tick" aria-hidden="true">
+                            <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </div>
+                          LinkedIn &amp; CV revamp
+                        </div>
+                        <div class="bmod-feature">
+                          <div class="bmod-feat-tick" aria-hidden="true">
+                            <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </div>
+                          Career advisory
+                        </div>
+                        <div class="bmod-feature">
+                          <div class="bmod-feat-tick" aria-hidden="true">
+                            <svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          </div>
+                          Unlimited mock exams
+                        </div>
+                      </div>
+                    </div>
+
+                  </div><!-- /bmod-panel-upgrade -->
+
+                  <!-- Secure note -->
+                  <div class="bmod-secure-note">
+                    <!-- info icon, blue -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z" stroke="#007bff" stroke-width="1.7"/>
+                      <path d="M12 11v6M12 8v.5" stroke="#007bff" stroke-width="1.7" stroke-linecap="round"/>
+                    </svg>
+                    <p class="bmod-secure-text">All payments are secure and encrypted.
+                      You won't be charged until you confirm.</p>
+                  </div>
+
+                </div><!-- /bmod-card -->
+              </div><!-- /bmod-scroll -->
+
+            </div><!-- /dashboard-scroll -->
+
+            <!-- Fixed footer (outside dashboard-scroll) -->
+            <div class="bmod-footer-fixed">
+              <button class="bmod-cancel-btn" type="button"
+                onclick="window.location.href=new window.URL('settings/settings-billing.html',document.baseURI).href">
+                Cancel
+              </button>
+              <button class="bmod-proceed-btn" type="button"
+                id="bmod-proceed" onclick="bmodOpenConfirm()">
+                Proceed to pay
+              </button>
+            </div>
+
+            <!-- ─────────────────────────────────────────────
+                 OVERLAY 1: Confirm & pay
+            ───────────────────────────────────────────── -->
+            <div class="bsheet-overlay" aria-hidden="true" id="overlay-confirm-pay">
+              <div class="bsheet-scrim" onclick="bmodCloseSheet('overlay-confirm-pay')"></div>
+              <div class="bsheet-panel" role="dialog" aria-modal="true" aria-label="Confirm and pay">
+                <div class="bsheet-handle" aria-hidden="true"></div>
+                <div class="bsheet-head">
+                  <h2 class="bsheet-title">Confirm &amp; pay</h2>
+                  <button class="bsheet-close" type="button" aria-label="Close"
+                    onclick="bmodCloseSheet('overlay-confirm-pay')">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18 6L6 18M6 6l12 12" stroke="#64748b" stroke-width="2.2" stroke-linecap="round"/>
+                    </svg>
+                  </button>
+                </div>
+                <div class="bsheet-divider"></div>
+                <div class="bsheet-body">
+                  <!-- Order summary -->
+                  <div class="bcp-order-card">
+                    <p class="bcp-order-name" id="bcp-order-name">60 Days Extension</p>
+                    <p class="bcp-order-desc" id="bcp-order-desc">Duration extension to your Essentials Plan</p>
+                  </div>
+
+                  <!-- Breakdown -->
+                  <div class="bcp-breakdown">
+                    <div class="bcp-row">
+                      <span class="bcp-row-label">Option price</span>
+                      <span class="bcp-row-val" id="bcp-option-price">₦50,000</span>
+                    </div>
+                    <div class="bcp-row">
+                      <span class="bcp-row-label">Unused plan credit</span>
+                      <span class="bcp-row-credit">&#8722;&nbsp;₦50,000</span>
+                    </div>
+                  </div>
+                  <div class="bcp-due-row">
+                    <span class="bcp-due-label">Due today</span>
+                    <span class="bcp-due-val">₦0</span>
+                  </div>
+
+                  <!-- Payment method -->
+                  <div class="bcp-pm-row">
+                    <div class="bcp-pm-icon" aria-hidden="true">
+                      <!-- card icon -->
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="5" width="20" height="14" rx="2.5" stroke="#64748b" stroke-width="1.6"/>
+                        <path d="M2 9.5h20" stroke="#64748b" stroke-width="1.6"/>
+                        <path d="M6 14h4" stroke="#64748b" stroke-width="1.4" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <div class="bcp-pm-body">
+                      <p class="bcp-pm-name">Mastercard ••••&nbsp;8899</p>
+                      <p class="bcp-pm-sub">NGN · Paystack</p>
+                    </div>
+                    <button class="bcp-change-btn" type="button"
+                      onclick="bmodOpenSheet('overlay-select-payment')">Change</button>
+                  </div>
+
+                  <!-- Info note -->
+                  <div class="bcp-info-note">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z" stroke="#94a3b8" stroke-width="1.6"/>
+                      <path d="M12 11v6M12 8v.5" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                    Your plan end date will update immediately after payment is confirmed.
+                    No automatic renewals.
+                  </div>
+                </div>
+                <div class="bsheet-footer">
+                  <button class="bcp-pay-btn" type="button"
+                    id="bcp-pay-btn" onclick="bmodConfirmPayment()">
+                    Pay ₦50,000
+                  </button>
+                </div>
+              </div>
+            </div><!-- /overlay-confirm-pay -->
+
+            <!-- ─────────────────────────────────────────────
+                 OVERLAY 2: Select payment method
+            ───────────────────────────────────────────── -->
+            <div class="bsheet-overlay" aria-hidden="true" id="overlay-select-payment">
+              <div class="bsheet-scrim" onclick="bmodCloseSheet('overlay-select-payment')"></div>
+              <div class="bsheet-panel" role="dialog" aria-modal="true" aria-label="Select payment method">
+                <div class="bsheet-handle" aria-hidden="true"></div>
+                <div class="bsheet-head">
+                  <h2 class="bsheet-title">Select payment method</h2>
+                  <button class="bsheet-close" type="button" aria-label="Close"
+                    onclick="bmodCloseSheet('overlay-select-payment')">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18 6L6 18M6 6l12 12" stroke="#64748b" stroke-width="2.2" stroke-linecap="round"/>
+                    </svg>
+                  </button>
+                </div>
+                <div class="bsheet-divider"></div>
+                <div class="bspm-list">
+                  <!-- Mastercard option -->
+                  <div class="bspm-option" aria-selected="true" role="radio"
+                    data-bspm-id="mc" tabindex="0"
+                    onclick="bspmSelect('mc')">
+                    <div class="bspm-option-logo" aria-hidden="true">
+                      <div class="mc-logo" style="width:26px;height:16px;">
+                        <div class="mc-logo-left" style="width:16px;height:16px;"></div>
+                        <div class="mc-logo-right" style="width:16px;height:16px;right:0;"></div>
+                      </div>
+                    </div>
+                    <div class="bspm-option-body">
+                      <p class="bspm-option-name">Mastercard ••••&nbsp;8899</p>
+                      <p class="bspm-option-sub">via Paystack · Expires 09/28</p>
+                    </div>
+                    <div class="bspm-radio" aria-hidden="true">
+                      <div class="bspm-radio-dot"></div>
+                    </div>
+                  </div>
+                  <!-- Kuda option -->
+                  <div class="bspm-option" aria-selected="false" role="radio"
+                    data-bspm-id="kuda" tabindex="0"
+                    onclick="bspmSelect('kuda')">
+                    <div class="bspm-option-logo" aria-hidden="true">
+                      <div class="kuda-logo" style="width:26px;height:26px;font-size:11px;">K</div>
+                    </div>
+                    <div class="bspm-option-body">
+                      <p class="bspm-option-name">Kuda Bank Transfer</p>
+                      <p class="bspm-option-sub">via Paystack · Verified</p>
+                    </div>
+                    <div class="bspm-radio" aria-hidden="true">
+                      <div class="bspm-radio-dot"></div>
+                    </div>
+                  </div>
+                </div>
+                <button class="bspm-confirm-btn" type="button"
+                  onclick="bspmConfirm()">Confirm</button>
+              </div>
+            </div><!-- /overlay-select-payment -->
+
+            <!-- ─────────────────────────────────────────────
+                 OVERLAY 3: Extension successful
+            ───────────────────────────────────────────── -->
+            <div class="bsheet-overlay" aria-hidden="true" id="overlay-success">
+              <div class="bsheet-scrim"></div>
+              <div class="bsheet-panel" role="dialog" aria-modal="true" aria-label="Extension successful">
+                <div class="bsheet-handle" aria-hidden="true"></div>
+                <div class="bsuc-body">
+                  <div class="bsuc-icon" aria-hidden="true">
+                    <!-- Large green checkmark -->
+                    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="18" cy="18" r="17" fill="#16a34a" opacity="0.15"/>
+                      <path d="M9 18.5L15 24.5L27 13" stroke="#16a34a" stroke-width="2.8"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <h2 class="bsuc-title">Extension successful!</h2>
+                  <p class="bsuc-desc">Your access has been extended by <strong>60 days</strong>.
+                    New end date: <strong>14 Dec 2026</strong></p>
+                </div>
+                <div style="padding: 0 20px;">
+                  <button class="bsuc-primary-btn" type="button"
+                    onclick="window.location.href=new window.URL('app/dashboard.html',document.baseURI).href">
+                    Go to dashboard
+                  </button>
+                </div>
+                <div style="display:flex;justify-content:center;padding:12px 20px 0;">
+                  <button class="bsuc-secondary-btn" type="button"
+                    onclick="window.location.href=new window.URL('settings/settings-billing.html',document.baseURI).href">
+                    See billing history
+                  </button>
+                </div>
+              </div>
+            </div><!-- /overlay-success -->
+
+          </div><!-- /dashboard-shell -->
+        </section>
+      </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+      /* ── Extend / Upgrade tab toggle ── */
+      (function () {
+        var tabs   = document.querySelectorAll('.bmod-toggle-btn[data-bmod-tab]');
+        var extend = document.getElementById('bmod-panel-extend');
+        var upgrade= document.getElementById('bmod-panel-upgrade');
+
+        tabs.forEach(function (tab) {
+          tab.addEventListener('click', function () {
+            var target = tab.dataset.bmodTab;
+            tabs.forEach(function (t) { t.setAttribute('aria-selected', 'false'); });
+            tab.setAttribute('aria-selected', 'true');
+            if (target === 'extend') {
+              extend.removeAttribute('aria-hidden');
+              upgrade.setAttribute('aria-hidden', 'true');
+            } else {
+              upgrade.removeAttribute('aria-hidden');
+              extend.setAttribute('aria-hidden', 'true');
+            }
+          });
+        });
+      }());
+
+      /* ── Plan option selection (per panel) ── */
+      document.querySelectorAll('.bmod-option').forEach(function (opt) {
+        opt.addEventListener('click', function () {
+          var group = opt.dataset.bmodOption;
+          document.querySelectorAll('.bmod-option[data-bmod-option="' + group + '"]')
+            .forEach(function (o) { o.setAttribute('aria-selected', 'false'); });
+          opt.setAttribute('aria-selected', 'true');
+        });
+      });
+
+      /* ── Sheet helpers ── */
+      function bmodOpenSheet(id) {
+        document.getElementById(id).setAttribute('aria-hidden', 'false');
+      }
+      function bmodCloseSheet(id) {
+        document.getElementById(id).setAttribute('aria-hidden', 'true');
+      }
+
+      /* ── Open confirm & pay with selected option data ── */
+      function bmodOpenConfirm() {
+        var activeTab = document.querySelector('.bmod-toggle-btn[aria-selected="true"]');
+        var group = activeTab ? activeTab.dataset.bmodTab : 'extend';
+        var selected = document.querySelector('.bmod-option[data-bmod-option="' + group + '"][aria-selected="true"]');
+        if (!selected) { selected = document.querySelector('.bmod-option[data-bmod-option="' + group + '"]'); }
+
+        var price = selected ? selected.dataset.price : '₦50,000';
+        var name  = selected ? selected.dataset.name  : '60 Days Extension';
+        var desc  = selected ? selected.dataset.desc  : 'Duration extension to your Essentials Plan';
+
+        document.getElementById('bcp-order-name').textContent    = name;
+        document.getElementById('bcp-order-desc').textContent    = desc;
+        document.getElementById('bcp-option-price').textContent  = price;
+        document.getElementById('bcp-pay-btn').textContent       = 'Pay ' + price;
+
+        bmodOpenSheet('overlay-confirm-pay');
+      }
+
+      /* ── Simulate payment confirmation ── */
+      function bmodConfirmPayment() {
+        bmodCloseSheet('overlay-confirm-pay');
+        setTimeout(function () {
+          bmodOpenSheet('overlay-success');
+        }, 200);
+      }
+
+      /* ── Select payment method ── */
+      function bspmSelect(id) {
+        document.querySelectorAll('.bspm-option').forEach(function (o) {
+          o.setAttribute('aria-selected', o.dataset.bspmId === id ? 'true' : 'false');
+        });
+      }
+      function bspmConfirm() {
+        bmodCloseSheet('overlay-select-payment');
+      }
+    </script>
+  </body>
+</html>

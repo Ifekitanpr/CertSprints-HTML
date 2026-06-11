@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <base href="../" />
+    <title>CertSprints — Games</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="css/app.css?v=20260528-games-figma2" />
+  </head>
+  <body class="games-page">
+    <main class="phone-case" aria-label="CertSprints Games">
+      <div class="case-shell">
+        <section class="screen dashboard-screen">
+          <div class="dashboard-shell">
+            <div class="dashboard-scroll">
+              <div id="cs-header-placeholder"></div>
+
+              <main class="dashboard-main games-main" aria-labelledby="games-title">
+                <section class="games-heading">
+                  <h1 id="games-title"><span>Practice</span> Games</h1>
+                  <p>Train your exam reflexes through quick challenges</p>
+                </section>
+
+                <section class="games-summary" aria-label="Game summary">
+                  <div class="games-summary-item">
+                    <span class="games-summary-icon games-summary-icon--game" aria-hidden="true">
+                      <img src="assets/games/game-controller.svg" alt="" width="16" height="16" />
+                    </span>
+                    <p>4 games available</p>
+                  </div>
+                  <div class="games-summary-item">
+                    <span class="games-summary-icon games-summary-icon--boost" aria-hidden="true">
+                      <img src="assets/games/flash.svg" alt="" width="16" height="16" />
+                    </span>
+                    <p>Boosts Readiness + Decision Velocity</p>
+                  </div>
+                </section>
+
+                <section class="games-list" aria-label="Practice games">
+                  <article class="games-card games-card--mindset">
+                    <div class="games-card-copy games-card-copy--wide">
+                      <h2>Mindset Sprint</h2>
+                      <p class="games-card-kicker">Think fast, Classify faster</p>
+                      <p class="games-card-desc">Sort each prompt into action or assessment before time runs out.</p>
+                    </div>
+                    <img class="games-card-art" src="assets/games/mindset-sprint-art.png" alt="" />
+                    <button class="games-card-button games-card-button--blue" type="button" data-game="mindset-sprint">
+                      Play Blitz
+                      <img src="assets/games/play-circle.svg" alt="" class="games-btn-img" width="20" height="20" />
+                    </button>
+                  </article>
+
+                  <article class="games-card games-card--logic">
+                    <div class="games-card-copy games-card-copy--narrow">
+                      <h2>Logic Sniper</h2>
+                      <p class="games-card-kicker">Spot traps. Eliminate noise.</p>
+                      <p class="games-card-desc">Pick off weak distractors and lock onto the standard answer</p>
+                    </div>
+                    <img class="games-card-art" src="assets/games/logic-sniper-art.png" alt="" />
+                    <button class="games-card-button games-card-button--green" type="button" onclick="window.location.href=new window.URL('games/logic-sniper.html',document.baseURI).href">
+                      Launch Duel
+                      <img src="assets/games/target.svg" alt="" class="games-btn-img" width="20" height="20" />
+                    </button>
+                  </article>
+
+                  <article class="games-card games-card--blueprint">
+                    <div class="games-card-copy games-card-copy--wide">
+                      <h2>Blueprint Builder</h2>
+                      <p class="games-card-kicker">Build framework from memory</p>
+                      <p class="games-card-desc">Arrange the PMP process structure<br>before the clocks breaks your rhythm.</p>
+                    </div>
+                    <img class="games-card-art" src="assets/games/blueprint-builder-art.png" alt="" />
+                    <button class="games-card-button games-card-button--blueprint" type="button"
+                            onclick="window.location.href=new window.URL('games/blueprint-builder.html',document.baseURI).href">
+                      Build Blueprint
+                      <img src="assets/games/blockchain.svg" alt="" class="games-btn-img" width="20" height="20" />
+                    </button>
+                  </article>
+
+                  <article class="games-card games-card--narrative">
+                    <div class="games-card-copy games-card-copy--wide">
+                      <h2>Narrative Quest</h2>
+                      <p class="games-card-kicker games-card-kicker--dark">Repair story, Choose the logic</p>
+                      <p class="games-card-desc">Fix broken scenarios by choosing<br>the term that makes the story work</p>
+                    </div>
+                    <img class="games-card-art" src="assets/games/narrative-quest-art.png" alt="" />
+                    <button class="games-card-button games-card-button--orange" type="button" onclick="window.location.href=new window.URL('games/narrative-quest.html',document.baseURI).href">
+                      Launch Quest
+                      <img src="assets/games/rocket.svg" alt="" class="games-btn-img" width="20" height="20" />
+                    </button>
+                  </article>
+                </section>
+              </main>
+            </div>
+
+            <div id="cs-nav-placeholder"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="js/components.js"></script>
+    <script>
+      CertSprintsComponents.injectHeader("#cs-header-placeholder");
+      CertSprintsComponents.injectBottomNav("#cs-nav-placeholder", "games");
+
+      document.querySelector('[data-game="mindset-sprint"]')?.addEventListener("click", () => {
+        window.location.href = new window.URL("games/mindset-sprint.html", document.baseURI).href;
+      });
+    </script>
+  </body>
+</html>
